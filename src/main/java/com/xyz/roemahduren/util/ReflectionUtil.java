@@ -1,8 +1,8 @@
 package com.xyz.roemahduren.util;
 
-import com.xyz.roemahduren.domain.annotation.Column;
-import com.xyz.roemahduren.domain.annotation.Id;
-import com.xyz.roemahduren.domain.annotation.Table;
+import com.xyz.roemahduren.domain.annotation.db.Column;
+import com.xyz.roemahduren.domain.annotation.db.Id;
+import com.xyz.roemahduren.domain.annotation.db.Table;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

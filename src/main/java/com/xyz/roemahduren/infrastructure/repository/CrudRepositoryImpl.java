@@ -1,7 +1,7 @@
 package com.xyz.roemahduren.infrastructure.repository;
 
-import com.xyz.roemahduren.domain.annotation.Column;
-import com.xyz.roemahduren.domain.annotation.Id;
+import com.xyz.roemahduren.domain.annotation.db.Column;
+import com.xyz.roemahduren.domain.annotation.db.Id;
 import com.xyz.roemahduren.domain.repository.CrudRepository;
 import com.xyz.roemahduren.util.ReflectionUtil;
 

@@ -1,8 +1,8 @@
 package com.xyz.roemahduren.domain.entity;
 
-import com.xyz.roemahduren.domain.annotation.Column;
-import com.xyz.roemahduren.domain.annotation.Id;
-import com.xyz.roemahduren.domain.annotation.Table;
+import com.xyz.roemahduren.domain.annotation.db.Column;
+import com.xyz.roemahduren.domain.annotation.db.Id;
+import com.xyz.roemahduren.domain.annotation.db.Table;
 
 @Table(name = "m_user_credential")
 public class UserCredential {

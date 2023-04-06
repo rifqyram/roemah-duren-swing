@@ -1,4 +1,4 @@
-package com.xyz.roemahduren.domain.annotation;
+package com.xyz.roemahduren.domain.annotation.db;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

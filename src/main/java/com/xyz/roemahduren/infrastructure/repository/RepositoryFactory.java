@@ -1,8 +1,7 @@
 package com.xyz.roemahduren.infrastructure.repository;
 
-import com.xyz.roemahduren.domain.repository.CategoryRepository;
-import com.xyz.roemahduren.domain.repository.Persistence;
-import com.xyz.roemahduren.domain.repository.ProductRepository;
+import com.xyz.roemahduren.domain.entity.OrderDetail;
+import com.xyz.roemahduren.domain.repository.*;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 
 import java.sql.Connection;
@@ -19,12 +18,40 @@ public class RepositoryFactory {
         return DbPersistence.getInstance();
     }
 
+    public AdminRepository adminRepository() {
+        return new AdminRepositoryImpl(connection);
+    }
+
+    public BranchRepository branchRepository() {
+        return new BranchRepositoryImpl(connection);
+    }
+
     public CategoryRepository categoryRepository() {
         return new CategoryRepositoryImpl(connection);
     }
 
+    public CustomerRepository customerRepository() {
+        return new CustomerRepositoryImpl(connection);
+    }
+
+    public OrderDetailRepository orderDetailRepository() {
+        return new OrderDetailRepositoryImpl(connection);
+    }
+
+    public OrderRepository orderRepository() {
+        return new OrderRepositoryImpl(connection);
+    }
+
+    public ProductPriceRepository productPriceRepository() {
+        return new ProductPriceRepositoryImpl(connection);
+    }
+
     public ProductRepository productRepository() {
         return new ProductRepositoryImpl(connection);
+    }
+
+    public UserCredentialRepository userCredentialRepository() {
+        return new UserCredentialRepositoryImpl(connection);
     }
 
 }
