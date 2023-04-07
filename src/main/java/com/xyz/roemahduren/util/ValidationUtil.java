@@ -99,4 +99,8 @@ public class ValidationUtil {
         return String.join(" - ", messages);
     }
 
+    public static String getHtmlMessage(Set<String> messages, int width) {
+        String html = "<html><body style='width: %1spx'>%1s</body></html>";
+        return String.format(html, width, String.join(" - ", messages));
+    }
 }
