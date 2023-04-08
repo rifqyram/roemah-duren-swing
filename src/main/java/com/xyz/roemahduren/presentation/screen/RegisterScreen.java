@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.LabelLink;
@@ -52,7 +48,6 @@ public class RegisterScreen extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(480, 500));
         setMinimumSize(new Dimension(480, 500));
-        setPreferredSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
 
         tfEmail.setPlaceholder("johndoe@mail.com");
@@ -102,7 +97,7 @@ public class RegisterScreen extends JFrame {
                     .addComponent(tfEmail, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                     .addComponent(registerBtn, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfPassword, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
