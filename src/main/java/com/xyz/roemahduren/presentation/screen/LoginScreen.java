@@ -4,26 +4,16 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
-import com.xyz.roemahduren.presentation.component.ImagePanel;
 import com.xyz.roemahduren.presentation.component.LabelLink;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
-import com.xyz.roemahduren.presentation.component.RoundedPasswordField;
-import com.xyz.roemahduren.presentation.component.RoundedTextField;
+import com.xyz.roemahduren.presentation.component.input.RoundedPasswordField;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.util.SwingUtil;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 /**
  *

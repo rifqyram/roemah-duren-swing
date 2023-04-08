@@ -1,4 +1,4 @@
-package com.xyz.roemahduren.presentation.component;
+package com.xyz.roemahduren.presentation.component.input;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,14 +2,12 @@ package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.LabelLink;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
-import com.xyz.roemahduren.presentation.component.RoundedPasswordField;
-import com.xyz.roemahduren.presentation.component.RoundedTextField;
+import com.xyz.roemahduren.presentation.component.input.RoundedPasswordField;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.util.SwingUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * @author user

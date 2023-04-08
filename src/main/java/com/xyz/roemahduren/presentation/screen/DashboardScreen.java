@@ -1,6 +1,6 @@
 package com.xyz.roemahduren.presentation.screen;
 
-import com.xyz.roemahduren.presentation.component.RoundedPanel;
+import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
 import java.awt.Color;
 import java.awt.Dimension;

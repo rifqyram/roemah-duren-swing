@@ -1,4 +1,4 @@
-package com.xyz.roemahduren.presentation.component;
+package com.xyz.roemahduren.presentation.component.input;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +6,13 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedTextArea extends JTextArea implements FocusListener {
+public class RoundedTextField extends JTextField implements FocusListener {
     private Shape shape;
     private int cornerRadius = 8;
     private String placeholder;
     private boolean isPlaceholderVisible;
 
-    public RoundedTextArea() {
+    public RoundedTextField() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
         setForeground(new Color(0x6D7588));

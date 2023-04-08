@@ -83,7 +83,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.xyz.roemahduren.presentation.component.RoundedTextField" name="tfEmail">
+    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextField" name="tfEmail">
       <Properties>
         <Property name="placeholder" type="java.lang.String" value="johndoe@mail.com"/>
       </Properties>
@@ -159,7 +159,7 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.RoundedPasswordField" name="tfPassword">
+    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedPasswordField" name="tfPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="roundedPasswordField1"/>
       </Properties>
