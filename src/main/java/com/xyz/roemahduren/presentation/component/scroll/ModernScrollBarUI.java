@@ -7,7 +7,7 @@ import java.awt.*;
 public class ModernScrollBarUI extends BasicScrollBarUI {
 
     private final int THUMB_SIZE = 5;
-    private final Color THUMB_COLOR = new Color(170, 170, 170);
+    private final Color THUMB_COLOR = new Color(118, 118, 118);
     private final float ALPHA = 0.3f;
 
     public ModernScrollBarUI() {

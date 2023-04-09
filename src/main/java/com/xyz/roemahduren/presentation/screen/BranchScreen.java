@@ -4,10 +4,20 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
+import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextArea;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
+import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
+import com.xyz.roemahduren.presentation.component.table.Table;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +30,9 @@ public class BranchScreen extends javax.swing.JPanel {
      */
     public BranchScreen() {
         initComponents();
+
+        taAddress.fixArea(scrollAddressTextArea);
+        table1.fixTable(jScrollPane1);
     }
 
     /**
@@ -32,36 +45,160 @@ public class BranchScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         roundedPanel1 = new RoundedPanel();
+        branchNameLabel = new JLabel();
+        addressLabel = new JLabel();
+        tfBranchName = new RoundedTextField();
+        errorBranchNameLabel = new JLabel();
+        scrollAddressTextArea = new JScrollPane();
+        taAddress = new RoundedTextArea();
+        errorAddressLabel = new JLabel();
+        btnSave = new RoundedButton();
+        titleLabel = new JLabel();
+        jScrollPane1 = new JScrollPane();
+        table1 = new Table();
 
         setBackground(new Color(255, 255, 255));
+
+        roundedPanel1.setBackground(new Color(243, 244, 245));
+        roundedPanel1.setForeground(new Color(95, 108, 123));
+        roundedPanel1.setCornerRadius(8);
+
+        branchNameLabel.setForeground(new Color(95, 108, 123));
+        branchNameLabel.setText("Branch Name");
+
+        addressLabel.setForeground(new Color(95, 108, 123));
+        addressLabel.setText("Address");
+
+        tfBranchName.setPlaceholder("Contoh: Jakarta");
+
+        errorBranchNameLabel.setForeground(new Color(220, 53, 69));
+
+        taAddress.setColumns(20);
+        taAddress.setRows(5);
+        taAddress.setPlaceholder("TB. Simatupang, Jl. Nangka...");
+        scrollAddressTextArea.setViewportView(taAddress);
+
+        errorAddressLabel.setForeground(new Color(220, 53, 69));
+
+        btnSave.setBackground(new Color(61, 169, 252));
+        btnSave.setForeground(new Color(255, 255, 255));
+        btnSave.setText("Save");
+        btnSave.setToolTipText("");
+        btnSave.setBorderColor(new Color(61, 169, 252));
+        btnSave.setColor(new Color(61, 169, 252));
+        btnSave.setColorClick(new Color(61, 169, 252));
+        btnSave.setColorOver(new Color(61, 169, 252));
+        btnSave.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         GroupLayout roundedPanel1Layout = new GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addComponent(errorBranchNameLabel)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                        .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollAddressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                            .addComponent(tfBranchName, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.LEADING, roundedPanel1Layout.createSequentialGroup()
+                                .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(branchNameLabel, GroupLayout.Alignment.LEADING)
+                                    .addComponent(addressLabel, GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35))
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(errorAddressLabel)
+                            .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         roundedPanel1Layout.setVerticalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(branchNameLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfBranchName, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(errorBranchNameLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollAddressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorAddressLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
+
+        titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
+        titleLabel.setText("Branch Management");
+
+        table1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        table1.setModel(new DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "#", "Branch Name", "Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table1);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(roundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(95, 95, 95))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING)
+                            .addComponent(roundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(titleLabel)
+                .addGap(24, 24, 24)
                 .addComponent(roundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JLabel addressLabel;
+    private JLabel branchNameLabel;
+    private RoundedButton btnSave;
+    private JLabel errorAddressLabel;
+    private JLabel errorBranchNameLabel;
+    private JScrollPane jScrollPane1;
     private RoundedPanel roundedPanel1;
+    private JScrollPane scrollAddressTextArea;
+    private RoundedTextArea taAddress;
+    private Table table1;
+    private RoundedTextField tfBranchName;
+    private JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

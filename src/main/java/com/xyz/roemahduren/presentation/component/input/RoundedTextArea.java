@@ -1,5 +1,7 @@
 package com.xyz.roemahduren.presentation.component.input;
 
+import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -93,5 +95,15 @@ public class RoundedTextArea extends JTextArea implements FocusListener {
             setText(placeholder);
             isPlaceholderVisible = true;
         }
+    }
+
+    public void fixArea(JScrollPane scroll) {
+        scroll.setBorder(null);
+        scroll.setVerticalScrollBar(new ScrollBar());
+        scroll.getVerticalScrollBar().setBackground(Color.WHITE);
+        scroll.getViewport().setBackground(Color.WHITE);
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
     }
 }

@@ -7,6 +7,7 @@ package com.xyz.roemahduren.presentation.screen;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.component.menu.SideMenu;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
+import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 
 import java.awt.*;
 import java.util.List;
@@ -23,6 +24,11 @@ public class MainScreen extends JFrame {
      */
     public MainScreen() {
         initComponents();
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setVerticalScrollBar(new ScrollBar());
+        jScrollPane1.getVerticalScrollBar().setBackground(Color.WHITE);
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
 
         List<MenuItem> menuItems = sideMenu1.getMenuItems();
 
@@ -80,6 +86,7 @@ public class MainScreen extends JFrame {
         setMinimumSize(new Dimension(1024, 720));
         setSize(new Dimension(1024, 720));
 
+        dashboardScreen1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jScrollPane1.setViewportView(dashboardScreen1);
 
         GroupLayout layout = new GroupLayout(getContentPane());
