@@ -4,7 +4,12 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
-import java.awt.Dimension;
+import com.xyz.roemahduren.presentation.component.menu.MenuItem;
+import com.xyz.roemahduren.presentation.component.menu.SideMenu;
+import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
+
+import java.awt.*;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -18,6 +23,44 @@ public class MainScreen extends JFrame {
      */
     public MainScreen() {
         initComponents();
+
+        List<MenuItem> menuItems = sideMenu1.getMenuItems();
+
+        for (int i = 0; i < menuItems.size(); i++) {
+            int index = i;
+
+            menuItems.get(i).addActionListener(e -> {
+                menuItems.get(index).setSelected(true);
+                for (int j = 0; j < menuItems.size(); j++) {
+                    if (j != index) {
+                        menuItems.get(j).setSelected(false);
+                    }
+                }
+                for (int j = 0; j < menuItems.size(); j++) {
+                    if (j == index) {
+                        menuItems.get(j).setForeground(Color.WHITE);
+                        menuItems.get(j).setColorOver(new Color(0x0C7EC3));
+                        menuItems.get(j).setBorderColor(new Color(0x0C7EC3));
+
+                        if (index == 0) {
+                            DashboardScreen screen = new DashboardScreen();
+                            jScrollPane1.setViewportView(screen);
+                        } else if (index == 1) {
+                            BranchScreen screen = new BranchScreen();
+                            jScrollPane1.setViewportView(screen);
+                        }
+
+
+                    } else {
+                        menuItems.get(j).setForeground(new Color(0xFFFFFE));
+                        menuItems.get(j).setColor(new Color(0x3DA9FC));
+                        menuItems.get(j).setBorderColor(new Color(0x3DA9FC));
+                        // set icon for unselected menu items
+                    }
+                }
+
+            });
+        }
     }
 
     /**
@@ -29,17 +72,27 @@ public class MainScreen extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        sideMenu1 = new SideMenu();
+        jScrollPane1 = new JScrollPane();
+        dashboardScreen1 = new DashboardScreen();
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1024, 720));
         setSize(new Dimension(1024, 720));
 
+        jScrollPane1.setViewportView(dashboardScreen1);
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(sideMenu1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addComponent(sideMenu1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,5 +134,8 @@ public class MainScreen extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private DashboardScreen dashboardScreen1;
+    private JScrollPane jScrollPane1;
+    private SideMenu sideMenu1;
     // End of variables declaration//GEN-END:variables
 }

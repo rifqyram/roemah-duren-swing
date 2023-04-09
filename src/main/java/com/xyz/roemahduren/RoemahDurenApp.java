@@ -9,6 +9,7 @@ import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
 import com.xyz.roemahduren.presentation.ScreenFactory;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
+import com.xyz.roemahduren.presentation.screen.MainScreen;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -38,12 +39,16 @@ public class RoemahDurenApp {
 
             ControllerFactory controllerFactory = factoryManager(connection);
             SwingUtilities.invokeLater(() -> {
-                LoginController loginController = controllerFactory.loginController();
-                RegisterController registerController = controllerFactory.registerController();
-                loginController.setRegisterController(registerController);
-                registerController.setLoginController(loginController);
+//                LoginController loginController = controllerFactory.loginController();
+//                RegisterController registerController = controllerFactory.registerController();
+//                loginController.setRegisterController(registerController);
+//                registerController.setLoginController(loginController);
+//
+//                loginController.setVisible(true);
 
-                loginController.setVisible(true);
+                MainScreen mainScreen = new MainScreen();
+                mainScreen.setVisible(true);
+
             });
         } catch (InterruptedException e) {
             e.printStackTrace();
