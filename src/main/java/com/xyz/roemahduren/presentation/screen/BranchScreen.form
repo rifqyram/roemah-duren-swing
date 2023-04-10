@@ -44,7 +44,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="searchBtn" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="scrollBranchTable" alignment="1" pref="681" max="32767" attributes="0"/>
+                          <Component id="scrollBranchTable" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
                   </Group>
@@ -59,7 +59,7 @@
               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="formPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="searchBtn" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -69,7 +69,7 @@
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="scrollBranchTable" min="-2" pref="198" max="-2" attributes="0"/>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
+              <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,24 +96,25 @@
                           <Component id="errorBranchNameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="scrollAddressTextArea" alignment="0" pref="610" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="tfBranchName" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="branchNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="addressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="branchNameLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="scrollAddressTextArea" pref="600" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnSave" min="-2" pref="133" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="errorAddressLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                              <Component id="addressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -130,15 +131,15 @@
                   <Component id="tfBranchName" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="errorBranchNameLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="addressLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrollAddressTextArea" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="errorAddressLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -162,6 +163,9 @@
         </Component>
         <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextField" name="tfBranchName">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
             <Property name="placeholder" type="java.lang.String" value="Contoh: Jakarta"/>
           </Properties>
         </Component>
@@ -183,6 +187,9 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="14" style="0"/>
+                </Property>
                 <Property name="placeholder" type="java.lang.String" value="TB. Simatupang, Jl. Nangka..."/>
               </Properties>
             </Component>

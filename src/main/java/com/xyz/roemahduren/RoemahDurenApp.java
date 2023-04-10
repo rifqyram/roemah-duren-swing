@@ -1,8 +1,6 @@
 package com.xyz.roemahduren;
 
-import com.xyz.roemahduren.application.controller.BranchController;
 import com.xyz.roemahduren.application.controller.ControllerFactory;
-import com.xyz.roemahduren.application.controller.MainController;
 import com.xyz.roemahduren.application.service.ServiceFactory;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;

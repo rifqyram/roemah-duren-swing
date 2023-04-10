@@ -6,20 +6,30 @@ import com.xyz.roemahduren.domain.repository.BranchRepository;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.NotFoundException;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class BranchServiceImpl implements BranchService {
 
     private final BranchRepository branchRepository;
+    private final Connection connection;
 
-    public BranchServiceImpl(BranchRepository branchRepository) {
+    public BranchServiceImpl(BranchRepository branchRepository, Connection connection) {
         this.branchRepository = branchRepository;
+        this.connection = connection;
     }
 
     @Override
     public Branch create(BranchRequest request) {
-        Branch branch = new Branch(request.getId(), request.getName(), request.getAddress());
-        return branchRepository.save(branch);
+        try {
+            Branch branch = new Branch(request.getId(), request.getName(), request.getAddress());
+            Branch save = branchRepository.save(branch);
+            connection.commit();
+            return save;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

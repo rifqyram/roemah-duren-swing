@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
@@ -10,11 +11,11 @@ import java.util.List;
 public class MainController {
 
     private final MainScreen mainScreen;
-    private ControllerFactory controllerFactory;
+    private BranchController branchController;
 
-    public MainController(MainScreen mainScreen, ControllerFactory controllerFactory) {
+    public MainController(MainScreen mainScreen, BranchController branchController) {
         this.mainScreen = mainScreen;
-        this.controllerFactory = controllerFactory;
+        this.branchController = branchController;
 
         initController();
 
@@ -64,9 +65,8 @@ public class MainController {
                     setViewport(mainScreen.getDashboardScreen());
                     break;
                 case 1:
-                    BranchController branchController = controllerFactory.branchController();
-                    BranchScreen screen = branchController.getScreen();
-                    setViewport(screen);
+                    BranchScreen branchScreen = branchController.getBranchScreen();
+                    setViewport(branchScreen);
                     break;
             }
 

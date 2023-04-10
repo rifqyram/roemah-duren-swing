@@ -4,28 +4,22 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
+import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextArea;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
- *
  * @author user
  */
 
-public class BranchScreen extends javax.swing.JPanel {
+public class BranchScreen extends JPanel {
 
     /**
      * Creates new form BranchScreen
@@ -33,6 +27,7 @@ public class BranchScreen extends javax.swing.JPanel {
 
     public BranchScreen() {
         initComponents();
+
 
         taAddress.fixArea(scrollAddressTextArea);
         table1.fixTable(scrollBranchTable);
@@ -78,12 +73,14 @@ public class BranchScreen extends javax.swing.JPanel {
         addressLabel.setForeground(new Color(95, 108, 123));
         addressLabel.setText("Address");
 
+        tfBranchName.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         tfBranchName.setPlaceholder("Contoh: Jakarta");
 
         errorBranchNameLabel.setForeground(new Color(220, 53, 69));
 
         taAddress.setColumns(20);
         taAddress.setRows(5);
+        taAddress.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         taAddress.setPlaceholder("TB. Simatupang, Jl. Nangka...");
         scrollAddressTextArea.setViewportView(taAddress);
 
@@ -108,20 +105,21 @@ public class BranchScreen extends javax.swing.JPanel {
                     .addGroup(formPanelLayout.createSequentialGroup()
                         .addComponent(errorBranchNameLabel)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollAddressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
-                            .addComponent(tfBranchName, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(GroupLayout.Alignment.LEADING, formPanelLayout.createSequentialGroup()
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(branchNameLabel, GroupLayout.Alignment.LEADING)
-                                    .addComponent(addressLabel, GroupLayout.Alignment.LEADING))
+                    .addGroup(formPanelLayout.createSequentialGroup()
+                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(tfBranchName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(formPanelLayout.createSequentialGroup()
+                                .addComponent(branchNameLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(scrollAddressTextArea, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                            .addGroup(formPanelLayout.createSequentialGroup()
+                                .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(35, 35, 35))
                     .addGroup(formPanelLayout.createSequentialGroup()
                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(errorAddressLabel)
-                            .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addressLabel))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         formPanelLayout.setVerticalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -132,15 +130,15 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addComponent(tfBranchName, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(errorBranchNameLabel)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(addressLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollAddressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errorAddressLabel)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(16, 16, 16))
         );
 
         table1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -198,7 +196,7 @@ public class BranchScreen extends javax.swing.JPanel {
                                 .addComponent(tfSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollBranchTable, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))
+                            .addComponent(scrollBranchTable, GroupLayout.Alignment.TRAILING))
                         .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -207,7 +205,7 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addComponent(titleLabel)
                 .addGap(24, 24, 24)
                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -215,7 +213,7 @@ public class BranchScreen extends javax.swing.JPanel {
                         .addComponent(tfSearch, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addComponent(scrollBranchTable, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

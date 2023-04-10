@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
@@ -37,7 +38,7 @@ public class ControllerFactory {
     }
 
     public MainController mainController() {
-        return new MainController(mainScreen, this);
+        return new MainController(mainScreen, branchController());
     }
 
     public BranchController branchController() {

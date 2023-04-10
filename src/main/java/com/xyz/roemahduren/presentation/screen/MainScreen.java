@@ -34,43 +34,6 @@ public class MainScreen extends JFrame {
         p.setBackground(Color.WHITE);
         contentMenuScroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
 
-        List<MenuItem> menuItems = sideMenuPanel.getMenuItems();
-
-        for (int i = 0; i < menuItems.size(); i++) {
-            int index = i;
-
-            menuItems.get(i).addActionListener(e -> {
-                menuItems.get(index).setSelected(true);
-                for (int j = 0; j < menuItems.size(); j++) {
-                    if (j != index) {
-                        menuItems.get(j).setSelected(false);
-                    }
-                }
-                for (int j = 0; j < menuItems.size(); j++) {
-                    if (j == index) {
-                        menuItems.get(j).setForeground(Color.WHITE);
-                        menuItems.get(j).setColorOver(new Color(0x0C7EC3));
-                        menuItems.get(j).setBorderColor(new Color(0x0C7EC3));
-
-                        if (index == 0) {
-                            DashboardScreen screen = new DashboardScreen();
-                            contentMenuScroll.setViewportView(screen);
-                        } else if (index == 1) {
-                            BranchScreen screen = new BranchScreen();
-                            contentMenuScroll.setViewportView(screen);
-                        }
-
-
-                    } else {
-                        menuItems.get(j).setForeground(new Color(0xFFFFFE));
-                        menuItems.get(j).setColor(new Color(0x3DA9FC));
-                        menuItems.get(j).setBorderColor(new Color(0x3DA9FC));
-                        // set icon for unselected menu items
-                    }
-                }
-
-            });
-        }
     }
 
     /**

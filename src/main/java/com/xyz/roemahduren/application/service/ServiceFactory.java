@@ -27,6 +27,6 @@ public class ServiceFactory {
     }
 
     public BranchService branchService() {
-        return new BranchServiceImpl(branchRepository);
+        return new BranchServiceImpl(branchRepository, connection);
     }
 }
