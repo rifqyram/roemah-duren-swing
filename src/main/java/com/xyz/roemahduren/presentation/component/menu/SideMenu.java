@@ -34,6 +34,62 @@ public class SideMenu extends javax.swing.JPanel {
         }
     }
 
+    public MenuItem getMenuItem1() {
+        return menuItem1;
+    }
+
+    public void setMenuItem1(MenuItem menuItem1) {
+        this.menuItem1 = menuItem1;
+    }
+
+    public MenuItem getMenuItem2() {
+        return menuItem2;
+    }
+
+    public void setMenuItem2(MenuItem menuItem2) {
+        this.menuItem2 = menuItem2;
+    }
+
+    public MenuItem getMenuItem3() {
+        return menuItem3;
+    }
+
+    public void setMenuItem3(MenuItem menuItem3) {
+        this.menuItem3 = menuItem3;
+    }
+
+    public MenuItem getMenuItem4() {
+        return menuItem4;
+    }
+
+    public void setMenuItem4(MenuItem menuItem4) {
+        this.menuItem4 = menuItem4;
+    }
+
+    public MenuItem getMenuItem5() {
+        return menuItem5;
+    }
+
+    public void setMenuItem5(MenuItem menuItem5) {
+        this.menuItem5 = menuItem5;
+    }
+
+    public MenuItem getMenuItem6() {
+        return menuItem6;
+    }
+
+    public void setMenuItem6(MenuItem menuItem6) {
+        this.menuItem6 = menuItem6;
+    }
+
+    public MenuItem getMenuItem8() {
+        return menuItem8;
+    }
+
+    public void setMenuItem8(MenuItem menuItem8) {
+        this.menuItem8 = menuItem8;
+    }
+
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
@@ -55,7 +111,6 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem4 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem5 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem6 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
-        menuItem7 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem8 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
 
         setBackground(new Color(61, 169, 252));
@@ -76,7 +131,6 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem1.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem1.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem1.setIconTextGap(14);
-        menuItem1.setSelected(true);
 
         menuItem2.setBackground(new Color(61, 169, 252));
         menuItem2.setForeground(new Color(255, 255, 254));
@@ -138,18 +192,6 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem6.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem6.setIconTextGap(14);
 
-        menuItem7.setBackground(new Color(61, 169, 252));
-        menuItem7.setForeground(new Color(255, 255, 254));
-        menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Help outline.png"))); // NOI18N
-        menuItem7.setText("Help");
-        menuItem7.setBorderColor(new Color(61, 169, 252));
-        menuGroup.add(menuItem7);
-        menuItem7.setColor(new Color(61, 169, 252));
-        menuItem7.setColorOver(new Color(12, 126, 195));
-        menuItem7.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem7.setHorizontalAlignment(SwingConstants.LEFT);
-        menuItem7.setIconTextGap(14);
-
         menuItem8.setBackground(new Color(61, 169, 252));
         menuItem8.setForeground(new Color(255, 255, 254));
         menuItem8.setIcon(new ImageIcon(getClass().getResource("/images/Exit to app.png"))); // NOI18N
@@ -165,41 +207,38 @@ public class SideMenu extends javax.swing.JPanel {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(menuItem1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addComponent(menuItem2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuItem8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(28, 28, 28))
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(menuItem1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(menuItem2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(titleLabel)
-                        .addGap(37, 37, 37)
-                        .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem4, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem5, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuItem7, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(menuItem8, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(titleLabel)
+                .addGap(37, 37, 37)
+                .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem4, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem5, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(menuItem8, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,7 +251,6 @@ public class SideMenu extends javax.swing.JPanel {
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem4;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem5;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem6;
-    private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem7;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem8;
     private JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

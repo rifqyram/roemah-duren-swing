@@ -30,27 +30,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="sideMenu1" min="-2" max="-2" attributes="0"/>
+              <Component id="sideMenuPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <Component id="contentMenuScroll" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="sideMenu1" max="32767" attributes="0"/>
-          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+          <Component id="sideMenuPanel" max="32767" attributes="0"/>
+          <Component id="contentMenuScroll" alignment="0" pref="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.xyz.roemahduren.presentation.component.menu.SideMenu" name="sideMenu1">
+    <Component class="com.xyz.roemahduren.presentation.component.menu.SideMenu" name="sideMenuPanel">
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="contentMenuScroll">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="com.xyz.roemahduren.presentation.screen.DashboardScreen" name="dashboardScreen1">
+        <Component class="com.xyz.roemahduren.presentation.screen.DashboardScreen" name="dashboardScreen">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">

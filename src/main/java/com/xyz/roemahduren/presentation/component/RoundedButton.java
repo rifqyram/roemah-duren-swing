@@ -72,6 +72,7 @@ public class RoundedButton extends JButton {
             public void mousePressed(MouseEvent me) {
                 setBackground(colorClick);
                 setBorderColor(color);
+                setBorderColor(colorClick);
             }
 
             @Override

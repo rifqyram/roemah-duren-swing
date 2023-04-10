@@ -1,15 +1,14 @@
 package com.xyz.roemahduren;
 
+import com.xyz.roemahduren.application.controller.BranchController;
 import com.xyz.roemahduren.application.controller.ControllerFactory;
-import com.xyz.roemahduren.application.controller.LoginController;
-import com.xyz.roemahduren.application.controller.RegisterController;
+import com.xyz.roemahduren.application.controller.MainController;
 import com.xyz.roemahduren.application.service.ServiceFactory;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
 import com.xyz.roemahduren.presentation.ScreenFactory;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
-import com.xyz.roemahduren.presentation.screen.MainScreen;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -46,9 +45,7 @@ public class RoemahDurenApp {
 //
 //                loginController.setVisible(true);
 
-                MainScreen mainScreen = new MainScreen();
-                mainScreen.setVisible(true);
-
+                controllerFactory.mainController();
             });
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -71,9 +68,23 @@ public class RoemahDurenApp {
 
     private static ControllerFactory factoryManager(Connection connection) {
         RepositoryFactory repositoryFactory = new RepositoryFactory(connection);
+
         SecurityFactory securityFactory = new SecurityFactory();
-        ServiceFactory serviceFactory = new ServiceFactory(repositoryFactory.userCredentialRepository(), securityFactory.passwordEncoder(), connection);
+
+        ServiceFactory serviceFactory = new ServiceFactory(
+                repositoryFactory.userCredentialRepository(),
+                repositoryFactory.branchRepository(),
+                securityFactory.passwordEncoder(),
+                connection);
+
         ScreenFactory screenFactory = new ScreenFactory();
-        return new ControllerFactory(serviceFactory.authService(), screenFactory.loginScreen(), screenFactory.registerScreen());
+
+        return new ControllerFactory(
+                serviceFactory.authService(),
+                serviceFactory.branchService(),
+                screenFactory.loginScreen(),
+                screenFactory.registerScreen(),
+                screenFactory.mainScreen(),
+                screenFactory.branchScreen());
     }
 }

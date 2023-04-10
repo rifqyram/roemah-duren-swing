@@ -1,27 +1,26 @@
-package com.xyz.roemahduren.domain.entity;
+package com.xyz.roemahduren.domain.model.request;
 
-import com.xyz.roemahduren.domain.annotation.db.Column;
-import com.xyz.roemahduren.domain.annotation.db.Id;
-import com.xyz.roemahduren.domain.annotation.db.Table;
 import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
+import com.xyz.roemahduren.util.RandomGenerator;
 
-@Table(name = "m_branch")
-public class Branch {
+public class BranchRequest {
 
-    @Id
-    @Column(name = "id")
     private String id;
-
-    @Column(name = "name")
+    @NotBlank
     private String name;
-
-    @Column(name = "address")
+    @NotBlank
     private String address;
 
-    public Branch() {
+    public BranchRequest() {
     }
 
-    public Branch(String id, String name, String address) {
+    public BranchRequest(String name, String address) {
+        this.id = RandomGenerator.generateUUID();
+        this.name = name;
+        this.address = address;
+    }
+
+    public BranchRequest(String id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;

@@ -25,12 +25,16 @@ public class MainScreen extends JFrame {
     public MainScreen() {
         initComponents();
 
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setVerticalScrollBar(new ScrollBar());
-        jScrollPane1.getVerticalScrollBar().setBackground(Color.WHITE);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        contentMenuScroll.setBorder(null);
+        contentMenuScroll.setVerticalScrollBar(new ScrollBar());
+        contentMenuScroll.setHorizontalScrollBar(new ScrollBar());
+        contentMenuScroll.getVerticalScrollBar().setBackground(Color.WHITE);
+        contentMenuScroll.getViewport().setBackground(Color.WHITE);
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        contentMenuScroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
 
-        List<MenuItem> menuItems = sideMenu1.getMenuItems();
+        List<MenuItem> menuItems = sideMenuPanel.getMenuItems();
 
         for (int i = 0; i < menuItems.size(); i++) {
             int index = i;
@@ -50,10 +54,10 @@ public class MainScreen extends JFrame {
 
                         if (index == 0) {
                             DashboardScreen screen = new DashboardScreen();
-                            jScrollPane1.setViewportView(screen);
+                            contentMenuScroll.setViewportView(screen);
                         } else if (index == 1) {
                             BranchScreen screen = new BranchScreen();
-                            jScrollPane1.setViewportView(screen);
+                            contentMenuScroll.setViewportView(screen);
                         }
 
 
@@ -78,71 +82,60 @@ public class MainScreen extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sideMenu1 = new SideMenu();
-        jScrollPane1 = new JScrollPane();
-        dashboardScreen1 = new DashboardScreen();
+        sideMenuPanel = new SideMenu();
+        contentMenuScroll = new JScrollPane();
+        dashboardScreen = new DashboardScreen();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1024, 720));
         setSize(new Dimension(1024, 720));
 
-        dashboardScreen1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jScrollPane1.setViewportView(dashboardScreen1);
+        dashboardScreen.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        contentMenuScroll.setViewportView(dashboardScreen);
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sideMenu1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(sideMenuPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1))
+                .addComponent(contentMenuScroll))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(sideMenu1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(sideMenuPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contentMenuScroll, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public JScrollPane getContentMenuScroll() {
+        return contentMenuScroll;
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainScreen().setVisible(true);
-            }
-        });
+    public void setContentMenuScroll(JScrollPane contentMenuScroll) {
+        this.contentMenuScroll = contentMenuScroll;
+    }
+
+    public DashboardScreen getDashboardScreen() {
+        return dashboardScreen;
+    }
+
+    public void setDashboardScreen(DashboardScreen dashboardScreen) {
+        this.dashboardScreen = dashboardScreen;
+    }
+
+    public SideMenu getSideMenuPanel() {
+        return sideMenuPanel;
+    }
+
+    public void setSideMenuPanel(SideMenu sideMenuPanel) {
+        this.sideMenuPanel = sideMenuPanel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private DashboardScreen dashboardScreen1;
-    private JScrollPane jScrollPane1;
-    private SideMenu sideMenu1;
+    private JScrollPane contentMenuScroll;
+    private DashboardScreen dashboardScreen;
+    private SideMenu sideMenuPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,12 +8,13 @@ import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextArea;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
-import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 import com.xyz.roemahduren.presentation.component.table.Table;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle;
@@ -23,16 +24,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
+
 public class BranchScreen extends javax.swing.JPanel {
 
     /**
      * Creates new form BranchScreen
      */
+
     public BranchScreen() {
         initComponents();
 
         taAddress.fixArea(scrollAddressTextArea);
-        table1.fixTable(jScrollPane1);
+        table1.fixTable(scrollBranchTable);
+
     }
 
     /**
@@ -44,7 +48,7 @@ public class BranchScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        roundedPanel1 = new RoundedPanel();
+        formPanel = new RoundedPanel();
         branchNameLabel = new JLabel();
         addressLabel = new JLabel();
         tfBranchName = new RoundedTextField();
@@ -53,15 +57,20 @@ public class BranchScreen extends javax.swing.JPanel {
         taAddress = new RoundedTextArea();
         errorAddressLabel = new JLabel();
         btnSave = new RoundedButton();
-        titleLabel = new JLabel();
-        jScrollPane1 = new JScrollPane();
+        scrollBranchTable = new JScrollPane();
         table1 = new Table();
+        branchListTitle = new JLabel();
+        tfSearch = new RoundedTextField();
+        searchBtn = new RoundedButton();
+        titleLabel = new JLabel();
 
         setBackground(new Color(255, 255, 255));
+        setPreferredSize(new Dimension(800, 800));
+        setSize(new Dimension(800, 800));
 
-        roundedPanel1.setBackground(new Color(243, 244, 245));
-        roundedPanel1.setForeground(new Color(95, 108, 123));
-        roundedPanel1.setCornerRadius(8);
+        formPanel.setBackground(new Color(243, 244, 245));
+        formPanel.setForeground(new Color(95, 108, 123));
+        formPanel.setCornerRadius(8);
 
         branchNameLabel.setForeground(new Color(95, 108, 123));
         branchNameLabel.setText("Branch Name");
@@ -86,37 +95,37 @@ public class BranchScreen extends javax.swing.JPanel {
         btnSave.setToolTipText("");
         btnSave.setBorderColor(new Color(61, 169, 252));
         btnSave.setColor(new Color(61, 169, 252));
-        btnSave.setColorClick(new Color(61, 169, 252));
-        btnSave.setColorOver(new Color(61, 169, 252));
+        btnSave.setColorClick(new Color(9, 107, 167));
+        btnSave.setColorOver(new Color(12, 126, 195));
         btnSave.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
-        GroupLayout roundedPanel1Layout = new GroupLayout(roundedPanel1);
-        roundedPanel1.setLayout(roundedPanel1Layout);
-        roundedPanel1Layout.setHorizontalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
+        GroupLayout formPanelLayout = new GroupLayout(formPanel);
+        formPanel.setLayout(formPanelLayout);
+        formPanelLayout.setHorizontalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(formPanelLayout.createSequentialGroup()
                         .addComponent(errorBranchNameLabel)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
-                        .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollAddressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
+                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollAddressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                             .addComponent(tfBranchName, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(GroupLayout.Alignment.LEADING, roundedPanel1Layout.createSequentialGroup()
-                                .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(GroupLayout.Alignment.LEADING, formPanelLayout.createSequentialGroup()
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(branchNameLabel, GroupLayout.Alignment.LEADING)
                                     .addComponent(addressLabel, GroupLayout.Alignment.LEADING))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(35, 35, 35))
-                    .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(formPanelLayout.createSequentialGroup()
+                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(errorAddressLabel)
                             .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
-        roundedPanel1Layout.setVerticalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
+        formPanelLayout.setVerticalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(branchNameLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -133,9 +142,6 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
-
-        titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
-        titleLabel.setText("Branch Management");
 
         table1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         table1.setModel(new DefaultTableModel(
@@ -157,7 +163,22 @@ public class BranchScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table1);
+        scrollBranchTable.setViewportView(table1);
+
+        branchListTitle.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
+        branchListTitle.setText("Branch List");
+
+        tfSearch.setPlaceholder("Search");
+
+        searchBtn.setBackground(new Color(95, 108, 123));
+        searchBtn.setIcon(new ImageIcon(getClass().getResource("/images/Search.png"))); // NOI18N
+        searchBtn.setBorderColor(new Color(95, 108, 123));
+        searchBtn.setColor(new Color(95, 108, 123));
+        searchBtn.setColorClick(new Color(67, 77, 87));
+        searchBtn.setColorOver(new Color(80, 91, 105));
+
+        titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
+        titleLabel.setText("Branch Management");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -168,10 +189,16 @@ public class BranchScreen extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleLabel)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING)
-                            .addComponent(roundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(branchListTitle)
+                                .addGap(220, 220, 220)
+                                .addComponent(tfSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollBranchTable, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))
                         .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -179,26 +206,154 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addGap(74, 74, 74)
                 .addComponent(titleLabel)
                 .addGap(24, 24, 24)
-                .addComponent(roundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(branchListTitle)
+                        .addComponent(tfSearch, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addComponent(scrollBranchTable, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getAddressLabel() {
+        return addressLabel;
+    }
+
+    public void setAddressLabel(JLabel addressLabel) {
+        this.addressLabel = addressLabel;
+    }
+
+    public JLabel getBranchListTitle() {
+        return branchListTitle;
+    }
+
+    public void setBranchListTitle(JLabel branchListTitle) {
+        this.branchListTitle = branchListTitle;
+    }
+
+    public JLabel getBranchNameLabel() {
+        return branchNameLabel;
+    }
+
+    public void setBranchNameLabel(JLabel branchNameLabel) {
+        this.branchNameLabel = branchNameLabel;
+    }
+
+    public RoundedButton getBtnSave() {
+        return btnSave;
+    }
+
+    public void setBtnSave(RoundedButton btnSave) {
+        this.btnSave = btnSave;
+    }
+
+    public JLabel getErrorAddressLabel() {
+        return errorAddressLabel;
+    }
+
+    public void setErrorAddressLabel(JLabel errorAddressLabel) {
+        this.errorAddressLabel = errorAddressLabel;
+    }
+
+    public JLabel getErrorBranchNameLabel() {
+        return errorBranchNameLabel;
+    }
+
+    public void setErrorBranchNameLabel(JLabel errorBranchNameLabel) {
+        this.errorBranchNameLabel = errorBranchNameLabel;
+    }
+
+    public RoundedPanel getFormPanel() {
+        return formPanel;
+    }
+
+    public void setFormPanel(RoundedPanel formPanel) {
+        this.formPanel = formPanel;
+    }
+
+    public JScrollPane getScrollAddressTextArea() {
+        return scrollAddressTextArea;
+    }
+
+    public void setScrollAddressTextArea(JScrollPane scrollAddressTextArea) {
+        this.scrollAddressTextArea = scrollAddressTextArea;
+    }
+
+    public JScrollPane getScrollBranchTable() {
+        return scrollBranchTable;
+    }
+
+    public void setScrollBranchTable(JScrollPane scrollBranchTable) {
+        this.scrollBranchTable = scrollBranchTable;
+    }
+
+    public RoundedButton getSearchBtn() {
+        return searchBtn;
+    }
+
+    public void setSearchBtn(RoundedButton searchBtn) {
+        this.searchBtn = searchBtn;
+    }
+
+    public RoundedTextArea getTaAddress() {
+        return taAddress;
+    }
+
+    public void setTaAddress(RoundedTextArea taAddress) {
+        this.taAddress = taAddress;
+    }
+
+    public Table getTable1() {
+        return table1;
+    }
+
+    public void setTable1(Table table1) {
+        this.table1 = table1;
+    }
+
+    public RoundedTextField getTfBranchName() {
+        return tfBranchName;
+    }
+
+    public void setTfBranchName(RoundedTextField tfBranchName) {
+        this.tfBranchName = tfBranchName;
+    }
+
+    public RoundedTextField getTfSearch() {
+        return tfSearch;
+    }
+
+    public void setTfSearch(RoundedTextField tfSearch) {
+        this.tfSearch = tfSearch;
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public void setTitleLabel(JLabel titleLabel) {
+        this.titleLabel = titleLabel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel addressLabel;
+    private JLabel branchListTitle;
     private JLabel branchNameLabel;
     private RoundedButton btnSave;
     private JLabel errorAddressLabel;
     private JLabel errorBranchNameLabel;
-    private JScrollPane jScrollPane1;
-    private RoundedPanel roundedPanel1;
+    private RoundedPanel formPanel;
     private JScrollPane scrollAddressTextArea;
+    private JScrollPane scrollBranchTable;
+    private RoundedButton searchBtn;
     private RoundedTextArea taAddress;
     private Table table1;
     private RoundedTextField tfBranchName;
+    private RoundedTextField tfSearch;
     private JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
