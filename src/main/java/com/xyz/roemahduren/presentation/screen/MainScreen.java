@@ -4,14 +4,12 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
-import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.component.menu.SideMenu;
-import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
+import com.xyz.roemahduren.util.SwingUtil;
 
-import java.awt.*;
-import java.util.List;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -24,7 +22,11 @@ public class MainScreen extends JFrame {
      */
     public MainScreen() {
         initComponents();
+        fixScrollPane();
+        SwingUtil.centerWindow(this);
+    }
 
+    private void fixScrollPane() {
         contentMenuScroll.setBorder(null);
         contentMenuScroll.setVerticalScrollBar(new ScrollBar());
         contentMenuScroll.setHorizontalScrollBar(new ScrollBar());
@@ -33,7 +35,6 @@ public class MainScreen extends JFrame {
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         contentMenuScroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
-
     }
 
     /**
@@ -50,10 +51,13 @@ public class MainScreen extends JFrame {
         dashboardScreen = new DashboardScreen();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(1024, 720));
-        setSize(new Dimension(1024, 720));
+        setMinimumSize(new Dimension(1280, 800));
+        setPreferredSize(new Dimension(1280, 800));
+        setSize(new Dimension(1280, 800));
 
         dashboardScreen.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        dashboardScreen.setMinimumSize(new Dimension(800, 600));
+        dashboardScreen.setPreferredSize(new Dimension(800, 600));
         contentMenuScroll.setViewportView(dashboardScreen);
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -62,7 +66,7 @@ public class MainScreen extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sideMenuPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentMenuScroll))
+                .addComponent(contentMenuScroll, GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(sideMenuPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

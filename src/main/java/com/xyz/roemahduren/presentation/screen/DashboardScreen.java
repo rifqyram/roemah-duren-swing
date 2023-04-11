@@ -36,35 +36,37 @@ public class DashboardScreen extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new JLabel();
-        roundedPanel1 = new RoundedPanel();
-        jScrollPane1 = new JScrollPane();
-        table1 = new Table();
+        jLabel1 = new javax.swing.JLabel();
+        roundedPanel1 = new com.xyz.roemahduren.presentation.component.panel.RoundedPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table1 = new com.xyz.roemahduren.presentation.component.table.Table();
 
-        setBackground(new Color(255, 255, 255));
-        setPreferredSize(new Dimension(800, 800));
-        setSize(new Dimension(800, 800));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(800, 800));
+        setSize(new java.awt.Dimension(800, 800));
 
-        jLabel1.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Hello Admin!");
 
-        roundedPanel1.setBackground(new Color(243, 244, 245));
+        roundedPanel1.setBackground(new java.awt.Color(243, 244, 245));
         roundedPanel1.setCornerRadius(8);
 
-        GroupLayout roundedPanel1Layout = new GroupLayout(roundedPanel1);
+        javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
-        roundedPanel1Layout.setHorizontalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        roundedPanel1Layout.setHorizontalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 571, Short.MAX_VALUE)
         );
-        roundedPanel1Layout.setVerticalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        roundedPanel1Layout.setVerticalGroup(
+            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 151, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setBackground(new Color(243, 244, 245));
+        jScrollPane1.setBackground(new java.awt.Color(243, 244, 245));
 
-        table1.setBackground(new Color(243, 244, 245));
-        table1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        table1.setModel(new DefaultTableModel(
+        table1.setBackground(new java.awt.Color(243, 244, 245));
+        table1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Rifqi", "Topi", "50000", "2", "1000000"},
                 {null, null, null, null, null, null},
@@ -83,39 +85,41 @@ public class DashboardScreen extends JPanel {
                 return canEdit [columnIndex];
             }
         });
-        table1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(table1);
 
-        GroupLayout layout = new GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(roundedPanel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(roundedPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
         );
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24)
-                .addComponent(roundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel jLabel1;
-    private JScrollPane jScrollPane1;
-    private RoundedPanel roundedPanel1;
-    private Table table1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private com.xyz.roemahduren.presentation.component.panel.RoundedPanel roundedPanel1;
+    private com.xyz.roemahduren.presentation.component.table.Table table1;
     // End of variables declaration//GEN-END:variables
 }

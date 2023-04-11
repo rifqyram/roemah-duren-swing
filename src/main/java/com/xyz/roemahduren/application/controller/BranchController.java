@@ -24,9 +24,9 @@ import java.util.Set;
 
 public class BranchController {
     private final BranchService branchService;
+    private final BranchScreen branchScreen;
     private DefaultTableModel branchModel;
     private List<Branch> branches;
-    private BranchScreen branchScreen;
     private int row;
 
 
@@ -35,23 +35,18 @@ public class BranchController {
         this.branchService = branchService;
         this.branches = loadBranches();
         initController();
-
-        initTableModel(branchScreen, branchService);
+        initTableModel();
     }
 
-    private void initTableModel(BranchScreen branchScreen, BranchService branchService) {
+    private void initTableModel() {
         String[] headers = {"#", "Branch Name", "Address", "Action"};
         this.branchModel = new DefaultTableModel(null, headers);
 
         if (this.branches.isEmpty()) {
-            DataEmpty dataEmpty = new DataEmpty();
-            branchScreen.getScrollBranchTable().setViewportView(dataEmpty);
+            setEmptyState();
         }
 
-        for (Branch branch : this.branches) {
-            Object[] objects = {branch.getId(), branch.getName(), branch.getAddress()};
-            branchModel.addRow(objects);
-        }
+        refreshTable();
 
         TableActionEvent tableActionEvent = getTableActionEvent(branchScreen, branchService);
         this.branchScreen.getBranchTable().setModel(branchModel);
@@ -87,18 +82,17 @@ public class BranchController {
                 DatabaseWorker<Boolean> worker = new DatabaseWorker<>(
                         () -> {
                             Branch branch = branches.get(row);
-                            branchModel.removeRow(row);
                             branches.remove(branch);
                             branchService.deleteById(branch.getId());
+                            refreshTable();
 
                             if (branches.isEmpty()) {
-                                DataEmpty dataEmpty = new DataEmpty();
-                                branchScreen.getScrollBranchTable().setViewportView(dataEmpty);
+                                setEmptyState();
                             }
 
                             return true;
                         },
-                        aBoolean -> JOptionPane.showMessageDialog(null, "Success Delete Branch"),
+                        response -> JOptionPane.showMessageDialog(null, "Success Delete Branch"),
                         throwable -> JOptionPane.showMessageDialog(null, throwable.getMessage()),
                         () -> {
                         }
@@ -129,21 +123,30 @@ public class BranchController {
         List<Branch> branchesFound = branchService.getByName(branchScreen.getTfSearch().getText());
 
         if (branchesFound.isEmpty()) {
-            DataEmpty dataEmpty = new DataEmpty();
-            branchScreen.getScrollBranchTable().setViewportView(dataEmpty);
+            setEmptyState();
         } else {
-            Table table = branchScreen.getBranchTable();
-            branchScreen.getScrollBranchTable().setViewportView(table);
+            setTableView();
             branches = branchesFound;
         }
         refreshTable();
     }
 
+    private void setTableView() {
+        JTable table = branchScreen.getBranchTable();
+        branchScreen.getScrollBranchTable().setViewportView(table);
+    }
+
+    private void setEmptyState() {
+        DataEmpty dataEmpty = new DataEmpty();
+        branchScreen.getScrollBranchTable().setViewportView(dataEmpty);
+    }
+
     private void refreshTable() {
         branchModel.setRowCount(0);
 
+        int index = 0;
         for (Branch branch : branches) {
-            branchModel.addRow(new Object[]{branch.getId(), branch.getName(), branch.getAddress()});
+            branchModel.addRow(new Object[]{++index, branch.getName(), branch.getAddress()});
         }
     }
 
@@ -202,11 +205,10 @@ public class BranchController {
 
                     Branch branch = branchService.create(branchRequest);
                     branches.add(branch);
-                    branchModel.addRow(new Object[]{branch.getId(), branch.getName(), branch.getAddress()});
+                    refreshTable();
 
                     if (!branches.isEmpty()) {
-                        Table table = branchScreen.getBranchTable();
-                        branchScreen.getScrollBranchTable().setViewportView(table);
+                        setTableView();
                     }
 
                     clearForm();

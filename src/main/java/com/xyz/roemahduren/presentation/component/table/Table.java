@@ -1,8 +1,8 @@
 package com.xyz.roemahduren.presentation.component.table;
 
 
-
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -17,9 +17,8 @@ public class Table extends JTable {
         getTableHeader().setReorderingAllowed(false);
         getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
-            public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
-                TableHeader header = new TableHeader(o + "");
-                return header;
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                return new TableHeader(value + "");
             }
         });
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -38,18 +37,18 @@ public class Table extends JTable {
         });
     }
 
-    public void addRow(Object[] row) {
-        DefaultTableModel model = (DefaultTableModel) getModel();
-        model.addRow(row);
-    }
-
     public void fixTable(JScrollPane scroll) {
         scroll.setBorder(null);
         scroll.setVerticalScrollBar(new ScrollBar());
+        scroll.setHorizontalScrollBar(new ScrollBar());
+        scroll.getHorizontalScrollBar().setBackground(Color.WHITE);
         scroll.getVerticalScrollBar().setBackground(Color.WHITE);
         scroll.getViewport().setBackground(Color.WHITE);
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+
+        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
 }
