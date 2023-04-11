@@ -43,15 +43,31 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
+    public List<Branch> getByName(String name) {
+        return branchRepository.findByName(name);
+    }
+
+    @Override
     public Branch update(BranchRequest request) {
-        getById(request.getId());
-        Branch branch = new Branch(request.getId(), request.getName(), request.getAddress());
-        return branchRepository.update(branch);
+        try {
+            getById(request.getId());
+            Branch branch = new Branch(request.getId(), request.getName(), request.getAddress());
+            Branch update = branchRepository.update(branch);
+            connection.commit();
+            return update;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void deleteById(String id) {
-        getById(id);
-        branchRepository.deleteById(id);
+        try {
+            getById(id);
+            branchRepository.deleteById(id);
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

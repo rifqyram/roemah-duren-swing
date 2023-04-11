@@ -53,6 +53,14 @@ public class RoundedPasswordField extends JPasswordField implements FocusListene
     }
 
     @Override
+    public void setText(String t) {
+        super.setText(t);
+        if (t.length() > 0 && !t.equals(placeholder)) {
+            this.isPlaceholderVisible = false;
+        }
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
         g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, cornerRadius, cornerRadius);

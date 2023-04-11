@@ -48,6 +48,18 @@ public class RoundedButton extends JButton {
         this.radius = radius;
     }
 
+    @Override
+    public void setEnabled(boolean b) {
+        super.setEnabled(b);
+        if (b) {
+            setBackground(new Color(95,108,123));
+            setBorderColor(new Color(95,108,123));
+        } else {
+            setBackground(getBackground());
+            setBorderColor(getBorderColor());
+        }
+    }
+
     public RoundedButton() {
 
         setContentAreaFilled(false);

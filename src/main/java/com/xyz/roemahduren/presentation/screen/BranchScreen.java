@@ -4,16 +4,18 @@
  */
 package com.xyz.roemahduren.presentation.screen;
 
-import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextArea;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 /**
  * @author user
@@ -29,9 +31,9 @@ public class BranchScreen extends JPanel {
         initComponents();
 
 
+        branchTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         taAddress.fixArea(scrollAddressTextArea);
-        table1.fixTable(scrollBranchTable);
-
+        branchTable.fixTable(scrollBranchTable);
     }
 
     /**
@@ -52,8 +54,9 @@ public class BranchScreen extends JPanel {
         taAddress = new RoundedTextArea();
         errorAddressLabel = new JLabel();
         btnSave = new RoundedButton();
+        btnCancel = new RoundedButton();
         scrollBranchTable = new JScrollPane();
-        table1 = new Table();
+        branchTable = new Table();
         branchListTitle = new JLabel();
         tfSearch = new RoundedTextField();
         searchBtn = new RoundedButton();
@@ -96,6 +99,16 @@ public class BranchScreen extends JPanel {
         btnSave.setColorOver(new Color(12, 126, 195));
         btnSave.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
+        btnCancel.setBackground(new Color(220, 53, 69));
+        btnCancel.setForeground(new Color(255, 255, 255));
+        btnCancel.setText("Cancel");
+        btnCancel.setToolTipText("");
+        btnCancel.setBorderColor(new Color(220, 53, 69));
+        btnCancel.setColor(new Color(220, 53, 69));
+        btnCancel.setColorClick(new Color(195, 33, 49));
+        btnCancel.setColorOver(new Color(222, 66, 81));
+        btnCancel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
         GroupLayout formPanelLayout = new GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
         formPanelLayout.setHorizontalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -108,12 +121,14 @@ public class BranchScreen extends JPanel {
                     .addGroup(formPanelLayout.createSequentialGroup()
                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(tfBranchName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(formPanelLayout.createSequentialGroup()
-                                .addComponent(branchNameLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(scrollAddressTextArea, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                             .addGroup(formPanelLayout.createSequentialGroup()
-                                .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                    .addComponent(branchNameLabel)
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(35, 35, 35))
                     .addGroup(formPanelLayout.createSequentialGroup()
@@ -137,31 +152,36 @@ public class BranchScreen extends JPanel {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errorAddressLabel)
                 .addGap(18, 18, 18)
-                .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
-        table1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        table1.setModel(new DefaultTableModel(
+        branchTable.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        branchTable.setModel(new DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "#", "Branch Name", "Address"
+                "#", "Branch Name", "Address", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        scrollBranchTable.setViewportView(table1);
+        branchTable.setColumnSelectionAllowed(true);
+        branchTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        scrollBranchTable.setViewportView(branchTable);
+        branchTable.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         branchListTitle.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
         branchListTitle.setText("Branch List");
@@ -212,8 +232,8 @@ public class BranchScreen extends JPanel {
                         .addComponent(branchListTitle)
                         .addComponent(tfSearch, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
-                .addComponent(scrollBranchTable, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addComponent(scrollBranchTable, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -305,12 +325,12 @@ public class BranchScreen extends JPanel {
         this.taAddress = taAddress;
     }
 
-    public Table getTable1() {
-        return table1;
+    public Table getBranchTable() {
+        return branchTable;
     }
 
-    public void setTable1(Table table1) {
-        this.table1 = table1;
+    public void setBranchTable(Table table) {
+        this.branchTable = table;
     }
 
     public RoundedTextField getTfBranchName() {
@@ -337,10 +357,20 @@ public class BranchScreen extends JPanel {
         this.titleLabel = titleLabel;
     }
 
+    public RoundedButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    public void setBtnCancel(RoundedButton btnCancel) {
+        this.btnCancel = btnCancel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel addressLabel;
     private JLabel branchListTitle;
     private JLabel branchNameLabel;
+    private Table branchTable;
+    private RoundedButton btnCancel;
     private RoundedButton btnSave;
     private JLabel errorAddressLabel;
     private JLabel errorBranchNameLabel;
@@ -349,7 +379,6 @@ public class BranchScreen extends JPanel {
     private JScrollPane scrollBranchTable;
     private RoundedButton searchBtn;
     private RoundedTextArea taAddress;
-    private Table table1;
     private RoundedTextField tfBranchName;
     private RoundedTextField tfSearch;
     private JLabel titleLabel;

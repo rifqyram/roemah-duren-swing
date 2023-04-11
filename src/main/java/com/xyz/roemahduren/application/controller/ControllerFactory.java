@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;

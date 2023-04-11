@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.application.controller.branch.BranchController;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
 import com.xyz.roemahduren.presentation.screen.MainScreen;

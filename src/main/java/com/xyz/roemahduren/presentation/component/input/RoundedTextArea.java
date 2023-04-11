@@ -43,6 +43,14 @@ public class RoundedTextArea extends JTextArea implements FocusListener {
         return text;
     }
 
+    @Override
+    public void setText(String t) {
+        super.setText(t);
+        if (t.length() > 0 && !t.equals(placeholder)) {
+            this.isPlaceholderVisible = false;
+        }
+    }
+
     public String getPlaceholder() {
         return placeholder;
     }
