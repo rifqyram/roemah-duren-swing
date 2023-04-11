@@ -72,7 +72,7 @@ public class RoemahDurenApp {
         ServiceFactory serviceFactory = new ServiceFactory(
                 repositoryFactory.userCredentialRepository(),
                 repositoryFactory.branchRepository(),
-                securityFactory.passwordEncoder(),
+                repositoryFactory.categoryRepository(), securityFactory.passwordEncoder(),
                 connection);
 
         ScreenFactory screenFactory = new ScreenFactory();
@@ -80,9 +80,9 @@ public class RoemahDurenApp {
         return new ControllerFactory(
                 serviceFactory.authService(),
                 serviceFactory.branchService(),
-                screenFactory.loginScreen(),
+                serviceFactory.categoryService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.mainScreen(),
-                screenFactory.branchScreen());
+                screenFactory.branchScreen(), screenFactory.categoryScreen());
     }
 }

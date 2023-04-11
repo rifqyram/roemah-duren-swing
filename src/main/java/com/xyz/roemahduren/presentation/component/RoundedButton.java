@@ -1,5 +1,7 @@
 package com.xyz.roemahduren.presentation.component;
 
+import com.xyz.roemahduren.presentation.theme.MaterialColor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -52,8 +54,8 @@ public class RoundedButton extends JButton {
     public void setEnabled(boolean b) {
         super.setEnabled(b);
         if (b) {
-            setBackground(new Color(95,108,123));
-            setBorderColor(new Color(95,108,123));
+            setBackground(MaterialColor.disbaleColor);
+            setBorderColor(MaterialColor.disbaleColor);
         } else {
             setBackground(getBackground());
             setBorderColor(getBorderColor());

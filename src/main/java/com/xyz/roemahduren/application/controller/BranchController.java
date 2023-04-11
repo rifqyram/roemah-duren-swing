@@ -6,11 +6,11 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.component.DataEmpty;
-import com.xyz.roemahduren.presentation.component.table.Table;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
+import com.xyz.roemahduren.presentation.theme.MaterialColor;
 import com.xyz.roemahduren.util.DatabaseWorker;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -244,16 +244,16 @@ public class BranchController {
 
     private void setLoading() {
         branchScreen.getBtnSave().setText("Loading...");
-        branchScreen.getBtnSave().setBackground(new Color(0xF4F4F4));
-        branchScreen.getBtnSave().setBorderColor(new Color(0xF4F4F4));
+        branchScreen.getBtnSave().setBackground(MaterialColor.disbaleColor);
+        branchScreen.getBtnSave().setBorderColor(MaterialColor.disbaleColor);
         branchScreen.getBtnSave().setEnabled(false);
     }
 
     private void clearLoading(String btnText) {
         branchScreen.getBtnSave().setText(btnText);
         branchScreen.getBtnSave().setEnabled(true);
-        branchScreen.getBtnSave().setBackground(new Color(0x3DA9FC));
-        branchScreen.getBtnSave().setBorderColor(new Color(0x3DA9FC));
+        branchScreen.getBtnSave().setBackground(MaterialColor.primaryColor);
+        branchScreen.getBtnSave().setBorderColor(MaterialColor.primaryColor);
     }
 
     private void setErrorMessage(ValidationException throwable) {
@@ -274,7 +274,7 @@ public class BranchController {
     private List<Branch> loadBranches() {
         List<Branch> branchList = branchService.getAll();
         if (!branchList.isEmpty()) {
-            return branches = branchList;
+            return branchList;
         }
         return new ArrayList<>();
     }

@@ -2,6 +2,7 @@ package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
+import com.xyz.roemahduren.presentation.screen.CategoryScreen;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
 
 import java.awt.*;
@@ -10,11 +11,13 @@ import java.util.List;
 public class MainController {
 
     private final MainScreen mainScreen;
-    private BranchController branchController;
+    private final BranchController branchController;
+    private final CategoryController categoryController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
+        this.categoryController = categoryController;
 
         initController();
 
@@ -44,15 +47,12 @@ public class MainController {
                 menuItems.get(j).setForeground(Color.WHITE);
                 menuItems.get(j).setColorOver(new Color(0x0C7EC3));
                 menuItems.get(j).setBorderColor(new Color(0x0C7EC3));
-
                 selectMenuIndex(index);
-
 
             } else {
                 menuItems.get(j).setForeground(new Color(0xFFFFFE));
                 menuItems.get(j).setColor(new Color(0x3DA9FC));
                 menuItems.get(j).setBorderColor(new Color(0x3DA9FC));
-                // set icon for unselected menu items
             }
         }
     }
@@ -66,6 +66,10 @@ public class MainController {
                 case 1:
                     BranchScreen branchScreen = branchController.getBranchScreen();
                     setViewport(branchScreen);
+                    break;
+                case 3:
+                    CategoryScreen categoryScreen = categoryController.getCategoryScreen();
+                    setViewport(categoryScreen);
                     break;
             }
 

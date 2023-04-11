@@ -117,9 +117,9 @@ public class SideMenu extends javax.swing.JPanel {
         setMinimumSize(new Dimension(306, 640));
         setPreferredSize(new Dimension(306, 640));
 
-        titleLabel.setFont(new Font("Helvetica Neue", 0, 26)); // NOI18N
+        titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
         titleLabel.setForeground(new Color(255, 255, 254));
-        titleLabel.setText("Management Duren");
+        titleLabel.setText("Reoamah Duren");
 
         menuItem1.setForeground(new Color(255, 255, 254));
         menuItem1.setIcon(new ImageIcon(getClass().getResource("/images/Dashboard.png"))); // NOI18N
@@ -236,7 +236,7 @@ public class SideMenu extends javax.swing.JPanel {
                 .addComponent(menuItem5, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuItem6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(menuItem8, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );

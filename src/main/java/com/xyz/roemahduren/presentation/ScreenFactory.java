@@ -1,9 +1,6 @@
 package com.xyz.roemahduren.presentation;
 
-import com.xyz.roemahduren.presentation.screen.BranchScreen;
-import com.xyz.roemahduren.presentation.screen.LoginScreen;
-import com.xyz.roemahduren.presentation.screen.MainScreen;
-import com.xyz.roemahduren.presentation.screen.RegisterScreen;
+import com.xyz.roemahduren.presentation.screen.*;
 
 public class ScreenFactory {
     public LoginScreen loginScreen() {
@@ -20,5 +17,9 @@ public class ScreenFactory {
 
     public MainScreen mainScreen() {
         return new MainScreen();
+    }
+
+    public CategoryScreen categoryScreen() {
+        return new CategoryScreen();
     }
 }
