@@ -18,17 +18,25 @@ public class ProductPrice {
     @Column(name = "product_price")
     private BigDecimal productPrice;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @Column(name = "branch_id")
     private String branchId;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 
     public ProductPrice() {
     }
 
-    public ProductPrice(String id, String productId, BigDecimal productPrice, String branchId) {
+    public ProductPrice(String id, String productId, BigDecimal productPrice, Integer stock, String branchId, Boolean isActive) {
         this.id = id;
         this.productId = productId;
         this.productPrice = productPrice;
+        this.stock = stock;
         this.branchId = branchId;
+        this.isActive = isActive;
     }
 
     public String getId() {
@@ -47,6 +55,14 @@ public class ProductPrice {
         this.productId = productId;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public BigDecimal getProductPrice() {
         return productPrice;
     }
@@ -61,5 +77,13 @@ public class ProductPrice {
 
     public void setBranchId(String branchId) {
         this.branchId = branchId;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

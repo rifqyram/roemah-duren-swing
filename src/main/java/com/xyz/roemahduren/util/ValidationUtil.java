@@ -1,9 +1,6 @@
 package com.xyz.roemahduren.util;
 
-import com.xyz.roemahduren.domain.annotation.validation.Email;
-import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
-import com.xyz.roemahduren.domain.annotation.validation.NotNull;
-import com.xyz.roemahduren.domain.annotation.validation.Size;
+import com.xyz.roemahduren.domain.annotation.validation.*;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.exception.ValidationException;
 
@@ -82,6 +79,34 @@ public class ValidationUtil {
                     e.printStackTrace();
                 }
 
+            }
+
+            if (field.isAnnotationPresent(Min.class)) {
+                try {
+                    Object value = field.get(obj);
+                    Min annotation = field.getAnnotation(Min.class);
+
+                    if (annotation.value() < (int) value) {
+                        errorMessages.add(annotation.message());
+                    }
+
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            if (field.isAnnotationPresent(Max.class)) {
+                try {
+                    Object value = field.get(obj);
+                    Max annotation = field.getAnnotation(Max.class);
+
+                    if (annotation.value() > (int) value) {
+                        errorMessages.add(annotation.message());
+                    }
+
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             if (!errorMessages.isEmpty()) {

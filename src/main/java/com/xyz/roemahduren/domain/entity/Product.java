@@ -6,7 +6,6 @@ import com.xyz.roemahduren.domain.annotation.db.Table;
 
 @Table(name = "m_product")
 public class Product {
-
     @Id
     @Column(name = "id")
     private String id;
@@ -14,20 +13,20 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "stock")
-    private Integer stock;
-
     @Column(name = "category_id")
     private String categoryId;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     public Product() {
     }
 
-    public Product(String id, String name, Integer stock, String categoryId) {
+    public Product(String id, String name, String categoryId, Boolean isActive) {
         this.id = id;
         this.name = name;
-        this.stock = stock;
         this.categoryId = categoryId;
+        this.isActive = isActive;
     }
 
     public String getId() {
@@ -46,14 +45,6 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
     public String getCategoryId() {
         return categoryId;
     }
@@ -62,13 +53,11 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", stock=" + stock +
-                ", categoryId='" + categoryId + '\'' +
-                '}';
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean valid) {
+        isActive = valid;
     }
 }

@@ -47,6 +47,8 @@ public class Table extends JTable {
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        this.setAutoResizeMode( JTable.AUTO_RESIZE_LAST_COLUMN );
+
 
         scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
