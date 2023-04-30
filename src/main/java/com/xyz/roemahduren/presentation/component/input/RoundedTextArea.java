@@ -1,6 +1,7 @@
 package com.xyz.roemahduren.presentation.component.input;
 
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
+import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class RoundedTextArea extends JTextArea implements FocusListener {
     public RoundedTextArea() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
-        setForeground(new Color(0x6D7588));
+        setForeground(SystemColor.borderColor);
 
         isPlaceholderVisible = true;
 

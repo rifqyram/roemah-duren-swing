@@ -1,12 +1,12 @@
 package com.xyz.roemahduren.presentation.component.input;
 
+import com.xyz.roemahduren.presentation.theme.SystemColor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.geom.RoundRectangle2D;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class RoundedPasswordField extends JPasswordField implements FocusListener {
     private Shape shape;
@@ -17,7 +17,7 @@ public class RoundedPasswordField extends JPasswordField implements FocusListene
     public RoundedPasswordField() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
-        setForeground(new Color(0x6D7588));
+        setForeground(SystemColor.borderColor);
 
         isPlaceholderVisible = true;
 

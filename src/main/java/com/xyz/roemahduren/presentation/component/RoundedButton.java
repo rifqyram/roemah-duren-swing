@@ -1,6 +1,6 @@
 package com.xyz.roemahduren.presentation.component;
 
-import com.xyz.roemahduren.presentation.theme.MaterialColor;
+import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,8 +54,8 @@ public class RoundedButton extends JButton {
     public void setEnabled(boolean b) {
         super.setEnabled(b);
         if (b) {
-            setBackground(MaterialColor.disbaleColor);
-            setBorderColor(MaterialColor.disbaleColor);
+            setBackground(SystemColor.disbaleColor);
+            setBorderColor(SystemColor.disbaleColor);
         } else {
             setBackground(getBackground());
             setBorderColor(getBorderColor());

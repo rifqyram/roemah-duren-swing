@@ -3,21 +3,30 @@ package com.xyz.roemahduren.presentation.component.input;
 import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.List;
 
-public class RoundedTextField extends JTextField implements FocusListener {
+public class NumberFormattedField extends JFormattedTextField implements FocusListener {
+
     private Shape shape;
     private int cornerRadius = 8;
     private String placeholder;
     private boolean isPlaceholderVisible;
 
-    public RoundedTextField() {
+    public NumberFormattedField() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
         setForeground(SystemColor.borderColor);
+        format();
 
         isPlaceholderVisible = true;
 
@@ -26,6 +35,19 @@ public class RoundedTextField extends JTextField implements FocusListener {
         }
 
         addFocusListener(this);
+    }
+
+    private void format() {
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
     }
 
     public int getCornerRadius() {

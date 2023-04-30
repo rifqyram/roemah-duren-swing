@@ -94,7 +94,7 @@ public class RoemahDurenApp {
                 serviceFactory.branchService(),
                 serviceFactory.categoryService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
-                screenFactory.mainScreen(),
-                screenFactory.branchScreen(), screenFactory.categoryScreen());
+                screenFactory.mainScreen()
+        );
     }
 }
