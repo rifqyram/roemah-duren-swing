@@ -4,6 +4,7 @@ import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.domain.service.CategoryService;
+import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ControllerFactory {
@@ -12,6 +13,7 @@ public class ControllerFactory {
     private final AuthService authService;
     private final BranchService branchService;
     private final CategoryService categoryService;
+    private final ProductService productService;
 
     // Screen
     private final LoginScreen loginScreen;
@@ -19,19 +21,22 @@ public class ControllerFactory {
     private final BranchScreen branchScreen;
     private final MainScreen mainScreen;
     private final CategoryScreen categoryScreen;
+    private final ProductScreen productScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
+        this.productService = productService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
         this.mainScreen = mainScreen;
         this.categoryScreen = categoryScreen;
+        this.productScreen = productScreen;
         this.customDialog = customDialog;
     }
 
@@ -51,8 +56,12 @@ public class ControllerFactory {
         return new CategoryController(categoryService, categoryScreen, customDialog);
     }
 
+    public ProductController productController() {
+        return new ProductController(productService, categoryService, branchService, productScreen, customDialog);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController());
+        return new MainController(mainScreen, branchController(), categoryController(), productController());
     }
 
 }

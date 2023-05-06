@@ -82,13 +82,16 @@ public class RoundedPasswordFieldPanel extends javax.swing.JPanel {
         errorLabel = new JLabel();
         passwordField = new RoundedPasswordField();
 
+        label.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         label.setForeground(new Color(95, 108, 123));
         label.setText("label");
 
+        errorLabel.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         errorLabel.setForeground(new Color(220, 53, 69));
         errorLabel.setText("error");
 
         passwordField.setText("roundedPasswordField1");
+        passwordField.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);

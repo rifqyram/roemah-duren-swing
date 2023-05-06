@@ -15,7 +15,7 @@ public class ProductResponse {
 
     private String branch;
 
-    private Boolean isValid;
+    private String isValid;
 
     public ProductResponse() {
     }
@@ -27,7 +27,7 @@ public class ProductResponse {
         this.category = category;
         this.stock = stock;
         this.branch = branch;
-        this.isValid = isValid;
+        this.isValid = isValid ? "Aktif" : "Tidak Aktif";
     }
 
     public String getProductId() {
@@ -78,11 +78,11 @@ public class ProductResponse {
         this.category = category;
     }
 
-    public Boolean getValid() {
+    public String getValid() {
         return isValid;
     }
 
     public void setValid(Boolean valid) {
-        isValid = valid;
+        isValid = valid ? "Aktif" : "Tidak Aktif";
     }
 }

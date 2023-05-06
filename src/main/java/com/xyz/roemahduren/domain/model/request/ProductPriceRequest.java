@@ -15,7 +15,6 @@ public class ProductPriceRequest {
     @NotNull
     @Min(message = "Stock tidak boleh kurang dari 0", value = 0)
     private Integer stock;
-    @NotBlank
     private String productId;
     @NotBlank
     private String branchId;

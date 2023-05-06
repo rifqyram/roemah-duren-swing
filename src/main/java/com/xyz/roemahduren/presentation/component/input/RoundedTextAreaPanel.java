@@ -109,14 +109,17 @@ public class RoundedTextAreaPanel extends javax.swing.JPanel {
         scrollPaneTextArea = new JScrollPane();
         textArea = new RoundedTextArea();
 
+        errorLabel.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         errorLabel.setForeground(new Color(220, 53, 69));
         errorLabel.setText("error");
 
+        label.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         label.setForeground(new Color(95, 108, 123));
         label.setText("label");
 
         textArea.setColumns(20);
         textArea.setRows(5);
+        textArea.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         scrollPaneTextArea.setViewportView(textArea);
 
         GroupLayout layout = new GroupLayout(this);

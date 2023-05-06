@@ -16,14 +16,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboBox" max="32767" attributes="0"/>
-                  <Component id="errorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="label" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkbox" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -33,10 +33,10 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="label" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboBox" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="checkbox" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="errorLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,15 +64,16 @@
         <Property name="text" type="java.lang.String" value="error"/>
       </Properties>
     </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedComboBox" name="comboBox">
+    <Component class="javax.swing.JCheckBox" name="checkbox">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7b" green="6c" red="5f" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jCheckBox1"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.xyz.roemahduren.presentation.component.input.RoundedComboBox&lt;Object&gt;()"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -13,11 +13,13 @@ public class MainController {
 
     private final BranchController branchController;
     private final CategoryController categoryController;
+    private final ProductController productController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
+        this.productController = productController;
 
         initController();
 
@@ -68,6 +70,7 @@ public class MainController {
                     setViewport(branchController.getBranchScreen());
                     break;
                 case 3:
+                    setViewport(productController.getProductScreen());
                     break;
                 case 4:
                     setViewport(categoryController.getCategoryScreen());

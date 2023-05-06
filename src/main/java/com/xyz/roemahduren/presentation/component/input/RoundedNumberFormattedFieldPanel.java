@@ -82,11 +82,13 @@ public class RoundedNumberFormattedFieldPanel extends javax.swing.JPanel {
         label = new JLabel();
         errorLabel = new JLabel();
 
-        formattedField.setText("numberFormattedField1");
+        formattedField.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
 
+        label.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         label.setForeground(new Color(95, 108, 123));
         label.setText("label");
 
+        errorLabel.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         errorLabel.setForeground(new Color(220, 53, 69));
         errorLabel.setText("error");
 

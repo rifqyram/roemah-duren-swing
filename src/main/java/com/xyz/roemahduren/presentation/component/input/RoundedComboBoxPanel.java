@@ -30,34 +30,38 @@ public class RoundedComboBoxPanel<T> extends javax.swing.JPanel {
 
         label = new JLabel();
         errorLabel = new JLabel();
-        comboBox = new RoundedComboBox<>();
+        comboBox = new RoundedComboBox<Object>();
 
+        label.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         label.setForeground(new Color(95, 108, 123));
         label.setText("label");
 
+        errorLabel.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         errorLabel.setForeground(new Color(220, 53, 69));
         errorLabel.setText("error");
+
+        comboBox.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(comboBox, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(errorLabel)
-                                .addComponent(label))
-                        .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(comboBox, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabel)
+                    .addComponent(label))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(label)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorLabel)
-                        .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -111,7 +115,7 @@ public class RoundedComboBoxPanel<T> extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RoundedComboBox<T> comboBox;
+    private RoundedComboBox comboBox;
     private JLabel errorLabel;
     private JLabel label;
     // End of variables declaration//GEN-END:variables

@@ -29,6 +29,10 @@ public class ScreenFactory {
         return new CategoryScreen();
     }
 
+    public ProductScreen productScreen() {
+        return new ProductScreen();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }
