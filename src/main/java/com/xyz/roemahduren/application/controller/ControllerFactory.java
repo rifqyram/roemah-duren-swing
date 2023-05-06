@@ -18,11 +18,12 @@ public class ControllerFactory {
     private final RegisterScreen registerScreen;
     private final BranchScreen branchScreen;
     private final MainScreen mainScreen;
+    private final CategoryScreen categoryScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -30,6 +31,7 @@ public class ControllerFactory {
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
         this.mainScreen = mainScreen;
+        this.categoryScreen = categoryScreen;
         this.customDialog = customDialog;
     }
 
@@ -45,8 +47,12 @@ public class ControllerFactory {
         return new BranchController(branchService, branchScreen, customDialog);
     }
 
+    public CategoryController categoryController() {
+        return new CategoryController(categoryService, categoryScreen, customDialog);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController());
+        return new MainController(mainScreen, branchController(), categoryController());
     }
 
 }

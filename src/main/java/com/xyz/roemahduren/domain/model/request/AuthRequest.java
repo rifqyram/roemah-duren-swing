@@ -11,7 +11,7 @@ public class AuthRequest {
     private String email;
 
     @NotBlank
-    @Size(min = 8, max = 16, message = "Password must be at least 8 characters and maximum 16 characters")
+    @Size(min = 8, max = 16, message = "Kata sandi harus terdiri dari minimal 8 karakter dan maksimal 16 karakter")
     private String password;
 
     public AuthRequest(String email, String password) {

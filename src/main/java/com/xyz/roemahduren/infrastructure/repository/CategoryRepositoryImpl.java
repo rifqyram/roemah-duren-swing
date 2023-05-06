@@ -45,4 +45,30 @@ public class CategoryRepositoryImpl extends CrudRepositoryImpl<Category, String>
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Category> findAllByNameIsLike(String name) {
+        try {
+            String tableName = ReflectionUtil.getTableName(Category.class);
+            String sql = String.format("SELECT id, name FROM %s WHERE name LIKE ?", tableName);
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            String s = name.toLowerCase();
+            statement.setObject(1, s + "%");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            List<Category> categories = new ArrayList<>();
+
+            while (resultSet.next()) {
+                Category category = new Category(resultSet.getString("id"), resultSet.getString("name"));
+                categories.add(category);
+            }
+
+            statement.close();
+            return categories;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

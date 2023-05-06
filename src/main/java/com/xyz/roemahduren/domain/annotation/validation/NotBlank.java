@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotBlank {
 
-    String message() default "Field is required";
+    String message() default "Kolom wajib diisi";
 
 }

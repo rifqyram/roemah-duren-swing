@@ -10,11 +10,14 @@ import java.util.List;
 public class MainController {
 
     private final MainScreen mainScreen;
-    private final BranchController branchController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController) {
+    private final BranchController branchController;
+    private final CategoryController categoryController;
+
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
+        this.categoryController = categoryController;
 
         initController();
 
@@ -60,14 +63,16 @@ public class MainController {
                     setViewport(mainScreen.getDashboardScreen());
                     break;
                 case 1:
-                    setViewport(branchController.getBranchScreen());
                     break;
                 case 2:
+                    setViewport(branchController.getBranchScreen());
                     break;
                 case 3:
                     break;
+                case 4:
+                    setViewport(categoryController.getCategoryScreen());
+                    break;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

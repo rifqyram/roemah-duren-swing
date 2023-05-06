@@ -9,6 +9,7 @@ import com.xyz.roemahduren.exception.NotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class CategoryServiceImpl implements CategoryService {
 
@@ -65,5 +66,10 @@ public class CategoryServiceImpl implements CategoryService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public List<Category> getAllByName(String value) {
+        return categoryRepository.findAllByNameIsLike(value);
     }
 }

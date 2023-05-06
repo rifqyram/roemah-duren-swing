@@ -6,6 +6,8 @@ package com.xyz.roemahduren.presentation.component.menu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -41,43 +43,43 @@ public class SideMenu extends javax.swing.JPanel {
     }
 
     public MenuItem getMenuItem2() {
-        return menuItem2;
-    }
-
-    public void setMenuItem2(MenuItem menuItem2) {
-        this.menuItem2 = menuItem2;
-    }
-
-    public MenuItem getMenuItem3() {
         return menuItem3;
     }
 
-    public void setMenuItem3(MenuItem menuItem3) {
-        this.menuItem3 = menuItem3;
+    public void setMenuItem2(MenuItem menuItem2) {
+        this.menuItem3 = menuItem2;
     }
 
-    public MenuItem getMenuItem4() {
+    public MenuItem getMenuItem3() {
         return menuItem4;
     }
 
-    public void setMenuItem4(MenuItem menuItem4) {
-        this.menuItem4 = menuItem4;
+    public void setMenuItem3(MenuItem menuItem3) {
+        this.menuItem4 = menuItem3;
     }
 
-    public MenuItem getMenuItem5() {
+    public MenuItem getMenuItem4() {
         return menuItem5;
     }
 
-    public void setMenuItem5(MenuItem menuItem5) {
-        this.menuItem5 = menuItem5;
+    public void setMenuItem4(MenuItem menuItem4) {
+        this.menuItem5 = menuItem4;
     }
 
-    public MenuItem getMenuItem6() {
+    public MenuItem getMenuItem5() {
         return menuItem6;
     }
 
+    public void setMenuItem5(MenuItem menuItem5) {
+        this.menuItem6 = menuItem5;
+    }
+
+    public MenuItem getMenuItem6() {
+        return menuItem7;
+    }
+
     public void setMenuItem6(MenuItem menuItem6) {
-        this.menuItem6 = menuItem6;
+        this.menuItem7 = menuItem6;
     }
 
     public MenuItem getMenuItem8() {
@@ -109,8 +111,8 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem4 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem5 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem6 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
-        menuItem8 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem7 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
+        menuItem8 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
 
         setBackground(new Color(221, 83, 83));
         setMinimumSize(new Dimension(306, 640));
@@ -135,10 +137,9 @@ public class SideMenu extends javax.swing.JPanel {
 
         menuItem2.setBackground(new Color(221, 83, 83));
         menuItem2.setForeground(new Color(255, 255, 254));
-        menuItem2.setIcon(new ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
-        menuItem2.setText("Branch");
+        menuItem2.setIcon(new ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
+        menuItem2.setText("Order");
         menuItem2.setBorderColor(new Color(221, 83, 83));
-        menuItem2.setBorderPainted(false);
         menuGroup.add(menuItem2);
         menuItem2.setColor(new Color(221, 83, 83));
         menuItem2.setColorOver(new Color(204, 77, 77));
@@ -148,21 +149,27 @@ public class SideMenu extends javax.swing.JPanel {
 
         menuItem3.setBackground(new Color(221, 83, 83));
         menuItem3.setForeground(new Color(255, 255, 254));
-        menuItem3.setIcon(new ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
-        menuItem3.setText("Product");
+        menuItem3.setIcon(new ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
+        menuItem3.setText("Branch");
         menuItem3.setBorderColor(new Color(221, 83, 83));
+        menuItem3.setBorderPainted(false);
         menuGroup.add(menuItem3);
         menuItem3.setColor(new Color(221, 83, 83));
         menuItem3.setColorOver(new Color(204, 77, 77));
         menuItem3.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem3.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem3.setIconTextGap(14);
+        menuItem3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                menuItem3ActionPerformed(evt);
+            }
+        });
 
+        menuItem4.setBackground(new Color(221, 83, 83));
         menuItem4.setForeground(new Color(255, 255, 254));
-        menuItem4.setIcon(new ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
-        menuItem4.setText("Category");
+        menuItem4.setIcon(new ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
+        menuItem4.setText("Product");
         menuItem4.setBorderColor(new Color(221, 83, 83));
-        menuItem4.setBorderPainted(false);
         menuGroup.add(menuItem4);
         menuItem4.setColor(new Color(221, 83, 83));
         menuItem4.setColorOver(new Color(204, 77, 77));
@@ -170,11 +177,11 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem4.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem4.setIconTextGap(14);
 
-        menuItem5.setBackground(new Color(221, 83, 83));
         menuItem5.setForeground(new Color(255, 255, 254));
-        menuItem5.setIcon(new ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
-        menuItem5.setText("Customer");
+        menuItem5.setIcon(new ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
+        menuItem5.setText("Category");
         menuItem5.setBorderColor(new Color(221, 83, 83));
+        menuItem5.setBorderPainted(false);
         menuGroup.add(menuItem5);
         menuItem5.setColor(new Color(221, 83, 83));
         menuItem5.setColorOver(new Color(204, 77, 77));
@@ -184,8 +191,8 @@ public class SideMenu extends javax.swing.JPanel {
 
         menuItem6.setBackground(new Color(221, 83, 83));
         menuItem6.setForeground(new Color(255, 255, 254));
-        menuItem6.setIcon(new ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
-        menuItem6.setText("History");
+        menuItem6.setIcon(new ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
+        menuItem6.setText("Customer");
         menuItem6.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem6);
         menuItem6.setColor(new Color(221, 83, 83));
@@ -193,6 +200,18 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem6.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem6.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem6.setIconTextGap(14);
+
+        menuItem7.setBackground(new Color(221, 83, 83));
+        menuItem7.setForeground(new Color(255, 255, 254));
+        menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
+        menuItem7.setText("History");
+        menuItem7.setBorderColor(new Color(221, 83, 83));
+        menuGroup.add(menuItem7);
+        menuItem7.setColor(new Color(221, 83, 83));
+        menuItem7.setColorOver(new Color(204, 77, 77));
+        menuItem7.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem7.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem7.setIconTextGap(14);
 
         menuItem8.setBackground(new Color(221, 83, 83));
         menuItem8.setForeground(new Color(255, 255, 254));
@@ -206,18 +225,6 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem8.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem8.setIconTextGap(14);
 
-        menuItem7.setBackground(new Color(221, 83, 83));
-        menuItem7.setForeground(new Color(255, 255, 254));
-        menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
-        menuItem7.setText("Order");
-        menuItem7.setBorderColor(new Color(221, 83, 83));
-        menuGroup.add(menuItem7);
-        menuItem7.setColor(new Color(221, 83, 83));
-        menuItem7.setColorOver(new Color(204, 77, 77));
-        menuItem7.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem7.setHorizontalAlignment(SwingConstants.LEFT);
-        menuItem7.setIconTextGap(14);
-
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -226,13 +233,13 @@ public class SideMenu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(menuItem1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(menuItem2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menuItem2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -241,8 +248,6 @@ public class SideMenu extends javax.swing.JPanel {
                 .addComponent(titleLabel)
                 .addGap(37, 37, 37)
                 .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(menuItem7, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuItem2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -253,11 +258,17 @@ public class SideMenu extends javax.swing.JPanel {
                 .addComponent(menuItem5, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuItem6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem7, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(menuItem8, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuItem3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItem3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

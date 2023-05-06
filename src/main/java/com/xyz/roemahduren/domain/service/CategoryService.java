@@ -12,4 +12,6 @@ public interface CategoryService {
     List<Category> getAll();
     Category update(CategoryRequest request);
     void deleteById(String id);
+
+    List<Category> getAllByName(String value);
 }

@@ -86,6 +86,6 @@ public class RoemahDurenApp {
                 serviceFactory.categoryService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.branchScreen(), screenFactory.mainScreen(),
-                dialog);
+                screenFactory.categoryScreen(), dialog);
     }
 }

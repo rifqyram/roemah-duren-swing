@@ -25,6 +25,10 @@ public class ScreenFactory {
         return new CustomDialogMessage();
     }
 
+    public CategoryScreen categoryScreen() {
+        return new CategoryScreen();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }

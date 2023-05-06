@@ -17,15 +17,15 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Set;
 
-import static com.xyz.roemahduren.constant.ConstantMessage.BRANCH;
+import static com.xyz.roemahduren.constant.ConstantMessage.*;
 
 public class BranchController {
 
     private final BranchService branchService;
     private final BranchScreen branchScreen;
+    private final CustomDialog dialog;
 
     private List<Branch> branches;
-    private final CustomDialog dialog;
     private Branch branch;
 
     public BranchController(BranchService branchService, BranchScreen branchScreen, CustomDialog dialog) {
@@ -132,7 +132,7 @@ public class BranchController {
     }
 
     public void initTable() {
-        final String[] COLUMN = {"#", "Branch Name", "Address", "Action"};
+        final String[] COLUMN = {"#", "Nama Cabang", "Alamat Cabang", "Aksi"};
         DefaultTableModel model = new DefaultTableModel(null, COLUMN);
 
         branches = branchService.getAll();
@@ -165,6 +165,7 @@ public class BranchController {
         branch = branches.get(row);
         branchScreen.getNameTextField().setValue(branch.getName());
         branchScreen.getAddressTextArea().setValue(branch.getAddress());
+        branchScreen.getSaveBtn().setText(BTN_TEXT_UPDATE);
     }
 
     private void deleteProduct(int row) {
@@ -191,6 +192,8 @@ public class BranchController {
     private void clearForm() {
         branchScreen.getNameTextField().setValue("");
         branchScreen.getAddressTextArea().setValue("");
+        branchScreen.getSaveBtn().setText(BTN_TEXT_SAVE);
+        branch = null;
     }
 
     public BranchScreen getBranchScreen() {

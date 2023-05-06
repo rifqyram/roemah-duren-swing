@@ -5,29 +5,30 @@
 package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.RoundedButton;
-import com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-
-import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
-public class BranchScreen extends javax.swing.JPanel {
+public class CategoryScreen extends javax.swing.JPanel {
 
     /**
-     * Creates new form BranchScreen
+     * Creates new form CategoryScreen
      */
-    public BranchScreen() {
+    public CategoryScreen() {
         initComponents();
-        branchTable.fixTable(scrollTable);
+        categoryTable.fixTable(scrollTable);
     }
 
     /**
@@ -39,51 +40,32 @@ public class BranchScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new JLabel();
-        jPanel1 = new JPanel();
         formPanel = new RoundedPanel();
         nameTextField = new RoundedTextFieldPanel();
-        addressTextArea = new RoundedTextAreaPanel();
         saveBtn = new RoundedButton();
         clearBtn = new RoundedButton();
         titleScreen = new JLabel();
         scrollTable = new JScrollPane();
-        branchTable = new Table();
+        categoryTable = new Table();
         titleTable = new JLabel();
-
-        jLabel1.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Hello Admin!");
-
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jPanel1 = new JPanel();
+        searchTextField = new RoundedTextFieldPanel();
+        searchBtn = new RoundedButton();
 
         setBackground(new Color(255, 255, 254));
-        setMinimumSize(new Dimension(800, 800));
-        setPreferredSize(new Dimension(800, 800));
-        setSize(new Dimension(800, 800));
 
         formPanel.setBackground(new Color(245, 245, 245));
         formPanel.setCornerRadius(8);
 
         nameTextField.setBackground(new Color(245, 245, 245));
         nameTextField.setLabelErrorText("");
-        nameTextField.setLabelText("Nama Cabang");
-
-        addressTextArea.setBackground(new Color(245, 245, 245));
-        addressTextArea.setLabelErrorText("");
-        addressTextArea.setLabelText("Alamat Cabang");
+        nameTextField.setLabelText("Nama Kategori");
 
         saveBtn.setText("Simpan");
         saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         clearBtn.setBackground(new Color(221, 83, 83));
-        clearBtn.setText("Cear");
+        clearBtn.setText("Clear");
         clearBtn.setBorderColor(new Color(221, 83, 83));
         clearBtn.setColor(new Color(221, 83, 83));
         clearBtn.setColorClick(new Color(204, 77, 77));
@@ -102,18 +84,14 @@ public class BranchScreen extends javax.swing.JPanel {
                         .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(formPanelLayout.createSequentialGroup()
-                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(addressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                         .addGap(24, 24, 24))))
         );
         formPanelLayout.setVerticalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
@@ -122,32 +100,61 @@ public class BranchScreen extends javax.swing.JPanel {
 
         titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
         titleScreen.setForeground(new Color(2, 8, 38));
-        titleScreen.setText("Manajemen Cabang");
+        titleScreen.setText("Manajemen Kategori");
 
-        branchTable.setModel(new DefaultTableModel(
+        categoryTable.setModel(new DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "#", "Nama Cabang", "Alamat Cabang", "Aksi"
+                "#", "Nama Kategori", "Aksi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        scrollTable.setViewportView(branchTable);
+        scrollTable.setViewportView(categoryTable);
 
         titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTable.setForeground(new Color(2, 8, 38));
-        titleTable.setText("Daftar Cabang");
+        titleTable.setText("Daftar Kategori");
+
+        jPanel1.setBackground(new Color(255, 255, 254));
+
+        searchTextField.setBackground(new Color(255, 255, 254));
+        searchTextField.setLabelErrorText("");
+        searchTextField.setLabelText("Cari");
+
+        searchBtn.setText("Cari");
+        searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(searchTextField, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(searchTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -155,16 +162,18 @@ public class BranchScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleScreen)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollTable, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                            .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(75, 75, 75))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(titleTable)
-                            .addComponent(titleScreen))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(titleTable)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollTable))
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -172,24 +181,30 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addComponent(titleScreen)
                 .addGap(32, 32, 32)
                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(titleTable)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(titleTable)
+                        .addGap(19, 19, 19))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public Table getBranchTable() {
-        return branchTable;
+    public Table getCategoryTable() {
+        return categoryTable;
+    }
+
+    public RoundedButton getClearBtn() {
+        return clearBtn;
     }
 
     public RoundedPanel getFormPanel() {
         return formPanel;
-    }
-
-    public JLabel getjLabel1() {
-        return jLabel1;
     }
 
     public RoundedTextFieldPanel getNameTextField() {
@@ -212,24 +227,24 @@ public class BranchScreen extends javax.swing.JPanel {
         return titleTable;
     }
 
-    public RoundedTextAreaPanel getAddressTextArea() {
-        return addressTextArea;
+    public RoundedButton getSearchBtn() {
+        return searchBtn;
     }
 
-    public RoundedButton getClearBtn() {
-        return clearBtn;
+    public RoundedTextFieldPanel getSearchTextField() {
+        return searchTextField;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RoundedTextAreaPanel addressTextArea;
-    private Table branchTable;
+    private Table categoryTable;
     private RoundedButton clearBtn;
     private RoundedPanel formPanel;
-    private JLabel jLabel1;
     private JPanel jPanel1;
     private RoundedTextFieldPanel nameTextField;
     private RoundedButton saveBtn;
     private JScrollPane scrollTable;
+    private RoundedButton searchBtn;
+    private RoundedTextFieldPanel searchTextField;
     private JLabel titleScreen;
     private JLabel titleTable;
     // End of variables declaration//GEN-END:variables

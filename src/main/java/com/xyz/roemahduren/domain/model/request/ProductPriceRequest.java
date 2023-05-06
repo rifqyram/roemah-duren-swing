@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 public class ProductPriceRequest {
     private String id;
     @NotBlank
-    @Min(message = "Price cannot less than 0", value = 0)
+    @Min(message = "Harga tidak boleh kurang dari 0", value = 0)
     private BigDecimal price;
     @NotNull
-    @Min(message = "Stock cannot less than 0", value = 0)
+    @Min(message = "Stock tidak boleh kurang dari 0", value = 0)
     private Integer stock;
     @NotBlank
     private String productId;

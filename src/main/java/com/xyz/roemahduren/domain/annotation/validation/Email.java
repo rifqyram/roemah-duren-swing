@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Email {
 
-    String message() default "Invalid email";
+    String message() default "Email tidak valid";
 
 
 }

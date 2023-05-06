@@ -9,9 +9,9 @@ public class CustomDialog {
     private final CustomDialogMessage dialogMessage;
     private final CustomConfirmDialog confirmDialog;
 
-    public static final String SUCCESS = "Success";
+    public static final String SUCCESS = "Sukses";
     public static final String FAIL = "Error";
-    public static final String WARNING = "Warning";
+    public static final String WARNING = "Peringatan";
     public static final String INFO = "Info";
 
     public static final URL SUCCESS_IMAGE = CustomDialog.class.getResource("/images/Success.png");
@@ -19,8 +19,8 @@ public class CustomDialog {
     public static final URL WARNING_IMAGE = CustomDialog.class.getResource("/images/Warning.png");
     public static final URL INFO_IMAGE = CustomDialog.class.getResource("/images/Info.png");
 
-    public static final String DELETE_CONFIRMATION = "Are you sure want to delete?";
-    public static final String UPDATE_CONFIRMATION = "Are you sure want to update?";
+    public static final String DELETE_CONFIRMATION = "Apakah Anda yakin ingin menghapus?";
+    public static final String UPDATE_CONFIRMATION = "Apakah Anda yakin ingin menghubah?";
 
     public CustomDialog(CustomDialogMessage dialogMessage, CustomConfirmDialog confirmDialog) {
         this.dialogMessage = dialogMessage;

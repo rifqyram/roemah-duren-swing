@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.util;
 
+import com.xyz.roemahduren.presentation.component.DataEmpty;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
@@ -43,6 +44,11 @@ public class SwingUtil {
 
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    }
+
+    public static void setEmptyState(JScrollPane scrollPane) {
+        DataEmpty dataEmpty = new DataEmpty();
+        scrollPane.setViewportView(dataEmpty);
     }
 
 }
