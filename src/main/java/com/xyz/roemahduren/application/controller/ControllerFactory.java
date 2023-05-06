@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.domain.service.CategoryService;
@@ -18,7 +19,10 @@ public class ControllerFactory {
     private final BranchScreen branchScreen;
     private final MainScreen mainScreen;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen) {
+    // Utils
+    private final CustomDialog customDialog;
+
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -26,6 +30,7 @@ public class ControllerFactory {
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
         this.mainScreen = mainScreen;
+        this.customDialog = customDialog;
     }
 
     public LoginController loginController() {
@@ -37,7 +42,7 @@ public class ControllerFactory {
     }
 
     public BranchController branchController() {
-        return new BranchController(branchService, branchScreen);
+        return new BranchController(branchService, branchScreen, customDialog);
     }
 
     public MainController mainController() {

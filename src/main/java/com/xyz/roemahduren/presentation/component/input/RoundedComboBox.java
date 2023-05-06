@@ -13,7 +13,7 @@ public class RoundedComboBox<E> extends JComboBox<E> {
 
     public RoundedComboBox() {
         setUI(new ComboBoxUI());
-        setForeground(SystemColor.borderColor);
+        setForeground(SystemColor.BORDER_COLOR);
     }
 
     public int getCornerRadius() {

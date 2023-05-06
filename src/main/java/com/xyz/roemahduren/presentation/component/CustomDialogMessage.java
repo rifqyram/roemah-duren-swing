@@ -57,7 +57,7 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         setSize(new Dimension(400, 200));
 
         image.setBackground(new Color(255, 255, 254));
-        image.setImage(new ImageIcon(getClass().getResource("/images/Danger.png"))); // NOI18N
+        image.setImage(new ImageIcon(getClass().getResource("/images/Warning.png"))); // NOI18N
 
         GroupLayout imageLayout = new GroupLayout(image);
         image.setLayout(imageLayout);
@@ -71,15 +71,17 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         title.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
         title.setForeground(new Color(2, 8, 38));
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setText("Error");
+        title.setText("Warning");
+        title.setVerticalAlignment(SwingConstants.TOP);
 
+        okBtn.setBackground(new Color(130, 148, 96));
         okBtn.setForeground(new Color(255, 255, 254));
         okBtn.setText("Ok");
-        okBtn.setBorderColor(new Color(140, 120, 81));
+        okBtn.setBorderColor(new Color(130, 148, 96));
         okBtn.setBorderPainted(false);
-        okBtn.setColor(new Color(140, 120, 81));
-        okBtn.setColorClick(new Color(107, 92, 64));
-        okBtn.setColorOver(new Color(124, 106, 71));
+        okBtn.setColor(new Color(130, 148, 96));
+        okBtn.setColorClick(new Color(108, 122, 80));
+        okBtn.setColorOver(new Color(118, 134, 87));
         okBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 okBtnActionPerformed(evt);
@@ -97,21 +99,21 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(image, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(scroll, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(title, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)))
+                            .addComponent(title, GroupLayout.PREFERRED_SIZE, 347, GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(okBtn, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(image, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

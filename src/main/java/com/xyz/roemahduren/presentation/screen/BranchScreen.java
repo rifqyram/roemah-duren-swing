@@ -9,8 +9,12 @@ import com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,88 +39,92 @@ public class BranchScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        formPanel = new com.xyz.roemahduren.presentation.component.panel.RoundedPanel();
-        nameTextField = new com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel();
-        saveBtn = new com.xyz.roemahduren.presentation.component.RoundedButton();
-        addressTextArea = new com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel();
-        titleScreen = new javax.swing.JLabel();
-        scrollTable = new javax.swing.JScrollPane();
-        branchTable = new com.xyz.roemahduren.presentation.component.table.Table();
-        titleTable = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
+        jPanel1 = new JPanel();
+        formPanel = new RoundedPanel();
+        nameTextField = new RoundedTextFieldPanel();
+        addressTextArea = new RoundedTextAreaPanel();
+        saveBtn = new RoundedButton();
+        clearBtn = new RoundedButton();
+        titleScreen = new JLabel();
+        scrollTable = new JScrollPane();
+        branchTable = new Table();
+        titleTable = new JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel1.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Hello Admin!");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setBackground(new java.awt.Color(255, 255, 254));
-        setMinimumSize(new java.awt.Dimension(800, 800));
-        setPreferredSize(new java.awt.Dimension(800, 800));
-        setSize(new java.awt.Dimension(800, 800));
+        setBackground(new Color(255, 255, 254));
+        setMinimumSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(800, 800));
+        setSize(new Dimension(800, 800));
 
-        formPanel.setBackground(new java.awt.Color(245, 245, 245));
+        formPanel.setBackground(new Color(245, 245, 245));
         formPanel.setCornerRadius(8);
 
-        nameTextField.setBackground(new java.awt.Color(245, 245, 245));
+        nameTextField.setBackground(new Color(245, 245, 245));
         nameTextField.setLabelErrorText("");
         nameTextField.setLabelText("Branch Name");
 
-        saveBtn.setForeground(new java.awt.Color(255, 255, 254));
-        saveBtn.setText("Save");
-        saveBtn.setBorderColor(new java.awt.Color(140, 120, 81));
-        saveBtn.setColor(new java.awt.Color(140, 120, 81));
-        saveBtn.setColorClick(new java.awt.Color(107, 92, 64));
-        saveBtn.setColorOver(new java.awt.Color(124, 106, 71));
-        saveBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-
-        addressTextArea.setBackground(new java.awt.Color(245, 245, 245));
+        addressTextArea.setBackground(new Color(245, 245, 245));
         addressTextArea.setLabelErrorText("");
         addressTextArea.setLabelText("Address");
 
-        javax.swing.GroupLayout formPanelLayout = new javax.swing.GroupLayout(formPanel);
+        saveBtn.setText("Save");
+        saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
+        clearBtn.setBackground(new Color(221, 83, 83));
+        clearBtn.setText("Cear");
+        clearBtn.setBorderColor(new Color(221, 83, 83));
+        clearBtn.setColor(new Color(221, 83, 83));
+        clearBtn.setColorClick(new Color(204, 77, 77));
+        clearBtn.setColorOver(new Color(204, 77, 77));
+        clearBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
+        GroupLayout formPanelLayout = new GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
-        formPanelLayout.setHorizontalGroup(
-            formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        formPanelLayout.setHorizontalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(formPanelLayout.createSequentialGroup()
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                        .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addressTextArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(formPanelLayout.createSequentialGroup()
+                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(addressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(24, 24, 24))))
         );
-        formPanelLayout.setVerticalGroup(
-            formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        formPanelLayout.setVerticalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addressTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        titleScreen.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        titleScreen.setForeground(new java.awt.Color(2, 8, 38));
+        titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
+        titleScreen.setForeground(new Color(2, 8, 38));
         titleScreen.setText("Branch Management");
 
-        branchTable.setModel(new javax.swing.table.DefaultTableModel(
+        branchTable.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -137,39 +145,37 @@ public class BranchScreen extends javax.swing.JPanel {
         });
         scrollTable.setViewportView(branchTable);
 
-        titleTable.setFont(new java.awt.Font("Helvetica Neue", 0, 22)); // NOI18N
-        titleTable.setForeground(new java.awt.Color(2, 8, 38));
+        titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
+        titleTable.setForeground(new Color(2, 8, 38));
         titleTable.setText("Branch List");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                            .addComponent(formPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollTable, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                            .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(titleTable)
                             .addComponent(titleScreen))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(titleScreen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(formPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(titleTable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -210,16 +216,21 @@ public class BranchScreen extends javax.swing.JPanel {
         return addressTextArea;
     }
 
+    public RoundedButton getClearBtn() {
+        return clearBtn;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel addressTextArea;
-    private com.xyz.roemahduren.presentation.component.table.Table branchTable;
-    private com.xyz.roemahduren.presentation.component.panel.RoundedPanel formPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel nameTextField;
-    private com.xyz.roemahduren.presentation.component.RoundedButton saveBtn;
-    private javax.swing.JScrollPane scrollTable;
-    private javax.swing.JLabel titleScreen;
-    private javax.swing.JLabel titleTable;
+    private RoundedTextAreaPanel addressTextArea;
+    private Table branchTable;
+    private RoundedButton clearBtn;
+    private RoundedPanel formPanel;
+    private JLabel jLabel1;
+    private JPanel jPanel1;
+    private RoundedTextFieldPanel nameTextField;
+    private RoundedButton saveBtn;
+    private JScrollPane scrollTable;
+    private JLabel titleScreen;
+    private JLabel titleTable;
     // End of variables declaration//GEN-END:variables
 }

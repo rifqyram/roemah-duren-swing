@@ -112,45 +112,48 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem8 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem7 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
 
-        setBackground(new Color(249, 244, 239));
+        setBackground(new Color(221, 83, 83));
         setMinimumSize(new Dimension(306, 640));
         setPreferredSize(new Dimension(306, 640));
 
+        titleLabel.setBackground(new Color(255, 255, 254));
         titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
-        titleLabel.setForeground(new Color(2, 8, 38));
+        titleLabel.setForeground(new Color(255, 255, 254));
         titleLabel.setText("Reoamah Duren");
 
+        menuItem1.setBackground(new Color(192, 72, 72));
         menuItem1.setForeground(new Color(255, 255, 254));
         menuItem1.setIcon(new ImageIcon(getClass().getResource("/images/Dashboard.png"))); // NOI18N
         menuItem1.setText("Dashboard");
-        menuItem1.setBorderColor(new Color(120, 103, 69));
+        menuItem1.setBorderColor(new Color(192, 72, 72));
         menuGroup.add(menuItem1);
-        menuItem1.setColor(new Color(120, 103, 69));
-        menuItem1.setColorOver(new Color(120, 103, 69));
+        menuItem1.setColor(new Color(192, 72, 72));
+        menuItem1.setColorOver(new Color(192, 72, 72));
         menuItem1.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem1.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem1.setIconTextGap(14);
 
-        menuItem2.setBackground(new Color(140, 120, 81));
+        menuItem2.setBackground(new Color(221, 83, 83));
         menuItem2.setForeground(new Color(255, 255, 254));
         menuItem2.setIcon(new ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
         menuItem2.setText("Branch");
-        menuItem2.setBorderColor(new Color(140, 120, 81));
+        menuItem2.setBorderColor(new Color(221, 83, 83));
+        menuItem2.setBorderPainted(false);
         menuGroup.add(menuItem2);
-        menuItem2.setColor(new Color(140, 120, 81));
-        menuItem2.setColorOver(new Color(120, 103, 69));
+        menuItem2.setColor(new Color(221, 83, 83));
+        menuItem2.setColorOver(new Color(204, 77, 77));
         menuItem2.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem2.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem2.setIconTextGap(14);
 
-        menuItem3.setBackground(new Color(140, 120, 81));
+        menuItem3.setBackground(new Color(221, 83, 83));
         menuItem3.setForeground(new Color(255, 255, 254));
         menuItem3.setIcon(new ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
         menuItem3.setText("Product");
-        menuItem3.setBorderColor(new Color(140, 120, 81));
+        menuItem3.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem3);
-        menuItem3.setColor(new Color(140, 120, 81));
-        menuItem3.setColorOver(new Color(120, 103, 69));
+        menuItem3.setColor(new Color(221, 83, 83));
+        menuItem3.setColorOver(new Color(204, 77, 77));
         menuItem3.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem3.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem3.setIconTextGap(14);
@@ -158,55 +161,59 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem4.setForeground(new Color(255, 255, 254));
         menuItem4.setIcon(new ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
         menuItem4.setText("Category");
-        menuItem4.setBorderColor(new Color(140, 120, 81));
+        menuItem4.setBorderColor(new Color(221, 83, 83));
+        menuItem4.setBorderPainted(false);
         menuGroup.add(menuItem4);
-        menuItem4.setColor(new Color(140, 120, 81));
-        menuItem4.setColorOver(new Color(120, 103, 69));
+        menuItem4.setColor(new Color(221, 83, 83));
+        menuItem4.setColorOver(new Color(204, 77, 77));
         menuItem4.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem4.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem4.setIconTextGap(14);
 
+        menuItem5.setBackground(new Color(221, 83, 83));
         menuItem5.setForeground(new Color(255, 255, 254));
         menuItem5.setIcon(new ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
         menuItem5.setText("Customer");
-        menuItem5.setBorderColor(new Color(140, 120, 81));
+        menuItem5.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem5);
-        menuItem5.setColor(new Color(140, 120, 81));
-        menuItem5.setColorOver(new Color(120, 103, 69));
+        menuItem5.setColor(new Color(221, 83, 83));
+        menuItem5.setColorOver(new Color(204, 77, 77));
         menuItem5.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem5.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem5.setIconTextGap(14);
 
+        menuItem6.setBackground(new Color(221, 83, 83));
         menuItem6.setForeground(new Color(255, 255, 254));
         menuItem6.setIcon(new ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
         menuItem6.setText("History");
-        menuItem6.setBorderColor(new Color(140, 120, 81));
+        menuItem6.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem6);
-        menuItem6.setColor(new Color(140, 120, 81));
-        menuItem6.setColorOver(new Color(120, 103, 69));
+        menuItem6.setColor(new Color(221, 83, 83));
+        menuItem6.setColorOver(new Color(204, 77, 77));
         menuItem6.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem6.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem6.setIconTextGap(14);
 
+        menuItem8.setBackground(new Color(221, 83, 83));
         menuItem8.setForeground(new Color(255, 255, 254));
         menuItem8.setIcon(new ImageIcon(getClass().getResource("/images/Exit to app.png"))); // NOI18N
         menuItem8.setText("Logout");
-        menuItem8.setBorderColor(new Color(140, 120, 81));
+        menuItem8.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem8);
-        menuItem8.setColor(new Color(140, 120, 81));
-        menuItem8.setColorOver(new Color(120, 103, 69));
+        menuItem8.setColor(new Color(221, 83, 83));
+        menuItem8.setColorOver(new Color(204, 77, 77));
         menuItem8.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem8.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem8.setIconTextGap(14);
 
-        menuItem7.setBackground(new Color(140, 120, 81));
+        menuItem7.setBackground(new Color(221, 83, 83));
         menuItem7.setForeground(new Color(255, 255, 254));
         menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
         menuItem7.setText("Order");
-        menuItem7.setBorderColor(new Color(140, 120, 81));
+        menuItem7.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem7);
-        menuItem7.setColor(new Color(140, 120, 81));
-        menuItem7.setColorOver(new Color(120, 103, 69));
+        menuItem7.setColor(new Color(221, 83, 83));
+        menuItem7.setColorOver(new Color(204, 77, 77));
         menuItem7.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         menuItem7.setHorizontalAlignment(SwingConstants.LEFT);
         menuItem7.setIconTextGap(14);

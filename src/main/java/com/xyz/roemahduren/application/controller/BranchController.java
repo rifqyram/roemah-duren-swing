@@ -1,13 +1,11 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.constant.NotificationResource;
+import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.entity.Branch;
 import com.xyz.roemahduren.domain.model.request.BranchRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.ValidationException;
-import com.xyz.roemahduren.presentation.component.CustomConfirmDialog;
-import com.xyz.roemahduren.presentation.component.CustomDialogMessage;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -16,9 +14,10 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
-import java.net.URL;
 import java.util.List;
 import java.util.Set;
+
+import static com.xyz.roemahduren.constant.ConstantMessage.BRANCH;
 
 public class BranchController {
 
@@ -26,27 +25,70 @@ public class BranchController {
     private final BranchScreen branchScreen;
 
     private List<Branch> branches;
-    private DefaultTableModel model;
-    private CustomConfirmDialog confirmDialog;
-    private CustomDialogMessage notification;
+    private final CustomDialog dialog;
+    private Branch branch;
 
-    public BranchController(BranchService branchService, BranchScreen branchScreen) {
+    public BranchController(BranchService branchService, BranchScreen branchScreen, CustomDialog dialog) {
         this.branchService = branchService;
         this.branchScreen = branchScreen;
-        confirmDialog = new CustomConfirmDialog();
-        notification = new CustomDialogMessage();
+        this.dialog = dialog;
         initTable();
         initController();
     }
 
     public void initController() {
         branchScreen.getSaveBtn().addActionListener(this::saveBranch);
+        branchScreen.getClearBtn().addActionListener(this::clearForm);
+    }
+
+    private void clearForm(ActionEvent actionEvent) {
+        clearForm();
     }
 
     private void saveBranch(ActionEvent actionEvent) {
         branchScreen.getAddressTextArea().clearErrorMessage();
         branchScreen.getNameTextField().clearErrorMessage();
 
+        if (branch == null) {
+            createNewBranch();
+            return;
+        }
+
+        int confirmUpdateDialog = dialog.getConfirmUpdateDialog();
+        if (confirmUpdateDialog != 1) return;
+        updateBranch();
+    }
+
+    private void updateBranch() {
+        new DatabaseWorker<>(
+                () -> {
+                    BranchRequest branchRequest = new BranchRequest(
+                            branch.getId(),
+                            branchScreen.getNameTextField().getValue(),
+                            branchScreen.getAddressTextArea().getValue()
+                    );
+                    ValidationUtil.validate(branchRequest);
+                    return branchService.update(branchRequest);
+                },
+                branch -> {
+                    dialog.getSuccessUpdateMessageDialog(BRANCH);
+                    initTable();
+                },
+                throwable -> {
+                    if (throwable instanceof ValidationException) {
+                        setErrorMessages((ValidationException) throwable);
+                        return;
+                    }
+                    dialog.getFailedMessageDialog(throwable.getMessage());
+                },
+                () -> {
+                    clearForm();
+                    branch = null;
+                }
+        ).execute();
+    }
+
+    private void createNewBranch() {
         new DatabaseWorker<>(
                 () -> {
                     BranchRequest branchRequest = new BranchRequest(
@@ -57,36 +99,41 @@ public class BranchController {
                     return branchService.create(branchRequest);
                 },
                 branch -> {
-                    if (branch != null) {
-                        getNotification(NotificationResource.SUCCESS, "Successfully create new branch", NotificationResource.SUCCESS_IMAGE);
-                        initTable();
-                    }
+                    dialog.getSuccessCreatedMessageDialog(BRANCH);
+                    initTable();
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
-                        Set<ErrorValidationModel> validationModels = ((ValidationException) throwable).getValidationModels();
-                        for (ErrorValidationModel validationModel : validationModels) {
-                            Set<String> messages = validationModel.getMessages();
-                            String htmlMessage = ValidationUtil.getHtmlMessage(messages, branchScreen.getNameTextField().getPreferredSize().width);
-
-                            if (validationModel.getPath().equals("name")) {
-                                branchScreen.getNameTextField().setErrorMessage(htmlMessage);
-                            } else {
-                                branchScreen.getAddressTextArea().setErrorMessage(htmlMessage);
-                            }
-                        }
+                        setErrorMessages((ValidationException) throwable);
                         return;
                     }
 
-                    getNotification(NotificationResource.FAIL, throwable.getMessage(), NotificationResource.FAIL_IMAGE);
+                    dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                this::clearForm
+                () -> {
+                    clearForm();
+                    branch = null;
+                }
         ).execute();
+    }
+
+    private void setErrorMessages(ValidationException throwable) {
+        Set<ErrorValidationModel> validationModels = throwable.getValidationModels();
+        for (ErrorValidationModel validationModel : validationModels) {
+            Set<String> messages = validationModel.getMessages();
+            String htmlMessage = ValidationUtil.getHtmlMessage(messages, branchScreen.getNameTextField().getPreferredSize().width);
+
+            if (validationModel.getPath().equals("name")) {
+                branchScreen.getNameTextField().setErrorMessage(htmlMessage);
+            } else {
+                branchScreen.getAddressTextArea().setErrorMessage(htmlMessage);
+            }
+        }
     }
 
     public void initTable() {
         final String[] COLUMN = {"#", "Branch Name", "Address", "Action"};
-        model = new DefaultTableModel(null, COLUMN);
+        DefaultTableModel model = new DefaultTableModel(null, COLUMN);
 
         branches = branchService.getAll();
 
@@ -104,7 +151,7 @@ public class BranchController {
         return new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                System.out.println(row);
+                setForm(row);
             }
 
             @Override
@@ -114,8 +161,15 @@ public class BranchController {
         };
     }
 
+    private void setForm(int row) {
+        branch = branches.get(row);
+        branchScreen.getNameTextField().setValue(branch.getName());
+        branchScreen.getAddressTextArea().setValue(branch.getAddress());
+    }
+
     private void deleteProduct(int row) {
-        int info = confirmDialog.showConfirmDialog("Info", "Are you sure want to delete?", null);
+        int info = dialog.getConfirmDeleteDialog();
+
         if (info == 1) {
             new DatabaseWorker<>(
                     () -> {
@@ -124,24 +178,14 @@ public class BranchController {
                         return branch.getId() != null;
                     },
                     branch -> {
-                        if (branch) {
-                            initTable();
-                            getNotification(NotificationResource.SUCCESS, "Successfully delete branch", NotificationResource.SUCCESS_IMAGE);
-                        } else {
-                            getNotification(NotificationResource.FAIL, "Failed delete branch", NotificationResource.FAIL_IMAGE);
-                        }
+                        initTable();
+                        dialog.getSuccessDeletedMessageDialog(BRANCH);
                     },
-                    throwable -> {
-                        getNotification(NotificationResource.FAIL, throwable.getMessage(), NotificationResource.FAIL_IMAGE);
-                    },
+                    throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
                     () -> {
                     }
             ).execute();
         }
-    }
-
-    private void getNotification(String title, String text, URL url) {
-        notification.showMessageDialog(title, text, url);
     }
 
     private void clearForm() {

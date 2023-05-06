@@ -1,5 +1,7 @@
 package com.xyz.roemahduren.presentation;
 
+import com.xyz.roemahduren.presentation.component.CustomConfirmDialog;
+import com.xyz.roemahduren.presentation.component.CustomDialogMessage;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ScreenFactory {
@@ -13,6 +15,14 @@ public class ScreenFactory {
 
     public BranchScreen branchScreen() {
         return new BranchScreen();
+    }
+
+    public CustomConfirmDialog customConfirmDialog() {
+        return new CustomConfirmDialog();
+    }
+
+    public CustomDialogMessage customDialogMessage() {
+        return new CustomDialogMessage();
     }
 
     public MainScreen mainScreen() {

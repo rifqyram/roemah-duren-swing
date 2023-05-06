@@ -2,6 +2,7 @@ package com.xyz.roemahduren;
 
 import com.xyz.roemahduren.application.controller.ControllerFactory;
 import com.xyz.roemahduren.application.service.ServiceFactory;
+import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
@@ -77,12 +78,14 @@ public class RoemahDurenApp {
 
         ScreenFactory screenFactory = new ScreenFactory();
 
+        CustomDialog dialog = new CustomDialog(screenFactory.customDialogMessage(), screenFactory.customConfirmDialog());
+
         return new ControllerFactory(
                 serviceFactory.authService(),
                 serviceFactory.branchService(),
                 serviceFactory.categoryService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
-                screenFactory.branchScreen(), screenFactory.mainScreen()
-        );
+                screenFactory.branchScreen(), screenFactory.mainScreen(),
+                dialog);
     }
 }

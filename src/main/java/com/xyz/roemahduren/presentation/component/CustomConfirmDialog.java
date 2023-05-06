@@ -102,6 +102,7 @@ public class CustomConfirmDialog extends JDialog {
 
         title.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
         title.setForeground(new Color(2, 8, 38));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setText("Title");
 
         text.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -109,35 +110,35 @@ public class CustomConfirmDialog extends JDialog {
         text.setHorizontalAlignment(SwingConstants.CENTER);
         text.setText("Text");
 
+        confirmBtn.setBackground(new Color(130, 148, 96));
         confirmBtn.setForeground(new Color(255, 255, 254));
         confirmBtn.setText("Yes");
-        confirmBtn.setBorderColor(new Color(140, 120, 81));
+        confirmBtn.setBorderColor(new Color(130, 148, 96));
         confirmBtn.setBorderPainted(false);
         buttonGroup.add(confirmBtn);
-        confirmBtn.setColor(new Color(140, 120, 81));
-        confirmBtn.setColorClick(new Color(107, 92, 64));
-        confirmBtn.setColorOver(new Color(124, 106, 71));
+        confirmBtn.setColor(new Color(130, 148, 96));
+        confirmBtn.setColorClick(new Color(130, 148, 96));
+        confirmBtn.setColorOver(new Color(118, 134, 87));
 
-        cancelBtn.setBackground(new Color(242, 80, 66));
         cancelBtn.setForeground(new Color(255, 255, 254));
         cancelBtn.setText("Cancel");
-        cancelBtn.setBorderColor(UIManager.getDefaults().getColor("Actions.Red"));
+        cancelBtn.setBorderColor(new Color(187, 33, 36));
         buttonGroup.add(cancelBtn);
+        cancelBtn.setColor(new Color(187, 33, 36));
+        cancelBtn.setColorClick(new Color(141, 25, 27));
+        cancelBtn.setColorOver(new Color(166, 29, 31));
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(176, 176, 176)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(title))
-                    .addComponent(icon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(icon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(title, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(text, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(confirmBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)

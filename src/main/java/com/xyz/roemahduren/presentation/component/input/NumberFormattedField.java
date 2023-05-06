@@ -18,7 +18,7 @@ public class NumberFormattedField extends JFormattedTextField {
     public NumberFormattedField() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
-        setForeground(SystemColor.borderColor);
+        setForeground(SystemColor.BORDER_COLOR);
         format();
     }
 

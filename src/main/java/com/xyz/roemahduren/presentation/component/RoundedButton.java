@@ -54,8 +54,8 @@ public class RoundedButton extends JButton {
     public void setEnabled(boolean b) {
         super.setEnabled(b);
         if (b) {
-            setBackground(SystemColor.disbaleColor);
-            setBorderColor(SystemColor.disbaleColor);
+            setBackground(SystemColor.DISABLE_COLOR);
+            setBorderColor(SystemColor.DISABLE_COLOR);
         } else {
             setBackground(getBackground());
             setBorderColor(getBorderColor());
@@ -63,8 +63,14 @@ public class RoundedButton extends JButton {
     }
 
     public RoundedButton() {
-
         setContentAreaFilled(false);
+        setForeground(SystemColor.BUTTON_TEXT_COLOR);
+        setBackground(SystemColor.SECONDARY_COLOR_BUTTON);
+        color = SystemColor.SECONDARY_COLOR_BUTTON;
+        borderColor = SystemColor.SECONDARY_COLOR_BUTTON;
+        colorClick = SystemColor.SECONDARY_COLOR_ACTIVE_BUTTON;
+        colorOver = SystemColor.SECONDARY_COLOR_HOVER_BUTTON;
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
@@ -102,11 +108,9 @@ public class RoundedButton extends JButton {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        //  Paint Border
         g2.setColor(borderColor);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
         g2.setColor(getBackground());
-        //  Border set 2 Pix
         g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
         super.paintComponent(grphcs);
     }

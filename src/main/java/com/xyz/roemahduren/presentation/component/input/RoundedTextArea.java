@@ -14,7 +14,7 @@ public class RoundedTextArea extends JTextArea {
     public RoundedTextArea() {
         setOpaque(false);
         setMargin(new Insets(4, 6, 4, 6));
-        setForeground(SystemColor.borderColor);
+        setForeground(SystemColor.BORDER_COLOR);
     }
 
     public int getCornerRadius() {

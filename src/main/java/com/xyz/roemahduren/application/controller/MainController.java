@@ -2,6 +2,7 @@ package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
+import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import java.awt.*;
 import java.util.List;
@@ -40,15 +41,14 @@ public class MainController {
     private void selectedMenu(List<MenuItem> menuItems, int index) {
         for (int j = 0; j < menuItems.size(); j++) {
             if (j == index) {
-                menuItems.get(j).setForeground(new Color(0xFFFFFE));
-                menuItems.get(j).setColorOver(new Color(0x786745));
-                menuItems.get(j).setBorderColor(new Color(0x786745));
+                menuItems.get(j).setForeground(SystemColor.BUTTON_TEXT_COLOR);
+                menuItems.get(j).setColorOver(SystemColor.PRIMARY_COLOR_ACTIVE_BUTTON);
+                menuItems.get(j).setBorderColor(SystemColor.PRIMARY_COLOR_ACTIVE_BUTTON);
                 selectMenuIndex(index);
-
             } else {
-                menuItems.get(j).setForeground(new Color(0xFFFFFE));
-                menuItems.get(j).setColor(new Color(0x8C7851));
-                menuItems.get(j).setBorderColor(new Color(0x8C7851));
+                menuItems.get(j).setForeground(SystemColor.BUTTON_TEXT_COLOR);
+                menuItems.get(j).setColor(SystemColor.PRIMARY_COLOR_BUTTON);
+                menuItems.get(j).setBorderColor(SystemColor.PRIMARY_COLOR_BUTTON);
             }
         }
     }
