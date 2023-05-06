@@ -9,9 +9,11 @@ import java.util.List;
 public class MainController {
 
     private final MainScreen mainScreen;
+    private final BranchController branchController;
 
-    public MainController(MainScreen mainScreen) {
+    public MainController(MainScreen mainScreen, BranchController branchController) {
         this.mainScreen = mainScreen;
+        this.branchController = branchController;
 
         initController();
 
@@ -38,15 +40,15 @@ public class MainController {
     private void selectedMenu(List<MenuItem> menuItems, int index) {
         for (int j = 0; j < menuItems.size(); j++) {
             if (j == index) {
-                menuItems.get(j).setForeground(Color.WHITE);
-                menuItems.get(j).setColorOver(new Color(0x0C7EC3));
-                menuItems.get(j).setBorderColor(new Color(0x0C7EC3));
+                menuItems.get(j).setForeground(new Color(0xFFFFFE));
+                menuItems.get(j).setColorOver(new Color(0x786745));
+                menuItems.get(j).setBorderColor(new Color(0x786745));
                 selectMenuIndex(index);
 
             } else {
                 menuItems.get(j).setForeground(new Color(0xFFFFFE));
-                menuItems.get(j).setColor(new Color(0x3DA9FC));
-                menuItems.get(j).setBorderColor(new Color(0x3DA9FC));
+                menuItems.get(j).setColor(new Color(0x8C7851));
+                menuItems.get(j).setBorderColor(new Color(0x8C7851));
             }
         }
     }
@@ -58,6 +60,7 @@ public class MainController {
                     setViewport(mainScreen.getDashboardScreen());
                     break;
                 case 1:
+                    setViewport(branchController.getBranchScreen());
                     break;
                 case 2:
                     break;

@@ -21,4 +21,5 @@ public class TableHeader extends JLabel {
         grphcs.setColor(new Color(230, 230, 230));
         grphcs.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1);
     }
+
 }

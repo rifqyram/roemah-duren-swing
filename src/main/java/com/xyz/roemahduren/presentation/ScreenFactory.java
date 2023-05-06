@@ -11,6 +11,10 @@ public class ScreenFactory {
         return new RegisterScreen();
     }
 
+    public BranchScreen branchScreen() {
+        return new BranchScreen();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }

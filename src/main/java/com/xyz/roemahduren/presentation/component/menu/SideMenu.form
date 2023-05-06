@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="fc" green="a9" red="3d" type="rgb"/>
+      <Color blue="ef" green="f4" red="f9" type="rgb"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[306, 640]"/>
@@ -81,7 +81,7 @@
           <Font name="Helvetica Neue" size="26" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fe" green="ff" red="ff" type="rgb"/>
+          <Color blue="26" green="8" red="2" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Reoamah Duren"/>
       </Properties>
@@ -96,16 +96,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Dashboard"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -117,7 +117,7 @@
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -127,16 +127,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Branch"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -148,7 +148,7 @@
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem3">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -158,16 +158,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Product"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -178,9 +178,6 @@
     </Component>
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem4">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
-        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
@@ -189,16 +186,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Category"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -209,9 +206,6 @@
     </Component>
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem5">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
-        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
@@ -220,16 +214,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Customer"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -240,9 +234,6 @@
     </Component>
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem6">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
-        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
@@ -251,16 +242,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="History"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -271,9 +262,6 @@
     </Component>
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem8">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
-        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
@@ -282,16 +270,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Logout"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>
@@ -303,7 +291,7 @@
     <Component class="com.xyz.roemahduren.presentation.component.menu.MenuItem" name="menuItem7">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -313,16 +301,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Order"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="menuGroup"/>
         </Property>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fc" green="a9" red="3d" type="rgb"/>
+          <Color blue="51" green="78" red="8c" type="rgb"/>
         </Property>
         <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c3" green="7e" red="c" type="rgb"/>
+          <Color blue="45" green="67" red="78" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="0"/>

@@ -28,7 +28,7 @@ public class DatabaseWorker<T> extends SwingWorker<T, Void> {
         try {
             T result = get();
             onSuccess.accept(result);
-        } catch (RuntimeException | InterruptedException | ExecutionException e) {
+        } catch (Exception e) {
             if (e.getCause() instanceof RuntimeException) {
                 RuntimeException exception = (RuntimeException) e.getCause();
                 onError.accept(exception);

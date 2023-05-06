@@ -15,14 +15,16 @@ public class ControllerFactory {
     // Screen
     private final LoginScreen loginScreen;
     private final RegisterScreen registerScreen;
+    private final BranchScreen branchScreen;
     private final MainScreen mainScreen;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, MainScreen mainScreen) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
+        this.branchScreen = branchScreen;
         this.mainScreen = mainScreen;
     }
 
@@ -34,8 +36,12 @@ public class ControllerFactory {
         return new RegisterController(registerScreen, authService);
     }
 
+    public BranchController branchController() {
+        return new BranchController(branchService, branchScreen);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen);
+        return new MainController(mainScreen, branchController());
     }
 
 }

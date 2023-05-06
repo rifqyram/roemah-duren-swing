@@ -56,8 +56,6 @@ public class LoginScreen extends javax.swing.JFrame {
         setMinimumSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
 
-        tfEmail.setPlaceholder("johndoe@mail.com");
-
         emailLabel.setForeground(new Color(49, 53, 59));
         emailLabel.setLabelFor(tfEmail);
         emailLabel.setText("Email");
@@ -87,8 +85,6 @@ public class LoginScreen extends javax.swing.JFrame {
 
         registerLabelLink.setForeground(new Color(49, 53, 59));
         registerLabelLink.setText("Register");
-
-        tfPassword.setPlaceholder("p@ssword");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -4,11 +4,9 @@ import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedPasswordField extends JPasswordField implements FocusListener {
+public class RoundedPasswordField extends JPasswordField {
     private Shape shape;
     private int cornerRadius = 8;
     private String placeholder;
@@ -19,13 +17,6 @@ public class RoundedPasswordField extends JPasswordField implements FocusListene
         setMargin(new Insets(4, 6, 4, 6));
         setForeground(SystemColor.borderColor);
 
-        isPlaceholderVisible = true;
-
-        if (placeholder != null) {
-            setText(placeholder);
-        }
-
-        addFocusListener(this);
     }
 
     public int getCornerRadius() {
@@ -43,32 +34,10 @@ public class RoundedPasswordField extends JPasswordField implements FocusListene
         return password;
     }
 
-    public String getPlaceholder() {
-        return placeholder;
-    }
-
-    public void setPlaceholder(String placeholder) {
-        this.placeholder = placeholder;
-        this.setText(placeholder);
-    }
-
-    @Override
-    public void setText(String t) {
-        super.setText(t);
-        if (t.length() > 0 && !t.equals(placeholder)) {
-            this.isPlaceholderVisible = false;
-        }
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
         g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, cornerRadius, cornerRadius);
-
-        if (isPlaceholderVisible && !getStringPassword().isEmpty() && placeholder != null) {
-            g.setColor(getForeground());
-            g.drawString(placeholder, getInsets().left, g.getFontMetrics().getMaxAscent() + getInsets().top);
-        }
 
         super.paintComponent(g);
     }
@@ -87,21 +56,5 @@ public class RoundedPasswordField extends JPasswordField implements FocusListene
         return shape.contains(x, y);
     }
 
-    @Override
-    public void focusGained(FocusEvent focusEvent) {
-        if (isPlaceholderVisible) {
-            setText("");
-            setForeground(Color.BLACK);
-            isPlaceholderVisible = false;
-        }
-    }
 
-    @Override
-    public void focusLost(FocusEvent focusEvent) {
-        if (getStringPassword().isEmpty()) {
-            setForeground(new Color(0x6D7588));
-            setText(placeholder);
-            isPlaceholderVisible = true;
-        }
-    }
 }

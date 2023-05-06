@@ -14,9 +14,9 @@ public class MenuItem extends JButton {
 
     public MenuItem() {
 
-        setColor(new Color(0x5932EA));
-        colorOver = new Color(0xFFFFFF);
-        borderColor = new Color(0x5932EA);
+        setColor(new Color(0x8C7851));
+        colorOver = new Color(0x786745);
+        borderColor = new Color(0x8C7851);
         setForeground(new Color(0x9197B3));
 
         setContentAreaFilled(false);

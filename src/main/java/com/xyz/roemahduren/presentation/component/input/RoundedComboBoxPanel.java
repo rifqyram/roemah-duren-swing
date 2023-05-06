@@ -4,11 +4,8 @@
  */
 package com.xyz.roemahduren.presentation.component.input;
 
-import java.awt.Color;
-import java.awt.event.ItemListener;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author user

@@ -1,26 +1,14 @@
 package com.xyz.roemahduren;
 
 import com.xyz.roemahduren.application.controller.ControllerFactory;
-import com.xyz.roemahduren.application.service.ProductPriceServiceImpl;
-import com.xyz.roemahduren.application.service.ProductServiceImpl;
 import com.xyz.roemahduren.application.service.ServiceFactory;
-import com.xyz.roemahduren.domain.model.request.ProductPriceRequest;
-import com.xyz.roemahduren.domain.model.request.ProductRequest;
-import com.xyz.roemahduren.domain.repository.Persistence;
-import com.xyz.roemahduren.domain.repository.ProductPriceRepository;
-import com.xyz.roemahduren.domain.service.ProductPriceService;
-import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
-import com.xyz.roemahduren.infrastructure.repository.DbPersistence;
-import com.xyz.roemahduren.infrastructure.repository.ProductPriceRepositoryImpl;
-import com.xyz.roemahduren.infrastructure.repository.ProductRepositoryImpl;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
 import com.xyz.roemahduren.presentation.ScreenFactory;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 
 import javax.swing.*;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -94,7 +82,7 @@ public class RoemahDurenApp {
                 serviceFactory.branchService(),
                 serviceFactory.categoryService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
-                screenFactory.mainScreen()
+                screenFactory.branchScreen(), screenFactory.mainScreen()
         );
     }
 }

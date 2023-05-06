@@ -48,8 +48,6 @@ public class RegisterScreen extends JFrame {
         setMinimumSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
 
-        tfEmail.setPlaceholder("johndoe@mail.com");
-
         errorEmailLabel.setForeground(new Color(220, 53, 69));
 
         errorPasswordLabel.setForeground(new Color(220, 53, 69));

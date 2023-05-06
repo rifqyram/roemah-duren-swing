@@ -7,7 +7,7 @@ import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.NotFoundException;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.lang.Exception;
 import java.util.List;
 
 public class BranchServiceImpl implements BranchService {
@@ -27,7 +27,7 @@ public class BranchServiceImpl implements BranchService {
             Branch save = branchRepository.save(branch);
             connection.commit();
             return save;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -55,7 +55,7 @@ public class BranchServiceImpl implements BranchService {
             Branch update = branchRepository.update(branch);
             connection.commit();
             return update;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -66,7 +66,7 @@ public class BranchServiceImpl implements BranchService {
             getById(id);
             branchRepository.deleteById(id);
             connection.commit();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

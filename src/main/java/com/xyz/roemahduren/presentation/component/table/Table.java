@@ -5,7 +5,6 @@ import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Table extends JTable {
@@ -47,10 +46,15 @@ public class Table extends JTable {
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
-        this.setAutoResizeMode( JTable.AUTO_RESIZE_LAST_COLUMN );
+        setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-
-        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        getColumnModel().getColumn(0).setPreferredWidth(50);
     }
+
+    @Override
+    public boolean getScrollableTracksViewportWidth()
+    {
+        return getPreferredSize().width < getParent().getWidth();
+    }
+
 }

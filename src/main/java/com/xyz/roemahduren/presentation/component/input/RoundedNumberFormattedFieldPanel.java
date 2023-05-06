@@ -4,10 +4,8 @@
  */
 package com.xyz.roemahduren.presentation.component.input;
 
-import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -38,16 +36,6 @@ public class RoundedNumberFormattedFieldPanel extends javax.swing.JPanel {
     public void setLabelErrorText(String text) {
         this.errorLabel.setText(text);
     }
-
-
-    public String getPlaceholder() {
-        return formattedField.getPlaceholder();
-    }
-
-    public void setPlaceholder(String text) {
-        this.formattedField.setPlaceholder(text);
-    }
-
 
     public JLabel getErrorLabel() {
         return errorLabel;

@@ -4,10 +4,8 @@
  */
 package com.xyz.roemahduren.presentation.component.input;
 
-import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -37,16 +35,6 @@ public class RoundedTextFieldPanel extends javax.swing.JPanel {
     public void setLabelErrorText(String text) {
         this.errorLabel.setText(text);
     }
-
-
-    public String getPlaceholder() {
-        return textField.getPlaceholder();
-    }
-
-    public void setPlaceholder(String text) {
-        this.textField.setPlaceholder(text);
-    }
-
 
     public JLabel getErrorLabel() {
         return errorLabel;
@@ -92,8 +80,6 @@ public class RoundedTextFieldPanel extends javax.swing.JPanel {
         textField = new RoundedTextField();
         label = new JLabel();
         errorLabel = new JLabel();
-
-        textField.setText("roundedTextField1");
 
         label.setForeground(new Color(95, 108, 123));
         label.setText("label");

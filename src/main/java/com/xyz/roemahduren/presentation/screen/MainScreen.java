@@ -22,19 +22,20 @@ public class MainScreen extends JFrame {
      */
     public MainScreen() {
         initComponents();
-        fixScrollPane();
+        fixScrollPane(contentMenuScroll);
+        fixScrollPane(sideMenuScroll);
         SwingUtil.centerWindow(this);
     }
 
-    private void fixScrollPane() {
-        contentMenuScroll.setBorder(null);
-        contentMenuScroll.setVerticalScrollBar(new ScrollBar());
-        contentMenuScroll.setHorizontalScrollBar(new ScrollBar());
-        contentMenuScroll.getVerticalScrollBar().setBackground(Color.WHITE);
-        contentMenuScroll.getViewport().setBackground(Color.WHITE);
+    private void fixScrollPane(JScrollPane jScrollPane) {
+        jScrollPane.setBorder(null);
+        jScrollPane.setVerticalScrollBar(new ScrollBar());
+        jScrollPane.setHorizontalScrollBar(new ScrollBar());
+        jScrollPane.getVerticalScrollBar().setBackground(Color.WHITE);
+        jScrollPane.getViewport().setBackground(Color.WHITE);
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
-        contentMenuScroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        jScrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
     }
 
     /**
@@ -46,6 +47,7 @@ public class MainScreen extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        sideMenuScroll = new JScrollPane();
         sideMenuPanel = new SideMenu();
         contentMenuScroll = new JScrollPane();
         dashboardScreen = new DashboardScreen();
@@ -53,24 +55,28 @@ public class MainScreen extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1280, 800));
         setPreferredSize(new Dimension(1280, 800));
-        setSize(new Dimension(1280, 800));
+        setSize(new Dimension(1280, 600));
 
-        dashboardScreen.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        dashboardScreen.setMinimumSize(new Dimension(800, 600));
-        dashboardScreen.setPreferredSize(new Dimension(800, 600));
+        sideMenuPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        sideMenuPanel.setPreferredSize(new Dimension(300, 800));
+        sideMenuScroll.setViewportView(sideMenuPanel);
+
+        dashboardScreen.setMinimumSize(new Dimension(0, 0));
+        dashboardScreen.setName(""); // NOI18N
         contentMenuScroll.setViewportView(dashboardScreen);
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sideMenuPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(sideMenuScroll, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentMenuScroll, GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE))
+                .addComponent(contentMenuScroll, GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(sideMenuPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(contentMenuScroll, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(contentMenuScroll)
+            .addComponent(sideMenuScroll, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         pack();
@@ -104,5 +110,6 @@ public class MainScreen extends JFrame {
     private JScrollPane contentMenuScroll;
     private DashboardScreen dashboardScreen;
     private SideMenu sideMenuPanel;
+    private JScrollPane sideMenuScroll;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,8 +6,8 @@ package com.xyz.roemahduren.presentation.component.input;
 
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 
-import java.awt.Color;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -52,15 +52,6 @@ public class RoundedTextAreaPanel extends javax.swing.JPanel {
 
     public void setLabelErrorText(String text) {
         this.errorLabel.setText(text);
-    }
-
-
-    public String getPlaceholder() {
-        return textArea.getPlaceholder();
-    }
-
-    public void setPlaceholder(String text) {
-        this.textArea.setPlaceholder(text);
     }
 
 
@@ -126,7 +117,6 @@ public class RoundedTextAreaPanel extends javax.swing.JPanel {
 
         textArea.setColumns(20);
         textArea.setRows(5);
-        textArea.setPlaceholder("");
         scrollPaneTextArea.setViewportView(textArea);
 
         GroupLayout layout = new GroupLayout(this);
