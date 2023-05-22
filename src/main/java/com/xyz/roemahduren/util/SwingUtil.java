@@ -7,6 +7,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 
 public class SwingUtil {

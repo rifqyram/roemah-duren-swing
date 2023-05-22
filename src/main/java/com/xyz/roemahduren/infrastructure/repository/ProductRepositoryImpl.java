@@ -33,7 +33,7 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
                         resultSet.getString("id"),
                         resultSet.getString("name"),
                         resultSet.getString("category_id"),
-                        resultSet.getBoolean("is_valid")
+                        resultSet.getBoolean("is_active")
                 ));
             }
 
@@ -51,9 +51,9 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
                 "    mc.name as category_name,\n" +
                 "    mpp.product_price as product_price,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
@@ -82,9 +82,9 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
                 "    mc.name as category_name,\n" +
                 "    mpp.product_price as product_price,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
@@ -105,16 +105,16 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
     }
 
     @Override
-    public List<ProductResponse> getAll(boolean isValid) {
+    public List<ProductResponse> getAll(boolean isActive) {
         String sql = "SELECT\n" +
                 "    mp.id as product_id,\n" +
                 "    mp.name as product_name,\n" +
                 "    mc.name as category_name,\n" +
                 "    mpp.product_price as product_price,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_valid,\n" +
+                "    mpp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
@@ -122,7 +122,7 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
                 "JOIN m_branch mb on mb.id = mpp.branch_id WHERE is_active = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setBoolean(1, isValid);
+            statement.setBoolean(1, isActive);
             ResultSet resultSet = statement.executeQuery();
 
             List<ProductResponse> productResponses = new ArrayList<>();
@@ -144,7 +144,7 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
                     resultSet.getString("category_name"),
                     resultSet.getInt("stock"),
                     resultSet.getString("branch_name"),
-                    resultSet.getBoolean("is_valid")
+                    resultSet.getBoolean("is_active")
             ));
         }
     }

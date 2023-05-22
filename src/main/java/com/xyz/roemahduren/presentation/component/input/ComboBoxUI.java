@@ -35,7 +35,7 @@ public class ComboBoxUI extends BasicComboBoxUI {
         txt.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent fe) {
-                border.setColor(new Color(128, 189, 255));
+                border.setColor(new Color(2,8,38));
             }
 
             @Override
@@ -90,7 +90,7 @@ public class ComboBoxUI extends BasicComboBoxUI {
                 if (bln) {
                     label.setOpaque(true);
                     label.setBackground(new Color(240, 240, 240));
-                    label.setForeground(new Color(17, 155, 215));
+                    label.setForeground(new Color(2,8,38));
                 }
                 return label;
             }

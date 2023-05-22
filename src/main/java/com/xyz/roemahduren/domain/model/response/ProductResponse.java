@@ -1,5 +1,7 @@
 package com.xyz.roemahduren.domain.model.response;
 
+import com.xyz.roemahduren.domain.entity.Product;
+
 import java.math.BigDecimal;
 
 public class ProductResponse {
@@ -15,7 +17,7 @@ public class ProductResponse {
 
     private String branch;
 
-    private String isValid;
+    private Boolean isValid;
 
     public ProductResponse() {
     }
@@ -27,7 +29,7 @@ public class ProductResponse {
         this.category = category;
         this.stock = stock;
         this.branch = branch;
-        this.isValid = isValid ? "Aktif" : "Tidak Aktif";
+        this.isValid = isValid;
     }
 
     public String getProductId() {
@@ -78,11 +80,15 @@ public class ProductResponse {
         this.category = category;
     }
 
-    public String getValid() {
+    public String getValidString() {
+        return isValid ? "Aktif" : "Tidak Aktif";
+    }
+
+    public Boolean getValid () {
         return isValid;
     }
 
     public void setValid(Boolean valid) {
-        isValid = valid ? "Aktif" : "Tidak Aktif";
+        this.isValid = valid;
     }
 }

@@ -20,7 +20,9 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +37,7 @@ public class ProductScreen extends javax.swing.JPanel {
     public ProductScreen() {
         initComponents();
         productTable.fixTable(scrollTable);
+        isActiveCheckbox.setVisible(false);
     }
 
     /**
@@ -46,6 +49,8 @@ public class ProductScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new JScrollPane();
+        jTable1 = new JTable();
         formPanel = new RoundedPanel();
         nameTextField = new RoundedTextFieldPanel();
         saveBtn = new RoundedButton();
@@ -56,12 +61,25 @@ public class ProductScreen extends javax.swing.JPanel {
         branchTextField = new RoundedComboBoxPanel();
         isActiveCheckbox = new CheckboxPanel();
         titleScreen = new JLabel();
-        scrollTable = new JScrollPane();
-        productTable = new Table();
         titleTable = new JLabel();
         searchPanel = new JPanel();
         searchTextField = new RoundedTextFieldPanel();
         searchBtn = new RoundedButton();
+        scrollTable = new JScrollPane();
+        productTable = new Table();
+
+        jTable1.setModel(new DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setBackground(new Color(255, 255, 254));
         setMinimumSize(new Dimension(800, 800));
@@ -158,24 +176,6 @@ public class ProductScreen extends javax.swing.JPanel {
         titleScreen.setForeground(new Color(2, 8, 38));
         titleScreen.setText("Manajemen Produk");
 
-        productTable.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "#", "Nama Produk", "Kategori", "Harga", "Stok", "Cabang", "Aktif", "Aksi"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        scrollTable.setViewportView(productTable);
-
         titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTable.setForeground(new Color(2, 8, 38));
         titleTable.setText("Daftar Produk");
@@ -209,6 +209,19 @@ public class ProductScreen extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        productTable.setModel(new DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrollTable.setViewportView(productTable);
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -220,19 +233,19 @@ public class ProductScreen extends javax.swing.JPanel {
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollTable, GroupLayout.Alignment.LEADING)
                             .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(titleTable)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                                .addComponent(searchPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollTable))
+                                .addComponent(searchPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(titleScreen)
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -241,8 +254,8 @@ public class ProductScreen extends javax.swing.JPanel {
                         .addComponent(titleTable))
                     .addComponent(searchPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +267,7 @@ public class ProductScreen extends javax.swing.JPanel {
         return categoryComboBox;
     }
 
-    public Table getProductTable() {
+    public JTable getProductTable() {
         return productTable;
     }
 
@@ -316,6 +329,8 @@ public class ProductScreen extends javax.swing.JPanel {
     private RoundedButton clearBtn;
     private RoundedPanel formPanel;
     private CheckboxPanel isActiveCheckbox;
+    private JScrollPane jScrollPane1;
+    private JTable jTable1;
     private RoundedTextFieldPanel nameTextField;
     private RoundedNumberFormattedFieldPanel priceNumberFormattedField;
     private Table productTable;

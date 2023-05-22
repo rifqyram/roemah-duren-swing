@@ -5,6 +5,7 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.exception.ValidationException;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -86,8 +87,18 @@ public class ValidationUtil {
                     Object value = field.get(obj);
                     Min annotation = field.getAnnotation(Min.class);
 
-                    if (annotation.value() < (int) value) {
-                        errorMessages.add(annotation.message());
+                    if (value instanceof BigDecimal) {
+                        int intValue = ((BigDecimal) value).intValue();
+                        if (intValue < annotation.value()) {
+                            errorMessages.add(annotation.message());
+                        }
+                    }
+
+                    if (value instanceof Integer) {
+                        int intValue = (int) value;
+                        if (intValue < annotation.value()) {
+                            errorMessages.add(annotation.message());
+                        }
                     }
 
                 } catch (IllegalAccessException e) {

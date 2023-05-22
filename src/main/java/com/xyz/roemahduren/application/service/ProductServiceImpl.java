@@ -43,11 +43,10 @@ public class ProductServiceImpl implements ProductService {
 
         if (!currentProductOptional.isPresent()) {
             return persistence.executeTransaction(connection, () -> {
-                ProductPrice productPrice = productPriceService.create(request.getProductPriceRequest());
-                request.getProductPriceRequest().setProductId(productPrice.getId());
+                Product save = productRepository.save(product);
+                request.getProductPriceRequest().setProductId(save.getId());
                 ProductPrice newProductPrice = productPriceService.create(request.getProductPriceRequest());
-                Product savedProduct = productRepository.save(product);
-                return getProductResponse(request, savedProduct, newProductPrice);
+                return getProductResponse(request, save, newProductPrice);
             });
         }
 
@@ -114,8 +113,6 @@ public class ProductServiceImpl implements ProductService {
         Product product = get(id);
 
         List<ProductPrice> productPrices = productPriceService.getByProductId(product.getId());
-        if (productPrices.size() > 1)
-            throw new RuntimeException("Deactivated product is not valid, because it is related to the price of another product");
 
         Optional<ProductPrice> productPriceOptional = productPrices.stream().findFirst();
         if (!productPriceOptional.isPresent()) throw new NotFoundException(NotFoundException.PRODUCT_PRICE_NOT_FOUND);

@@ -26,7 +26,7 @@ public class ConstantMessage {
     }
 
     public static String getInternalErrorMessage(String message) {
-        return String.format("Galat Internal Server", message);
+        return String.format("Internal Server Error: %s", message);
     }
 
 }

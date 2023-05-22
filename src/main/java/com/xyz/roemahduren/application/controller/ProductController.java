@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.entity.Branch;
 import com.xyz.roemahduren.domain.entity.Category;
@@ -20,9 +19,11 @@ import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static com.xyz.roemahduren.constant.ConstantMessage.PRODUCT;
@@ -48,19 +49,20 @@ public class ProductController {
         this.branchService = branchService;
         this.productScreen = productScreen;
         this.dialog = dialog;
-
-        initForm();
-        initTable();
         initController();
     }
 
     private void initForm() {
         categories = categoryService.getAll();
+        productScreen.getCategoryComboBox().getComboBox().removeAllItems();
+
         for (Category category : categories) {
             productScreen.getCategoryComboBox().getComboBox().addItem(category.getName());
         }
 
         branches = branchService.getAll();
+        productScreen.getBranchComboBox().getComboBox().removeAllItems();
+
         List<Branch> branches = branchService.getAll();
         for (Branch branch : branches) {
             productScreen.getBranchComboBox().getComboBox().addItem(branch.getName());
@@ -83,7 +85,9 @@ public class ProductController {
         productScreen.getStockNumberFormattedField().setValue("");
         productScreen.getBranchComboBox().getComboBox().setSelectedIndex(0);
         productScreen.getIsActiveCheckbox().getCheckbox().setSelected(false);
+        productScreen.getIsActiveCheckbox().setVisible(false);
         productResponse = null;
+        productScreen.getSaveBtn().setText("Simpan");
     }
 
     private void saveProduct(ActionEvent actionEvent) {
@@ -94,8 +98,6 @@ public class ProductController {
                     int selectedIndexBranch = productScreen.getBranchComboBox().getComboBox().getSelectedIndex();
                     Branch branch = branches.get(selectedIndexBranch);
 
-                    System.out.println(productScreen.getPriceNumberFormattedField().getValue());
-                    System.out.println(productScreen.getStockNumberFormattedField().getValue());
 
                     ProductRequest productRequest = new ProductRequest(
                             productScreen.getNameTextField().getValue(),
@@ -103,7 +105,7 @@ public class ProductController {
                             new ProductPriceRequest(
                                     new BigDecimal(productScreen.getPriceNumberFormattedField().getValue()),
                                     Integer.parseInt(productScreen.getStockNumberFormattedField().getValue()),
-                                    null,
+                                    "",
                                     branch.getId()
                             )
                     );
@@ -125,7 +127,7 @@ public class ProductController {
                         }
                         return;
                     }
-                    System.out.println(throwable.getMessage());
+                    throwable.printStackTrace();
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 this::clearForm
@@ -133,6 +135,8 @@ public class ProductController {
     }
 
     public ProductScreen getProductScreen() {
+        initForm();
+        initTable();
         return productScreen;
     }
 
@@ -144,11 +148,12 @@ public class ProductController {
 
         int counter = 0;
         for (ProductResponse product : products) {
-            model.addRow(new Object[]{++counter, product.getName(), product.getPrice(), product.getStock(), product.getBranch(), product.getValid()});
+            model.addRow(new Object[]{++counter, product.getName(), product.getPrice(), product.getStock(), product.getBranch(), product.getValidString()});
         }
 
         productScreen.getProductTable().setModel(model);
         productScreen.getScrollTable().setViewportView(productScreen.getProductTable());
+
         TableActionEvent tableActionEvent = getTableActionEvent();
         SwingUtil.setActionTable(productScreen.getProductTable(), HEADERS, tableActionEvent);
     }
@@ -157,13 +162,44 @@ public class ProductController {
         return new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-
+                setForm(row);
             }
 
             @Override
             public void onDelete(int row) {
-
+                int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
+                if (confirmDeleteDialog != 1) return;
+                new DatabaseWorker<>(
+                        () -> {
+                            ProductResponse productResponse = products.get(row);
+                            productService.deleteById(productResponse.getProductId());
+                            return true;
+                        },
+                        o -> {
+                            dialog.getSuccessUpdateMessageDialog(PRODUCT);
+                            initTable();
+                        },
+                        throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
+                        () -> {
+                        }
+                ).execute();
             }
         };
+    }
+
+    private void setForm(int row) {
+        ProductResponse productResponse = products.get(row);
+        productScreen.getIsActiveCheckbox().setVisible(true);
+        productScreen.getSaveBtn().setText("Ubah");
+        productScreen.getNameTextField().setValue(productResponse.getName());
+        productScreen.getPriceNumberFormattedField().setValue(String.valueOf(productResponse.getPrice().intValue()));
+        productScreen.getCategoryComboBox().getComboBox().setSelectedItem(productResponse.getCategory());
+        productScreen.getStockNumberFormattedField().setValue(productResponse.getStock().toString());
+        productScreen.getBranchComboBox().getComboBox().setSelectedItem(productResponse.getBranch());
+        productScreen.getIsActiveCheckbox().getCheckbox().setSelected(productResponse.getValid());
+
+        product = new Product(productResponse.getProductId(), productResponse.getName(), "", productResponse.getValid());
+        Optional<Category> category = categoryService.getAllByName(productResponse.getCategory()).stream().findFirst();
+        category.ifPresent(value -> product.setCategoryId(value.getId()));
     }
 }
