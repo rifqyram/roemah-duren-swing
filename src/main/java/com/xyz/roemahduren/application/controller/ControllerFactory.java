@@ -41,11 +41,11 @@ public class ControllerFactory {
     }
 
     public LoginController loginController() {
-        return new LoginController(loginScreen, authService);
+        return new LoginController(loginScreen, authService, customDialog);
     }
 
     public RegisterController registerController() {
-        return new RegisterController(registerScreen, authService);
+        return new RegisterController(registerScreen, authService, customDialog);
     }
 
     public BranchController branchController() {

@@ -1,6 +1,9 @@
 package com.xyz.roemahduren;
 
 import com.xyz.roemahduren.application.controller.ControllerFactory;
+import com.xyz.roemahduren.application.controller.LoginController;
+import com.xyz.roemahduren.application.controller.MainController;
+import com.xyz.roemahduren.application.controller.RegisterController;
 import com.xyz.roemahduren.application.service.ServiceFactory;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
@@ -12,10 +15,6 @@ import com.xyz.roemahduren.presentation.screen.LoginScreen;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RoemahDurenApp {
 
@@ -41,14 +40,12 @@ public class RoemahDurenApp {
 
             ControllerFactory controllerFactory = factoryManager(connection);
             SwingUtilities.invokeLater(() -> {
-//                LoginController loginController = controllerFactory.loginController();
-//                RegisterController registerController = controllerFactory.registerController();
-//                loginController.setRegisterController(registerController);
-//                registerController.setLoginController(loginController);
-//
-//                loginController.setVisible(true);
-
-                controllerFactory.mainController();
+                LoginController loginController = controllerFactory.loginController();
+                RegisterController registerController = controllerFactory.registerController();
+                MainController mainController = controllerFactory.mainController();
+                registerController.setLoginController(loginController);
+                loginController.setRegisterController(registerController);
+                loginController.setMainController(mainController);
             });
         } catch (InterruptedException e) {
             e.printStackTrace();

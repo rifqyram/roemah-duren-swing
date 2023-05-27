@@ -53,13 +53,6 @@ public class RoundedButton extends JButton {
     @Override
     public void setEnabled(boolean b) {
         super.setEnabled(b);
-        if (b) {
-            setBackground(SystemColor.DISABLE_COLOR);
-            setBorderColor(SystemColor.DISABLE_COLOR);
-        } else {
-            setBackground(getBackground());
-            setBorderColor(getBorderColor());
-        }
     }
 
     public RoundedButton() {

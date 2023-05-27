@@ -20,10 +20,7 @@ public class MainController {
         this.branchController = branchController;
         this.categoryController = categoryController;
         this.productController = productController;
-
         initController();
-
-        mainScreen.setVisible(true);
     }
 
     private void initController() {
@@ -81,8 +78,12 @@ public class MainController {
         }
     }
 
-    public void setViewport(Component component) {
+    private void setViewport(Component component) {
         mainScreen.getContentMenuScroll().setViewportView(component);
+    }
+
+    public MainScreen getMainScreen() {
+        return mainScreen;
     }
 
     private static void setSelected(List<MenuItem> menuItems, int index) {

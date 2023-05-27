@@ -112,10 +112,10 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(String id) {
         Product product = get(id);
 
-        List<ProductPrice> productPrices = productPriceService.getByProductId(product.getId());
+        List<ProductPrice> productPrices = productPriceService.getByProductId(product.getId(), true);
 
         Optional<ProductPrice> productPriceOptional = productPrices.stream().findFirst();
-        if (!productPriceOptional.isPresent()) throw new NotFoundException(NotFoundException.PRODUCT_PRICE_NOT_FOUND);
+        if (!productPriceOptional.isPresent()) throw new NotFoundException(NotFoundException.PRODUCT_ALREADY_INACTIVATED);
         ProductPrice productPrice = productPriceOptional.get();
 
         product.setActive(false);

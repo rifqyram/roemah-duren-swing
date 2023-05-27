@@ -12,6 +12,9 @@ import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.domain.service.CategoryService;
 import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.exception.ValidationException;
+import com.xyz.roemahduren.presentation.component.table.PanelAction;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.ProductScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -155,7 +158,12 @@ public class ProductController {
         productScreen.getScrollTable().setViewportView(productScreen.getProductTable());
 
         TableActionEvent tableActionEvent = getTableActionEvent();
-        SwingUtil.setActionTable(productScreen.getProductTable(), HEADERS, tableActionEvent);
+        TableActionCellRender tableActionCellRender = new TableActionCellRender();
+        PanelAction panelAction = tableActionCellRender.getPanelAction();
+        String nonactive = "Nonaktif";
+        panelAction.getDeleteButton().setText(nonactive);
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(tableActionCellRender);
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent, null, nonactive));
     }
 
     private TableActionEvent getTableActionEvent() {

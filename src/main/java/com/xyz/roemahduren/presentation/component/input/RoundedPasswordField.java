@@ -9,8 +9,6 @@ import java.awt.geom.RoundRectangle2D;
 public class RoundedPasswordField extends JPasswordField {
     private Shape shape;
     private int cornerRadius = 8;
-    private String placeholder;
-    private boolean isPlaceholderVisible;
 
     public RoundedPasswordField() {
         setOpaque(false);
@@ -30,7 +28,6 @@ public class RoundedPasswordField extends JPasswordField {
     public String getStringPassword() {
         String password = new String(getPassword());
         if (getPassword().length == 0) return "";
-        if (password.equals(placeholder)) return "";
         return password;
     }
 

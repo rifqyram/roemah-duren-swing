@@ -6,14 +6,12 @@ package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.LabelLink;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
-import com.xyz.roemahduren.presentation.component.input.RoundedPasswordField;
-import com.xyz.roemahduren.presentation.component.input.RoundedTextField;
+import com.xyz.roemahduren.presentation.component.input.RoundedPasswordFieldPanel;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.util.SwingUtil;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -39,34 +37,18 @@ public class LoginScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfEmail = new RoundedTextField();
-        emailLabel = new JLabel();
-        errorEmailLabel = new JLabel();
-        passwordLabel = new JLabel();
-        errorPasswordLabel = new JLabel();
         titleLabel = new JLabel();
         registerLabelDescription = new JLabel();
         signInBtn = new RoundedButton();
         forgotPasswordLabel = new LabelLink();
         registerLabelLink = new LabelLink();
-        tfPassword = new RoundedPasswordField();
+        passwordTf = new RoundedPasswordFieldPanel();
+        emailTf = new RoundedTextFieldPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(480, 500));
         setMinimumSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
-
-        emailLabel.setForeground(new Color(49, 53, 59));
-        emailLabel.setLabelFor(tfEmail);
-        emailLabel.setText("Email");
-
-        errorEmailLabel.setForeground(new Color(220, 53, 69));
-
-        passwordLabel.setForeground(new Color(49, 53, 59));
-        passwordLabel.setLabelFor(tfPassword);
-        passwordLabel.setText("Password");
-
-        errorPasswordLabel.setForeground(new Color(220, 53, 69));
 
         titleLabel.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         titleLabel.setForeground(new Color(49, 53, 59));
@@ -75,9 +57,14 @@ public class LoginScreen extends javax.swing.JFrame {
         registerLabelDescription.setForeground(new Color(49, 53, 59));
         registerLabelDescription.setText("Don't have an account?");
 
+        signInBtn.setBackground(new Color(221, 83, 83));
         signInBtn.setBorder(null);
         signInBtn.setForeground(new Color(255, 255, 255));
         signInBtn.setText("Sign In");
+        signInBtn.setBorderColor(new Color(221, 83, 83));
+        signInBtn.setColor(new Color(221, 83, 83));
+        signInBtn.setColorClick(new Color(192, 72, 72));
+        signInBtn.setColorOver(new Color(204, 77, 77));
         signInBtn.setFont(new Font("Helvetica Neue", 1, 14)); // NOI18N
 
         forgotPasswordLabel.setForeground(new Color(49, 53, 59));
@@ -86,25 +73,38 @@ public class LoginScreen extends javax.swing.JFrame {
         registerLabelLink.setForeground(new Color(49, 53, 59));
         registerLabelLink.setText("Register");
 
+        passwordTf.setBackground(new Color(255, 255, 254));
+        passwordTf.setErrorMessage("");
+        passwordTf.setLabelText("Kata Sandi");
+        passwordTf.setValue("");
+
+        emailTf.setBackground(new Color(255, 255, 254));
+        emailTf.setErrorMessage("");
+        emailTf.setLabelText("Email");
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(titleLabel)
-                    .addComponent(passwordLabel)
-                    .addComponent(forgotPasswordLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(registerLabelDescription)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(registerLabelLink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tfEmail, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(signInBtn, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(errorPasswordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(errorEmailLabel, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                    .addComponent(tfPassword, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(titleLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(registerLabelDescription)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(registerLabelLink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                    .addComponent(forgotPasswordLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(signInBtn, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailTf, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))))
                 .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -112,17 +112,9 @@ public class LoginScreen extends javax.swing.JFrame {
                 .addGap(102, 102, 102)
                 .addComponent(titleLabel)
                 .addGap(18, 18, 18)
-                .addComponent(emailLabel)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmail, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorEmailLabel)
-                .addGap(16, 16, 16)
-                .addComponent(passwordLabel)
-                .addGap(4, 4, 4)
-                .addComponent(tfPassword, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorPasswordLabel)
+                .addComponent(emailTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -131,38 +123,20 @@ public class LoginScreen extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(registerLabelDescription)
-                            .addComponent(registerLabelLink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(111, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(forgotPasswordLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(registerLabelLink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(forgotPasswordLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JLabel getEmailLabel() {
-        return emailLabel;
+    public RoundedTextFieldPanel getEmailTf() {
+        return emailTf;
     }
 
-    public void setEmailLabel(JLabel emailLabel) {
-        this.emailLabel = emailLabel;
-    }
-
-    public JLabel getErrorEmailLabel() {
-        return errorEmailLabel;
-    }
-
-    public void setErrorEmailLabel(JLabel errorEmailLabel) {
-        this.errorEmailLabel = errorEmailLabel;
-    }
-
-    public JLabel getErrorPasswordLabel() {
-        return errorPasswordLabel;
-    }
-
-    public void setErrorPasswordLabel(JLabel errorPasswordLabel) {
-        this.errorPasswordLabel = errorPasswordLabel;
+    public RoundedPasswordFieldPanel getPasswordTf() {
+        return passwordTf;
     }
 
     public LabelLink getForgotPasswordLabel() {
@@ -173,13 +147,6 @@ public class LoginScreen extends javax.swing.JFrame {
         this.forgotPasswordLabel = forgotPasswordLabel;
     }
 
-    public JLabel getPasswordLabel() {
-        return passwordLabel;
-    }
-
-    public void setPasswordLabel(JLabel passwordLabel) {
-        this.passwordLabel = passwordLabel;
-    }
 
     public JLabel getRegisterLabelDescription() {
         return registerLabelDescription;
@@ -205,22 +172,6 @@ public class LoginScreen extends javax.swing.JFrame {
         this.signInBtn = signInBtn;
     }
 
-    public RoundedTextField getTfEmail() {
-        return tfEmail;
-    }
-
-    public void setTfEmail(RoundedTextField tfEmail) {
-        this.tfEmail = tfEmail;
-    }
-
-    public RoundedPasswordField getTfPassword() {
-        return tfPassword;
-    }
-
-    public void RoundedPasswordField(RoundedPasswordField tfPassword) {
-        this.tfPassword = tfPassword;
-    }
-
     public JLabel getTitleLabel() {
         return titleLabel;
     }
@@ -230,16 +181,12 @@ public class LoginScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel emailLabel;
-    private JLabel errorEmailLabel;
-    private JLabel errorPasswordLabel;
+    private RoundedTextFieldPanel emailTf;
     private LabelLink forgotPasswordLabel;
-    private JLabel passwordLabel;
+    private RoundedPasswordFieldPanel passwordTf;
     private JLabel registerLabelDescription;
     private LabelLink registerLabelLink;
     private RoundedButton signInBtn;
-    private RoundedTextField tfEmail;
-    private RoundedPasswordField tfPassword;
     private JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

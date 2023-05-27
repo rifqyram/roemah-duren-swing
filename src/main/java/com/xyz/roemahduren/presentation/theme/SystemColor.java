@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class SystemColor {
     public static final Color PRIMARY_COLOR = new Color(0xDD5353);
-    public static final Color DISABLE_COLOR = new Color(0xF4F4F4);
     public static final Color BORDER_COLOR = new Color(0x6D7588);
 
     public static final Color PRIMARY_COLOR_BUTTON = new Color(0xDD5353);
@@ -17,6 +16,9 @@ public class SystemColor {
     public static final Color TEXT_COLOR = new Color(0x020826);
     public static final Color BUTTON_TEXT_COLOR = new Color(0xFFFFFE);
 
+    public static final Color BUTTON_BORDER_LOADING_COLOR = new Color(0x999999);
+    public static final Color BUTTON_LOADING_COLOR = new Color(0x666666);
+    public static final Color BUTTON_LOADING_TEXT_COLOR = new Color(0xcccccc);
 
     public static final Color SUCCESS_COLOR = new Color(0x22BB33);
     public static final Color INFO_COLOR = new Color(0x5BC0DE);

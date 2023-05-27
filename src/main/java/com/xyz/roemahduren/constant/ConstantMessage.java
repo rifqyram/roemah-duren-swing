@@ -9,6 +9,8 @@ public class ConstantMessage {
     public static final String ORDER = "Pesan";
     public static final String ORDER_DETAIL = "Detil Pesanan";
     public static final String USER = "User";
+    public static final String LOGIN_SUCCESS_MESSAGE = "Anda berhasil Login";
+    public static final String REGISTER = "Anda berhasil Mendaftar";
 
     public static final String BTN_TEXT_SAVE = "Simpan";
     public static final String BTN_TEXT_UPDATE = "Ubah";
@@ -26,7 +28,7 @@ public class ConstantMessage {
     }
 
     public static String getInternalErrorMessage(String message) {
-        return String.format("Internal Server Error: %s", message);
+        return String.format("Error: %s", message);
     }
 
 }

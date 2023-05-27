@@ -1,14 +1,17 @@
 package com.xyz.roemahduren.util;
 
 import com.xyz.roemahduren.presentation.component.DataEmpty;
+import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
+import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
 import java.awt.*;
+
+import static com.xyz.roemahduren.presentation.theme.SystemColor.*;
 
 public class SwingUtil {
 
@@ -50,6 +53,22 @@ public class SwingUtil {
     public static void setEmptyState(JScrollPane scrollPane) {
         DataEmpty dataEmpty = new DataEmpty();
         scrollPane.setViewportView(dataEmpty);
+    }
+
+    public static void clearLoading(RoundedButton button, String defaultText) {
+        button.setText(defaultText);
+        button.setForeground(Color.WHITE);
+        button.setEnabled(true);
+        button.setBackground(PRIMARY_COLOR_BUTTON);
+        button.setBorderColor(PRIMARY_COLOR_BUTTON);
+    }
+
+    public static void setLoading(RoundedButton button) {
+        button.setText("Loading...");
+        button.setForeground(BUTTON_LOADING_TEXT_COLOR);
+        button.setBackground(BUTTON_BORDER_LOADING_COLOR);
+        button.setBorderColor(BUTTON_BORDER_LOADING_COLOR);
+        button.setEnabled(false);
     }
 
 }

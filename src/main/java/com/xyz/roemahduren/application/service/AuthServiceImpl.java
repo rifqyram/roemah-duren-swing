@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
         try {
             Optional<UserCredential> currentUser = userCredentialRepository.findByEmail(request.getEmail());
 
-            if (currentUser.isPresent()) throw new RuntimeException("User already registered");
+            if (currentUser.isPresent()) throw new RuntimeException("Email sudah terdaftar");
 
             UserCredential userCredential = new UserCredential(
                     RandomGenerator.generateUUID(),
@@ -50,11 +50,11 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse login(AuthRequest request) {
         Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
 
-        if (!credentialOptional.isPresent()) throw new RuntimeException("Invalid Credential");
+        if (!credentialOptional.isPresent()) throw new RuntimeException("Username atau Password salah!");
         UserCredential userCredential = credentialOptional.get();
 
         boolean verify = passwordEncoder.verifyPassword(request.getPassword(), userCredential.getPassword());
-        if (!verify) throw new RuntimeException("Invalid Credential");
+        if (!verify) throw new RuntimeException("Username atau Password salah!");
 
         return new AuthResponse(userCredential.getEmail());
     }

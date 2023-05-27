@@ -1,42 +1,56 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.constant.ConstantMessage;
+import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.model.request.AuthRequest;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
+import com.xyz.roemahduren.presentation.theme.SystemColor;
 import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Set;
+
+import static com.xyz.roemahduren.constant.ConstantMessage.*;
 
 public class LoginController {
 
     private final LoginScreen loginScreen;
     private final AuthService authService;
+    private final CustomDialog dialog;
     private RegisterController registerController;
+    private MainController mainController;
 
-    public LoginController(LoginScreen loginScreen,  AuthService authService) {
+    public LoginController(LoginScreen loginScreen, AuthService authService, CustomDialog dialog) {
         this.loginScreen = loginScreen;
         this.authService = authService;
-
+        this.dialog = dialog;
         initController();
+        loginScreen.setVisible(true);
     }
 
     private void initController() {
         loginScreen.getSignInBtn().addActionListener(this::signInUser);
-        loginScreen.getRegisterLabelLink().addMouseListener(mouseListener());
+        loginScreen.getRegisterLabelLink().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                toRegisterScreen();
+            }
+        });
     }
 
     private void clearErrors() {
-        loginScreen.getErrorEmailLabel().setText("");
-        loginScreen.getErrorPasswordLabel().setText("");
+        loginScreen.getEmailTf().clearErrorMessage();
+        loginScreen.getPasswordTf().clearErrorMessage();
     }
 
     private void signInUser(ActionEvent actionEvent) {
@@ -46,20 +60,24 @@ public class LoginController {
 
         DatabaseWorker<AuthResponse> databaseWorker = new DatabaseWorker<>(
                 () -> {
-                    setLoading();
-                    AuthRequest authRequest = new AuthRequest(screen.getTfEmail().getText(), screen.getTfPassword().getStringPassword());
+                    SwingUtil.setLoading(loginScreen.getSignInBtn());
+                    AuthRequest authRequest = new AuthRequest(screen.getEmailTf().getValue(), screen.getPasswordTf().getValue());
                     ValidationUtil.validate(authRequest);
                     return authService.login(authRequest);
                 },
-                authResponse -> JOptionPane.showMessageDialog(null, "Login Successfully!"),
+                authResponse -> {
+                    mainController.getMainScreen().setVisible(true);
+                    loginScreen.dispose();
+                    dialog.getSuccessMessageDialog(LOGIN_SUCCESS_MESSAGE);
+                },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
                         setValidationError(screen, (ValidationException) throwable);
-                    } else {
-                        JOptionPane.showMessageDialog(null, throwable.getMessage());
+                        return;
                     }
+                    dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> clearLoading(btnText)
+                () -> SwingUtil.clearLoading(loginScreen.getSignInBtn(), btnText)
         );
         databaseWorker.execute();
     }
@@ -71,27 +89,11 @@ public class LoginController {
             String message = ValidationUtil.getHtmlMessage(messages, 199);
 
             if (validationModel.getPath().equals("email")) {
-                screen.getErrorEmailLabel().setText(message);
+                screen.getEmailTf().setErrorMessage(message);
             } else {
-                screen.getErrorPasswordLabel().setText(message);
+                screen.getPasswordTf().setErrorMessage(message);
             }
         }
-    }
-
-    private void clearLoading(String btnText) {
-        LoginScreen screen = loginScreen;
-        screen.getSignInBtn().setText(btnText);
-        screen.getSignInBtn().setEnabled(true);
-        screen.getSignInBtn().setBackground(new Color(0xF6921E));
-        screen.getSignInBtn().setBorderColor(new Color(0xF6921E));
-    }
-
-    private void setLoading() {
-        LoginScreen screen = loginScreen;
-        screen.getSignInBtn().setText("Loading...");
-        screen.getSignInBtn().setBackground(new Color(0xF4F4F4));
-        screen.getSignInBtn().setBorderColor(new Color(0xF4F4F4));
-        screen.getSignInBtn().setEnabled(false);
     }
 
     private void toRegisterScreen() {
@@ -108,32 +110,9 @@ public class LoginController {
         this.registerController = registerController;
     }
 
-    private MouseListener mouseListener() {
-        return new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                toRegisterScreen();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-
-            }
-        };
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
+
+
 }

@@ -32,22 +32,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="titleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorEmailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="loginLabelText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loginLabelLink" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="passwordTf" alignment="0" max="32767" attributes="0"/>
+                      <Component id="emailTf" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="tfEmail" alignment="1" pref="305" max="32767" attributes="0"/>
-                  <Component id="registerBtn" alignment="1" max="32767" attributes="0"/>
-                  <Component id="tfPassword" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="titleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="loginLabelText" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="loginLabelLink" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="registerBtn" alignment="1" min="-2" pref="305" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
@@ -59,17 +59,9 @@
               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfEmail" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="errorEmailLabel" min="-2" max="-2" attributes="0"/>
+              <Component id="emailTf" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Component id="tfPassword" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="errorPasswordLabel" min="-2" max="-2" attributes="0"/>
+              <Component id="passwordTf" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="registerBtn" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -83,41 +75,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextField" name="tfEmail">
-      <Properties>
-        <Property name="placeholder" type="java.lang.String" value="johndoe@mail.com"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="errorEmailLabel">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="45" green="35" red="dc" type="rgb"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="errorPasswordLabel">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="45" green="35" red="dc" type="rgb"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="emailLabel">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3b" green="35" red="31" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Email"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="passwordLabel">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3b" green="35" red="31" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Password"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="titleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -139,6 +96,9 @@
     </Component>
     <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="registerBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -146,6 +106,18 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Register"/>
+        <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
+        <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
+        <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="48" green="48" red="c0" type="rgb"/>
+        </Property>
+        <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4d" green="4d" red="cc" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="14" style="1"/>
         </Property>
@@ -159,9 +131,23 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedPasswordField" name="tfPassword">
+    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel" name="emailTf">
       <Properties>
-        <Property name="text" type="java.lang.String" value="roundedPasswordField1"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="errorMessage" type="java.lang.String" value=""/>
+        <Property name="labelText" type="java.lang.String" value="Email"/>
+      </Properties>
+    </Component>
+    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedPasswordFieldPanel" name="passwordTf">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="labelErrorText" type="java.lang.String" value=""/>
+        <Property name="labelText" type="java.lang.String" value="Kata Sandi"/>
+        <Property name="value" type="java.lang.String" value=""/>
       </Properties>
     </Component>
   </SubComponents>

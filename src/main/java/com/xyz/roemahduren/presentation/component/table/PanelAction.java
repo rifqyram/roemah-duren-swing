@@ -8,14 +8,10 @@ import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -28,12 +24,25 @@ public class PanelAction extends javax.swing.JPanel {
      */
     public PanelAction() {
         initComponents();
+    }
 
+    public PanelAction(String textButton1, String textButton2) {
+        this();
+        this.roundedButton1.setText(textButton1 == null ? roundedButton1.getText() : textButton1);
+        this.roundedButton2.setText(textButton2 == null ? roundedButton2.getText() : textButton2);
     }
 
     public void initEvent(TableActionEvent event, int row) {
         roundedButton1.addActionListener(actionEvent -> event.onEdit(row));
         roundedButton2.addActionListener(actionEvent -> event.onDelete(row));
+    }
+
+    public RoundedButton getUpdateButton() {
+        return roundedButton1;
+    }
+
+    public RoundedButton getDeleteButton() {
+        return roundedButton2;
     }
 
     /**
@@ -53,7 +62,7 @@ public class PanelAction extends javax.swing.JPanel {
         roundedButton1.setBackground(new Color(255, 255, 254));
         roundedButton1.setForeground(new Color(102, 102, 102));
         roundedButton1.setIcon(new ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        roundedButton1.setText("Edit");
+        roundedButton1.setText("Ubah");
         roundedButton1.setBorderColor(new Color(255, 255, 254));
         roundedButton1.setColor(new Color(255, 255, 254));
         roundedButton1.setColorClick(new Color(204, 204, 204));
@@ -63,7 +72,7 @@ public class PanelAction extends javax.swing.JPanel {
 
         roundedButton2.setForeground(new Color(102, 102, 102));
         roundedButton2.setIcon(new ImageIcon(getClass().getResource("/images/remove.png"))); // NOI18N
-        roundedButton2.setText("Delete");
+        roundedButton2.setText("Hapus");
         roundedButton2.setToolTipText("");
         roundedButton2.setBorderColor(new Color(255, 255, 254));
         roundedButton2.setColor(new Color(255, 255, 254));
