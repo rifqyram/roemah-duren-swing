@@ -42,10 +42,6 @@ public class RepositoryFactory {
         return new OrderRepositoryImpl(connection);
     }
 
-    public ProductPriceRepository productPriceRepository() {
-        return new ProductPriceRepositoryImpl(connection);
-    }
-
     public ProductRepository productRepository() {
         return new ProductRepositoryImpl(connection);
     }

@@ -9,7 +9,6 @@ public class ValidationException extends RuntimeException{
     private final Set<ErrorValidationModel> validationModels;
 
     public ValidationException(Set<ErrorValidationModel> validationModels) {
-
         this.validationModels = validationModels;
     }
 

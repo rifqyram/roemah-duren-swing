@@ -1,7 +1,11 @@
 package com.xyz.roemahduren.domain.model.request;
 
+import com.xyz.roemahduren.domain.annotation.validation.Min;
 import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
+import com.xyz.roemahduren.domain.annotation.validation.NotNull;
 import com.xyz.roemahduren.util.RandomGenerator;
+
+import java.math.BigDecimal;
 
 public class ProductRequest {
     private String id;
@@ -9,25 +13,36 @@ public class ProductRequest {
     private String name;
     @NotBlank
     private String categoryId;
-    private ProductPriceRequest productPriceRequest;
+    @NotNull
+    @Min(message = "Harga tidak boleh kurang dari 0", value = 1)
+    private Long price;
+    @NotNull
+    @Min(message = "Stock tidak boleh kurang dari 0", value = 1)
+    private Integer stock;
+    @NotBlank
+    private String branchId;
     private Boolean isActive;
 
     public ProductRequest() {
     }
 
-    public ProductRequest(String name, String categoryId, ProductPriceRequest productPriceRequest) {
+    public ProductRequest(String name, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
         this.id = RandomGenerator.generateUUID();
         this.name = name;
         this.categoryId = categoryId;
-        this.productPriceRequest = productPriceRequest;
-        this.isActive = true;
+        this.price = price;
+        this.stock = stock;
+        this.branchId = branchId;
+        this.isActive = isActive;
     }
 
-    public ProductRequest(String id, String name, String categoryId, ProductPriceRequest productPriceRequest, Boolean isActive) {
+    public ProductRequest(String id, String name, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.categoryId = categoryId;
-        this.productPriceRequest = productPriceRequest;
+        this.price = price;
+        this.stock = stock;
+        this.branchId = branchId;
         this.isActive = isActive;
     }
 
@@ -55,12 +70,28 @@ public class ProductRequest {
         this.categoryId = categoryId;
     }
 
-    public ProductPriceRequest getProductPriceRequest() {
-        return productPriceRequest;
+    public Long getPrice() {
+        return price;
     }
 
-    public void setProductPriceRequest(ProductPriceRequest productPriceRequest) {
-        this.productPriceRequest = productPriceRequest;
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
     }
 
     public Boolean getActive() {

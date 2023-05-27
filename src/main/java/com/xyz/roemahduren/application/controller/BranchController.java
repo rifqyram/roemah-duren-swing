@@ -6,6 +6,7 @@ import com.xyz.roemahduren.domain.model.request.BranchRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.ValidationException;
+import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -60,8 +61,10 @@ public class BranchController {
     }
 
     private void updateBranch() {
+        RoundedButton saveBtn = branchScreen.getSaveBtn();
         new DatabaseWorker<>(
                 () -> {
+                    SwingUtil.setLoading(saveBtn);
                     BranchRequest branchRequest = new BranchRequest(
                             branch.getId(),
                             branchScreen.getNameTextField().getValue(),
@@ -83,14 +86,17 @@ public class BranchController {
                 },
                 () -> {
                     clearForm();
+                    SwingUtil.clearLoading(branchScreen.getSaveBtn(), saveBtn.getText());
                     branch = null;
                 }
         ).execute();
     }
 
     private void createNewBranch() {
+        RoundedButton saveBtn = branchScreen.getSaveBtn();
         new DatabaseWorker<>(
                 () -> {
+                    SwingUtil.setLoading(saveBtn);
                     BranchRequest branchRequest = new BranchRequest(
                             branchScreen.getNameTextField().getValue(),
                             branchScreen.getAddressTextArea().getValue()
@@ -111,6 +117,7 @@ public class BranchController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
+                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     branch = null;
                 }
@@ -136,6 +143,13 @@ public class BranchController {
         DefaultTableModel model = new DefaultTableModel(null, COLUMN);
 
         branches = branchService.getAll();
+
+        if (branches.isEmpty()) {
+            SwingUtil.setEmptyState(branchScreen.getScrollTable());
+        } else {
+            branchScreen.getScrollTable().setViewportView(branchScreen.getBranchTable());
+        }
+
 
         int counter = 0;
         for (Branch branch : branches) {

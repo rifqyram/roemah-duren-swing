@@ -76,7 +76,6 @@ public class RoemahDurenApp {
                 repositoryFactory.branchRepository(),
                 repositoryFactory.categoryRepository(),
                 repositoryFactory.productRepository(),
-                repositoryFactory.productPriceRepository(),
                 repositoryFactory.persistence(),
                 securityFactory.passwordEncoder(),
                 connection);

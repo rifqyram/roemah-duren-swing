@@ -111,7 +111,7 @@ public class ValidationUtil {
                     Object value = field.get(obj);
                     Max annotation = field.getAnnotation(Max.class);
 
-                    if (annotation.value() > (int) value) {
+                    if ((int) value > annotation.value()) {
                         errorMessages.add(annotation.message());
                     }
 

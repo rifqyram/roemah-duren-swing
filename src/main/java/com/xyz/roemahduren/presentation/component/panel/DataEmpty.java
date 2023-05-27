@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.xyz.roemahduren.presentation.component;
+package com.xyz.roemahduren.presentation.component.panel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -38,7 +38,7 @@ public class DataEmpty extends javax.swing.JPanel {
 
         jLabel2.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setForeground(new Color(95, 108, 123));
-        jLabel2.setText("No Data Found");
+        jLabel2.setText("Data tidak ditemukan");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -50,7 +50,7 @@ public class DataEmpty extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

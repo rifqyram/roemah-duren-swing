@@ -106,6 +106,7 @@ public class ProductScreen extends javax.swing.JPanel {
         priceNumberFormattedField.setBackground(new Color(245, 245, 245));
         priceNumberFormattedField.setLabelErrorText("");
         priceNumberFormattedField.setLabelText("Harga");
+        priceNumberFormattedField.setValue("0");
 
         categoryComboBox.setBackground(new Color(245, 245, 245));
         categoryComboBox.setLabelErrorText("");
@@ -114,6 +115,7 @@ public class ProductScreen extends javax.swing.JPanel {
         stockNumberFormattedField.setBackground(new Color(245, 245, 245));
         stockNumberFormattedField.setLabelErrorText("");
         stockNumberFormattedField.setLabelText("Stok");
+        stockNumberFormattedField.setValue("0");
 
         branchTextField.setBackground(new Color(245, 245, 245));
         branchTextField.setLabelErrorText("");

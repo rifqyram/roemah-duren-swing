@@ -1,6 +1,6 @@
 package com.xyz.roemahduren.util;
 
-import com.xyz.roemahduren.presentation.component.DataEmpty;
+import com.xyz.roemahduren.presentation.component.panel.DataEmpty;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
@@ -70,5 +70,7 @@ public class SwingUtil {
         button.setBorderColor(BUTTON_BORDER_LOADING_COLOR);
         button.setEnabled(false);
     }
+
+
 
 }

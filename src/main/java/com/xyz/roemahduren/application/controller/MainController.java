@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
 import com.xyz.roemahduren.presentation.theme.SystemColor;
@@ -14,12 +15,14 @@ public class MainController {
     private final BranchController branchController;
     private final CategoryController categoryController;
     private final ProductController productController;
+    private final CustomDialog dialog;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
         this.productController = productController;
+        this.dialog = dialog;
         initController();
     }
 
@@ -72,9 +75,13 @@ public class MainController {
                 case 4:
                     setViewport(categoryController.getCategoryScreen());
                     break;
+                case 7:
+                    int confirmDeleteDialog = dialog.getConfirmInfoDialog(CustomDialog.LOGOUT_CONFIRMATION);
+                    if (confirmDeleteDialog != 1) return;
+                    System.exit(0);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            dialog.getFailedMessageDialog(e.getMessage());
         }
     }
 

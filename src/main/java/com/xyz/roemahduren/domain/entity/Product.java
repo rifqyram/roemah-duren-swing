@@ -4,6 +4,8 @@ import com.xyz.roemahduren.domain.annotation.db.Column;
 import com.xyz.roemahduren.domain.annotation.db.Id;
 import com.xyz.roemahduren.domain.annotation.db.Table;
 
+import java.math.BigDecimal;
+
 @Table(name = "m_product")
 public class Product {
     @Id
@@ -12,6 +14,15 @@ public class Product {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
+    private Long price;
+
+    @Column(name = "stock")
+    private Integer stock;
+
+    @Column(name = "branch_id")
+    private String branchId;
 
     @Column(name = "category_id")
     private String categoryId;
@@ -22,9 +33,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, String name, String categoryId, Boolean isActive) {
+    public Product(String id, String name, Long price, Integer stock, String branchId, String categoryId, Boolean isActive) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.branchId = branchId;
         this.categoryId = categoryId;
         this.isActive = isActive;
     }
@@ -43,6 +57,30 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
     }
 
     public String getCategoryId() {

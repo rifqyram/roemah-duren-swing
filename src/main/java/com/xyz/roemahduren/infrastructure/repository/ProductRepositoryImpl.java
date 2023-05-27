@@ -21,23 +21,30 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
     }
 
     @Override
-    public Optional<Product> findByName(String name) {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM m_product WHERE LOWER(name) = LOWER(?)")) {
-            statement.setString(1, name);
+    public List<ProductResponse> findAllByName(String name) {
+        String sql = "SELECT mp.id        as product_id,\n" +
+                "       mp.name      as product_name,\n" +
+                "       mp.price     as price,\n" +
+                "       mc.name      as category_name,\n" +
+                "       mp.stock     as stock,\n" +
+                "       mp.is_active as is_active,\n" +
+                "       mp.stock     as stock,\n" +
+                "       mp.is_active as is_active,\n" +
+                "       mb.name      as branch_name\n" +
+                "FROM m_product mp\n" +
+                "         JOIN m_category mc on mc.id = mp.category_id\n" +
+                "         JOIN m_branch mb on mb.id = mp.branch_id\n" +
+                "WHERE LOWER(mp.name) LIKE LOWER(?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + name.toLowerCase() + "%");
             ResultSet resultSet = statement.executeQuery();
 
-            List<Product> products = new ArrayList<>();
+            List<ProductResponse> products = new ArrayList<>();
 
-            while (resultSet.next()) {
-                products.add(new Product(
-                        resultSet.getString("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("category_id"),
-                        resultSet.getBoolean("is_active")
-                ));
-            }
+            addProductResponse(resultSet, products);
 
-            return products.stream().findFirst();
+            return products;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,17 +55,16 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
         String sql = "SELECT\n" +
                 "    mp.id as product_id,\n" +
                 "    mp.name as product_name,\n" +
+                "    mp.price as price,\n" +
                 "    mc.name as category_name,\n" +
-                "    mpp.product_price as product_price,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
-                "JOIN m_product_price mpp on mp.id = mpp.product_id\n" +
-                "JOIN m_branch mb on mb.id = mpp.branch_id WHERE product_id = ?";
+                "JOIN m_branch mb on mb.id = mp.branch_id WHERE mp.id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, id);
@@ -79,17 +85,16 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
         String sql = "SELECT\n" +
                 "    mp.id as product_id,\n" +
                 "    mp.name as product_name,\n" +
+                "    mp.price as price,\n" +
                 "    mc.name as category_name,\n" +
-                "    mpp.product_price as product_price,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
-                "JOIN m_product_price mpp on mp.id = mpp.product_id\n" +
-                "JOIN m_branch mb on mb.id = mpp.branch_id";
+                "JOIN m_branch mb on mb.id = mp.branch_id";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
@@ -109,17 +114,16 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
         String sql = "SELECT\n" +
                 "    mp.id as product_id,\n" +
                 "    mp.name as product_name,\n" +
+                "    mp.price as price,\n" +
                 "    mc.name as category_name,\n" +
-                "    mpp.product_price as product_price,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
-                "    mpp.stock as stock,\n" +
-                "    mpp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
+                "    mp.stock as stock,\n" +
+                "    mp.is_active as is_active,\n" +
                 "    mb.name as branch_name\n" +
                 "FROM m_product mp\n" +
                 "JOIN m_category mc on mc.id = mp.category_id\n" +
-                "JOIN m_product_price mpp on mp.id = mpp.product_id\n" +
-                "JOIN m_branch mb on mb.id = mpp.branch_id WHERE is_active = ?";
+                "JOIN m_branch mb on mb.id = mp.branch_id WHERE mp.is_active = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setBoolean(1, isActive);
@@ -140,7 +144,7 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
             productResponses.add(new ProductResponse(
                     resultSet.getString("product_id"),
                     resultSet.getString("product_name"),
-                    resultSet.getBigDecimal("product_price"),
+                    resultSet.getLong("price"),
                     resultSet.getString("category_name"),
                     resultSet.getInt("stock"),
                     resultSet.getString("branch_name"),

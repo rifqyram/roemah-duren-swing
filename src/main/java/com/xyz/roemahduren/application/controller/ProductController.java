@@ -1,10 +1,10 @@
 package com.xyz.roemahduren.application.controller;
 
+import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.entity.Branch;
 import com.xyz.roemahduren.domain.entity.Category;
 import com.xyz.roemahduren.domain.entity.Product;
-import com.xyz.roemahduren.domain.model.request.ProductPriceRequest;
 import com.xyz.roemahduren.domain.model.request.ProductRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.model.response.ProductResponse;
@@ -12,7 +12,7 @@ import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.domain.service.CategoryService;
 import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.exception.ValidationException;
-import com.xyz.roemahduren.presentation.component.table.PanelAction;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
@@ -22,9 +22,8 @@ import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
-import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -41,7 +40,6 @@ public class ProductController {
 
     private DefaultTableModel model;
     private List<ProductResponse> products;
-    private ProductResponse productResponse;
     private Product product;
     private List<Category> categories;
     private List<Branch> branches;
@@ -58,6 +56,7 @@ public class ProductController {
     private void initForm() {
         categories = categoryService.getAll();
         productScreen.getCategoryComboBox().getComboBox().removeAllItems();
+        productScreen.getCategoryComboBox().getComboBox().addItem("--Pilih Kategori--");
 
         for (Category category : categories) {
             productScreen.getCategoryComboBox().getComboBox().addItem(category.getName());
@@ -65,6 +64,7 @@ public class ProductController {
 
         branches = branchService.getAll();
         productScreen.getBranchComboBox().getComboBox().removeAllItems();
+        productScreen.getBranchComboBox().getComboBox().addItem("--Pilih Cabang--");
 
         List<Branch> branches = branchService.getAll();
         for (Branch branch : branches) {
@@ -75,6 +75,29 @@ public class ProductController {
     private void initController() {
         productScreen.getSaveBtn().addActionListener(this::saveProduct);
         productScreen.getClearBtn().addActionListener(this::clearForm);
+        productScreen.getSearchBtn().addActionListener(this::searchProduct);
+    }
+
+    private void searchProduct(ActionEvent actionEvent) {
+        RoundedTextFieldPanel searchTextField = productScreen.getSearchTextField();
+        if (searchTextField.getValue().isEmpty() || searchTextField.getValue().equals("")) {
+            initTable();
+            return;
+        }
+
+        products = productService.getAllByName(searchTextField.getValue());
+
+        if (products.isEmpty()) {
+            SwingUtil.setEmptyState(productScreen.getScrollTable());
+        } else {
+            productScreen.getScrollTable().setViewportView(productScreen.getProductTable());
+        }
+
+        model.setRowCount(0);
+        int counter = 0;
+        for (ProductResponse product : products) {
+            model.addRow(new Object[]{++counter, product.getName(), product.getPrice(), product.getStock(), product.getBranch(), product.getValidString()});
+        }
     }
 
     private void clearForm(ActionEvent actionEvent) {
@@ -83,58 +106,145 @@ public class ProductController {
 
     private void clearForm() {
         productScreen.getNameTextField().setValue("");
-        productScreen.getPriceNumberFormattedField().setValue("");
+        productScreen.getPriceNumberFormattedField().setValue("0");
         productScreen.getCategoryComboBox().getComboBox().setSelectedIndex(0);
-        productScreen.getStockNumberFormattedField().setValue("");
+        productScreen.getStockNumberFormattedField().setValue("0");
         productScreen.getBranchComboBox().getComboBox().setSelectedIndex(0);
         productScreen.getIsActiveCheckbox().getCheckbox().setSelected(false);
         productScreen.getIsActiveCheckbox().setVisible(false);
-        productResponse = null;
         productScreen.getSaveBtn().setText("Simpan");
+        product = null;
     }
 
     private void saveProduct(ActionEvent actionEvent) {
-        new DatabaseWorker<>(
-                () -> {
-                    int selectedIndexCategory = productScreen.getCategoryComboBox().getComboBox().getSelectedIndex();
-                    Category category = categories.get(selectedIndexCategory);
-                    int selectedIndexBranch = productScreen.getBranchComboBox().getComboBox().getSelectedIndex();
-                    Branch branch = branches.get(selectedIndexBranch);
+        if (product == null) {
+            createProduct();
+            return;
+        }
 
+        updateProduct();
+    }
 
-                    ProductRequest productRequest = new ProductRequest(
-                            productScreen.getNameTextField().getValue(),
-                            category.getId(),
-                            new ProductPriceRequest(
-                                    new BigDecimal(productScreen.getPriceNumberFormattedField().getValue()),
-                                    Integer.parseInt(productScreen.getStockNumberFormattedField().getValue()),
-                                    "",
-                                    branch.getId()
-                            )
-                    );
-                    ValidationUtil.validate(productRequest);
-                    ValidationUtil.validate(productRequest.getProductPriceRequest());
-                    return productService.create(productRequest);
-                },
-                productResponse -> {
-                    dialog.getSuccessCreatedMessageDialog(PRODUCT);
-                    initTable();
-                },
-                throwable -> {
-                    if (throwable instanceof ValidationException) {
-                        Set<ErrorValidationModel> validationModels = ((ValidationException) throwable).getValidationModels();
-                        for (ErrorValidationModel validationModel : validationModels) {
-                            Set<String> messages = validationModel.getMessages();
-                            String message = ValidationUtil.getMessage(messages);
-                            System.out.println(message);
-                        }
-                        return;
-                    }
-                    throwable.printStackTrace();
-                    dialog.getFailedMessageDialog(throwable.getMessage());
-                },
-                this::clearForm
-        ).execute();
+    private void updateProduct() {
+        clearError();
+        ProductScreen screen = productScreen;
+
+        new DatabaseWorker<>(() -> {
+            setLoading();
+            int selectedIndexCategory = screen.getCategoryComboBox().getComboBox().getSelectedIndex();
+            int selectedIndexBranch = screen.getBranchComboBox().getComboBox().getSelectedIndex();
+            Category category = categories.get(selectedIndexCategory - 1);
+            Branch branch = branches.get(selectedIndexBranch - 1);
+
+            categoryAndBranchValidation(selectedIndexCategory, selectedIndexBranch);
+
+            ProductRequest request = new ProductRequest(
+                    product.getId(),
+                    screen.getNameTextField().getValue(),
+                    category.getId(),
+                    Long.parseLong(screen.getPriceNumberFormattedField().getValue()),
+                    Integer.parseInt(screen.getStockNumberFormattedField().getValue()),
+                    branch.getId(),
+                    screen.getIsActiveCheckbox().getValue()
+            );
+            ValidationUtil.validate(request);
+
+            return productService.update(request);
+        }, productResponse -> {
+            clearForm();
+            initTable();
+            dialog.getSuccessUpdateMessageDialog(PRODUCT);
+        }, throwable -> {
+            if (throwable instanceof ValidationException) {
+                setError((ValidationException) throwable);
+                return;
+            }
+            dialog.getFailedMessageDialog(throwable.getMessage());
+        }, this::clearLoading).execute();
+    }
+
+    private void createProduct() {
+        clearError();
+        ProductScreen screen = productScreen;
+
+        new DatabaseWorker<>(() -> {
+            setLoading();
+
+            int selectedIndexCategory = screen.getCategoryComboBox().getComboBox().getSelectedIndex();
+            int selectedIndexBranch = screen.getBranchComboBox().getComboBox().getSelectedIndex();
+            categoryAndBranchValidation(selectedIndexCategory, selectedIndexBranch);
+
+            Category category = categories.get(selectedIndexCategory - 1);
+            Branch branch = branches.get(selectedIndexBranch - 1);
+
+            ProductRequest request = new ProductRequest(
+                    screen.getNameTextField().getValue(),
+                    category.getId(),
+                    Long.parseLong(screen.getPriceNumberFormattedField().getValue()),
+                    Integer.parseInt(screen.getStockNumberFormattedField().getValue()),
+                    branch.getId(),
+                    true
+            );
+            ValidationUtil.validate(request);
+
+            return productService.create(request);
+        }, productResponse -> {
+            clearForm();
+            initTable();
+            dialog.getSuccessCreatedMessageDialog(PRODUCT);
+        }, throwable -> {
+            if (throwable instanceof ValidationException) {
+                setError((ValidationException) throwable);
+                return;
+            }
+            dialog.getFailedMessageDialog(throwable.getMessage());
+            throw new RuntimeException(throwable);
+        }, this::clearLoading).execute();
+    }
+
+    private static void categoryAndBranchValidation(int selectedIndexCategory, int selectedIndexBranch) {
+        HashSet<ErrorValidationModel> errors = new HashSet<>();
+        if (selectedIndexCategory == 0) {
+            HashSet<String> errorMessages = new HashSet<>();
+            errorMessages.add("Kategori wajib dipilih");
+            errors.add(new ErrorValidationModel("categoryId", errorMessages));
+        }
+
+        if (selectedIndexBranch == 0) {
+            HashSet<String> errorMessages = new HashSet<>();
+            errorMessages.add("Cabang wajib dipilih");
+            errors.add(new ErrorValidationModel("branchId", errorMessages));
+        }
+
+        if (!errors.isEmpty()) throw new ValidationException(errors);
+    }
+
+    private void clearError() {
+        productScreen.getNameTextField().clearErrorMessage();
+        productScreen.getCategoryComboBox().clearErrorMessage();
+        productScreen.getPriceNumberFormattedField().clearErrorMessage();
+        productScreen.getStockNumberFormattedField().clearErrorMessage();
+        productScreen.getBranchComboBox().clearErrorMessage();
+    }
+
+    private void setError(ValidationException throwable) {
+        Set<ErrorValidationModel> validationModels = throwable.getValidationModels();
+        for (ErrorValidationModel validationModel : validationModels) {
+            Set<String> messages = validationModel.getMessages();
+            String message = ValidationUtil.getMessage(messages);
+
+            if (validationModel.getPath().equalsIgnoreCase("name")) {
+                productScreen.getNameTextField().setErrorMessage(message);
+            } else if (validationModel.getPath().equalsIgnoreCase("categoryId")) {
+                productScreen.getCategoryComboBox().setErrorMessage(message);
+            } else if (validationModel.getPath().equalsIgnoreCase("price")) {
+                productScreen.getPriceNumberFormattedField().setErrorMessage(message);
+            } else if (validationModel.getPath().equalsIgnoreCase("stock")) {
+                productScreen.getStockNumberFormattedField().setErrorMessage(message);
+            } else if (validationModel.getPath().equalsIgnoreCase("branchId")) {
+                productScreen.getBranchComboBox().setErrorMessage(message);
+            }
+        }
     }
 
     public ProductScreen getProductScreen() {
@@ -144,10 +254,16 @@ public class ProductController {
     }
 
     public void initTable() {
-        final String[] HEADERS = {"#", "Nama Produk", "Harga", "Stok", "Cabang", "Aktif", "Aksi"};
+        final String[] HEADERS = {"#", "Nama Produk", "Harga", "Stok", "Cabang", "Status", "Aksi"};
         model = new DefaultTableModel(null, HEADERS);
 
         products = productService.getAll();
+
+        if (products.isEmpty()) {
+            SwingUtil.setEmptyState(productScreen.getScrollTable());
+        } else {
+            productScreen.getScrollTable().setViewportView(productScreen.getProductTable());
+        }
 
         int counter = 0;
         for (ProductResponse product : products) {
@@ -155,15 +271,33 @@ public class ProductController {
         }
 
         productScreen.getProductTable().setModel(model);
-        productScreen.getScrollTable().setViewportView(productScreen.getProductTable());
 
         TableActionEvent tableActionEvent = getTableActionEvent();
         TableActionCellRender tableActionCellRender = new TableActionCellRender();
-        PanelAction panelAction = tableActionCellRender.getPanelAction();
-        String nonactive = "Nonaktif";
-        panelAction.getDeleteButton().setText(nonactive);
         productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(tableActionCellRender);
-        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent, null, nonactive));
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
+    }
+
+    private void deleteProduct(int row) {
+        int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
+        if (confirmDeleteDialog != 1) return;
+        new DatabaseWorker<>(
+                () -> {
+                    ProductResponse productResponse = products.get(row);
+                    productService.deleteById(productResponse.getId());
+                    return true;
+                },
+                o -> {
+                    dialog.getSuccessUpdateMessageDialog(PRODUCT);
+                    initTable();
+                },
+                throwable -> {
+                    dialog.getFailedMessageDialog(throwable.getMessage());
+                    throw new RuntimeException(throwable);
+                },
+                () -> {
+                }
+        ).execute();
     }
 
     private TableActionEvent getTableActionEvent() {
@@ -175,24 +309,17 @@ public class ProductController {
 
             @Override
             public void onDelete(int row) {
-                int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
-                if (confirmDeleteDialog != 1) return;
-                new DatabaseWorker<>(
-                        () -> {
-                            ProductResponse productResponse = products.get(row);
-                            productService.deleteById(productResponse.getProductId());
-                            return true;
-                        },
-                        o -> {
-                            dialog.getSuccessUpdateMessageDialog(PRODUCT);
-                            initTable();
-                        },
-                        throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
-                        () -> {
-                        }
-                ).execute();
+                deleteProduct(row);
             }
         };
+    }
+
+    private void setLoading() {
+        SwingUtil.setLoading(productScreen.getSaveBtn());
+    }
+
+    private void clearLoading() {
+        SwingUtil.clearLoading(productScreen.getSaveBtn(), product != null ? ConstantMessage.BTN_TEXT_SAVE : ConstantMessage.BTN_TEXT_UPDATE);
     }
 
     private void setForm(int row) {
@@ -206,8 +333,10 @@ public class ProductController {
         productScreen.getBranchComboBox().getComboBox().setSelectedItem(productResponse.getBranch());
         productScreen.getIsActiveCheckbox().getCheckbox().setSelected(productResponse.getValid());
 
-        product = new Product(productResponse.getProductId(), productResponse.getName(), "", productResponse.getValid());
+        product = new Product(productResponse.getId(), productResponse.getName(), productResponse.getPrice(), productResponse.getStock(), null, null, productResponse.getValid());
         Optional<Category> category = categoryService.getAllByName(productResponse.getCategory()).stream().findFirst();
         category.ifPresent(value -> product.setCategoryId(value.getId()));
+        Optional<Branch> branch = branchService.getByName(productResponse.getName()).stream().findFirst();
+        branch.ifPresent(value -> product.setBranchId(value.getId()));
     }
 }

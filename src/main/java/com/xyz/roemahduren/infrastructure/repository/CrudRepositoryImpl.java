@@ -150,7 +150,7 @@ public abstract class CrudRepositoryImpl<T, ID> implements CrudRepository<T, ID>
 
             statement.setObject(counter, id);
 
-            if (id == null) throw new RuntimeException("Id not found");
+            if (id == null) throw new RuntimeException(String.format("%s Id tidak ditemukan", tClass.getSimpleName()));
 
             connection.setAutoCommit(false);
             statement.executeUpdate();

@@ -216,6 +216,7 @@
             </Property>
             <Property name="labelErrorText" type="java.lang.String" value=""/>
             <Property name="labelText" type="java.lang.String" value="Harga"/>
+            <Property name="value" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="com.xyz.roemahduren.presentation.component.input.RoundedComboBoxPanel" name="categoryComboBox">
@@ -234,6 +235,7 @@
             </Property>
             <Property name="labelErrorText" type="java.lang.String" value=""/>
             <Property name="labelText" type="java.lang.String" value="Stok"/>
+            <Property name="value" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="com.xyz.roemahduren.presentation.component.input.RoundedComboBoxPanel" name="branchTextField">

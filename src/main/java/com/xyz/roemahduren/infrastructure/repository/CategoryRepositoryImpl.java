@@ -15,6 +15,7 @@ import java.util.Optional;
 
 public class CategoryRepositoryImpl extends CrudRepositoryImpl<Category, String> implements CategoryRepository {
     private final Connection connection;
+
     protected CategoryRepositoryImpl(Connection connection) {
         super(Category.class, connection);
         this.connection = connection;
@@ -54,7 +55,7 @@ public class CategoryRepositoryImpl extends CrudRepositoryImpl<Category, String>
 
             PreparedStatement statement = connection.prepareStatement(sql);
             String s = name.toLowerCase();
-            statement.setObject(1, s + "%");
+            statement.setObject(1, "%" + s + "%");
 
             ResultSet resultSet = statement.executeQuery();
 

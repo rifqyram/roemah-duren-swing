@@ -21,6 +21,7 @@ public class CustomDialog {
 
     public static final String DELETE_CONFIRMATION = "Apakah Anda yakin ingin menghapus?";
     public static final String UPDATE_CONFIRMATION = "Apakah Anda yakin ingin menghubah?";
+    public static final String LOGOUT_CONFIRMATION = "Apakah Anda yakin ingin keluar?";
 
     public CustomDialog(CustomDialogMessage dialogMessage, CustomConfirmDialog confirmDialog) {
         this.dialogMessage = dialogMessage;
@@ -61,5 +62,9 @@ public class CustomDialog {
 
     public int getConfirmUpdateDialog() {
         return confirmDialog.showConfirmDialog(INFO, UPDATE_CONFIRMATION, INFO_IMAGE);
+    }
+
+    public int getConfirmInfoDialog(String text) {
+        return confirmDialog.showConfirmDialog(INFO, text, INFO_IMAGE);
     }
 }

@@ -91,8 +91,8 @@ public class CheckboxPanel extends JPanel {
         this.errorLabel.setText(errorLabel);
     }
 
-    public String getValue() {
-        return this.checkbox.getText();
+    public boolean getValue() {
+        return this.checkbox.isSelected();
     }
 
     public void setValue(String value) {

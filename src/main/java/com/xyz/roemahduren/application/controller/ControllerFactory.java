@@ -1,10 +1,7 @@
 package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.CustomDialog;
-import com.xyz.roemahduren.domain.service.AuthService;
-import com.xyz.roemahduren.domain.service.BranchService;
-import com.xyz.roemahduren.domain.service.CategoryService;
-import com.xyz.roemahduren.domain.service.ProductService;
+import com.xyz.roemahduren.domain.service.*;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ControllerFactory {
@@ -61,7 +58,7 @@ public class ControllerFactory {
     }
 
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController(), productController());
+        return new MainController(mainScreen, branchController(), categoryController(), productController(), customDialog);
     }
 
 }

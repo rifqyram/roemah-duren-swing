@@ -1,15 +1,13 @@
 package com.xyz.roemahduren.domain.model.response;
 
-import com.xyz.roemahduren.domain.entity.Product;
-
 import java.math.BigDecimal;
 
 public class ProductResponse {
-    private String productId;
+    private String id;
 
     private String name;
 
-    private BigDecimal price;
+    private Long price;
 
     private String category;
 
@@ -22,8 +20,8 @@ public class ProductResponse {
     public ProductResponse() {
     }
 
-    public ProductResponse(String productId, String name, BigDecimal price, String category, Integer stock, String branch, Boolean isValid) {
-        this.productId = productId;
+    public ProductResponse(String productId, String name, Long price, String category, Integer stock, String branch, Boolean isValid) {
+        this.id = productId;
         this.name = name;
         this.price = price;
         this.category = category;
@@ -32,12 +30,12 @@ public class ProductResponse {
         this.isValid = isValid;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getId() {
+        return id;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -48,11 +46,11 @@ public class ProductResponse {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

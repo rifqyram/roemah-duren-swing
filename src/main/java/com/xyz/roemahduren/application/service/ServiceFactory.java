@@ -11,18 +11,16 @@ public class ServiceFactory {
     private final BranchRepository branchRepository;
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
-    private final ProductPriceRepository productPriceRepository;
     private final Persistence persistence;
 
     private final PasswordEncoder passwordEncoder;
     private final Connection connection;
 
-    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, ProductPriceRepository productPriceRepository, Persistence persistence, PasswordEncoder passwordEncoder, Connection connection) {
+    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, Persistence persistence, PasswordEncoder passwordEncoder, Connection connection) {
         this.userCredentialRepository = userCredentialRepository;
         this.branchRepository = branchRepository;
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
-        this.productPriceRepository = productPriceRepository;
         this.persistence = persistence;
         this.passwordEncoder = passwordEncoder;
         this.connection = connection;
@@ -40,11 +38,7 @@ public class ServiceFactory {
         return new CategoryServiceImpl(categoryRepository, connection);
     }
 
-    public ProductPriceService productPriceService() {
-        return new ProductPriceServiceImpl(productPriceRepository, connection);
-    }
-
     public ProductService productService() {
-        return new ProductServiceImpl(productRepository, connection, persistence, productPriceService());
+        return new ProductServiceImpl(productRepository, connection, persistence);
     }
 }

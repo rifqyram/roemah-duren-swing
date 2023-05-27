@@ -50,6 +50,9 @@ public class RoundedNumberFormattedFieldPanel extends javax.swing.JPanel {
     }
 
     public String getValue() {
+        if (formattedField.getText() == null) {
+            return "0";
+        }
         return formattedField.getText();
     }
 

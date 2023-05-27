@@ -6,6 +6,7 @@ import com.xyz.roemahduren.domain.model.request.CategoryRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.CategoryService;
 import com.xyz.roemahduren.exception.ValidationException;
+import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.CategoryScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -84,8 +85,10 @@ public class CategoryController {
     }
 
     private void updateCategory() {
+        RoundedButton saveBtn = categoryScreen.getSaveBtn();
         new DatabaseWorker<>(
                 () -> {
+                    SwingUtil.setLoading(saveBtn);
                     CategoryRequest categoryRequest = new CategoryRequest(category.getId(), categoryScreen.getNameTextField().getValue());
                     ValidationUtil.validate(categoryRequest);
                     return categoryService.update(categoryRequest);
@@ -102,6 +105,7 @@ public class CategoryController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
+                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     category = null;
                 }
@@ -109,8 +113,10 @@ public class CategoryController {
     }
 
     private void createCategory() {
+        RoundedButton saveBtn = categoryScreen.getSaveBtn();
         new DatabaseWorker<>(
                 () -> {
+                    SwingUtil.setLoading(saveBtn);
                     CategoryRequest categoryRequest = new CategoryRequest(categoryScreen.getNameTextField().getValue());
                     ValidationUtil.validate(categoryRequest);
                     return categoryService.create(categoryRequest);
@@ -128,6 +134,7 @@ public class CategoryController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
+                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     category = null;
                 }).execute();
@@ -148,13 +155,19 @@ public class CategoryController {
 
         categories = categoryService.getAll();
 
+        if (categories.isEmpty()) {
+            SwingUtil.setEmptyState(categoryScreen.getScrollTable());
+        } else {
+            categoryScreen.getScrollTable().setViewportView(categoryScreen.getCategoryTable());
+        }
+
+
         int counter = 0;
         for (Category category : categories) {
             model.addRow(new Object[]{++counter, category.getName()});
         }
 
         categoryScreen.getCategoryTable().setModel(model);
-        categoryScreen.getScrollTable().setViewportView(categoryScreen.getCategoryTable());
         TableActionEvent tableActionEvent = getTableActionEvent();
         SwingUtil.setActionTable(categoryScreen.getCategoryTable(), COLUMN, tableActionEvent);
     }
