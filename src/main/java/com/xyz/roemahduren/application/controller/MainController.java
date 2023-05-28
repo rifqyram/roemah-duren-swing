@@ -15,13 +15,15 @@ public class MainController {
     private final BranchController branchController;
     private final CategoryController categoryController;
     private final ProductController productController;
+    private final OrderController orderController;
     private final CustomDialog dialog;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, CustomDialog dialog) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
         this.productController = productController;
+        this.orderController = orderController;
         this.dialog = dialog;
         initController();
     }
@@ -65,6 +67,7 @@ public class MainController {
                     setViewport(mainScreen.getDashboardScreen());
                     break;
                 case 1:
+                    setViewport(orderController.getOrderScreen());
                     break;
                 case 2:
                     setViewport(branchController.getBranchScreen());

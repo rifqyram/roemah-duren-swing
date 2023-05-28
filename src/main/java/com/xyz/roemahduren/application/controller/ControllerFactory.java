@@ -11,6 +11,7 @@ public class ControllerFactory {
     private final BranchService branchService;
     private final CategoryService categoryService;
     private final ProductService productService;
+    private final OrderService orderService;
 
     // Screen
     private final LoginScreen loginScreen;
@@ -19,21 +20,24 @@ public class ControllerFactory {
     private final MainScreen mainScreen;
     private final CategoryScreen categoryScreen;
     private final ProductScreen productScreen;
+    private final OrderScreen orderScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
         this.productService = productService;
+        this.orderService = orderService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
         this.mainScreen = mainScreen;
         this.categoryScreen = categoryScreen;
         this.productScreen = productScreen;
+        this.orderScreen = orderScreen;
         this.customDialog = customDialog;
     }
 
@@ -57,8 +61,12 @@ public class ControllerFactory {
         return new ProductController(productService, categoryService, branchService, productScreen, customDialog);
     }
 
+    public OrderController orderController() {
+        return new OrderController(orderScreen, orderService, productService, customDialog);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController(), productController(), customDialog);
+        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), customDialog);
     }
 
 }

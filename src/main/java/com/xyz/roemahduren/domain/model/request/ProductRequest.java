@@ -14,10 +14,10 @@ public class ProductRequest {
     @NotBlank
     private String categoryId;
     @NotNull
-    @Min(message = "Harga tidak boleh kurang dari 0", value = 1)
+    @Min(message = "Harga tidak boleh kurang dari 1", value = 1)
     private Long price;
     @NotNull
-    @Min(message = "Stock tidak boleh kurang dari 0", value = 1)
+    @Min(message = "Stock tidak boleh kurang dari 1", value = 1)
     private Integer stock;
     @NotBlank
     private String branchId;

@@ -33,6 +33,10 @@ public class ScreenFactory {
         return new ProductScreen();
     }
 
+    public OrderScreen orderScreen() {
+        return new OrderScreen();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }

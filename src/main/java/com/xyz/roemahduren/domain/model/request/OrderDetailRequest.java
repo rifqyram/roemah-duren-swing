@@ -1,29 +1,29 @@
-package com.xyz.roemahduren.domain.entity;
+package com.xyz.roemahduren.domain.model.request;
 
-import com.xyz.roemahduren.domain.annotation.db.Column;
-import com.xyz.roemahduren.domain.annotation.db.Id;
-import com.xyz.roemahduren.domain.annotation.db.Table;
+import com.xyz.roemahduren.domain.annotation.validation.Min;
+import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
+import com.xyz.roemahduren.domain.annotation.validation.NotNull;
+import com.xyz.roemahduren.util.RandomGenerator;
 
-@Table(name = "t_order_detail")
-public class OrderDetail {
+import java.time.LocalDateTime;
 
-    @Id
-    @Column(name = "id")
+public class OrderDetailRequest {
     private String id;
-
-    @Column(name = "order_id")
     private String orderId;
-
-    @Column(name = "product_id")
+    @NotBlank
     private String productId;
-
-    @Column(name = "quantity")
+    @NotNull
+    @Min(value = 0, message = "Kuantitas tidak boleh kurang dari 0")
     private Integer quantity;
 
-    public OrderDetail() {
+    public OrderDetailRequest(String orderId, String productId, Integer quantity) {
+        this.id = RandomGenerator.generateUUID();
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
     }
 
-    public OrderDetail(String id, String orderId, String productId, Integer quantity) {
+    public OrderDetailRequest(String id, String orderId, String productId, Integer quantity) {
         this.id = id;
         this.orderId = orderId;
         this.productId = productId;

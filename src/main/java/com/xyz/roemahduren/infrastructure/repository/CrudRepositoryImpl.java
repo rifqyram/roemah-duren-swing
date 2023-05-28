@@ -55,6 +55,44 @@ public abstract class CrudRepositoryImpl<T, ID> implements CrudRepository<T, ID>
     }
 
     @Override
+    public List<T> saveAll(List<T> entities) {
+        try {
+            if (entities.isEmpty()) throw new RuntimeException("Entities is empty");
+            String tableName = ReflectionUtil.getTableName(entities.get(0).getClass());
+            List<String> annotationFields = ReflectionUtil.getAnnotationFields(entities.get(0).getClass());
+            String columns = String.join(", ", annotationFields);
+            String params = annotationFields.stream().map(s -> new StringBuilder("?")).collect(Collectors.joining(", "));
+            String sql = String.format("INSERT INTO %s (%s) VALUES (%s)", tableName, columns, params);
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            for (T entity : entities) {
+                int counter = 1;
+                for (Field declaredField : entity.getClass().getDeclaredFields()) {
+                    declaredField.setAccessible(true);
+                    Object o = declaredField.get(entity);
+                    statement.setObject(counter, o);
+                    counter++;
+                }
+                statement.addBatch();
+            }
+
+            connection.setAutoCommit(false);
+            int[] batchResult = statement.executeBatch();
+
+            for (int i : batchResult) {
+                if (i == PreparedStatement.EXECUTE_FAILED) {
+                    connection.rollback();
+                }
+            }
+
+            statement.close();
+            return entities;
+        } catch (SQLException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public Optional<T> findById(ID id) {
         try {
             String tableName = ReflectionUtil.getTableName(tClass);

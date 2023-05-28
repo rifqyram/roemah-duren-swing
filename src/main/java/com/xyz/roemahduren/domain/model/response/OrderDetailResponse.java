@@ -1,0 +1,57 @@
+package com.xyz.roemahduren.domain.model.response;
+
+public class OrderDetailResponse {
+    private String id;
+    private String orderId;
+    private String productName;
+    private Integer quantity;
+    private Long totalPrice;
+
+    public OrderDetailResponse(String id, String orderId, String productName, Integer quantity, Long totalPrice) {
+        this.id = id;
+        this.orderId = orderId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+}

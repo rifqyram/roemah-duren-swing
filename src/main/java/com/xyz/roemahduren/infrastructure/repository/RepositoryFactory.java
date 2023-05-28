@@ -1,8 +1,6 @@
 package com.xyz.roemahduren.infrastructure.repository;
 
-import com.xyz.roemahduren.domain.entity.OrderDetail;
 import com.xyz.roemahduren.domain.repository.*;
-import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 
 import java.sql.Connection;
 

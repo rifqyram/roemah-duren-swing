@@ -76,6 +76,9 @@ public class RoemahDurenApp {
                 repositoryFactory.branchRepository(),
                 repositoryFactory.categoryRepository(),
                 repositoryFactory.productRepository(),
+                repositoryFactory.customerRepository(),
+                repositoryFactory.orderDetailRepository(),
+                repositoryFactory.orderRepository(),
                 repositoryFactory.persistence(),
                 securityFactory.passwordEncoder(),
                 connection);
@@ -89,12 +92,13 @@ public class RoemahDurenApp {
                 serviceFactory.branchService(),
                 serviceFactory.categoryService(),
                 serviceFactory.productService(),
+                serviceFactory.orderService(),
                 screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.branchScreen(),
                 screenFactory.mainScreen(),
                 screenFactory.categoryScreen(),
                 screenFactory.productScreen(),
-                dialog);
+                screenFactory.orderScreen(), dialog);
     }
 }
