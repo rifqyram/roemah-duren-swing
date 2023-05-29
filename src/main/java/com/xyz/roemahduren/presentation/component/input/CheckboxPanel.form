@@ -73,6 +73,7 @@
           <Color blue="7b" green="6c" red="5f" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jCheckBox1"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

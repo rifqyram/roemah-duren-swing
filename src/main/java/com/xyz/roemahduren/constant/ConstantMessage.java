@@ -12,6 +12,9 @@ public class ConstantMessage {
     public static final String LOGIN_SUCCESS_MESSAGE = "Anda berhasil Login";
     public static final String REGISTER = "Anda berhasil Mendaftar";
 
+    public static final String SUCCESS_ADD_ORDER_DETAIL = "Berhasil tambahkan produk baru ke keranjang";
+    public static final String SUCCESS_REMOVE_ORDER_DETAIL = "Berhasil menghapus produk di keranjang";
+
     public static final String BTN_TEXT_SAVE = "Simpan";
     public static final String BTN_TEXT_UPDATE = "Ubah";
 

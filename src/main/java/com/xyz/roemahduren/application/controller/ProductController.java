@@ -273,10 +273,8 @@ public class ProductController {
         productScreen.getProductTable().setModel(model);
 
         TableActionEvent tableActionEvent = getTableActionEvent();
-        TableActionCellRender tableActionCellRender = new TableActionCellRender();
-        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(tableActionCellRender);
-        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
-    }
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(new TableActionCellRender());
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));    }
 
     private void deleteProduct(int row) {
         int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
@@ -319,7 +317,7 @@ public class ProductController {
     }
 
     private void clearLoading() {
-        SwingUtil.clearLoading(productScreen.getSaveBtn(), product != null ? ConstantMessage.BTN_TEXT_SAVE : ConstantMessage.BTN_TEXT_UPDATE);
+        SwingUtil.clearSecondaryLoading(productScreen.getSaveBtn(), product != null ? ConstantMessage.BTN_TEXT_SAVE : ConstantMessage.BTN_TEXT_UPDATE);
     }
 
     private void setForm(int row) {

@@ -1,12 +1,8 @@
 package com.xyz.roemahduren.util;
 
-import com.xyz.roemahduren.presentation.component.panel.DataEmpty;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.panel.DataEmpty;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
-import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
-import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
-import com.xyz.roemahduren.presentation.event.TableActionEvent;
-import com.xyz.roemahduren.presentation.theme.SystemColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,11 +22,6 @@ public class SwingUtil {
         Timer timer = new Timer(millis, e -> component.setVisible(false));
         timer.setRepeats(false);
         timer.start();
-    }
-
-    public static void setActionTable(JTable table, String[] columns, TableActionEvent tableActionEvent) {
-        table.getColumnModel().getColumn(columns.length - 1).setCellRenderer(new TableActionCellRender());
-        table.getColumnModel().getColumn(columns.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
     }
 
     public static void fixScroll(JScrollPane scroll) {
@@ -55,12 +46,20 @@ public class SwingUtil {
         scrollPane.setViewportView(dataEmpty);
     }
 
-    public static void clearLoading(RoundedButton button, String defaultText) {
+    public static void clearPrimaryLoading(RoundedButton button, String defaultText) {
         button.setText(defaultText);
         button.setForeground(Color.WHITE);
         button.setEnabled(true);
         button.setBackground(PRIMARY_COLOR_BUTTON);
         button.setBorderColor(PRIMARY_COLOR_BUTTON);
+    }
+
+    public static void clearSecondaryLoading(RoundedButton button, String defaultText) {
+        button.setText(defaultText);
+        button.setForeground(Color.WHITE);
+        button.setEnabled(true);
+        button.setBackground(SECONDARY_COLOR_BUTTON);
+        button.setBorderColor(SECONDARY_COLOR_BUTTON);
     }
 
     public static void setLoading(RoundedButton button) {

@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 
 /**
- *
  * @author user
  */
 public class CheckboxPanel extends JPanel {
@@ -34,42 +33,41 @@ public class CheckboxPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label = new javax.swing.JLabel();
-        errorLabel = new javax.swing.JLabel();
-        checkbox = new javax.swing.JCheckBox();
+        label = new JLabel();
+        errorLabel = new JLabel();
+        checkbox = new JCheckBox();
 
-        label.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        label.setForeground(new java.awt.Color(95, 108, 123));
+        label.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
+        label.setForeground(new Color(95, 108, 123));
         label.setText("label");
 
-        errorLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        errorLabel.setForeground(new java.awt.Color(220, 53, 69));
+        errorLabel.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
+        errorLabel.setForeground(new Color(220, 53, 69));
         errorLabel.setText("error");
 
-        checkbox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        checkbox.setForeground(new java.awt.Color(95, 108, 123));
+        checkbox.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
+        checkbox.setForeground(new Color(95, 108, 123));
         checkbox.setText("jCheckBox1");
+        checkbox.setName(""); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(label)
                     .addComponent(checkbox)
                     .addComponent(errorLabel))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkbox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -95,8 +93,8 @@ public class CheckboxPanel extends JPanel {
         return this.checkbox.isSelected();
     }
 
-    public void setValue(String value) {
-        this.checkbox.setText(value);
+    public void setValue(boolean value) {
+        this.checkbox.setSelected(value);
     }
 
     public String getLabel() {
@@ -107,9 +105,17 @@ public class CheckboxPanel extends JPanel {
         this.label.setText(label);
     }
 
+    public void getText() {
+        this.checkbox.getText();
+    }
+
+    public void setText(String text) {
+        this.checkbox.setText(text);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox checkbox;
-    private javax.swing.JLabel errorLabel;
-    private javax.swing.JLabel label;
+    private JCheckBox checkbox;
+    private JLabel errorLabel;
+    private JLabel label;
     // End of variables declaration//GEN-END:variables
 }

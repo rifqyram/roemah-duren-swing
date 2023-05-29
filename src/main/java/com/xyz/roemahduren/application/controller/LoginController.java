@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.model.request.AuthRequest;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
@@ -8,13 +7,10 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
-import com.xyz.roemahduren.presentation.theme.SystemColor;
 import com.xyz.roemahduren.util.DatabaseWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -77,7 +73,7 @@ public class LoginController {
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> SwingUtil.clearLoading(loginScreen.getSignInBtn(), btnText)
+                () -> SwingUtil.clearPrimaryLoading(loginScreen.getSignInBtn(), btnText)
         );
         databaseWorker.execute();
     }

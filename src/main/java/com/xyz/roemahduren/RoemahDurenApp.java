@@ -40,12 +40,12 @@ public class RoemahDurenApp {
 
             ControllerFactory controllerFactory = factoryManager(connection);
             SwingUtilities.invokeLater(() -> {
+                MainController mainController = controllerFactory.mainController();
                 LoginController loginController = controllerFactory.loginController();
                 RegisterController registerController = controllerFactory.registerController();
-                MainController mainController = controllerFactory.mainController();
-                registerController.setLoginController(loginController);
                 loginController.setRegisterController(registerController);
                 loginController.setMainController(mainController);
+                registerController.setLoginController(loginController);
             });
         } catch (InterruptedException e) {
             e.printStackTrace();

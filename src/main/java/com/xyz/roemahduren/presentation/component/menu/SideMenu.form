@@ -162,7 +162,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Business.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Branch"/>
+        <Property name="text" type="java.lang.String" value="Cabang"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -197,7 +197,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Inventory.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Product"/>
+        <Property name="text" type="java.lang.String" value="Produk"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -225,7 +225,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Category.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Category"/>
+        <Property name="text" type="java.lang.String" value="Kategori"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -257,7 +257,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Person outline.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Customer"/>
+        <Property name="text" type="java.lang.String" value="Pelanggan"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -288,7 +288,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Receipt long.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="History"/>
+        <Property name="text" type="java.lang.String" value="Riwayat Transaksi"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -319,7 +319,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/Exit to app.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Logout"/>
+        <Property name="text" type="java.lang.String" value="Keluar"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>

@@ -9,6 +9,7 @@ import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.event.TableActionSelectedEvent;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -17,21 +18,21 @@ import javax.swing.ImageIcon;
  *
  * @author user
  */
-public class PanelActionDelete extends javax.swing.JPanel {
+public class PanelActionSelect extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAction
      */
-    public PanelActionDelete() {
+    public PanelActionSelect() {
         initComponents();
     }
 
-    public PanelActionDelete(String text) {
+    public PanelActionSelect(String text) {
         this();
         this.roundedButton.setText(text);
     }
 
-    public PanelActionDelete(String textButton1, String textButton2) {
+    public PanelActionSelect(String textButton1, String textButton2) {
         this();
         this.roundedButton.setText(textButton2 == null ? roundedButton.getText() : textButton2);
     }
@@ -57,23 +58,20 @@ public class PanelActionDelete extends javax.swing.JPanel {
 
         setBackground(new Color(255, 255, 254));
 
-        roundedButton.setForeground(new Color(102, 102, 102));
-        roundedButton.setIcon(new ImageIcon(getClass().getResource("/images/remove.png"))); // NOI18N
-        roundedButton.setText("Hapus");
+        roundedButton.setForeground(new Color(130, 148, 96));
+        roundedButton.setText("Beli");
         roundedButton.setToolTipText("");
         roundedButton.setBorderColor(new Color(255, 255, 254));
         roundedButton.setColor(new Color(255, 255, 254));
         roundedButton.setColorClick(new Color(204, 204, 204));
         roundedButton.setColorOver(new Color(204, 204, 204));
+        roundedButton.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
         roundedButton.setMargin(new Insets(0, 0, 0, 0));
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(roundedButton, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(roundedButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

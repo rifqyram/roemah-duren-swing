@@ -11,7 +11,6 @@ import com.xyz.roemahduren.presentation.component.input.RoundedNumberFormattedFi
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
-import com.xyz.roemahduren.util.SwingUtil;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -123,8 +121,8 @@ public class ProductScreen extends javax.swing.JPanel {
 
         isActiveCheckbox.setBackground(new Color(245, 245, 245));
         isActiveCheckbox.setErrorLabel("");
-        isActiveCheckbox.setLabel("Aktif");
-        isActiveCheckbox.setValue("Produk Aktif");
+        isActiveCheckbox.setLabel("");
+        isActiveCheckbox.setText("Aktif");
 
         GroupLayout formPanelLayout = new GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);

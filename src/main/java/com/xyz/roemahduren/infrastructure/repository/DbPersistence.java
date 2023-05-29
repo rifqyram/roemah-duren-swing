@@ -1,8 +1,6 @@
 package com.xyz.roemahduren.infrastructure.repository;
 
 import com.xyz.roemahduren.domain.repository.Persistence;
-import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
-import com.xyz.roemahduren.infrastructure.config.DbConnection;
 import com.xyz.roemahduren.util.MyFunction;
 
 import java.sql.Connection;

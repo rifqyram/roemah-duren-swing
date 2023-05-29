@@ -7,6 +7,8 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.BranchService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -86,7 +88,7 @@ public class BranchController {
                 },
                 () -> {
                     clearForm();
-                    SwingUtil.clearLoading(branchScreen.getSaveBtn(), saveBtn.getText());
+                    SwingUtil.clearSecondaryLoading(branchScreen.getSaveBtn(), saveBtn.getText());
                     branch = null;
                 }
         ).execute();
@@ -117,7 +119,7 @@ public class BranchController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
-                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
+                    SwingUtil.clearSecondaryLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     branch = null;
                 }
@@ -139,8 +141,8 @@ public class BranchController {
     }
 
     public void initTable() {
-        final String[] COLUMN = {"#", "Nama Cabang", "Alamat Cabang", "Aksi"};
-        DefaultTableModel model = new DefaultTableModel(null, COLUMN);
+        final String[] HEADERS = {"#", "Nama Cabang", "Alamat Cabang", "Aksi"};
+        DefaultTableModel model = new DefaultTableModel(null, HEADERS);
 
         branches = branchService.getAll();
 
@@ -158,7 +160,8 @@ public class BranchController {
 
         branchScreen.getBranchTable().setModel(model);
         TableActionEvent tableActionEvent = getTableActionEvent();
-        SwingUtil.setActionTable(branchScreen.getBranchTable(), COLUMN, tableActionEvent);
+        branchScreen.getBranchTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(new TableActionCellRender());
+        branchScreen.getBranchTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
     }
 
     private TableActionEvent getTableActionEvent() {

@@ -20,9 +20,8 @@ public class UserCredentialRepositoryImpl extends CrudRepositoryImpl<UserCredent
 
     @Override
     public Optional<UserCredential> findByEmail(String email) {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT id, email, password FROM m_user_credential WHERE email = ?")) {
-            statement.setString(1, email);
-
+        try (PreparedStatement statement = connection.prepareStatement("SELECT id, email, password FROM m_user_credential WHERE LOWER(email) = ?")) {
+            statement.setString(1, email.toLowerCase());
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {

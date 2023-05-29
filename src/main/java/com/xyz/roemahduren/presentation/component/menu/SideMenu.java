@@ -150,7 +150,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem3.setBackground(new Color(221, 83, 83));
         menuItem3.setForeground(new Color(255, 255, 254));
         menuItem3.setIcon(new ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
-        menuItem3.setText("Branch");
+        menuItem3.setText("Cabang");
         menuItem3.setBorderColor(new Color(221, 83, 83));
         menuItem3.setBorderPainted(false);
         menuGroup.add(menuItem3);
@@ -168,7 +168,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem4.setBackground(new Color(221, 83, 83));
         menuItem4.setForeground(new Color(255, 255, 254));
         menuItem4.setIcon(new ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
-        menuItem4.setText("Product");
+        menuItem4.setText("Produk");
         menuItem4.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem4);
         menuItem4.setColor(new Color(221, 83, 83));
@@ -179,7 +179,7 @@ public class SideMenu extends javax.swing.JPanel {
 
         menuItem5.setForeground(new Color(255, 255, 254));
         menuItem5.setIcon(new ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
-        menuItem5.setText("Category");
+        menuItem5.setText("Kategori");
         menuItem5.setBorderColor(new Color(221, 83, 83));
         menuItem5.setBorderPainted(false);
         menuGroup.add(menuItem5);
@@ -192,7 +192,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem6.setBackground(new Color(221, 83, 83));
         menuItem6.setForeground(new Color(255, 255, 254));
         menuItem6.setIcon(new ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
-        menuItem6.setText("Customer");
+        menuItem6.setText("Pelanggan");
         menuItem6.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem6);
         menuItem6.setColor(new Color(221, 83, 83));
@@ -204,7 +204,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem7.setBackground(new Color(221, 83, 83));
         menuItem7.setForeground(new Color(255, 255, 254));
         menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
-        menuItem7.setText("History");
+        menuItem7.setText("Riwayat Transaksi");
         menuItem7.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem7);
         menuItem7.setColor(new Color(221, 83, 83));
@@ -216,7 +216,7 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem8.setBackground(new Color(221, 83, 83));
         menuItem8.setForeground(new Color(255, 255, 254));
         menuItem8.setIcon(new ImageIcon(getClass().getResource("/images/Exit to app.png"))); // NOI18N
-        menuItem8.setText("Logout");
+        menuItem8.setText("Keluar");
         menuItem8.setBorderColor(new Color(221, 83, 83));
         menuGroup.add(menuItem8);
         menuItem8.setColor(new Color(221, 83, 83));

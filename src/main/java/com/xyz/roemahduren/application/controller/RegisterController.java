@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.controller;
 
-import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.model.request.AuthRequest;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
@@ -12,7 +11,6 @@ import com.xyz.roemahduren.util.DatabaseWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,7 +72,7 @@ public class RegisterController {
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> SwingUtil.clearLoading(registerScreen.getRegisterBtn(), btnText)
+                () -> SwingUtil.clearPrimaryLoading(registerScreen.getRegisterBtn(), btnText)
         );
         databaseWorker.execute();
     }

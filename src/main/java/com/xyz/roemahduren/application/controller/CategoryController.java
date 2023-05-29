@@ -7,6 +7,8 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.CategoryService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
+import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.CategoryScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
@@ -105,7 +107,7 @@ public class CategoryController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
-                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
+                    SwingUtil.clearSecondaryLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     category = null;
                 }
@@ -134,7 +136,7 @@ public class CategoryController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
-                    SwingUtil.clearLoading(saveBtn, saveBtn.getText());
+                    SwingUtil.clearSecondaryLoading(saveBtn, saveBtn.getText());
                     clearForm();
                     category = null;
                 }).execute();
@@ -150,8 +152,8 @@ public class CategoryController {
     }
 
     public void initTable() {
-        final String[] COLUMN = {"#", "Nama Kategori", "Aksi"};
-        model = new DefaultTableModel(null, COLUMN);
+        final String[] HEADERS = {"#", "Nama Kategori", "Aksi"};
+        model = new DefaultTableModel(null, HEADERS);
 
         categories = categoryService.getAll();
 
@@ -169,7 +171,8 @@ public class CategoryController {
 
         categoryScreen.getCategoryTable().setModel(model);
         TableActionEvent tableActionEvent = getTableActionEvent();
-        SwingUtil.setActionTable(categoryScreen.getCategoryTable(), COLUMN, tableActionEvent);
+        categoryScreen.getCategoryTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(new TableActionCellRender());
+        categoryScreen.getCategoryTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
     }
 
     private TableActionEvent getTableActionEvent() {

@@ -21,7 +21,7 @@ public class Table extends JTable {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
                 TableHeader header = new TableHeader(o + "");
-                if (jtable.getColumnCount() - 1 == i1) {
+                if (jtable.getColumnCount() - 1 == i1 && jtable.getColumnName(jtable.getColumnCount() - 1).equalsIgnoreCase("Aksi")) {
                     header.setHorizontalAlignment(JLabel.CENTER);
                 }
                 return header;

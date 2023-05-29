@@ -5,11 +5,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 
-public class TableActionCellRender extends DefaultTableCellRenderer {
-    private final PanelAction panelAction;
+public class TableActionDeleteCellRender extends DefaultTableCellRenderer {
+    private final PanelActionDelete panelAction;
 
-    public TableActionCellRender() {
-        this.panelAction = new PanelAction();
+    public TableActionDeleteCellRender() {
+        this.panelAction = new PanelActionDelete();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class TableActionCellRender extends DefaultTableCellRenderer {
         return panelAction;
     }
 
-    public PanelAction getPanelAction() {
+    public PanelActionDelete getPanelAction() {
         return panelAction;
     }
 }

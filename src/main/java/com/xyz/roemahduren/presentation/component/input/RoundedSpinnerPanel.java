@@ -6,9 +6,9 @@ package com.xyz.roemahduren.presentation.component.input;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
 
 /**
- *
  * @author user
  */
 public class RoundedSpinnerPanel extends javax.swing.JPanel {
@@ -18,7 +18,10 @@ public class RoundedSpinnerPanel extends javax.swing.JPanel {
      */
     public RoundedSpinnerPanel() {
         initComponents();
-        roundedSpinner = new RoundedSpinner(new SpinnerNumberModel(0, 0, 999, 1));
+        SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 999, 1);
+        roundedSpinner.setModel(model);
+        JSpinner.NumberEditor numberEditor = new JSpinner.NumberEditor(roundedSpinner);
+        roundedSpinner.setEditor(numberEditor);
     }
 
     public String getLabelText() {
@@ -45,12 +48,17 @@ public class RoundedSpinnerPanel extends javax.swing.JPanel {
         return label;
     }
 
-    public String getValue() {
-        return roundedSpinner.getValue().toString();
+    public int getValue() {
+        try {
+            roundedSpinner.commitEdit();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return (int) roundedSpinner.getValue();
     }
 
-    public void setValue(String text) {
-        this.roundedSpinner.setValue(text);
+    public void setValue(int value) {
+        this.roundedSpinner.setValue(value);
     }
 
     public String getErrorMessage() {
@@ -93,23 +101,23 @@ public class RoundedSpinnerPanel extends javax.swing.JPanel {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(roundedSpinner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(errorLabel)
-                    .addComponent(label))
-                .addGap(0, 0, 0))
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(roundedSpinner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(errorLabel)
+                                .addComponent(label))
+                        .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(label)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedSpinner, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorLabel)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(label)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundedSpinner, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errorLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

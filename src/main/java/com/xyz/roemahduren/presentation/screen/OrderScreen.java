@@ -5,6 +5,7 @@
 package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.input.CheckboxPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedSpinnerPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
@@ -28,8 +29,13 @@ public class OrderScreen extends javax.swing.JPanel {
      */
     public OrderScreen() {
         initComponents();
-        SwingUtil.fixScroll(scrollTable);
+        SwingUtil.fixScroll(scrollProductTable);
         SwingUtil.fixScroll(scrollTransactionDetail);
+        clearCartBtn.setVisible(false);
+        productNameTf.getTextField().setEnabled(false);
+        productCategoryTf.getTextField().setEnabled(false);
+        detailDataTransactionPanel.setVisible(false);
+        quantitySpinner.getRoundedSpinner().setEnabled(false);
     }
 
     /**
@@ -43,30 +49,32 @@ public class OrderScreen extends javax.swing.JPanel {
 
         titleScreen = new JLabel();
         titleTableProduct = new JLabel();
-        scrollTable = new JScrollPane();
+        scrollProductTable = new JScrollPane();
         productTable = new Table();
         searchProductTextField = new RoundedTextFieldPanel();
         searchBtn = new RoundedButton();
         titleTableProduct1 = new JLabel();
         productListPanel = new RoundedPanel();
         addProductBtn = new RoundedButton();
-        productNameTf = new RoundedTextFieldPanel();
         productCategoryTf = new RoundedTextFieldPanel();
         cancelProductBtn = new RoundedButton();
         quantitySpinner = new RoundedSpinnerPanel();
+        productNameTf = new RoundedTextFieldPanel();
         scrollTransactionDetail = new JScrollPane();
         detailTransactionTable = new Table();
-        totalTransactionPanel = new RoundedPanel();
-        clearCartBtn = new RoundedButton();
+        detailDataTransactionPanel = new RoundedPanel();
         checkoutBtn = new RoundedButton();
         titleTotalTransaction = new JLabel();
-        titleTotalPrice = new JLabel();
+        totalPriceText = new JLabel();
         customerNameTf = new RoundedTextFieldPanel();
+        checkboxAsGuest = new CheckboxPanel();
+        customerPhoneNumberTf = new RoundedTextFieldPanel();
+        clearCartBtn = new RoundedButton();
 
         setBackground(new Color(255, 255, 254));
-        setMinimumSize(new Dimension(800, 1300));
-        setPreferredSize(new Dimension(800, 1300));
-        setSize(new Dimension(800, 1300));
+        setMinimumSize(new Dimension(800, 1200));
+        setPreferredSize(new Dimension(800, 1200));
+        setSize(new Dimension(800, 1200));
 
         titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
         titleScreen.setForeground(new Color(2, 8, 38));
@@ -87,7 +95,7 @@ public class OrderScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scrollTable.setViewportView(productTable);
+        scrollProductTable.setViewportView(productTable);
 
         searchProductTextField.setBackground(new Color(255, 255, 254));
         searchProductTextField.setLabelErrorText("");
@@ -98,17 +106,13 @@ public class OrderScreen extends javax.swing.JPanel {
 
         titleTableProduct1.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTableProduct1.setForeground(new Color(2, 8, 38));
-        titleTableProduct1.setText("Detail Transaksi");
+        titleTableProduct1.setText("Daftar Keranjang");
 
         productListPanel.setBackground(new Color(245, 245, 245));
         productListPanel.setCornerRadius(8);
 
         addProductBtn.setText("Tambah");
         addProductBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-
-        productNameTf.setBackground(new Color(245, 245, 245));
-        productNameTf.setLabelErrorText("");
-        productNameTf.setLabelText("Nama Produk");
 
         productCategoryTf.setBackground(new Color(245, 245, 245));
         productCategoryTf.setLabelErrorText("");
@@ -126,6 +130,10 @@ public class OrderScreen extends javax.swing.JPanel {
         quantitySpinner.setLabelErrorText("");
         quantitySpinner.setLabelText("Kuantitas");
 
+        productNameTf.setBackground(new Color(245, 245, 245));
+        productNameTf.setLabelErrorText("");
+        productNameTf.setLabelText("Nama Produk");
+
         GroupLayout productListPanelLayout = new GroupLayout(productListPanel);
         productListPanel.setLayout(productListPanelLayout);
         productListPanelLayout.setHorizontalGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -133,15 +141,15 @@ public class OrderScreen extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(productListPanelLayout.createSequentialGroup()
-                        .addComponent(productNameTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(productListPanelLayout.createSequentialGroup()
                         .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167)))
+                        .addGap(167, 167, 167))
+                    .addGroup(productListPanelLayout.createSequentialGroup()
+                        .addComponent(productNameTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(quantitySpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -150,15 +158,13 @@ public class OrderScreen extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(quantitySpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(productListPanelLayout.createSequentialGroup()
-                        .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(productNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         detailTransactionTable.setModel(new DefaultTableModel(
@@ -174,8 +180,67 @@ public class OrderScreen extends javax.swing.JPanel {
         ));
         scrollTransactionDetail.setViewportView(detailTransactionTable);
 
-        totalTransactionPanel.setBackground(new Color(245, 245, 245));
-        totalTransactionPanel.setCornerRadius(8);
+        detailDataTransactionPanel.setBackground(new Color(245, 245, 245));
+        detailDataTransactionPanel.setCornerRadius(8);
+
+        checkoutBtn.setText("Pesan");
+        checkoutBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
+        titleTotalTransaction.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
+        titleTotalTransaction.setForeground(new Color(2, 8, 38));
+        titleTotalTransaction.setText("Total Bayar");
+
+        totalPriceText.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
+        totalPriceText.setForeground(new Color(2, 8, 38));
+        totalPriceText.setText("Rp 0");
+
+        customerNameTf.setBackground(new Color(245, 245, 245));
+        customerNameTf.setLabelErrorText("");
+        customerNameTf.setLabelText("Nama Pelanggan");
+
+        checkboxAsGuest.setBackground(new Color(245, 245, 245));
+        checkboxAsGuest.setErrorLabel("");
+        checkboxAsGuest.setLabel("");
+        checkboxAsGuest.setName(""); // NOI18N
+        checkboxAsGuest.setText("Pesan sebagai anonim");
+
+        customerPhoneNumberTf.setBackground(new Color(245, 245, 245));
+        customerPhoneNumberTf.setLabelErrorText("");
+        customerPhoneNumberTf.setLabelText("Nomor Telepon");
+
+        GroupLayout detailDataTransactionPanelLayout = new GroupLayout(detailDataTransactionPanel);
+        detailDataTransactionPanel.setLayout(detailDataTransactionPanelLayout);
+        detailDataTransactionPanelLayout.setHorizontalGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(checkboxAsGuest, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalPriceText)
+                    .addComponent(titleTotalTransaction)
+                    .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
+                        .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(checkoutBtn, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customerNameTf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(customerPhoneNumberTf, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        detailDataTransactionPanelLayout.setVerticalGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, detailDataTransactionPanelLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(customerNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerPhoneNumberTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkboxAsGuest, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(titleTotalTransaction)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalPriceText)
+                .addGap(18, 18, 18)
+                .addComponent(checkoutBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
 
         clearCartBtn.setBackground(new Color(221, 83, 83));
         clearCartBtn.setIcon(new ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
@@ -186,51 +251,6 @@ public class OrderScreen extends javax.swing.JPanel {
         clearCartBtn.setColorOver(new Color(204, 77, 77));
         clearCartBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
-        checkoutBtn.setText("Pesan");
-        checkoutBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-
-        titleTotalTransaction.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
-        titleTotalTransaction.setForeground(new Color(2, 8, 38));
-        titleTotalTransaction.setText("Total Bayar");
-
-        titleTotalPrice.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
-        titleTotalPrice.setForeground(new Color(2, 8, 38));
-        titleTotalPrice.setText("Rp 0");
-
-        customerNameTf.setBackground(new Color(245, 245, 245));
-        customerNameTf.setLabelErrorText("");
-        customerNameTf.setLabelText("Nama Pelanggan");
-
-        GroupLayout totalTransactionPanelLayout = new GroupLayout(totalTransactionPanel);
-        totalTransactionPanel.setLayout(totalTransactionPanelLayout);
-        totalTransactionPanelLayout.setHorizontalGroup(totalTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(totalTransactionPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(totalTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(customerNameTf, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(totalTransactionPanelLayout.createSequentialGroup()
-                        .addComponent(checkoutBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(clearCartBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(titleTotalPrice)
-                    .addComponent(titleTotalTransaction))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        totalTransactionPanelLayout.setVerticalGroup(totalTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, totalTransactionPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(customerNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(titleTotalTransaction)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(titleTotalPrice)
-                .addGap(24, 24, 24)
-                .addGroup(totalTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkoutBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearCartBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
-        );
-
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -239,23 +259,22 @@ public class OrderScreen extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleTableProduct1)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clearCartBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(detailDataTransactionPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollTransactionDetail)
+                    .addComponent(productListPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollProductTable)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleScreen)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(totalTransactionPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scrollTransactionDetail, GroupLayout.Alignment.LEADING)
-                            .addComponent(productListPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scrollTable, GroupLayout.Alignment.LEADING)
-                            .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(titleScreen)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(titleTableProduct)
-                                .addGap(176, 176, 176)
-                                .addComponent(searchProductTextField, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addGap(74, 74, 74))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleTableProduct)
+                        .addGap(176, 176, 176)
+                        .addComponent(searchProductTextField, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -271,41 +290,136 @@ public class OrderScreen extends javax.swing.JPanel {
                         .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollProductTable, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(productListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(titleTableProduct1)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleTableProduct1)
+                    .addComponent(clearCartBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollTransactionDetail, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(totalTransactionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(detailDataTransactionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public RoundedButton getAddProductBtn() {
+        return addProductBtn;
+    }
+
+    public RoundedButton getCancelProductBtn() {
+        return cancelProductBtn;
+    }
+
+    public RoundedButton getCheckoutBtn() {
+        return checkoutBtn;
+    }
+
+    public RoundedButton getClearCartBtn() {
+        return clearCartBtn;
+    }
+
+    public RoundedTextFieldPanel getCustomerNameTf() {
+        return customerNameTf;
+    }
+
+    public RoundedPanel getDetailDataTransactionPanel() {
+        return detailDataTransactionPanel;
+    }
+
+    public Table getDetailTransactionTable() {
+        return detailTransactionTable;
+    }
+
+    public RoundedTextFieldPanel getProductCategoryTf() {
+        return productCategoryTf;
+    }
+
+    public RoundedPanel getProductListPanel() {
+        return productListPanel;
+    }
+
+    public RoundedTextFieldPanel getProductNameTf() {
+        return productNameTf;
+    }
+
+    public Table getProductTable() {
+        return productTable;
+    }
+
+    public RoundedSpinnerPanel getQuantitySpinner() {
+        return quantitySpinner;
+    }
+
+    public JScrollPane getScrollProductTable() {
+        return scrollProductTable;
+    }
+
+    public JScrollPane getScrollTransactionDetail() {
+        return scrollTransactionDetail;
+    }
+
+    public RoundedButton getSearchBtn() {
+        return searchBtn;
+    }
+
+    public RoundedTextFieldPanel getSearchProductTextField() {
+        return searchProductTextField;
+    }
+
+    public JLabel getTitleScreen() {
+        return titleScreen;
+    }
+
+    public JLabel getTitleTableProduct() {
+        return titleTableProduct;
+    }
+
+    public JLabel getTitleTableProduct1() {
+        return titleTableProduct1;
+    }
+
+    public JLabel getTotalPriceText() {
+        return totalPriceText;
+    }
+
+    public JLabel getTitleTotalTransaction() {
+        return titleTotalTransaction;
+    }
+
+    public CheckboxPanel getCheckboxAsGuest() {
+        return checkboxAsGuest;
+    }
+
+    public RoundedTextFieldPanel getCustomerPhoneNumberTf() {
+        return customerPhoneNumberTf;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RoundedButton addProductBtn;
     private RoundedButton cancelProductBtn;
+    private CheckboxPanel checkboxAsGuest;
     private RoundedButton checkoutBtn;
     private RoundedButton clearCartBtn;
     private RoundedTextFieldPanel customerNameTf;
+    private RoundedTextFieldPanel customerPhoneNumberTf;
+    private RoundedPanel detailDataTransactionPanel;
     private Table detailTransactionTable;
     private RoundedTextFieldPanel productCategoryTf;
     private RoundedPanel productListPanel;
     private RoundedTextFieldPanel productNameTf;
     private Table productTable;
     private RoundedSpinnerPanel quantitySpinner;
-    private JScrollPane scrollTable;
+    private JScrollPane scrollProductTable;
     private JScrollPane scrollTransactionDetail;
     private RoundedButton searchBtn;
     private RoundedTextFieldPanel searchProductTextField;
     private JLabel titleScreen;
     private JLabel titleTableProduct;
     private JLabel titleTableProduct1;
-    private JLabel titleTotalPrice;
     private JLabel titleTotalTransaction;
-    private RoundedPanel totalTransactionPanel;
+    private JLabel totalPriceText;
     // End of variables declaration//GEN-END:variables
 }
