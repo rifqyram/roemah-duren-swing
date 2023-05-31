@@ -1,22 +1,28 @@
 package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.CustomDialog;
+import com.xyz.roemahduren.domain.entity.UserCredential;
+import com.xyz.roemahduren.domain.model.response.AuthResponse;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
 import com.xyz.roemahduren.presentation.theme.SystemColor;
+import com.xyz.roemahduren.util.Utility;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 public class MainController {
 
-    private final MainScreen mainScreen;
+    public static AuthResponse user;
 
     private final BranchController branchController;
+    private final MainScreen mainScreen;
     private final CategoryController categoryController;
     private final ProductController productController;
     private final OrderController orderController;
     private final CustomDialog dialog;
+    private LoginController loginController;
 
     public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
@@ -64,6 +70,15 @@ public class MainController {
         try {
             switch (index) {
                 case 0:
+                    if (!Objects.isNull(user)) {
+                        String[] email = user.getEmail().split("@");
+                        String username = Utility.toTitleCase(email[0]);
+                        mainScreen.getDashboardScreen().getWelcomeLabel().setText("Hi, " + username + "!");
+                    } else {
+                        dialog.getFailedMessageDialog("Session anda telah habis silakan login ulang");
+                        mainScreen.setVisible(false);
+                        mainScreen.dispose();
+                    }
                     setViewport(mainScreen.getDashboardScreen());
                     break;
                 case 1:
@@ -81,7 +96,9 @@ public class MainController {
                 case 7:
                     int confirmDeleteDialog = dialog.getConfirmInfoDialog(CustomDialog.LOGOUT_CONFIRMATION);
                     if (confirmDeleteDialog != 1) return;
-                    System.exit(0);
+                    loginController.getLoginScreen().setVisible(true);
+                    mainScreen.setVisible(false);
+                    mainScreen.dispose();
             }
         } catch (Exception e) {
             dialog.getFailedMessageDialog(e.getMessage());
@@ -94,6 +111,10 @@ public class MainController {
 
     public MainScreen getMainScreen() {
         return mainScreen;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
 
     private static void setSelected(List<MenuItem> menuItems, int index) {

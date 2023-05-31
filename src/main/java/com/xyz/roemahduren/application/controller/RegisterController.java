@@ -49,6 +49,12 @@ public class RegisterController {
         registerScreen.getPasswordTf().clearErrorMessage();
     }
 
+    private void clearForm() {
+        registerScreen.getEmailTf().setValue("");
+        registerScreen.getPasswordTf().setValue("");
+    }
+
+
     private void registerUser(ActionEvent actionEvent) {
         clearErrors();
         RegisterScreen screen = registerScreen;
@@ -64,6 +70,7 @@ public class RegisterController {
                 authResponse -> {
                     toLoginScreen();
                     dialog.getSuccessMessageDialog(REGISTER);
+                    clearForm();
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {

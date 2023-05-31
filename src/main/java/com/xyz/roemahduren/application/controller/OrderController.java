@@ -10,6 +10,8 @@ import com.xyz.roemahduren.domain.model.response.ProductResponse;
 import com.xyz.roemahduren.domain.service.OrderService;
 import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.exception.ValidationException;
+import com.xyz.roemahduren.presentation.component.input.RoundedSpinner;
+import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.table.TableActionDeleteCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionDeleteCellRender;
 import com.xyz.roemahduren.presentation.component.table.TableActionSelectCellRender;
@@ -20,6 +22,8 @@ import com.xyz.roemahduren.util.RandomGenerator;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -61,31 +65,73 @@ public class OrderController {
     }
 
     public OrderScreen getOrderScreen() {
+        initTableProduct();
+        initTableOrderDetail();
         return orderScreen;
     }
 
     private void initController() {
         orderScreen.getAddProductBtn().addActionListener(this::addToCart);
-        orderScreen.getCheckboxAsGuest().getCheckbox().addMouseListener(new MouseAdapter() {
+        orderScreen.getCheckboxAsGuest().getCheckbox().addMouseListener(setAnonymousOrder());
+        orderScreen.getClearCartBtn().addActionListener(this::clearCart);
+        orderScreen.getSearchBtn().addActionListener(this::searchProduct);
+        orderScreen.getQuantitySpinner().getRoundedSpinner().addChangeListener(handleChangeQuantity());
+    }
+
+    private ChangeListener handleChangeQuantity() {
+        return changeEvent -> {
+            int value = orderScreen.getQuantitySpinner().getValue();
+            if (value >= productResponse.getStock()) {
+                orderScreen.getQuantitySpinner().getRoundedSpinner().setValue(productResponse.getStock());
+            }
+        };
+    }
+
+    private void searchProduct(ActionEvent actionEvent) {
+        RoundedTextFieldPanel searchTextField = orderScreen.getSearchProductTextField();
+        if (searchTextField.getValue().isEmpty() || searchTextField.getValue().equals("")) {
+            initTableProduct();
+            return;
+        }
+
+        productResponses = productService.getAllByName(searchTextField.getValue());
+
+        if (productResponses.isEmpty()) {
+            SwingUtil.setEmptyState(orderScreen.getScrollProductTable());
+        } else {
+            orderScreen.getScrollProductTable().setViewportView(orderScreen.getProductTable());
+        }
+
+        productTableModel.setRowCount(0);
+        int counter = 0;
+        for (ProductResponse product : productResponses) {
+            productTableModel.addRow(new Object[]{++counter, product.getName(), product.getPrice(), product.getStock()});
+        }
+    }
+
+    private void clearCart(ActionEvent actionEvent) {
+        int confirmInfoDialog = dialog.getConfirmInfoDialog("Apakah anda yakin ingin menghapus semua isi keranjang?");
+        if (confirmInfoDialog != 1) return;
+        orderDetailResponses.clear();
+        initTableOrderDetail();
+    }
+
+    private MouseAdapter setAnonymousOrder() {
+        return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 boolean value = orderScreen.getCheckboxAsGuest().getValue();
                 if (!value) {
                     orderScreen.getCustomerNameTf().getTextField().setEnabled(true);
                     orderScreen.getCustomerPhoneNumberTf().getTextField().setEnabled(true);
+                    orderScreen.getCustomerNameTf().setValue("");
                     return;
-                };
+                }
                 orderScreen.getCustomerNameTf().setValue("Pelanggan");
                 orderScreen.getCustomerNameTf().getTextField().setEnabled(false);
                 orderScreen.getCustomerPhoneNumberTf().getTextField().setEnabled(false);
             }
-        });
-        orderScreen.getClearCartBtn().addActionListener(actionEvent -> {
-            int confirmInfoDialog = dialog.getConfirmInfoDialog("Apakah anda yakin ingin menghapus semua isi keranjang?");
-            if (confirmInfoDialog != 1) return;
-            orderDetailResponses.clear();
-            initTableOrderDetail();
-        });
+        };
     }
 
     private void clearProductListPanel() {
@@ -104,6 +150,7 @@ public class OrderController {
     private void addToCart(ActionEvent actionEvent) {
         try {
             clearError();
+
             HashSet<ErrorValidationModel> errors = new HashSet<>();
             if (orderScreen.getQuantitySpinner().getValue() > productResponse.getStock()) {
                 errors.add(new ErrorValidationModel("quantity", new HashSet<>(Collections.singletonList("Kuantitas tidak bisa melebihi stok produk"))));
@@ -117,7 +164,14 @@ public class OrderController {
 
             if (detailResponseOptional.isPresent()) {
                 orderDetailResponse = detailResponseOptional.get();
-                orderDetailResponse.setQuantity(orderDetailResponse.getQuantity() + orderScreen.getQuantitySpinner().getValue());
+
+                int totalQuantity = orderDetailResponse.getQuantity() + orderScreen.getQuantitySpinner().getValue();
+                if (totalQuantity > productResponse.getStock()) {
+                    errors.add(new ErrorValidationModel("quantity", new HashSet<>(Collections.singletonList("Stok Habis/Tidak Cukup"))));
+                    throw new ValidationException(errors);
+                }
+
+                orderDetailResponse.setQuantity(totalQuantity);
                 orderDetailResponse.setTotalPrice(orderDetailResponse.getQuantity() * productResponse.getPrice());
                 initTableOrderDetail();
                 clearProductListPanel();
@@ -140,16 +194,21 @@ public class OrderController {
             }
         } catch (RuntimeException e) {
             if (e instanceof ValidationException) {
-                Set<ErrorValidationModel> validationModels = ((ValidationException) e).getValidationModels();
-                for (ErrorValidationModel validationModel : validationModels) {
-                    if (validationModel.getPath().equals("quantity")) {
-                        orderScreen.getQuantitySpinner().setErrorMessage(ValidationUtil.getMessage(validationModel.getMessages()));
-                    }
-                }
+                setErrorValidation((ValidationException) e);
                 return;
             }
             dialog.getFailedMessageDialog(e.getMessage());
         }
+    }
+
+    private void setErrorValidation(ValidationException e) {
+        Set<ErrorValidationModel> validationModels = e.getValidationModels();
+        for (ErrorValidationModel validationModel : validationModels) {
+            if (validationModel.getPath().equals("quantity")) {
+                orderScreen.getQuantitySpinner().setErrorMessage(ValidationUtil.getMessage(validationModel.getMessages()));
+            }
+        }
+        return;
     }
 
     private void initTableProduct() {

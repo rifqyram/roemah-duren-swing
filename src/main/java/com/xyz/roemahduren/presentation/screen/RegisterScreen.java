@@ -42,21 +42,22 @@ public class RegisterScreen extends JFrame {
         passwordTf = new RoundedPasswordFieldPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Daftar Roemah Duren");
         setMaximumSize(new Dimension(480, 500));
         setMinimumSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
 
         titleLabel.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         titleLabel.setForeground(new Color(49, 53, 59));
-        titleLabel.setText("Create New Account");
+        titleLabel.setText("Buat Akun Baru");
 
         loginLabelText.setForeground(new Color(49, 53, 59));
-        loginLabelText.setText("Already have an account?");
+        loginLabelText.setText("Sudah punya akun?");
 
         registerBtn.setBackground(new Color(221, 83, 83));
         registerBtn.setBorder(null);
         registerBtn.setForeground(new Color(255, 255, 255));
-        registerBtn.setText("Register");
+        registerBtn.setText("Daftar");
         registerBtn.setBorderColor(new Color(221, 83, 83));
         registerBtn.setColor(new Color(221, 83, 83));
         registerBtn.setColorClick(new Color(192, 72, 72));
@@ -64,7 +65,7 @@ public class RegisterScreen extends JFrame {
         registerBtn.setFont(new Font("Helvetica Neue", 1, 14)); // NOI18N
 
         loginLabelLink.setForeground(new Color(49, 53, 59));
-        loginLabelLink.setText("Login");
+        loginLabelLink.setText("Masuk");
 
         emailTf.setBackground(new Color(255, 255, 254));
         emailTf.setErrorMessage("");

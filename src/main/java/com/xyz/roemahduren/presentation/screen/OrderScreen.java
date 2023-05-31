@@ -60,6 +60,7 @@ public class OrderScreen extends javax.swing.JPanel {
         cancelProductBtn = new RoundedButton();
         quantitySpinner = new RoundedSpinnerPanel();
         productNameTf = new RoundedTextFieldPanel();
+        titleTableProduct2 = new JLabel();
         scrollTransactionDetail = new JScrollPane();
         detailTransactionTable = new Table();
         detailDataTransactionPanel = new RoundedPanel();
@@ -69,16 +70,17 @@ public class OrderScreen extends javax.swing.JPanel {
         customerNameTf = new RoundedTextFieldPanel();
         checkboxAsGuest = new CheckboxPanel();
         customerPhoneNumberTf = new RoundedTextFieldPanel();
+        titleTableProduct3 = new JLabel();
         clearCartBtn = new RoundedButton();
 
         setBackground(new Color(255, 255, 254));
-        setMinimumSize(new Dimension(800, 1200));
-        setPreferredSize(new Dimension(800, 1200));
-        setSize(new Dimension(800, 1200));
+        setMinimumSize(new Dimension(800, 1400));
+        setPreferredSize(new Dimension(800, 1400));
+        setSize(new Dimension(800, 1400));
 
         titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
         titleScreen.setForeground(new Color(2, 8, 38));
-        titleScreen.setText("Manajemen Pesanan");
+        titleScreen.setText("Halaman Pesanan");
 
         titleTableProduct.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTableProduct.setForeground(new Color(2, 8, 38));
@@ -134,37 +136,45 @@ public class OrderScreen extends javax.swing.JPanel {
         productNameTf.setLabelErrorText("");
         productNameTf.setLabelText("Nama Produk");
 
+        titleTableProduct2.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
+        titleTableProduct2.setForeground(new Color(2, 8, 38));
+        titleTableProduct2.setText("Daftar Produk");
+
         GroupLayout productListPanelLayout = new GroupLayout(productListPanel);
         productListPanel.setLayout(productListPanelLayout);
         productListPanelLayout.setHorizontalGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(productListPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(titleTableProduct2)
                     .addGroup(productListPanelLayout.createSequentialGroup()
-                        .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(productListPanelLayout.createSequentialGroup()
+                                .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(productListPanelLayout.createSequentialGroup()
+                                .addComponent(productNameTf, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167))
-                    .addGroup(productListPanelLayout.createSequentialGroup()
-                        .addComponent(productNameTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(quantitySpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(quantitySpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22))
         );
         productListPanelLayout.setVerticalGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(productListPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addComponent(titleTableProduct2)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addComponent(quantitySpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productCategoryTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productCategoryTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(productNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(productListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(addProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelProductBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         detailTransactionTable.setModel(new DefaultTableModel(
@@ -208,32 +218,43 @@ public class OrderScreen extends javax.swing.JPanel {
         customerPhoneNumberTf.setLabelErrorText("");
         customerPhoneNumberTf.setLabelText("Nomor Telepon");
 
+        titleTableProduct3.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
+        titleTableProduct3.setForeground(new Color(2, 8, 38));
+        titleTableProduct3.setText("Detail Transaksi");
+
         GroupLayout detailDataTransactionPanelLayout = new GroupLayout(detailDataTransactionPanel);
         detailDataTransactionPanel.setLayout(detailDataTransactionPanelLayout);
         detailDataTransactionPanelLayout.setHorizontalGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(checkboxAsGuest, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalPriceText)
-                    .addComponent(titleTotalTransaction)
                     .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
-                        .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(checkoutBtn, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customerNameTf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                        .addComponent(titleTableProduct3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
+                        .addComponent(customerNameTf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(customerPhoneNumberTf, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(customerPhoneNumberTf, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(detailDataTransactionPanelLayout.createSequentialGroup()
+                        .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(checkboxAsGuest, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalPriceText)
+                            .addComponent(titleTotalTransaction)
+                            .addComponent(checkoutBtn, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         detailDataTransactionPanelLayout.setVerticalGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, detailDataTransactionPanelLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(titleTableProduct3)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(detailDataTransactionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(customerNameTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerPhoneNumberTf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkboxAsGuest, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(titleTotalTransaction)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalPriceText)
@@ -270,8 +291,8 @@ public class OrderScreen extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleTableProduct)
-                        .addGap(176, 176, 176)
-                        .addComponent(searchProductTextField, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchProductTextField, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(74, 74, 74))
@@ -280,7 +301,7 @@ public class OrderScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(titleScreen)
-                .addGap(30, 30, 30)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(searchProductTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -289,19 +310,19 @@ public class OrderScreen extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(scrollProductTable, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(productListPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(titleTableProduct1)
                     .addComponent(clearCartBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollTransactionDetail, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(detailDataTransactionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -419,6 +440,8 @@ public class OrderScreen extends javax.swing.JPanel {
     private JLabel titleScreen;
     private JLabel titleTableProduct;
     private JLabel titleTableProduct1;
+    private JLabel titleTableProduct2;
+    private JLabel titleTableProduct3;
     private JLabel titleTotalTransaction;
     private JLabel totalPriceText;
     // End of variables declaration//GEN-END:variables

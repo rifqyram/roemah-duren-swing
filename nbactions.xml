@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs></exec.appArgs>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <Env.DB_USERNAME>root</Env.DB_USERNAME>
+                <Env.DB_PASSWORD>password</Env.DB_PASSWORD>
+                <Env.DB_NAME>roemah_duren_db</Env.DB_NAME>
+                <Env.DB_HOST>localhost</Env.DB_HOST>
+                <Env.DB_PORT>3306</Env.DB_PORT>
+            </properties>
+        </action>
+        <action>
+            <actionName>run.single.main</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
+                <exec.classpathScope>${classPathScope}</exec.classpathScope>
+                <Env.DB_USERNAME>root</Env.DB_USERNAME>
+                <Env.DB_PASSWORD>password</Env.DB_PASSWORD>
+                <Env.DB_NAME>roemah_duren_db</Env.DB_NAME>
+                <Env.DB_HOST>localhost</Env.DB_HOST>
+                <Env.DB_PORT>3306</Env.DB_PORT>
+            </properties>
+        </action>
+    </actions>

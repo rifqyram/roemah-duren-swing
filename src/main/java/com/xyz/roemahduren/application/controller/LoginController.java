@@ -9,6 +9,7 @@ import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 import com.xyz.roemahduren.util.DatabaseWorker;
 import com.xyz.roemahduren.util.SwingUtil;
+import com.xyz.roemahduren.util.Utility;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import java.awt.event.ActionEvent;
@@ -49,6 +50,11 @@ public class LoginController {
         loginScreen.getPasswordTf().clearErrorMessage();
     }
 
+    private void clearForm() {
+        loginScreen.getEmailTf().setValue("");
+        loginScreen.getPasswordTf().setValue("");
+    }
+
     private void signInUser(ActionEvent actionEvent) {
         clearErrors();
         LoginScreen screen = loginScreen;
@@ -63,12 +69,17 @@ public class LoginController {
                 },
                 authResponse -> {
                     mainController.getMainScreen().setVisible(true);
+                    MainController.user = authResponse;
+                    String[] email = authResponse.getEmail().split("@");
+                    String username = Utility.toTitleCase(email[0]);
+                    mainController.getMainScreen().getDashboardScreen().getWelcomeLabel().setText("Hi, " + username + "!");
                     loginScreen.dispose();
                     dialog.getSuccessMessageDialog(LOGIN_SUCCESS_MESSAGE);
+                    clearForm();
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
-                        setValidationError(screen, (ValidationException) throwable);
+                        setValidationError((ValidationException) throwable);
                         return;
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
@@ -78,7 +89,8 @@ public class LoginController {
         databaseWorker.execute();
     }
 
-    private static void setValidationError(LoginScreen screen, ValidationException throwable) {
+    private void setValidationError(ValidationException throwable) {
+        LoginScreen screen = loginScreen;
         Set<ErrorValidationModel> validationModels = throwable.getValidationModels();
         for (ErrorValidationModel validationModel : validationModels) {
             Set<String> messages = validationModel.getMessages();
@@ -104,6 +116,10 @@ public class LoginController {
 
     public void setRegisterController(RegisterController registerController) {
         this.registerController = registerController;
+    }
+
+    public LoginScreen getLoginScreen() {
+        return loginScreen;
     }
 
     public void setMainController(MainController mainController) {

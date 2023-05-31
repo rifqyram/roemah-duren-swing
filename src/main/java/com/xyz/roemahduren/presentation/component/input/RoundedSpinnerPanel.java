@@ -58,7 +58,12 @@ public class RoundedSpinnerPanel extends javax.swing.JPanel {
     }
 
     public void setValue(int value) {
-        this.roundedSpinner.setValue(value);
+        try {
+            this.roundedSpinner.setValue(value);
+            roundedSpinner.commitEdit();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getErrorMessage() {

@@ -53,8 +53,8 @@ public class MainScreen extends JFrame {
         dashboardScreen = new DashboardScreen();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Roemah Duren");
         setMinimumSize(new Dimension(1280, 800));
-        setPreferredSize(new Dimension(1280, 800));
         setSize(new Dimension(1280, 600));
 
         sideMenuPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));

@@ -103,8 +103,8 @@ public class SideMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuGroup = new ButtonGroup();
-        titleLabel = new JLabel();
+        menuGroup = new javax.swing.ButtonGroup();
+        titleLabel = new javax.swing.JLabel();
         menuItem1 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem2 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem3 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
@@ -113,155 +113,189 @@ public class SideMenu extends javax.swing.JPanel {
         menuItem6 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem7 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
         menuItem8 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
+        menuItem9 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
+        menuItem10 = new com.xyz.roemahduren.presentation.component.menu.MenuItem();
 
-        setBackground(new Color(221, 83, 83));
-        setMinimumSize(new Dimension(306, 640));
-        setPreferredSize(new Dimension(306, 640));
+        setBackground(new java.awt.Color(221, 83, 83));
+        setMinimumSize(new java.awt.Dimension(306, 800));
+        setPreferredSize(new java.awt.Dimension(306, 800));
 
-        titleLabel.setBackground(new Color(255, 255, 254));
-        titleLabel.setFont(new Font("Helvetica Neue", 1, 26)); // NOI18N
-        titleLabel.setForeground(new Color(255, 255, 254));
+        titleLabel.setBackground(new java.awt.Color(255, 255, 254));
+        titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 26)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 254));
         titleLabel.setText("Reoamah Duren");
 
-        menuItem1.setBackground(new Color(192, 72, 72));
-        menuItem1.setForeground(new Color(255, 255, 254));
-        menuItem1.setIcon(new ImageIcon(getClass().getResource("/images/Dashboard.png"))); // NOI18N
+        menuItem1.setBackground(new java.awt.Color(192, 72, 72));
+        menuItem1.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dashboard.png"))); // NOI18N
         menuItem1.setText("Dashboard");
-        menuItem1.setBorderColor(new Color(192, 72, 72));
+        menuItem1.setBorderColor(new java.awt.Color(192, 72, 72));
         menuGroup.add(menuItem1);
-        menuItem1.setColor(new Color(192, 72, 72));
-        menuItem1.setColorOver(new Color(192, 72, 72));
-        menuItem1.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem1.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem1.setColor(new java.awt.Color(192, 72, 72));
+        menuItem1.setColorOver(new java.awt.Color(192, 72, 72));
+        menuItem1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem1.setIconTextGap(14);
 
-        menuItem2.setBackground(new Color(221, 83, 83));
-        menuItem2.setForeground(new Color(255, 255, 254));
-        menuItem2.setIcon(new ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
+        menuItem2.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem2.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Shopping Cart.png"))); // NOI18N
         menuItem2.setText("Order");
-        menuItem2.setBorderColor(new Color(221, 83, 83));
+        menuItem2.setBorderColor(new java.awt.Color(221, 83, 83));
         menuGroup.add(menuItem2);
-        menuItem2.setColor(new Color(221, 83, 83));
-        menuItem2.setColorOver(new Color(204, 77, 77));
-        menuItem2.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem2.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem2.setColor(new java.awt.Color(221, 83, 83));
+        menuItem2.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem2.setIconTextGap(14);
 
-        menuItem3.setBackground(new Color(221, 83, 83));
-        menuItem3.setForeground(new Color(255, 255, 254));
-        menuItem3.setIcon(new ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
+        menuItem3.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem3.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Business.png"))); // NOI18N
         menuItem3.setText("Cabang");
-        menuItem3.setBorderColor(new Color(221, 83, 83));
+        menuItem3.setBorderColor(new java.awt.Color(221, 83, 83));
         menuItem3.setBorderPainted(false);
         menuGroup.add(menuItem3);
-        menuItem3.setColor(new Color(221, 83, 83));
-        menuItem3.setColorOver(new Color(204, 77, 77));
-        menuItem3.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem3.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem3.setColor(new java.awt.Color(221, 83, 83));
+        menuItem3.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem3.setIconTextGap(14);
-        menuItem3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        menuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem3ActionPerformed(evt);
             }
         });
 
-        menuItem4.setBackground(new Color(221, 83, 83));
-        menuItem4.setForeground(new Color(255, 255, 254));
-        menuItem4.setIcon(new ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
+        menuItem4.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem4.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Inventory.png"))); // NOI18N
         menuItem4.setText("Produk");
-        menuItem4.setBorderColor(new Color(221, 83, 83));
+        menuItem4.setBorderColor(new java.awt.Color(221, 83, 83));
         menuGroup.add(menuItem4);
-        menuItem4.setColor(new Color(221, 83, 83));
-        menuItem4.setColorOver(new Color(204, 77, 77));
-        menuItem4.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem4.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem4.setColor(new java.awt.Color(221, 83, 83));
+        menuItem4.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem4.setIconTextGap(14);
 
-        menuItem5.setForeground(new Color(255, 255, 254));
-        menuItem5.setIcon(new ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
+        menuItem5.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Category.png"))); // NOI18N
         menuItem5.setText("Kategori");
-        menuItem5.setBorderColor(new Color(221, 83, 83));
+        menuItem5.setBorderColor(new java.awt.Color(221, 83, 83));
         menuItem5.setBorderPainted(false);
         menuGroup.add(menuItem5);
-        menuItem5.setColor(new Color(221, 83, 83));
-        menuItem5.setColorOver(new Color(204, 77, 77));
-        menuItem5.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem5.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem5.setColor(new java.awt.Color(221, 83, 83));
+        menuItem5.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem5.setIconTextGap(14);
 
-        menuItem6.setBackground(new Color(221, 83, 83));
-        menuItem6.setForeground(new Color(255, 255, 254));
-        menuItem6.setIcon(new ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
-        menuItem6.setText("Pelanggan");
-        menuItem6.setBorderColor(new Color(221, 83, 83));
+        menuItem6.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem6.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
+        menuItem6.setText("Pemasok");
+        menuItem6.setBorderColor(new java.awt.Color(221, 83, 83));
         menuGroup.add(menuItem6);
-        menuItem6.setColor(new Color(221, 83, 83));
-        menuItem6.setColorOver(new Color(204, 77, 77));
-        menuItem6.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem6.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem6.setColor(new java.awt.Color(221, 83, 83));
+        menuItem6.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem6.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem6.setIconTextGap(14);
 
-        menuItem7.setBackground(new Color(221, 83, 83));
-        menuItem7.setForeground(new Color(255, 255, 254));
-        menuItem7.setIcon(new ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
-        menuItem7.setText("Riwayat Transaksi");
-        menuItem7.setBorderColor(new Color(221, 83, 83));
+        menuItem7.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem7.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Person outline.png"))); // NOI18N
+        menuItem7.setText("Pelanggan");
+        menuItem7.setBorderColor(new java.awt.Color(221, 83, 83));
         menuGroup.add(menuItem7);
-        menuItem7.setColor(new Color(221, 83, 83));
-        menuItem7.setColorOver(new Color(204, 77, 77));
-        menuItem7.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem7.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem7.setColor(new java.awt.Color(221, 83, 83));
+        menuItem7.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem7.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem7.setIconTextGap(14);
 
-        menuItem8.setBackground(new Color(221, 83, 83));
-        menuItem8.setForeground(new Color(255, 255, 254));
-        menuItem8.setIcon(new ImageIcon(getClass().getResource("/images/Exit to app.png"))); // NOI18N
+        menuItem8.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem8.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exit to app.png"))); // NOI18N
         menuItem8.setText("Keluar");
-        menuItem8.setBorderColor(new Color(221, 83, 83));
+        menuItem8.setBorderColor(new java.awt.Color(221, 83, 83));
         menuGroup.add(menuItem8);
-        menuItem8.setColor(new Color(221, 83, 83));
-        menuItem8.setColorOver(new Color(204, 77, 77));
-        menuItem8.setFont(new Font("Helvetica Neue", 0, 14)); // NOI18N
-        menuItem8.setHorizontalAlignment(SwingConstants.LEFT);
+        menuItem8.setColor(new java.awt.Color(221, 83, 83));
+        menuItem8.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuItem8.setIconTextGap(14);
 
-        GroupLayout layout = new GroupLayout(this);
+        menuItem9.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem9.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
+        menuItem9.setText("Riwayat Transaksi");
+        menuItem9.setBorderColor(new java.awt.Color(221, 83, 83));
+        menuGroup.add(menuItem9);
+        menuItem9.setColor(new java.awt.Color(221, 83, 83));
+        menuItem9.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem9.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuItem9.setIconTextGap(14);
+
+        menuItem10.setBackground(new java.awt.Color(221, 83, 83));
+        menuItem10.setForeground(new java.awt.Color(255, 255, 254));
+        menuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Receipt long.png"))); // NOI18N
+        menuItem10.setText("Riwayat Transaksi");
+        menuItem10.setBorderColor(new java.awt.Color(221, 83, 83));
+        menuGroup.add(menuItem10);
+        menuItem10.setColor(new java.awt.Color(221, 83, 83));
+        menuItem10.setColorOver(new java.awt.Color(204, 77, 77));
+        menuItem10.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        menuItem10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuItem10.setIconTextGap(14);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(menuItem1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(menuItem3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(menuItem3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28))
         );
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(titleLabel)
                 .addGap(37, 37, 37)
-                .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem4, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem5, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menuItem7, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(menuItem8, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuItem7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuItem10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(menuItem8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -272,8 +306,9 @@ public class SideMenu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ButtonGroup menuGroup;
+    private javax.swing.ButtonGroup menuGroup;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem1;
+    private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem10;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem2;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem3;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem4;
@@ -281,6 +316,7 @@ public class SideMenu extends javax.swing.JPanel {
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem6;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem7;
     private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem8;
-    private JLabel titleLabel;
+    private com.xyz.roemahduren.presentation.component.menu.MenuItem menuItem9;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

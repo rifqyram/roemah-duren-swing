@@ -33,7 +33,7 @@ public class DashboardScreen extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new JLabel();
+        welcomeLabel = new JLabel();
         roundedPanel1 = new RoundedPanel();
         jScrollPane1 = new JScrollPane();
         table1 = new Table();
@@ -43,8 +43,8 @@ public class DashboardScreen extends JPanel {
         setPreferredSize(new Dimension(800, 600));
         setSize(new Dimension(800, 600));
 
-        jLabel1.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Hello Admin!");
+        welcomeLabel.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
+        welcomeLabel.setText("Hello Admin!");
 
         roundedPanel1.setBackground(new Color(245, 245, 245));
         roundedPanel1.setCornerRadius(8);
@@ -91,7 +91,7 @@ public class DashboardScreen extends JPanel {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(welcomeLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
                     .addComponent(roundedPanel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -100,7 +100,7 @@ public class DashboardScreen extends JPanel {
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jLabel1)
+                .addComponent(welcomeLabel)
                 .addGap(37, 37, 37)
                 .addComponent(roundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -109,11 +109,14 @@ public class DashboardScreen extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getWelcomeLabel() {
+        return welcomeLabel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel jLabel1;
     private JScrollPane jScrollPane1;
     private RoundedPanel roundedPanel1;
     private Table table1;
+    private JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

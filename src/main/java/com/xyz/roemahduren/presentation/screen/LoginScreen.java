@@ -46,21 +46,22 @@ public class LoginScreen extends javax.swing.JFrame {
         emailTf = new RoundedTextFieldPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Masuk Roemah Duren");
         setMaximumSize(new Dimension(480, 500));
         setMinimumSize(new Dimension(480, 500));
         setSize(new Dimension(480, 500));
 
         titleLabel.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         titleLabel.setForeground(new Color(49, 53, 59));
-        titleLabel.setText("Login to your account");
+        titleLabel.setText("Masuk Ke Akun Anda");
 
         registerLabelDescription.setForeground(new Color(49, 53, 59));
-        registerLabelDescription.setText("Don't have an account?");
+        registerLabelDescription.setText("Belum punya akun?");
 
         signInBtn.setBackground(new Color(221, 83, 83));
         signInBtn.setBorder(null);
         signInBtn.setForeground(new Color(255, 255, 255));
-        signInBtn.setText("Sign In");
+        signInBtn.setText("Masuk");
         signInBtn.setBorderColor(new Color(221, 83, 83));
         signInBtn.setColor(new Color(221, 83, 83));
         signInBtn.setColorClick(new Color(192, 72, 72));
@@ -68,10 +69,10 @@ public class LoginScreen extends javax.swing.JFrame {
         signInBtn.setFont(new Font("Helvetica Neue", 1, 14)); // NOI18N
 
         forgotPasswordLabel.setForeground(new Color(49, 53, 59));
-        forgotPasswordLabel.setText("Forgot Password?");
+        forgotPasswordLabel.setText("Lupa Kata Sandi?");
 
         registerLabelLink.setForeground(new Color(49, 53, 59));
-        registerLabelLink.setText("Register");
+        registerLabelLink.setText("Daftar");
 
         passwordTf.setBackground(new Color(255, 255, 254));
         passwordTf.setErrorMessage("");

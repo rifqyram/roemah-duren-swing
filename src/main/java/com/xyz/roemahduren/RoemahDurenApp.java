@@ -46,6 +46,7 @@ public class RoemahDurenApp {
                 loginController.setRegisterController(registerController);
                 loginController.setMainController(mainController);
                 registerController.setLoginController(loginController);
+                mainController.setLoginController(loginController);
             });
         } catch (InterruptedException e) {
             e.printStackTrace();
