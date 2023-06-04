@@ -14,6 +14,7 @@ public class ControllerFactory {
     private final OrderService orderService;
     private final SupplierService supplierService;
     private final SupplierProductService supplierProductService;
+    private final CustomerService customerService;
 
     // Screen
     private final LoginScreen loginScreen;
@@ -25,11 +26,13 @@ public class ControllerFactory {
     private final OrderScreen orderScreen;
     private final SupplierScreen supplierScreen;
     private final SettingScreen settingScreen;
+    private final CustomerScreen customerScreen;
+    private final TransactionHistoryScreen transactionHistoryScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -37,6 +40,7 @@ public class ControllerFactory {
         this.orderService = orderService;
         this.supplierService = supplierService;
         this.supplierProductService = supplierProductService;
+        this.customerService = customerService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
@@ -46,6 +50,8 @@ public class ControllerFactory {
         this.orderScreen = orderScreen;
         this.supplierScreen = supplierScreen;
         this.settingScreen = settingScreen;
+        this.customerScreen = customerScreen;
+        this.transactionHistoryScreen = transactionHistoryScreen;
         this.customDialog = customDialog;
     }
 
@@ -81,8 +87,26 @@ public class ControllerFactory {
         return new SettingController(settingScreen, authService, customDialog);
     }
 
+    public CustomerController customerController() {
+        return new CustomerController(customerScreen, customerService);
+    }
+
+    public TransactionHistoryController transactionHistoryController() {
+        return new TransactionHistoryController(transactionHistoryScreen, orderService);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), supplierController(), settingController(), customDialog);
+        return new MainController(
+                mainScreen,
+                branchController(),
+                categoryController(),
+                productController(),
+                orderController(),
+                supplierController(),
+                settingController(),
+                customerController(),
+                transactionHistoryController(),
+                customDialog);
     }
 
 }

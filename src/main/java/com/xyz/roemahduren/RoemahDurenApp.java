@@ -98,7 +98,7 @@ public class RoemahDurenApp {
                 serviceFactory.orderService(),
                 serviceFactory.supplierService(),
                 serviceFactory.supplierProductService(),
-                screenFactory.loginScreen(),
+                serviceFactory.customerService(), screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.branchScreen(),
                 screenFactory.mainScreen(),
@@ -107,6 +107,8 @@ public class RoemahDurenApp {
                 screenFactory.orderScreen(),
                 screenFactory.supplierScreen(),
                 screenFactory.settingScreen(),
+                screenFactory.customerScreen(),
+                screenFactory.transactionHistoryScreen(),
                 dialog);
     }
 }

@@ -46,6 +46,7 @@ public class SettingScreen extends javax.swing.JPanel {
         passwordField = new RoundedPasswordFieldPanel();
         emailTextField = new RoundedTextFieldPanel();
         confirmPasswordField = new RoundedPasswordFieldPanel();
+        titleScreen1 = new JLabel();
 
         setBackground(new Color(255, 255, 254));
         setLocation(new Point(800, 600));
@@ -103,6 +104,10 @@ public class SettingScreen extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
         );
 
+        titleScreen1.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
+        titleScreen1.setForeground(new Color(2, 8, 38));
+        titleScreen1.setText("Ubah Kata Sandi");
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -110,16 +115,19 @@ public class SettingScreen extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(userFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleScreen))
+                    .addComponent(titleScreen)
+                    .addComponent(titleScreen1))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(titleScreen)
-                .addGap(32, 32, 32)
+                .addGap(26, 26, 26)
+                .addComponent(titleScreen1)
+                .addGap(18, 18, 18)
                 .addComponent(userFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,6 +161,7 @@ public class SettingScreen extends javax.swing.JPanel {
     private RoundedPasswordFieldPanel passwordField;
     private RoundedButton saveBtn;
     private JLabel titleScreen;
+    private JLabel titleScreen1;
     private RoundedPanel userFormPanel;
     // End of variables declaration//GEN-END:variables
 }

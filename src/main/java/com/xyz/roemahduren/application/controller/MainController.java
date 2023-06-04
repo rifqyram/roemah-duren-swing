@@ -22,10 +22,12 @@ public class MainController {
     private final OrderController orderController;
     private final SupplierController supplierController;
     private final SettingController settingController;
+    private final CustomerController customerController;
+    private final TransactionHistoryController transactionHistoryController;
     private final CustomDialog dialog;
     private LoginController loginController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, SettingController settingController, CustomDialog dialog) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, SettingController settingController, CustomerController customerController, TransactionHistoryController transactionHistoryController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
@@ -33,6 +35,8 @@ public class MainController {
         this.orderController = orderController;
         this.supplierController = supplierController;
         this.settingController = settingController;
+        this.customerController = customerController;
+        this.transactionHistoryController = transactionHistoryController;
         this.dialog = dialog;
         initController();
     }
@@ -100,8 +104,10 @@ public class MainController {
                     setViewport(supplierController.getSupplierScreen());
                     break;
                 case 6:
+                    setViewport(customerController.getCustomerScreen());
                     break;
                 case 7:
+                    setViewport(transactionHistoryController.getTransactionHistoryScreen());
                     break;
                 case 8:
                     setViewport(settingController.getSettingScreen());

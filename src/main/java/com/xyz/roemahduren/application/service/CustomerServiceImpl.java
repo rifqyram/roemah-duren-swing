@@ -6,6 +6,8 @@ import com.xyz.roemahduren.domain.repository.CustomerRepository;
 import com.xyz.roemahduren.domain.service.CustomerService;
 import com.xyz.roemahduren.exception.NotFoundException;
 
+import java.util.List;
+
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -25,5 +27,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getById(String id) {
         return customerRepository.findById(id).orElseThrow(() -> new NotFoundException(NotFoundException.CUSTOMER_NOT_FOUND));
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
     }
 }

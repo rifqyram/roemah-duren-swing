@@ -45,8 +45,15 @@ public class ScreenFactory {
         return new SettingScreen();
     }
 
+    public CustomerScreen customerScreen() {
+        return new CustomerScreen();
+    }
+
+    public TransactionHistoryScreen transactionHistoryScreen() {
+        return new TransactionHistoryScreen();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }
-
 }

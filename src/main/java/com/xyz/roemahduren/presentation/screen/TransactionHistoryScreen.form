@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="fe" green="ff" red="ff" type="rgb"/>
+    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 800]"/>
     </Property>
@@ -33,15 +36,15 @@
                   <Component id="scrollTable" alignment="0" pref="673" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="titleTable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="searchCustomerTextField" min="-2" pref="250" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="searchCustomerTextField" pref="250" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="titleScreen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="clearBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="printBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
@@ -54,7 +57,7 @@
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="titleScreen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="clearBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="printBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -84,7 +87,7 @@
         <Property name="text" type="java.lang.String" value="Manajemen Riwayat Transaksi"/>
       </Properties>
     </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="clearBtn">
+    <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="printBtn">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>

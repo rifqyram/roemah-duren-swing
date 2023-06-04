@@ -7,6 +7,8 @@ package com.xyz.roemahduren.presentation.screen;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
+import com.xyz.roemahduren.util.SwingUtil;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,6 +30,7 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
      */
     public TransactionHistoryScreen() {
         initComponents();
+        SwingUtil.fixScroll(scrollTable);
     }
 
     /**
@@ -40,13 +43,14 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         titleScreen = new JLabel();
-        clearBtn = new RoundedButton();
+        printBtn = new RoundedButton();
         titleTable = new JLabel();
         searchCustomerTextField = new RoundedTextFieldPanel();
         searchBtn = new RoundedButton();
         scrollTable = new JScrollPane();
         transactionHistoryTable = new Table();
 
+        setBackground(new Color(255, 255, 254));
         setMinimumSize(new Dimension(800, 800));
         setPreferredSize(new Dimension(800, 800));
         setSize(new Dimension(800, 800));
@@ -55,14 +59,14 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
         titleScreen.setForeground(new Color(2, 8, 38));
         titleScreen.setText("Manajemen Riwayat Transaksi");
 
-        clearBtn.setBackground(new Color(221, 83, 83));
-        clearBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
-        clearBtn.setText("Print Laporan");
-        clearBtn.setBorderColor(new Color(221, 83, 83));
-        clearBtn.setColor(new Color(221, 83, 83));
-        clearBtn.setColorClick(new Color(204, 77, 77));
-        clearBtn.setColorOver(new Color(204, 77, 77));
-        clearBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        printBtn.setBackground(new Color(221, 83, 83));
+        printBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
+        printBtn.setText("Print Laporan");
+        printBtn.setBorderColor(new Color(221, 83, 83));
+        printBtn.setColor(new Color(221, 83, 83));
+        printBtn.setColorClick(new Color(204, 77, 77));
+        printBtn.setColorOver(new Color(204, 77, 77));
+        printBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTable.setForeground(new Color(2, 8, 38));
@@ -105,14 +109,14 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
                     .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleTable)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchCustomerTextField, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(searchCustomerTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleScreen)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -120,7 +124,7 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(titleScreen)
-                    .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(titleTable)
@@ -134,8 +138,8 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public RoundedButton getClearBtn() {
-        return clearBtn;
+    public RoundedButton getPrintBtn() {
+        return printBtn;
     }
 
     public JScrollPane getScrollTable() {
@@ -163,7 +167,7 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RoundedButton clearBtn;
+    private RoundedButton printBtn;
     private JScrollPane scrollTable;
     private RoundedButton searchBtn;
     private RoundedTextFieldPanel searchCustomerTextField;

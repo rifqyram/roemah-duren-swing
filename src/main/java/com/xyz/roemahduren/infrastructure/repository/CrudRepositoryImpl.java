@@ -8,6 +8,9 @@ import com.xyz.roemahduren.util.ReflectionUtil;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -139,6 +142,14 @@ public abstract class CrudRepositoryImpl<T, ID> implements CrudRepository<T, ID>
                     declaredField.setAccessible(true);
                     Column annotation = declaredField.getAnnotation(Column.class);
                     Object value = resultSet.getObject(annotation.name());
+
+                    if (value instanceof Timestamp) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+                        LocalDateTime localDateTime = LocalDateTime.parse(value.toString(), formatter);
+                        declaredField.set(t, localDateTime);
+                        continue;
+                    }
+
                     declaredField.set(t, value);
                 }
                 tList.add(t);

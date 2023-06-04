@@ -7,6 +7,8 @@ package com.xyz.roemahduren.presentation.screen;
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
+import com.xyz.roemahduren.util.SwingUtil;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,6 +30,7 @@ public class CustomerScreen extends javax.swing.JPanel {
      */
     public CustomerScreen() {
         initComponents();
+        SwingUtil.fixScroll(scrollTable);
     }
 
     /**
@@ -45,8 +48,9 @@ public class CustomerScreen extends javax.swing.JPanel {
         titleScreen = new JLabel();
         searchCustomerTextField = new RoundedTextFieldPanel();
         searchBtn = new RoundedButton();
-        clearBtn = new RoundedButton();
+        printBtn = new RoundedButton();
 
+        setBackground(new Color(255, 255, 254));
         setMinimumSize(new Dimension(800, 600));
         setPreferredSize(new Dimension(800, 600));
         setSize(new Dimension(800, 600));
@@ -87,14 +91,14 @@ public class CustomerScreen extends javax.swing.JPanel {
         searchBtn.setText("Cari");
         searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
-        clearBtn.setBackground(new Color(221, 83, 83));
-        clearBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
-        clearBtn.setText("Print Laporan");
-        clearBtn.setBorderColor(new Color(221, 83, 83));
-        clearBtn.setColor(new Color(221, 83, 83));
-        clearBtn.setColorClick(new Color(204, 77, 77));
-        clearBtn.setColorOver(new Color(204, 77, 77));
-        clearBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        printBtn.setBackground(new Color(221, 83, 83));
+        printBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
+        printBtn.setText("Print Laporan");
+        printBtn.setBorderColor(new Color(221, 83, 83));
+        printBtn.setColor(new Color(221, 83, 83));
+        printBtn.setColorClick(new Color(204, 77, 77));
+        printBtn.setColorOver(new Color(204, 77, 77));
+        printBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -112,7 +116,7 @@ public class CustomerScreen extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleScreen)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -120,7 +124,7 @@ public class CustomerScreen extends javax.swing.JPanel {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(titleScreen)
-                    .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(titleTable)
@@ -134,8 +138,8 @@ public class CustomerScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public RoundedButton getClearBtn() {
-        return clearBtn;
+    public RoundedButton getPrintBtn() {
+        return printBtn;
     }
 
     public Table getCustomerTable() {
@@ -163,8 +167,8 @@ public class CustomerScreen extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RoundedButton clearBtn;
     private Table customerTable;
+    private RoundedButton printBtn;
     private JScrollPane scrollTable;
     private RoundedButton searchBtn;
     private RoundedTextFieldPanel searchCustomerTextField;
