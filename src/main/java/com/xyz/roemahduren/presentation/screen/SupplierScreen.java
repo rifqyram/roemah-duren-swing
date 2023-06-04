@@ -274,7 +274,7 @@ public class SupplierScreen extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(71, 71, 71)
                 .addComponent(titleScreen)
                 .addGap(32, 32, 32)
                 .addComponent(supplierFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -288,7 +288,7 @@ public class SupplierScreen extends javax.swing.JPanel {
                 .addComponent(titleTableProduct)
                 .addGap(18, 18, 18)
                 .addComponent(productSupplierScrollPane, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -2,6 +2,7 @@ package com.xyz.roemahduren.application.service;
 
 import com.xyz.roemahduren.domain.entity.UserCredential;
 import com.xyz.roemahduren.domain.model.request.AuthRequest;
+import com.xyz.roemahduren.domain.model.request.ChangePasswordRequest;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
 import com.xyz.roemahduren.domain.repository.UserCredentialRepository;
 import com.xyz.roemahduren.domain.service.AuthService;
@@ -50,12 +51,26 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse login(AuthRequest request) {
         Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
 
-        if (!credentialOptional.isPresent()) throw new RuntimeException("Username atau Password salah!");
+        if (!credentialOptional.isPresent()) throw new RuntimeException("Email atau Kata Sandi salah!");
         UserCredential userCredential = credentialOptional.get();
 
         boolean verify = passwordEncoder.verifyPassword(request.getPassword(), userCredential.getPassword());
-        if (!verify) throw new RuntimeException("Username atau Password salah!");
+        if (!verify) throw new RuntimeException("Email atau Kata Sandi salah!");
 
         return new AuthResponse(userCredential.getEmail());
+    }
+
+    @Override
+    public boolean changePassword(ChangePasswordRequest request) {
+        Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
+
+        if (!credentialOptional.isPresent()) throw new RuntimeException("Email atau Kata Sandi salah!");
+        UserCredential userCredential = credentialOptional.get();
+
+        if (!request.getPassword().equals(request.getConfirmPassword())) throw new RuntimeException("Kata Sandi dan konfirmasi tidak sesuai");
+        userCredential.setPassword(passwordEncoder.hashPassword(request.getPassword()));
+        userCredentialRepository.update(userCredential);
+
+        return true;
     }
 }

@@ -24,11 +24,12 @@ public class ControllerFactory {
     private final ProductScreen productScreen;
     private final OrderScreen orderScreen;
     private final SupplierScreen supplierScreen;
+    private final SettingScreen settingScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -44,6 +45,7 @@ public class ControllerFactory {
         this.productScreen = productScreen;
         this.orderScreen = orderScreen;
         this.supplierScreen = supplierScreen;
+        this.settingScreen = settingScreen;
         this.customDialog = customDialog;
     }
 
@@ -75,8 +77,12 @@ public class ControllerFactory {
         return new SupplierController(supplierScreen, supplierService, supplierProductService, customDialog);
     }
 
+    public SettingController settingController() {
+        return new SettingController(settingScreen, authService, customDialog);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), supplierController(), customDialog);
+        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), supplierController(), settingController(), customDialog);
     }
 
 }

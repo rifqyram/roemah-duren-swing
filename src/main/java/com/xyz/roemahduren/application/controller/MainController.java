@@ -21,16 +21,18 @@ public class MainController {
     private final ProductController productController;
     private final OrderController orderController;
     private final SupplierController supplierController;
+    private final SettingController settingController;
     private final CustomDialog dialog;
     private LoginController loginController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, CustomDialog dialog) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, SettingController settingController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
         this.productController = productController;
         this.orderController = orderController;
         this.supplierController = supplierController;
+        this.settingController = settingController;
         this.dialog = dialog;
         initController();
     }
@@ -98,6 +100,11 @@ public class MainController {
                     setViewport(supplierController.getSupplierScreen());
                     break;
                 case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    setViewport(settingController.getSettingScreen());
                     break;
                 case 9:
                     int confirmDeleteDialog = dialog.getConfirmInfoDialog(CustomDialog.LOGOUT_CONFIRMATION);

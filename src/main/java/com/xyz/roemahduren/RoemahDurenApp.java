@@ -106,6 +106,7 @@ public class RoemahDurenApp {
                 screenFactory.productScreen(),
                 screenFactory.orderScreen(),
                 screenFactory.supplierScreen(),
+                screenFactory.settingScreen(),
                 dialog);
     }
 }
