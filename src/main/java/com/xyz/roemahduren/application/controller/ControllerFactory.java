@@ -12,6 +12,8 @@ public class ControllerFactory {
     private final CategoryService categoryService;
     private final ProductService productService;
     private final OrderService orderService;
+    private final SupplierService supplierService;
+    private final SupplierProductService supplierProductService;
 
     // Screen
     private final LoginScreen loginScreen;
@@ -21,16 +23,19 @@ public class ControllerFactory {
     private final CategoryScreen categoryScreen;
     private final ProductScreen productScreen;
     private final OrderScreen orderScreen;
+    private final SupplierScreen supplierScreen;
 
     // Utils
     private final CustomDialog customDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, CustomDialog customDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
         this.productService = productService;
         this.orderService = orderService;
+        this.supplierService = supplierService;
+        this.supplierProductService = supplierProductService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
@@ -38,6 +43,7 @@ public class ControllerFactory {
         this.categoryScreen = categoryScreen;
         this.productScreen = productScreen;
         this.orderScreen = orderScreen;
+        this.supplierScreen = supplierScreen;
         this.customDialog = customDialog;
     }
 
@@ -65,8 +71,12 @@ public class ControllerFactory {
         return new OrderController(orderScreen, orderService, productService, customDialog);
     }
 
+    public SupplierController supplierController() {
+        return new SupplierController(supplierScreen, supplierService, supplierProductService, customDialog);
+    }
+
     public MainController mainController() {
-        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), customDialog);
+        return new MainController(mainScreen, branchController(), categoryController(), productController(), orderController(), supplierController(), customDialog);
     }
 
 }

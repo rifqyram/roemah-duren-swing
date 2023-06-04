@@ -37,6 +37,8 @@ public class ScreenFactory {
         return new OrderScreen();
     }
 
+    public SupplierScreen supplierScreen() {return new SupplierScreen();}
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }

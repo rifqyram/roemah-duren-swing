@@ -274,7 +274,8 @@ public class ProductController {
 
         TableActionEvent tableActionEvent = getTableActionEvent();
         productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellRenderer(new TableActionCellRender());
-        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));    }
+        productScreen.getProductTable().getColumnModel().getColumn(HEADERS.length - 1).setCellEditor(new TableActionCellEditor(tableActionEvent));
+    }
 
     private void deleteProduct(int row) {
         int confirmDeleteDialog = dialog.getConfirmDeleteDialog();

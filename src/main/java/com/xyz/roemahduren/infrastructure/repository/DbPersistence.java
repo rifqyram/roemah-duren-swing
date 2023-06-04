@@ -38,4 +38,22 @@ public class DbPersistence implements Persistence {
 
         return result;
     }
+
+    @Override
+    public void executeTransaction(Connection connection, Runnable function) {
+        try {
+            connection.setAutoCommit(false);
+
+            try {
+                function.run();
+                connection.commit();
+            } catch (RuntimeException | SQLException exception) {
+                connection.rollback();
+                throw new RuntimeException(exception);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

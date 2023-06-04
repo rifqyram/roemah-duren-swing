@@ -33,20 +33,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="menuItem1" max="32767" attributes="0"/>
-                  <Component id="titleLabel" pref="250" max="32767" attributes="0"/>
-                  <Component id="menuItem3" max="32767" attributes="0"/>
-                  <Component id="menuItem4" max="32767" attributes="0"/>
-                  <Component id="menuItem5" max="32767" attributes="0"/>
-                  <Component id="menuItem6" max="32767" attributes="0"/>
-                  <Component id="menuItem7" max="32767" attributes="0"/>
-                  <Component id="menuItem8" max="32767" attributes="0"/>
-                  <Component id="menuItem2" max="32767" attributes="0"/>
-                  <Component id="menuItem9" max="32767" attributes="0"/>
-                  <Component id="menuItem10" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="menuItem1" max="32767" attributes="0"/>
+                          <Component id="titleLabel" pref="250" max="32767" attributes="0"/>
+                          <Component id="menuItem3" max="32767" attributes="0"/>
+                          <Component id="menuItem4" max="32767" attributes="0"/>
+                          <Component id="menuItem5" max="32767" attributes="0"/>
+                          <Component id="menuItem6" max="32767" attributes="0"/>
+                          <Component id="menuItem7" max="32767" attributes="0"/>
+                          <Component id="menuItem8" max="32767" attributes="0"/>
+                          <Component id="menuItem2" max="32767" attributes="0"/>
+                          <Component id="menuItem10" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="menuItem9" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,12 +77,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="menuItem7" min="-2" pref="42" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="menuItem8" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace pref="84" max="32767" attributes="0"/>
               <Component id="menuItem9" min="-2" pref="42" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="menuItem10" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace pref="92" max="32767" attributes="0"/>
-              <Component id="menuItem8" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -261,7 +268,7 @@
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/Person outline.png"/>
+          <Image iconType="3" name="/images/Box.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pemasok"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -323,9 +330,9 @@
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/Exit to app.png"/>
+          <Image iconType="3" name="/images/Receipt long.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Keluar"/>
+        <Property name="text" type="java.lang.String" value="Riwayat Transaksi"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -354,9 +361,9 @@
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/Receipt long.png"/>
+          <Image iconType="3" name="/images/Gear.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Riwayat Transaksi"/>
+        <Property name="text" type="java.lang.String" value="Pengaturan"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>
@@ -385,9 +392,9 @@
           <Color blue="fe" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/Receipt long.png"/>
+          <Image iconType="3" name="/images/Exit to app.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Riwayat Transaksi"/>
+        <Property name="text" type="java.lang.String" value="Keluar"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="53" green="53" red="dd" type="rgb"/>
         </Property>

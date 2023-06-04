@@ -62,7 +62,6 @@ public class ProductServiceImpl implements ProductService {
         persistence.executeTransaction(connection, () -> {
             Product product = get(id);
             productRepository.deleteById(product.getId());
-            return true;
         });
     }
 

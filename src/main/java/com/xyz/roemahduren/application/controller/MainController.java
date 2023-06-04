@@ -1,7 +1,6 @@
 package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.CustomDialog;
-import com.xyz.roemahduren.domain.entity.UserCredential;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
@@ -21,15 +20,17 @@ public class MainController {
     private final CategoryController categoryController;
     private final ProductController productController;
     private final OrderController orderController;
+    private final SupplierController supplierController;
     private final CustomDialog dialog;
     private LoginController loginController;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, CustomDialog dialog) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, CustomDialog dialog) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
         this.productController = productController;
         this.orderController = orderController;
+        this.supplierController = supplierController;
         this.dialog = dialog;
         initController();
     }
@@ -93,12 +94,18 @@ public class MainController {
                 case 4:
                     setViewport(categoryController.getCategoryScreen());
                     break;
-                case 7:
+                case 5:
+                    setViewport(supplierController.getSupplierScreen());
+                    break;
+                case 6:
+                    break;
+                case 9:
                     int confirmDeleteDialog = dialog.getConfirmInfoDialog(CustomDialog.LOGOUT_CONFIRMATION);
                     if (confirmDeleteDialog != 1) return;
                     loginController.getLoginScreen().setVisible(true);
                     mainScreen.setVisible(false);
                     mainScreen.dispose();
+                    break;
             }
         } catch (Exception e) {
             dialog.getFailedMessageDialog(e.getMessage());

@@ -10,6 +10,8 @@ public class NotFoundException extends RuntimeException {
     public static final String STATUS_ORDER_NOT_FOUND = "Status Order tidak ditemukan";
     public static final String ORDER_NOT_FOUND = "Order tidak ditemukan";
     public static final String CUSTOMER_NOT_FOUND = "Customer tidak ditemukan";
+    public static final String SUPPLIER_NOT_FOUND = "Pemasok tidak ditemukan";
+    public static final String SUPPLIER_PRODUCT_NOT_FOUND = "Produk Pemasok tidak ditemukan";
 
     public NotFoundException(String message) {
         super(message);

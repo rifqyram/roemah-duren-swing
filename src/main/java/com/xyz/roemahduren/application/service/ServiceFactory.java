@@ -14,12 +14,14 @@ public class ServiceFactory {
     private final CustomerRepository customerRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final OrderRepository orderRepository;
+    private final SupplierRepository supplierRepository;
+    private final SupplierProductRepository supplierProductRepository;
     private final Persistence persistence;
 
     private final PasswordEncoder passwordEncoder;
     private final Connection connection;
 
-    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, CustomerRepository customerRepository, OrderDetailRepository orderDetailRepository, OrderRepository orderRepository, Persistence persistence, PasswordEncoder passwordEncoder, Connection connection) {
+    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, CustomerRepository customerRepository, OrderDetailRepository orderDetailRepository, OrderRepository orderRepository, SupplierRepository supplierRepository, SupplierProductRepository supplierProductRepository, Persistence persistence, PasswordEncoder passwordEncoder, Connection connection) {
         this.userCredentialRepository = userCredentialRepository;
         this.branchRepository = branchRepository;
         this.categoryRepository = categoryRepository;
@@ -27,6 +29,8 @@ public class ServiceFactory {
         this.customerRepository = customerRepository;
         this.orderDetailRepository = orderDetailRepository;
         this.orderRepository = orderRepository;
+        this.supplierRepository = supplierRepository;
+        this.supplierProductRepository = supplierProductRepository;
         this.persistence = persistence;
         this.passwordEncoder = passwordEncoder;
         this.connection = connection;
@@ -58,5 +62,13 @@ public class ServiceFactory {
 
     public OrderService orderService() {
         return new OrderServiceImpl(orderRepository, connection, persistence, orderDetailService(), customerService());
+    }
+
+    public SupplierService supplierService() {
+        return new SupplierServiceImpl(supplierRepository, connection, persistence);
+    }
+
+    public SupplierProductService supplierProductService() {
+        return new SupplierProductServiceImpl(supplierProductRepository, connection, persistence);
     }
 }

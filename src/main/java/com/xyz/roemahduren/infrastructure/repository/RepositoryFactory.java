@@ -48,4 +48,8 @@ public class RepositoryFactory {
         return new UserCredentialRepositoryImpl(connection);
     }
 
+    public SupplierRepository supplierRepository() {return new SupplierRepositoryImpl(connection);}
+
+    public SupplierProductRepository supplierProductRepository() {return new SupplierProductRepositoryImpl(connection);}
+
 }

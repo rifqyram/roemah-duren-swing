@@ -9,6 +9,8 @@ public class ConstantMessage {
     public static final String ORDER = "Pesan";
     public static final String ORDER_DETAIL = "Detil Pesanan";
     public static final String USER = "User";
+    public static final String SUPPLIER = "Pemasok";
+    public static final String SUPPLIER_PRODUCT = "Produk Pemasok";
     public static final String LOGIN_SUCCESS_MESSAGE = "Anda berhasil Login";
     public static final String REGISTER = "Anda berhasil Mendaftar";
 

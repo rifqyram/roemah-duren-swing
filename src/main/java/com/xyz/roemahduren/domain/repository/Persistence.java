@@ -6,4 +6,5 @@ import java.sql.Connection;
 
 public interface Persistence {
     <T> T executeTransaction(Connection connection, MyFunction<T> function);
+    void executeTransaction(Connection connection, Runnable function);
 }
