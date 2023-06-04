@@ -7,10 +7,7 @@ import com.xyz.roemahduren.util.ReflectionUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -213,6 +210,9 @@ public abstract class CrudRepositoryImpl<T, ID> implements CrudRepository<T, ID>
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                throw new RuntimeException(tClass.getSimpleName() + " gagal dihapus, karena terdapat relasi di tabel lain");
+            }
             throw new RuntimeException(e);
         }
     }

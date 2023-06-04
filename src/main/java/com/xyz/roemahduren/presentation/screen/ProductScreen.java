@@ -50,7 +50,6 @@ public class ProductScreen extends javax.swing.JPanel {
         jScrollPane1 = new JScrollPane();
         jTable1 = new JTable();
         formPanel = new RoundedPanel();
-        nameTextField = new RoundedTextFieldPanel();
         saveBtn = new RoundedButton();
         clearBtn = new RoundedButton();
         priceNumberFormattedField = new RoundedNumberFormattedFieldPanel();
@@ -58,6 +57,7 @@ public class ProductScreen extends javax.swing.JPanel {
         stockNumberFormattedField = new RoundedNumberFormattedFieldPanel();
         branchTextField = new RoundedComboBoxPanel();
         isActiveCheckbox = new CheckboxPanel();
+        nameTextField = new RoundedComboBoxPanel();
         titleScreen = new JLabel();
         titleTable = new JLabel();
         searchPanel = new JPanel();
@@ -85,10 +85,6 @@ public class ProductScreen extends javax.swing.JPanel {
 
         formPanel.setBackground(new Color(245, 245, 245));
         formPanel.setCornerRadius(8);
-
-        nameTextField.setBackground(new Color(245, 245, 245));
-        nameTextField.setLabelErrorText("");
-        nameTextField.setLabelText("Nama Produk");
 
         saveBtn.setText("Simpan");
         saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -124,6 +120,10 @@ public class ProductScreen extends javax.swing.JPanel {
         isActiveCheckbox.setLabel("");
         isActiveCheckbox.setText("Aktif");
 
+        nameTextField.setBackground(new Color(245, 245, 245));
+        nameTextField.setLabelErrorText("");
+        nameTextField.setLabelText("Nama Produk");
+
         GroupLayout formPanelLayout = new GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
         formPanelLayout.setHorizontalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -133,15 +133,15 @@ public class ProductScreen extends javax.swing.JPanel {
                     .addGroup(formPanelLayout.createSequentialGroup()
                         .addComponent(isActiveCheckbox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(formPanelLayout.createSequentialGroup()
-                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(formPanelLayout.createSequentialGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
+                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(nameTextField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.LEADING, formPanelLayout.createSequentialGroup()
                                 .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                            .addGroup(formPanelLayout.createSequentialGroup()
+                                .addGap(0, 483, Short.MAX_VALUE))
+                            .addGroup(GroupLayout.Alignment.LEADING, formPanelLayout.createSequentialGroup()
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(priceNumberFormattedField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(stockNumberFormattedField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -283,7 +283,7 @@ public class ProductScreen extends javax.swing.JPanel {
         return isActiveCheckbox;
     }
 
-    public RoundedTextFieldPanel getNameTextField() {
+    public RoundedComboBoxPanel getProductNameComboBox() {
         return nameTextField;
     }
 
@@ -331,7 +331,7 @@ public class ProductScreen extends javax.swing.JPanel {
     private CheckboxPanel isActiveCheckbox;
     private JScrollPane jScrollPane1;
     private JTable jTable1;
-    private RoundedTextFieldPanel nameTextField;
+    private RoundedComboBoxPanel nameTextField;
     private RoundedNumberFormattedFieldPanel priceNumberFormattedField;
     private Table productTable;
     private RoundedButton saveBtn;

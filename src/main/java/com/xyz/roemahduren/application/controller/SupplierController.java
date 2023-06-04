@@ -21,6 +21,8 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -72,7 +74,7 @@ public class SupplierController {
 
         int count = 0;
         for (Supplier s : suppliers) {
-            supplierModel.addRow(new Object[] {
+            supplierModel.addRow(new Object[]{
                     ++count,
                     s.getName(),
                     s.getAddress()
@@ -125,10 +127,7 @@ public class SupplierController {
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> {
-                    SwingUtil.clearSecondaryLoading(supplierScreen.getSaveBtnSupplier(), "Simpan");
-                    clearSupplierForm();
-                }
+                () -> SwingUtil.clearSecondaryLoading(supplierScreen.getSaveBtnSupplier(), "Simpan")
         ).execute();
     }
 
@@ -153,10 +152,7 @@ public class SupplierController {
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> {
-                    SwingUtil.clearSecondaryLoading(supplierScreen.getSaveBtnSupplier(), "Simpan");
-                    clearSupplierForm();
-                }
+                () -> SwingUtil.clearSecondaryLoading(supplierScreen.getSaveBtnSupplier(), "Simpan")
         ).execute();
     }
 
@@ -166,7 +162,7 @@ public class SupplierController {
             String message = ValidationUtil.getMessage(validationModel.getMessages());
 
             if (validationModel.getPath().equalsIgnoreCase("name")) {
-                supplierScreen.getProductNameTextField().setErrorMessage(message);
+                supplierScreen.getNameTextField().setErrorMessage(message);
             } else if (validationModel.getPath().equalsIgnoreCase("address")) {
                 supplierScreen.getAddressTextArea().setErrorMessage(message);
             } else if (validationModel.getPath().equalsIgnoreCase("supplier")) {
@@ -203,8 +199,15 @@ public class SupplierController {
                             dialog.getSuccessDeletedMessageDialog(ConstantMessage.SUPPLIER);
                             initSupplierProductForm();
                         },
-                        throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
-                        () -> {}
+                        throwable -> {
+                            if (throwable instanceof SQLIntegrityConstraintViolationException) {
+                                dialog.getFailedMessageDialog("Supplier gagal dihapus karena ada relasi dengan tabel lain");
+                                return;
+                            }
+                            dialog.getFailedMessageDialog(throwable.getMessage());
+                        },
+                        () -> {
+                        }
                 ).execute();
             }
         };
@@ -242,7 +245,7 @@ public class SupplierController {
 
         int count = 0;
         for (SupplierProductResponse sp : supplierProductResponses) {
-            supplierProductModel.addRow(new Object[] {
+            supplierProductModel.addRow(new Object[]{
                     ++count,
                     sp.getSupplierName(),
                     sp.getProductName(),
@@ -284,10 +287,23 @@ public class SupplierController {
                             }
                             dialog.getFailedMessageDialog(throwable.getMessage());
                         },
-                        () -> {}
+                        () -> {
+                        }
                 ).execute();
             }
         };
+    }
+
+    private void supplierComboBoxValidation(int selectedIndexSupplier) {
+        HashSet<ErrorValidationModel> errors = new HashSet<>();
+
+        if (selectedIndexSupplier == 0) {
+            HashSet<String> errorMessages = new HashSet<>();
+            errorMessages.add("Supplier wajib dipilih");
+            errors.add(new ErrorValidationModel("supplier", errorMessages));
+        }
+
+        if (!errors.isEmpty()) throw new ValidationException(errors);
     }
 
     private void clearSupplierProductForm(ActionEvent actionEvent) {
@@ -314,10 +330,12 @@ public class SupplierController {
     }
 
     private void createNewSupplierProduct() {
+        clearErrorMessage();
         new DatabaseWorker<>(
                 () -> {
-                    int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex() - 1;
-                    Supplier supplier = suppliers.get(selectedIndex);
+                    int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex();
+                    supplierComboBoxValidation(selectedIndex);
+                    Supplier supplier = suppliers.get(selectedIndex - 1);
                     SupplierProductRequest supplierProductRequest = new SupplierProductRequest(
                             supplier.getId(),
                             supplierScreen.getProductNameTextField().getValue(),
@@ -344,10 +362,12 @@ public class SupplierController {
     }
 
     private void updateSupplierProduct() {
+        clearErrorMessage();
         new DatabaseWorker<>(
                 () -> {
-                    int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex() - 1;
-                    Supplier supplier = suppliers.get(selectedIndex);
+                    int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex();
+                    supplierComboBoxValidation(selectedIndex);
+                    Supplier supplier = suppliers.get(selectedIndex - 1);
                     SupplierProductRequest supplierProductRequest = new SupplierProductRequest(
                             supplierProductResponse.getId(),
                             supplier.getId(),

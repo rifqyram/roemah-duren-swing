@@ -5,6 +5,7 @@ import com.xyz.roemahduren.util.MyFunction;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class DbPersistence implements Persistence {
 
@@ -49,6 +50,7 @@ public class DbPersistence implements Persistence {
                 connection.commit();
             } catch (RuntimeException | SQLException exception) {
                 connection.rollback();
+                if (!Objects.isNull(exception.getMessage())) throw new RuntimeException(exception.getMessage());
                 throw new RuntimeException(exception);
             }
 

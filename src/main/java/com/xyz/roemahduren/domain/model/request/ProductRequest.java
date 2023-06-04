@@ -5,12 +5,10 @@ import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
 import com.xyz.roemahduren.domain.annotation.validation.NotNull;
 import com.xyz.roemahduren.util.RandomGenerator;
 
-import java.math.BigDecimal;
-
 public class ProductRequest {
     private String id;
     @NotBlank
-    private String name;
+    private String supplierProductId;
     @NotBlank
     private String categoryId;
     @NotNull
@@ -26,9 +24,9 @@ public class ProductRequest {
     public ProductRequest() {
     }
 
-    public ProductRequest(String name, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
+    public ProductRequest(String supplierProductId, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
         this.id = RandomGenerator.generateUUID();
-        this.name = name;
+        this.supplierProductId = supplierProductId;
         this.categoryId = categoryId;
         this.price = price;
         this.stock = stock;
@@ -36,9 +34,9 @@ public class ProductRequest {
         this.isActive = isActive;
     }
 
-    public ProductRequest(String id, String name, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
+    public ProductRequest(String id, String supplierProductId, String categoryId, Long price, Integer stock, String branchId, Boolean isActive) {
         this.id = id;
-        this.name = name;
+        this.supplierProductId = supplierProductId;
         this.categoryId = categoryId;
         this.price = price;
         this.stock = stock;
@@ -54,12 +52,12 @@ public class ProductRequest {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSupplierProductId() {
+        return supplierProductId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSupplierProductId(String supplierProductId) {
+        this.supplierProductId = supplierProductId;
     }
 
     public String getCategoryId() {

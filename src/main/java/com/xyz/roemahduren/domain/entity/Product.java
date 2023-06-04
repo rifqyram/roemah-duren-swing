@@ -4,16 +4,14 @@ import com.xyz.roemahduren.domain.annotation.db.Column;
 import com.xyz.roemahduren.domain.annotation.db.Id;
 import com.xyz.roemahduren.domain.annotation.db.Table;
 
-import java.math.BigDecimal;
-
 @Table(name = "m_product")
 public class Product {
     @Id
     @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "supplier_product_id")
+    private String supplierProductId;
 
     @Column(name = "price")
     private Long price;
@@ -33,9 +31,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, String name, Long price, Integer stock, String branchId, String categoryId, Boolean isActive) {
+    public Product(String id, String supplierProductId, Long price, Integer stock, String branchId, String categoryId, Boolean isActive) {
         this.id = id;
-        this.name = name;
+        this.supplierProductId = supplierProductId;
         this.price = price;
         this.stock = stock;
         this.branchId = branchId;
@@ -51,12 +49,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSupplierProductId() {
+        return supplierProductId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSupplierProductId(String supplierProductId) {
+        this.supplierProductId = supplierProductId;
     }
 
     public Long getPrice() {

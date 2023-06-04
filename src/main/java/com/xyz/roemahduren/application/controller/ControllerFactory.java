@@ -64,7 +64,7 @@ public class ControllerFactory {
     }
 
     public ProductController productController() {
-        return new ProductController(productService, categoryService, branchService, productScreen, customDialog);
+        return new ProductController(productService, categoryService, branchService, productScreen, supplierProductService, customDialog);
     }
 
     public OrderController orderController() {

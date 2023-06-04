@@ -27,9 +27,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse create(ProductRequest request) {
         return persistence.executeTransaction(connection, () -> {
-            Product product = new Product(request.getId(), request.getName(), request.getPrice(), request.getStock(), request.getBranchId(), request.getCategoryId(), true);
+            Product product = new Product(request.getId(), request.getSupplierProductId(), request.getPrice(), request.getStock(), request.getBranchId(), request.getCategoryId(), true);
             productRepository.save(product);
-            return new ProductResponse(product.getId(), product.getName(), product.getPrice(), null, product.getStock(), null, product.getActive());
+            return new ProductResponse(product.getId(), product.getSupplierProductId(), product.getPrice(), null, product.getStock(), null, product.getActive());
         });
     }
 
@@ -51,9 +51,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse update(ProductRequest request) {
         return persistence.executeTransaction(connection, () -> {
-            Product product = new Product(request.getId(), request.getName(), request.getPrice(), request.getStock(), request.getBranchId(), request.getCategoryId(), request.getActive());
+            Product product = new Product(request.getId(), request.getSupplierProductId(), request.getPrice(), request.getStock(), request.getBranchId(), request.getCategoryId(), request.getActive());
             productRepository.update(product);
-            return new ProductResponse(product.getId(), product.getName(), product.getPrice(), null, product.getStock(), null, product.getActive());
+            return new ProductResponse(product.getId(), product.getSupplierProductId(), product.getPrice(), null, product.getStock(), null, product.getActive());
         });
     }
 
