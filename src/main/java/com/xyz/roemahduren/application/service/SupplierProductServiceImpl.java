@@ -47,6 +47,11 @@ public class SupplierProductServiceImpl implements SupplierProductService {
     }
 
     @Override
+    public SupplierProduct get(String id) {
+        return supplierProductRepository.findById(id).orElseThrow(() -> new NotFoundException(NotFoundException.SUPPLIER_PRODUCT_NOT_FOUND));
+    }
+
+    @Override
     public List<SupplierProductResponse> getAll() {
         return supplierProductRepository.getAll();
     }
@@ -70,6 +75,25 @@ public class SupplierProductServiceImpl implements SupplierProductService {
                     update.getStock());
         });
     }
+
+    @Override
+    public SupplierProductResponse updateWithoutTransaction(SupplierProductRequest request) {
+        findByIdOrThrowNotFound(request.getId());
+        SupplierProduct update = supplierProductRepository.update(new SupplierProduct(
+                request.getId(),
+                request.getSupplierId(),
+                request.getProductName(),
+                request.getPrice(),
+                request.getStock()
+        ));
+        return new SupplierProductResponse(
+                update.getId(),
+                null,
+                update.getProductName(),
+                update.getPrice(),
+                update.getStock());
+    }
+
 
     @Override
     public void deleteById(String id) {

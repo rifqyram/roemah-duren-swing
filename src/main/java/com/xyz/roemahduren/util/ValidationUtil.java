@@ -101,6 +101,13 @@ public class ValidationUtil {
                         }
                     }
 
+                    if (value instanceof Long) {
+                        long intValue = (long) value;
+                        if (intValue < annotation.value()) {
+                            errorMessages.add(annotation.message());
+                        }
+                    }
+
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }

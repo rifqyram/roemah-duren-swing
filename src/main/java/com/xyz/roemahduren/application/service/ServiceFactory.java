@@ -49,7 +49,7 @@ public class ServiceFactory {
     }
 
     public ProductService productService() {
-        return new ProductServiceImpl(productRepository, connection, persistence);
+        return new ProductServiceImpl(productRepository, connection, persistence, supplierProductService());
     }
 
     public CustomerService customerService() {

@@ -26,10 +26,7 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static com.xyz.roemahduren.constant.ConstantMessage.PRODUCT;
 
@@ -57,6 +54,8 @@ public class ProductController {
         this.supplierProductService = supplierProductService;
         this.dialog = dialog;
         initController();
+        initTable();
+        initForm();
     }
 
     private void initForm() {
@@ -122,14 +121,16 @@ public class ProductController {
     }
 
     private void clearForm() {
-        productScreen.getProductNameComboBox().setValue("");
+        productScreen.getSaveBtn().setText("Simpan");
+        productScreen.getProductNameComboBox().getComboBox().setSelectedIndex(0);
         productScreen.getPriceNumberFormattedField().setValue("0");
         productScreen.getCategoryComboBox().getComboBox().setSelectedIndex(0);
         productScreen.getStockNumberFormattedField().setValue("0");
         productScreen.getBranchComboBox().getComboBox().setSelectedIndex(0);
         productScreen.getIsActiveCheckbox().getCheckbox().setSelected(false);
         productScreen.getIsActiveCheckbox().setVisible(false);
-        productScreen.getSaveBtn().setText("Simpan");
+        initForm();
+        clearError();
         product = null;
     }
 
@@ -139,6 +140,7 @@ public class ProductController {
             return;
         }
 
+        if (dialog.getConfirmUpdateDialog() != 1) return;
         updateProduct();
     }
 
@@ -152,11 +154,11 @@ public class ProductController {
             int selectedIndexBranch = screen.getBranchComboBox().getComboBox().getSelectedIndex();
             int selectedIndexProduct = screen.getProductNameComboBox().getComboBox().getSelectedIndex();
 
+            productAndCategoryAndBranchValidation(selectedIndexProduct, selectedIndexCategory, selectedIndexBranch);
+
             Category category = categories.get(selectedIndexCategory - 1);
             Branch branch = branches.get(selectedIndexBranch - 1);
             SupplierProductResponse supplierProductResponse = supplierProductResponses.get(selectedIndexProduct - 1);
-
-            productAndCategoryAndBranchValidation(selectedIndexProduct, selectedIndexCategory, selectedIndexBranch);
 
             ProductRequest request = new ProductRequest(
                     product.getId(),
@@ -173,6 +175,7 @@ public class ProductController {
         }, productResponse -> {
             clearForm();
             initTable();
+            initForm();
             dialog.getSuccessUpdateMessageDialog(PRODUCT);
         }, throwable -> {
             if (throwable instanceof ValidationException) {
@@ -213,6 +216,7 @@ public class ProductController {
         }, productResponse -> {
             clearForm();
             initTable();
+            initForm();
             dialog.getSuccessCreatedMessageDialog(PRODUCT);
         }, throwable -> {
             if (throwable instanceof ValidationException) {
@@ -226,6 +230,30 @@ public class ProductController {
 
     private void productAndCategoryAndBranchValidation(int selectedIndexProduct, int selectedIndexCategory, int selectedIndexBranch) {
         HashSet<ErrorValidationModel> errors = new HashSet<>();
+
+        if (selectedIndexProduct > 0) {
+            SupplierProductResponse supplierProductResponse = supplierProductResponses.get(selectedIndexProduct - 1);
+            int stockReq = Integer.parseInt(productScreen.getStockNumberFormattedField().getValue());
+            int result = supplierProductResponse.getStock() - stockReq;
+
+            if (!Objects.isNull(product) && stockReq < product.getStock()) {
+                return;
+            }
+
+            if (result < 0) {
+                HashSet<String> errorMessages = new HashSet<>();
+                String format = String.format("Maksimal Stok dari %s: %s", supplierProductResponse.getProductName(), supplierProductResponse.getStock());
+                errorMessages.add(format);
+                errors.add(new ErrorValidationModel("stock", errorMessages));
+            }
+
+//            if (Integer.parseInt(productScreen.getStockNumberFormattedField().getValue()) > supplierProductResponse.getStock()) {
+//                HashSet<String> errorMessages = new HashSet<>();
+//                String format = String.format("Maksimal Stok dari %s: %s", supplierProductResponse.getProductName(), supplierProductResponse.getStock());
+//                errorMessages.add(format);
+//                errors.add(new ErrorValidationModel("stock", errorMessages));
+//            }
+        }
 
         if (selectedIndexProduct == 0) {
             HashSet<String> errorMessages = new HashSet<>();
@@ -328,6 +356,7 @@ public class ProductController {
                 o -> {
                     dialog.getSuccessUpdateMessageDialog(PRODUCT);
                     initTable();
+                    initForm();
                 },
                 throwable -> {
                     dialog.getFailedMessageDialog(throwable.getMessage());
@@ -364,7 +393,7 @@ public class ProductController {
         ProductResponse productResponse = products.get(row);
         productScreen.getIsActiveCheckbox().setVisible(true);
         productScreen.getSaveBtn().setText("Ubah");
-        productScreen.getProductNameComboBox().setValue(productResponse.getName());
+        productScreen.getProductNameComboBox().getComboBox().setSelectedItem(productResponse.getName());
         productScreen.getPriceNumberFormattedField().setValue(String.valueOf(productResponse.getPrice().intValue()));
         productScreen.getCategoryComboBox().getComboBox().setSelectedItem(productResponse.getCategory());
         productScreen.getStockNumberFormattedField().setValue(productResponse.getStock().toString());

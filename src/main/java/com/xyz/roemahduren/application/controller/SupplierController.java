@@ -228,6 +228,7 @@ public class SupplierController {
         supplierScreen.getSaveBtnSupplier().setText("Simpan");
         supplierScreen.getNameTextField().setValue("");
         supplierScreen.getAddressTextArea().setValue("");
+        clearErrorMessage();
     }
 
     private void initSupplierProductTable() {
@@ -316,6 +317,7 @@ public class SupplierController {
         supplierScreen.getPriceNumberFormattedField().setValue("0");
         supplierScreen.getStockNumberFormattedField().setValue("0");
         supplierScreen.getSaveBtnProductSupplier().setText("Simpan");
+        clearErrorMessage();
     }
 
     private void saveSupplierProduct(ActionEvent actionEvent) {
@@ -418,6 +420,7 @@ public class SupplierController {
 
     public SupplierScreen getSupplierScreen() {
         initSupplierProductForm();
+        initSupplierProductTable();
         return supplierScreen;
     }
 }

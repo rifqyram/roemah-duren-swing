@@ -16,7 +16,6 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.xyz.roemahduren.domain.constant.OrderStatus.ORDERED;
 
@@ -39,8 +38,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse create(OrderRequest request) {
         return persistence.executeTransaction(connection, () -> {
-            Customer customer = customerService.create(request.getCustomer());
-            Order order = new Order(request.getId(), request.getPurchaseNumber(), customer.getId(), LocalDateTime.now(), ORDERED.getStatus());
+            Customer customer = customerService.getOrSave(request.getCustomer());
+            Order order = new Order(request.getId(), request.getPurchaseNumber(), customer.getId(), LocalDateTime.now());
             orderRepository.save(order);
             List<OrderDetailResponse> orderDetails = orderDetailService.createAll(request.getOrderDetailRequest());
             return getOrderResponse(customer, order, orderDetails);

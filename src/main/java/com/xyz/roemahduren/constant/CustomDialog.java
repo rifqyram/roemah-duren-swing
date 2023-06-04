@@ -22,6 +22,7 @@ public class CustomDialog {
     public static final String DELETE_CONFIRMATION = "Apakah Anda yakin ingin menghapus?";
     public static final String UPDATE_CONFIRMATION = "Apakah Anda yakin ingin menghubah?";
     public static final String LOGOUT_CONFIRMATION = "Apakah Anda yakin ingin keluar?";
+    public static final String CHECKOUT_CONFIRMATION = "Apakah Anda yakin ingin checkout semua keranjang?";
 
     public CustomDialog(CustomDialogMessage dialogMessage, CustomConfirmDialog confirmDialog) {
         this.dialogMessage = dialogMessage;

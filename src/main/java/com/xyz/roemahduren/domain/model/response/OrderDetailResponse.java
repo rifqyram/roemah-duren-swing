@@ -3,13 +3,15 @@ package com.xyz.roemahduren.domain.model.response;
 public class OrderDetailResponse {
     private String id;
     private String orderId;
+    private String productId;
     private String productName;
     private Integer quantity;
     private Long totalPrice;
 
-    public OrderDetailResponse(String id, String orderId, String productName, Integer quantity, Long totalPrice) {
+    public OrderDetailResponse(String id, String orderId, String productId, String productName, Integer quantity, Long totalPrice) {
         this.id = id;
         this.orderId = orderId;
+        this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
@@ -29,6 +31,14 @@ public class OrderDetailResponse {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {

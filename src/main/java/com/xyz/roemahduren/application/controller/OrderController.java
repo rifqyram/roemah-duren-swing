@@ -2,15 +2,15 @@ package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
-import com.xyz.roemahduren.domain.entity.Order;
-import com.xyz.roemahduren.domain.entity.OrderDetail;
+import com.xyz.roemahduren.domain.model.request.CustomerRequest;
+import com.xyz.roemahduren.domain.model.request.OrderDetailRequest;
+import com.xyz.roemahduren.domain.model.request.OrderRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.model.response.OrderDetailResponse;
 import com.xyz.roemahduren.domain.model.response.ProductResponse;
 import com.xyz.roemahduren.domain.service.OrderService;
 import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.exception.ValidationException;
-import com.xyz.roemahduren.presentation.component.input.RoundedSpinner;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.table.TableActionDeleteCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionDeleteCellRender;
@@ -18,11 +18,11 @@ import com.xyz.roemahduren.presentation.component.table.TableActionSelectCellRen
 import com.xyz.roemahduren.presentation.component.table.TableActionSelectedCellEditor;
 import com.xyz.roemahduren.presentation.event.TableActionSelectedEvent;
 import com.xyz.roemahduren.presentation.screen.OrderScreen;
+import com.xyz.roemahduren.util.DatabaseWorker;
 import com.xyz.roemahduren.util.RandomGenerator;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -41,8 +41,6 @@ public class OrderController {
     private DefaultTableModel productTableModel;
     private DefaultTableModel detailOrderTableModel;
     private ProductResponse productResponse;
-    private Order order;
-    private OrderDetail orderDetail;
     private OrderDetailResponse orderDetailResponse;
     private List<ProductResponse> productResponses;
     private List<OrderDetailResponse> orderDetailResponses;
@@ -76,6 +74,41 @@ public class OrderController {
         orderScreen.getClearCartBtn().addActionListener(this::clearCart);
         orderScreen.getSearchBtn().addActionListener(this::searchProduct);
         orderScreen.getQuantitySpinner().getRoundedSpinner().addChangeListener(handleChangeQuantity());
+        orderScreen.getCheckoutBtn().addActionListener(this::checkout);
+    }
+
+    private void checkout(ActionEvent actionEvent) {
+        if (dialog.getConfirmInfoDialog(CustomDialog.CHECKOUT_CONFIRMATION) != 1) return;
+        new DatabaseWorker<>(
+                () -> {
+                    if (orderDetailResponses.isEmpty()) throw new RuntimeException("Keranjang tidak boleh kosong");
+                    CustomerRequest customerRequest;
+                    if (orderScreen.getCheckboxAsGuest().getCheckbox().isSelected()) {
+                        customerRequest = new CustomerRequest(ConstantMessage.CUSTOMER, null, null);
+                    } else {
+                        customerRequest = new CustomerRequest(orderScreen.getCustomerNameTf().getValue(), orderScreen.getCustomerPhoneNumberTf().getValue(), null);
+                    }
+
+                    OrderRequest request = new OrderRequest();
+                    List<OrderDetailRequest> orderDetailRequests = orderDetailResponses.stream()
+                            .map(odr -> new OrderDetailRequest(request.getId(), odr.getProductId(), odr.getQuantity()))
+                            .collect(Collectors.toList());
+                    request.setCustomer(customerRequest);
+                    request.setOrderDetailRequest(orderDetailRequests);
+                    return orderService.create(request);
+                },
+                result -> {
+                    orderDetailResponses = new ArrayList<>();
+                    dialog.getSuccessMessageDialog(ConstantMessage.SUCCESS_CHECKOUT);
+                    initTableOrderDetail();
+                    initTableProduct();
+                },
+                throwable -> {
+                    dialog.getFailedMessageDialog(throwable.getMessage());
+                },
+                () -> {
+                }
+        ).execute();
     }
 
     private ChangeListener handleChangeQuantity() {
@@ -182,7 +215,8 @@ public class OrderController {
             if (productResponse != null) {
                 orderDetailResponse = new OrderDetailResponse(
                         RandomGenerator.generateUUID(),
-                        RandomGenerator.generateUUID(),
+                        null,
+                        productResponse.getId(),
                         productResponse.getName(),
                         orderScreen.getQuantitySpinner().getValue(),
                         orderScreen.getQuantitySpinner().getValue() * productResponse.getPrice()
@@ -208,7 +242,6 @@ public class OrderController {
                 orderScreen.getQuantitySpinner().setErrorMessage(ValidationUtil.getMessage(validationModel.getMessages()));
             }
         }
-        return;
     }
 
     private void initTableProduct() {

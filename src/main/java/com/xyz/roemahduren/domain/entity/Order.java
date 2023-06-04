@@ -22,18 +22,14 @@ public class Order {
     @Column(name = "trans_date")
     private LocalDateTime transactionDate;
 
-    @Column(name = "order_status")
-    private String orderStatus;
-
     public Order() {
     }
 
-    public Order(String id, String purchaseNumber, String customerId, LocalDateTime transactionDate, String orderStatus) {
+    public Order(String id, String purchaseNumber, String customerId, LocalDateTime transactionDate) {
         this.id = id;
         this.purchaseNumber = purchaseNumber;
         this.customerId = customerId;
         this.transactionDate = transactionDate;
-        this.orderStatus = orderStatus;
     }
 
     public String getId() {
@@ -68,11 +64,4 @@ public class Order {
         this.transactionDate = transactionDate;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 }
