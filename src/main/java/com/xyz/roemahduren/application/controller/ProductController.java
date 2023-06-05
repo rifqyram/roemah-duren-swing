@@ -236,13 +236,17 @@ public class ProductController {
             int stockReq = Integer.parseInt(productScreen.getStockNumberFormattedField().getValue());
             int result = supplierProductResponse.getStock() - stockReq;
 
-            if (!Objects.isNull(product) && stockReq < product.getStock()) {
+            if ((supplierProductResponse.getStock() + product.getStock()) >= stockReq) {
+                return;
+            }
+
+            if (!Objects.isNull(product) && stockReq <= product.getStock()) {
                 return;
             }
 
             if (result < 0) {
                 HashSet<String> errorMessages = new HashSet<>();
-                String format = String.format("Maksimal Stok dari %s: %s", supplierProductResponse.getProductName(), supplierProductResponse.getStock());
+                String format = String.format("Sisa Stok dari %s: %s", supplierProductResponse.getProductName(), supplierProductResponse.getStock());
                 errorMessages.add(format);
                 errors.add(new ErrorValidationModel("stock", errorMessages));
             }
