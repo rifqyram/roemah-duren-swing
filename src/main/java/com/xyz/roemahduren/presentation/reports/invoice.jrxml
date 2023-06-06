@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db2822b3-cf01-453b-9600-e0e48b614425">
+	<property name="ireport.zoom" value="1.6528925619834727"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Heading 3" fontSize="14" isBold="true"/>
+	<style name="Heading 1" fontSize="16" isBold="true"/>
+	<style name="Heading 2" fontSize="14" isBold="true" isItalic="true"/>
+	<parameter name="ORDER_ID" class="java.lang.String"/>
+	<parameter name="USER_ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT tod.id AS id,
+       tod.order_id AS order_id,
+       t.po_number AS po_number,
+       DATE_FORMAT(t.trans_date, '%d %M %Y') AS trans_date,
+       mc.name AS customer_name,
+       msp.product_name AS product_name,
+       REPLACE(FORMAT(msp.price, 0), ',', '.') AS product_price,
+       tod.quantity AS quantity,
+       REPLACE(FORMAT(tod.total_price, 0), ',', '.') AS total_price,
+       REPLACE(FORMAT(grand_total, 0), ',', '.') AS grand_total
+FROM (
+         SELECT tod.id,
+                tod.order_id,
+                tod.quantity,
+                mp.supplier_product_id,
+                mp.price * tod.quantity AS total_price
+         FROM m_product mp
+                  JOIN t_order_detail tod ON mp.id = tod.product_id
+         WHERE tod.order_id = $P{ORDER_ID}
+     ) AS tod
+         JOIN m_supplier_product msp ON msp.id = tod.supplier_product_id
+         JOIN t_order t ON tod.order_id = t.id
+         JOIN m_customer mc ON t.customer_id = mc.id
+         CROSS JOIN (
+    SELECT SUM(total_price) AS grand_total
+    FROM (
+             SELECT mp.price * tod.quantity AS total_price
+             FROM m_product mp
+                      JOIN t_order_detail tod ON mp.id = tod.product_id
+             WHERE tod.order_id = $P{ORDER_ID}
+         ) AS sub
+) AS gt;]]>
+	</queryString>
+	<field name="id" class="java.lang.String"/>
+	<field name="order_id" class="java.lang.String"/>
+	<field name="po_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="trans_date" class="java.lang.String"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="product_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="product_price" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.Integer"/>
+	<field name="total_price" class="java.lang.String"/>
+	<field name="grand_total" class="java.lang.String"/>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="35" width="100" height="20" uuid="b72f3e1a-1ee9-4000-8ce6-19dd4a7bcaf0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="445" y="0" width="110" height="35" forecolor="#829460" uuid="80a993c4-c76c-4a03-a869-aaf7eb253ab6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="139" height="55" uuid="672a199f-15d1-46af-9a4a-b6217e781690"/>
+				<imageExpression><![CDATA["/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/resources/images/Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="20" uuid="bd813d9d-e319-439d-a073-6e8f4420adb6"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DITERBITKAN ATAS NAMA
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="24" uuid="9e72210c-10f6-4394-b3f5-39535fae571c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Admin/Cashier]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="105" y="20" width="100" height="24" uuid="33c35f2c-cd51-4aa1-a00e-4c1631f075ff"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{USER_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="306" y="0" width="139" height="20" uuid="f41e479c-4cf8-449c-a4cf-888c8bfd0c8c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNTUK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="20" width="100" height="14" uuid="13672f6b-35c8-444e-9de4-ac6b2eeb1f36"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pembeli]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="20" width="139" height="14" uuid="25fef96d-8a94-4b42-babd-52407a56214e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="306" y="34" width="100" height="14" uuid="266bd011-70e5-4444-91d3-8feefbfd1f5d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tanggal Pembelian]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="34" width="139" height="14" uuid="89eabf76-3b5a-43c9-81d3-2aca9ec286d8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{trans_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="20" width="5" height="14" uuid="0f83e91d-b71b-4b18-8251-4f44c594ec34"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="34" width="5" height="14" uuid="03e2de96-2b21-4687-a5b5-7646af9fb38a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="20" width="5" height="24" uuid="23f07532-dd8e-4512-8ddf-34b190752a25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="9" width="100" height="20" uuid="5048c621-c0b9-4ce3-943b-10de03d3c317"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFO PRODUK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="9" width="48" height="20" uuid="61f8668c-e208-4d30-9d77-5d9bac05251a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="9" width="100" height="20" uuid="b291a520-45c4-4d3f-9e6b-729316971a4c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HARGA SATUAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="9" width="100" height="20" uuid="edf7e3d2-f4f4-4be0-bc05-d605d0513671"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL HARGA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="bb8da998-316d-49d7-a25d-4b9caf38181e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="35" width="555" height="1" uuid="7eb8e9fe-52a0-455a-b328-15e641264bde"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29">
+			<textField>
+				<reportElement x="12" y="4" width="193" height="20" forecolor="#829460" uuid="054eccb7-fe09-4355-bc74-640147ba0c58"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="435" y="4" width="21" height="20" uuid="de5b8545-7ad7-41bd-9d7b-be9825e2bf7a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Rp]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="231" y="4" width="48" height="20" uuid="c9a5dd40-140e-4049-95a9-3040ca76c698"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="4" width="79" height="20" uuid="2b9ff2d2-7382-4f09-9721-957f67a57de1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{product_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="4" width="73" height="20" uuid="2aa6b841-cf05-45e0-b2d3-ab90eed65f00"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_price}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="12" y="28" width="537" height="1" forecolor="#CCCCCC" uuid="40b751c1-fe72-4d96-b195-f9ebb494ee73"/>
+			</line>
+			<staticText>
+				<reportElement x="311" y="4" width="21" height="20" uuid="c0e8aba7-49ac-4b32-b6cb-ffa6051ce571"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Rp]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="26" width="299" height="28" uuid="371f710d-0721-474f-9f08-1a042b16793b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Invoice ini sah dan diproses oleh komputer
+Silakan hubungi Roemah Duren apabila kamu membutuhkan bantuan.]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="450" y="34" width="100" height="20" uuid="3b265143-839f-4c57-9978-204044b256be"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="311" y="13" width="100" height="20" uuid="67ef22e9-5aa6-41f3-9d6f-523e36eeb04b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL TAGIHAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="13" width="21" height="20" uuid="5662a119-345c-4931-abb1-e26cbe86a9a8"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rp]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="14" width="73" height="20" uuid="e33f13c0-fa64-4ea3-a6e9-e878bc56e47c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

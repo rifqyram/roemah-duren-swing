@@ -236,7 +236,7 @@ public class ProductController {
             int stockReq = Integer.parseInt(productScreen.getStockNumberFormattedField().getValue());
             int result = supplierProductResponse.getStock() - stockReq;
 
-            if ((supplierProductResponse.getStock() + product.getStock()) >= stockReq) {
+            if (!Objects.isNull(product) && (supplierProductResponse.getStock() + product.getStock()) >= stockReq) {
                 return;
             }
 
@@ -251,12 +251,6 @@ public class ProductController {
                 errors.add(new ErrorValidationModel("stock", errorMessages));
             }
 
-//            if (Integer.parseInt(productScreen.getStockNumberFormattedField().getValue()) > supplierProductResponse.getStock()) {
-//                HashSet<String> errorMessages = new HashSet<>();
-//                String format = String.format("Maksimal Stok dari %s: %s", supplierProductResponse.getProductName(), supplierProductResponse.getStock());
-//                errorMessages.add(format);
-//                errors.add(new ErrorValidationModel("stock", errorMessages));
-//            }
         }
 
         if (selectedIndexProduct == 0) {
