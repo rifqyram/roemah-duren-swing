@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.xyz.roemahduren.presentation.component;
+package com.xyz.roemahduren.presentation.component.dialog;
 
+import com.xyz.roemahduren.presentation.component.ImagePanel;
+import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.util.SwingUtil;
 
 import java.awt.Color;
@@ -84,7 +86,6 @@ public class CustomConfirmDialog extends JDialog {
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new Color(255, 255, 254));
-        setMaximumSize(new Dimension(600, 300));
         setMinimumSize(new Dimension(400, 200));
 
         icon.setBackground(new Color(255, 255, 254));
@@ -110,17 +111,11 @@ public class CustomConfirmDialog extends JDialog {
         text.setHorizontalAlignment(SwingConstants.CENTER);
         text.setText("Text");
 
-        confirmBtn.setBackground(new Color(130, 148, 96));
-        confirmBtn.setForeground(new Color(255, 255, 254));
         confirmBtn.setText("Yes");
-        confirmBtn.setBorderColor(new Color(130, 148, 96));
         confirmBtn.setBorderPainted(false);
         buttonGroup.add(confirmBtn);
-        confirmBtn.setColor(new Color(130, 148, 96));
         confirmBtn.setColorClick(new Color(130, 148, 96));
-        confirmBtn.setColorOver(new Color(118, 134, 87));
 
-        cancelBtn.setForeground(new Color(255, 255, 254));
         cancelBtn.setText("Cancel");
         cancelBtn.setBorderColor(new Color(187, 33, 36));
         buttonGroup.add(cancelBtn);

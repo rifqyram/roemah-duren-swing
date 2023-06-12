@@ -7,7 +7,7 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.Utility;
 import com.xyz.roemahduren.util.ValidationUtil;
@@ -60,7 +60,7 @@ public class LoginController {
         LoginScreen screen = loginScreen;
         String btnText = screen.getSignInBtn().getText();
 
-        DatabaseWorker<AuthResponse> databaseWorker = new DatabaseWorker<>(
+        ServiceWorker<AuthResponse> serviceWorker = new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(loginScreen.getSignInBtn());
                     AuthRequest authRequest = new AuthRequest(screen.getEmailTf().getValue(), screen.getPasswordTf().getValue());
@@ -86,7 +86,7 @@ public class LoginController {
                 },
                 () -> SwingUtil.clearPrimaryLoading(loginScreen.getSignInBtn(), btnText)
         );
-        databaseWorker.execute();
+        serviceWorker.execute();
     }
 
     private void setValidationError(ValidationException throwable) {

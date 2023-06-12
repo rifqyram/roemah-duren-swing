@@ -15,7 +15,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.SupplierScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -108,7 +108,7 @@ public class SupplierController {
 
     private void createNewSupplier() {
         clearErrorMessage();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(supplierScreen.getSaveBtnSupplier());
                     SupplierRequest supplierRequest = new SupplierRequest(supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue());
@@ -133,7 +133,7 @@ public class SupplierController {
 
     private void updateSupplier() {
         clearErrorMessage();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(supplierScreen.getSaveBtnSupplier());
                     SupplierRequest supplierRequest = new SupplierRequest(supplier.getId(), supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue());
@@ -188,7 +188,7 @@ public class SupplierController {
             public void onDelete(int row) {
                 int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
                 if (confirmDeleteDialog != 1) return;
-                new DatabaseWorker<>(
+                new ServiceWorker<>(
                         () -> {
                             Supplier supplier = suppliers.get(row);
                             supplierService.deleteById(supplier.getId());
@@ -270,7 +270,7 @@ public class SupplierController {
             @Override
             public void onDelete(int row) {
                 if (dialog.getConfirmDeleteDialog() != 1) return;
-                new DatabaseWorker<>(
+                new ServiceWorker<>(
                         () -> {
                             SupplierProductResponse sp = supplierProductResponses.get(row);
                             supplierProductService.deleteById(sp.getId());
@@ -333,7 +333,7 @@ public class SupplierController {
 
     private void createNewSupplierProduct() {
         clearErrorMessage();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex();
                     supplierComboBoxValidation(selectedIndex);
@@ -365,7 +365,7 @@ public class SupplierController {
 
     private void updateSupplierProduct() {
         clearErrorMessage();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex();
                     supplierComboBoxValidation(selectedIndex);

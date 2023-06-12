@@ -1,7 +1,7 @@
 package com.xyz.roemahduren.presentation;
 
-import com.xyz.roemahduren.presentation.component.CustomConfirmDialog;
-import com.xyz.roemahduren.presentation.component.CustomDialogMessage;
+import com.xyz.roemahduren.presentation.component.dialog.CustomConfirmDialog;
+import com.xyz.roemahduren.presentation.component.dialog.CustomDialogMessage;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ScreenFactory {

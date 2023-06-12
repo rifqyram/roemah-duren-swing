@@ -18,7 +18,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionSelectCellRen
 import com.xyz.roemahduren.presentation.component.table.TableActionSelectedCellEditor;
 import com.xyz.roemahduren.presentation.event.TableActionSelectedEvent;
 import com.xyz.roemahduren.presentation.screen.OrderScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.RandomGenerator;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
@@ -79,7 +79,7 @@ public class OrderController {
 
     private void checkout(ActionEvent actionEvent) {
         if (dialog.getConfirmInfoDialog(CustomDialog.CHECKOUT_CONFIRMATION) != 1) return;
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     if (orderDetailResponses.isEmpty()) throw new RuntimeException("Keranjang tidak boleh kosong");
                     CustomerRequest customerRequest;

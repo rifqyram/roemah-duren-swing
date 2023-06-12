@@ -12,6 +12,10 @@ public class TableActionSelectCellRender extends DefaultTableCellRenderer {
         this.panelAction = new PanelActionSelect();
     }
 
+    public TableActionSelectCellRender(String text) {
+        this.panelAction = new PanelActionSelect(text);
+    }
+
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         String columnName = table.getColumnName(column);

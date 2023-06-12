@@ -2,16 +2,15 @@ package com.xyz.roemahduren.util;
 
 import javax.swing.*;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
-public class DatabaseWorker<T> extends SwingWorker<T, Void> {
+public class ServiceWorker<T> extends SwingWorker<T, Void> {
     private final Callable<T> callable;
     private final Consumer<T> onSuccess;
     private final Consumer<Throwable> onError;
     private final Runnable onFinally;
 
-    public DatabaseWorker(Callable<T> callable, Consumer<T> onSuccess, Consumer<Throwable> onError, Runnable onFinally) {
+    public ServiceWorker(Callable<T> callable, Consumer<T> onSuccess, Consumer<Throwable> onError, Runnable onFinally) {
         this.callable = callable;
         this.onSuccess = onSuccess;
         this.onError = onError;

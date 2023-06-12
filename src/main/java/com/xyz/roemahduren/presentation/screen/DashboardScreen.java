@@ -1,5 +1,6 @@
 package com.xyz.roemahduren.presentation.screen;
 
+import com.xyz.roemahduren.presentation.component.card.Card;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import com.xyz.roemahduren.presentation.component.table.Table;
 
@@ -24,6 +25,26 @@ public class DashboardScreen extends JPanel {
         table1.fixTable(jScrollPane1);
     }
 
+    public Card getCard1() {
+        return card1;
+    }
+
+    public Card getCard2() {
+        return card2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public Table getTable1() {
+        return table1;
+    }
+
+    public JLabel getTitleTable() {
+        return titleTable;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +55,11 @@ public class DashboardScreen extends JPanel {
     private void initComponents() {
 
         welcomeLabel = new JLabel();
-        roundedPanel1 = new RoundedPanel();
         jScrollPane1 = new JScrollPane();
         table1 = new Table();
+        card1 = new Card();
+        card2 = new Card();
+        titleTable = new JLabel();
 
         setBackground(new Color(255, 255, 254));
         setMinimumSize(new Dimension(800, 600));
@@ -45,18 +68,6 @@ public class DashboardScreen extends JPanel {
 
         welcomeLabel.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
         welcomeLabel.setText("Hello Admin!");
-
-        roundedPanel1.setBackground(new Color(245, 245, 245));
-        roundedPanel1.setCornerRadius(8);
-
-        GroupLayout roundedPanel1Layout = new GroupLayout(roundedPanel1);
-        roundedPanel1.setLayout(roundedPanel1Layout);
-        roundedPanel1Layout.setHorizontalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 671, Short.MAX_VALUE)
-        );
-        roundedPanel1Layout.setVerticalGroup(roundedPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
-        );
 
         jScrollPane1.setBackground(new Color(243, 244, 245));
         jScrollPane1.setToolTipText("");
@@ -84,27 +95,50 @@ public class DashboardScreen extends JPanel {
         table1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(table1);
 
+        card1.setColor1(new Color(221, 83, 83));
+        card1.setColor2(new Color(192, 72, 72));
+
+        card2.setColor1(new Color(130, 148, 96));
+        card2.setColor2(new Color(108, 122, 80));
+
+        titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
+        titleTable.setForeground(new Color(2, 8, 38));
+        titleTable.setText("Daftar Transaksi");
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(welcomeLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
-                    .addComponent(roundedPanel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74))
+                        .addComponent(titleTable)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(welcomeLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(card1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(35, 35, 35)
+                                .addComponent(card2, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(welcomeLabel)
-                .addGap(37, 37, 37)
-                .addComponent(roundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(card1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(titleTable)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(card2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -114,9 +148,11 @@ public class DashboardScreen extends JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Card card1;
+    private Card card2;
     private JScrollPane jScrollPane1;
-    private RoundedPanel roundedPanel1;
     private Table table1;
+    private JLabel titleTable;
     private JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,9 +4,8 @@ import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.model.request.ChangePasswordRequest;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.presentation.screen.SettingScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
@@ -35,7 +34,7 @@ public class SettingController {
     }
 
     private void saveAuthUser(ActionEvent actionEvent) {
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     ChangePasswordRequest request = new ChangePasswordRequest(
                             settingScreen.getEmailTextField().getValue(),

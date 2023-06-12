@@ -10,6 +10,7 @@ import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
 import com.xyz.roemahduren.presentation.ScreenFactory;
+import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 
 import javax.swing.*;
@@ -89,6 +90,7 @@ public class RoemahDurenApp {
         ScreenFactory screenFactory = new ScreenFactory();
 
         CustomDialog dialog = new CustomDialog(screenFactory.customDialogMessage(), screenFactory.customConfirmDialog());
+        DetailTransactionHistoryDialog detailTransactionHistoryDialog = new DetailTransactionHistoryDialog(serviceFactory.getReportService(), dialog);
 
         return new ControllerFactory(
                 serviceFactory.authService(),
@@ -98,7 +100,9 @@ public class RoemahDurenApp {
                 serviceFactory.orderService(),
                 serviceFactory.supplierService(),
                 serviceFactory.supplierProductService(),
-                serviceFactory.customerService(), screenFactory.loginScreen(),
+                serviceFactory.customerService(),
+                serviceFactory.getReportService(),
+                screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.branchScreen(),
                 screenFactory.mainScreen(),
@@ -109,6 +113,8 @@ public class RoemahDurenApp {
                 screenFactory.settingScreen(),
                 screenFactory.customerScreen(),
                 screenFactory.transactionHistoryScreen(),
-                dialog);
+                screenFactory.mainScreen().getDashboardScreen(),
+                dialog,
+                detailTransactionHistoryDialog);
     }
 }

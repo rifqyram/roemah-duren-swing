@@ -11,7 +11,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.CategoryScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -88,7 +88,7 @@ public class CategoryController {
 
     private void updateCategory() {
         RoundedButton saveBtn = categoryScreen.getSaveBtn();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(saveBtn);
                     CategoryRequest categoryRequest = new CategoryRequest(category.getId(), categoryScreen.getNameTextField().getValue());
@@ -116,7 +116,7 @@ public class CategoryController {
 
     private void createCategory() {
         RoundedButton saveBtn = categoryScreen.getSaveBtn();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(saveBtn);
                     CategoryRequest categoryRequest = new CategoryRequest(categoryScreen.getNameTextField().getValue());
@@ -193,7 +193,7 @@ public class CategoryController {
         int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
         if (confirmDeleteDialog != 1) return;
 
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     Category category = categories.get(row);
                     categoryService.deleteById(category.getId());

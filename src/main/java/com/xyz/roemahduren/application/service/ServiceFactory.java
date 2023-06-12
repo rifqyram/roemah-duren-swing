@@ -71,4 +71,8 @@ public class ServiceFactory {
     public SupplierProductService supplierProductService() {
         return new SupplierProductServiceImpl(supplierProductRepository, connection, persistence);
     }
+
+    public ReportService getReportService() {
+        return new ReportServiceImpl(connection);
+    }
 }

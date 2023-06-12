@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db2822b3-cf01-453b-9600-e0e48b614425">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db2822b3-cf01-453b-9600-e0e48b614425">
 	<property name="ireport.zoom" value="1.6528925619834727"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -70,14 +70,14 @@ FROM (
 				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="445" y="0" width="110" height="35" forecolor="#829460" uuid="80a993c4-c76c-4a03-a869-aaf7eb253ab6"/>
+				<reportElement x="445" y="0" width="110" height="35" forecolor="#6FC078" uuid="80a993c4-c76c-4a03-a869-aaf7eb253ab6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INVOICE]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="139" height="55" uuid="672a199f-15d1-46af-9a4a-b6217e781690"/>
+				<reportElement x="5" y="4" width="151" height="55" uuid="77cd8ec2-d7fe-4d9a-aff0-df3bc6611b40"/>
 				<imageExpression><![CDATA["/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/resources/images/Logo.png"]]></imageExpression>
 			</image>
 		</band>
@@ -94,12 +94,12 @@ FROM (
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="20" width="100" height="24" uuid="9e72210c-10f6-4394-b3f5-39535fae571c"/>
+				<reportElement x="0" y="20" width="100" height="24" forecolor="#999999" uuid="9e72210c-10f6-4394-b3f5-39535fae571c"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Admin/Cashier]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="105" y="20" width="100" height="24" uuid="33c35f2c-cd51-4aa1-a00e-4c1631f075ff"/>
+				<reportElement x="105" y="20" width="140" height="24" uuid="33c35f2c-cd51-4aa1-a00e-4c1631f075ff"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{USER_ID}]]></textFieldExpression>
 			</textField>
@@ -111,7 +111,7 @@ FROM (
 				<text><![CDATA[UNTUK]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="306" y="20" width="100" height="14" uuid="13672f6b-35c8-444e-9de4-ac6b2eeb1f36"/>
+				<reportElement x="306" y="20" width="100" height="14" forecolor="#999999" uuid="13672f6b-35c8-444e-9de4-ac6b2eeb1f36"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Pembeli]]></text>
 			</staticText>
@@ -121,7 +121,7 @@ FROM (
 				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="306" y="34" width="100" height="14" uuid="266bd011-70e5-4444-91d3-8feefbfd1f5d"/>
+				<reportElement x="306" y="34" width="100" height="14" forecolor="#999999" uuid="266bd011-70e5-4444-91d3-8feefbfd1f5d"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Tanggal Pembelian]]></text>
 			</staticText>
@@ -131,17 +131,17 @@ FROM (
 				<textFieldExpression><![CDATA[$F{trans_date}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="406" y="20" width="5" height="14" uuid="0f83e91d-b71b-4b18-8251-4f44c594ec34"/>
+				<reportElement x="406" y="20" width="5" height="14" forecolor="#999999" uuid="0f83e91d-b71b-4b18-8251-4f44c594ec34"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="406" y="34" width="5" height="14" uuid="03e2de96-2b21-4687-a5b5-7646af9fb38a"/>
+				<reportElement x="406" y="34" width="5" height="14" forecolor="#999999" uuid="03e2de96-2b21-4687-a5b5-7646af9fb38a"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="20" width="5" height="24" uuid="23f07532-dd8e-4512-8ddf-34b190752a25"/>
+				<reportElement x="100" y="20" width="5" height="24" forecolor="#999999" uuid="23f07532-dd8e-4512-8ddf-34b190752a25"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[:]]></text>
 			</staticText>
@@ -188,7 +188,7 @@ FROM (
 	<detail>
 		<band height="29">
 			<textField>
-				<reportElement x="12" y="4" width="193" height="20" forecolor="#829460" uuid="054eccb7-fe09-4355-bc74-640147ba0c58"/>
+				<reportElement x="12" y="4" width="193" height="20" forecolor="#6FC078" uuid="054eccb7-fe09-4355-bc74-640147ba0c58"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -266,6 +266,21 @@ Silakan hubungi Roemah Duren apabila kamu membutuhkan bantuan.]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="5" y="9" width="100" height="24" forecolor="#999999" uuid="47205975-a04f-4294-a699-63d9c443eae1"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Admin/Cashier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="9" width="5" height="24" forecolor="#999999" uuid="f9a4f949-2ec9-40d7-a901-63b29c54cfa9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="9" width="100" height="24" forecolor="#000000" uuid="adabb65e-ae99-43c2-aa72-cb6ff969f7ab"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tunai]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

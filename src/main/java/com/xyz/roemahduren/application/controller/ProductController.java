@@ -20,7 +20,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.ProductScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -148,7 +148,7 @@ public class ProductController {
         clearError();
         ProductScreen screen = productScreen;
 
-        new DatabaseWorker<>(() -> {
+        new ServiceWorker<>(() -> {
             setLoading();
             int selectedIndexCategory = screen.getCategoryComboBox().getComboBox().getSelectedIndex();
             int selectedIndexBranch = screen.getBranchComboBox().getComboBox().getSelectedIndex();
@@ -190,7 +190,7 @@ public class ProductController {
         clearError();
         ProductScreen screen = productScreen;
 
-        new DatabaseWorker<>(() -> {
+        new ServiceWorker<>(() -> {
             setLoading();
 
             int selectedIndexCategory = screen.getCategoryComboBox().getComboBox().getSelectedIndex();
@@ -235,6 +235,14 @@ public class ProductController {
             SupplierProductResponse supplierProductResponse = supplierProductResponses.get(selectedIndexProduct - 1);
             int stockReq = Integer.parseInt(productScreen.getStockNumberFormattedField().getValue());
             int result = supplierProductResponse.getStock() - stockReq;
+
+            if (Integer.parseInt(productScreen.getPriceNumberFormattedField().getValue()) < supplierProductResponse.getPrice()) {
+                HashSet<String> errorMessages = new HashSet<>();
+                String format = String.format("Harga jual tidak boleh kurang dari harga beli (Harga beli: %d)", supplierProductResponse.getPrice());
+                errorMessages.add(format);
+                errors.add(new ErrorValidationModel("price", errorMessages));
+                throw new ValidationException(errors);
+            }
 
             if (!Objects.isNull(product) && (supplierProductResponse.getStock() + product.getStock()) >= stockReq) {
                 return;
@@ -345,7 +353,7 @@ public class ProductController {
     private void deleteProduct(int row) {
         int confirmDeleteDialog = dialog.getConfirmDeleteDialog();
         if (confirmDeleteDialog != 1) return;
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     ProductResponse productResponse = products.get(row);
                     productService.deleteById(productResponse.getId());

@@ -11,7 +11,7 @@ import com.xyz.roemahduren.presentation.component.table.TableActionCellEditor;
 import com.xyz.roemahduren.presentation.component.table.TableActionCellRender;
 import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.BranchScreen;
-import com.xyz.roemahduren.util.DatabaseWorker;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -64,7 +64,7 @@ public class BranchController {
 
     private void updateBranch() {
         RoundedButton saveBtn = branchScreen.getSaveBtn();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(saveBtn);
                     BranchRequest branchRequest = new BranchRequest(
@@ -96,7 +96,7 @@ public class BranchController {
 
     private void createNewBranch() {
         RoundedButton saveBtn = branchScreen.getSaveBtn();
-        new DatabaseWorker<>(
+        new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(saveBtn);
                     BranchRequest branchRequest = new BranchRequest(
@@ -189,7 +189,7 @@ public class BranchController {
         int info = dialog.getConfirmDeleteDialog();
 
         if (info == 1) {
-            new DatabaseWorker<>(
+            new ServiceWorker<>(
                     () -> {
                         Branch branch = branches.get(row);
                         branchService.deleteById(branch.getId());

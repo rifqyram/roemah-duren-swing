@@ -27,6 +27,7 @@ public class PanelActionSelect extends javax.swing.JPanel {
         initComponents();
     }
 
+
     public PanelActionSelect(String text) {
         this();
         this.roundedButton.setText(text);

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.xyz.roemahduren.presentation.component;
+package com.xyz.roemahduren.presentation.component.dialog;
 
+import com.xyz.roemahduren.presentation.component.ImagePanel;
+import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.scroll.ScrollBar;
 import com.xyz.roemahduren.util.SwingUtil;
 
@@ -51,7 +53,6 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         setFont(new Font("Helvetica Neue", 0, 13)); // NOI18N
-        setMaximumSize(new Dimension(600, 300));
         setMinimumSize(new Dimension(400, 200));
         setResizable(false);
         setSize(new Dimension(400, 200));
@@ -74,14 +75,8 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         title.setText("Warning");
         title.setVerticalAlignment(SwingConstants.TOP);
 
-        okBtn.setBackground(new Color(130, 148, 96));
-        okBtn.setForeground(new Color(255, 255, 254));
         okBtn.setText("Ok");
-        okBtn.setBorderColor(new Color(130, 148, 96));
         okBtn.setBorderPainted(false);
-        okBtn.setColor(new Color(130, 148, 96));
-        okBtn.setColorClick(new Color(108, 122, 80));
-        okBtn.setColorOver(new Color(118, 134, 87));
         okBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 okBtnActionPerformed(evt);

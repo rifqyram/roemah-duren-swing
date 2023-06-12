@@ -2,6 +2,7 @@ package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.service.*;
+import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ControllerFactory {
@@ -15,6 +16,7 @@ public class ControllerFactory {
     private final SupplierService supplierService;
     private final SupplierProductService supplierProductService;
     private final CustomerService customerService;
+    private final ReportService reportService;
 
     // Screen
     private final LoginScreen loginScreen;
@@ -31,8 +33,9 @@ public class ControllerFactory {
 
     // Utils
     private final CustomDialog customDialog;
+    private final DetailTransactionHistoryDialog detailTransactionHistoryDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, CustomDialog customDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, ReportService reportService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, DashboardScreen dashboardScreen, CustomDialog customDialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -41,6 +44,7 @@ public class ControllerFactory {
         this.supplierService = supplierService;
         this.supplierProductService = supplierProductService;
         this.customerService = customerService;
+        this.reportService = reportService;
         this.loginScreen = loginScreen;
         this.registerScreen = registerScreen;
         this.branchScreen = branchScreen;
@@ -53,6 +57,7 @@ public class ControllerFactory {
         this.customerScreen = customerScreen;
         this.transactionHistoryScreen = transactionHistoryScreen;
         this.customDialog = customDialog;
+        this.detailTransactionHistoryDialog = detailTransactionHistoryDialog;
     }
 
     public LoginController loginController() {
@@ -88,11 +93,11 @@ public class ControllerFactory {
     }
 
     public CustomerController customerController() {
-        return new CustomerController(customerScreen, customerService);
+        return new CustomerController(customerScreen, customerService, reportService, customDialog);
     }
 
     public TransactionHistoryController transactionHistoryController() {
-        return new TransactionHistoryController(transactionHistoryScreen, orderService);
+        return new TransactionHistoryController(transactionHistoryScreen, reportService, detailTransactionHistoryDialog, customDialog, orderService);
     }
 
     public MainController mainController() {
@@ -106,7 +111,7 @@ public class ControllerFactory {
                 settingController(),
                 customerController(),
                 transactionHistoryController(),
-                customDialog);
+                customDialog, orderService);
     }
 
 }
