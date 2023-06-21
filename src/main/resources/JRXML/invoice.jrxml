@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db2822b3-cf01-453b-9600-e0e48b614425">
 	<property name="ireport.zoom" value="1.6528925619834727"/>
 	<property name="ireport.x" value="0"/>
@@ -235,11 +236,16 @@ FROM (
 Silakan hubungi Roemah Duren apabila kamu membutuhkan bantuan.]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="450" y="34" width="100" height="20" uuid="3b265143-839f-4c57-9978-204044b256be"/>
+				<reportElement x="454" y="10" width="100" height="20" uuid="3b265143-839f-4c57-9978-204044b256be"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="38" width="100" height="15" uuid="e1880d7d-491f-46c0-80d5-b50350ffcaed"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

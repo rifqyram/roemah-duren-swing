@@ -141,16 +141,50 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="384" y="10" width="34" height="20" uuid="ea1e3b5f-2cf5-4aa3-8f4f-a279f4a1f86e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jakarta,]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="418" y="10" width="104" height="20" uuid="ffbea638-3562-4bc8-bbbb-dd4743a2e567"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="384" y="30" width="138" height="20" uuid="ec129b5d-d01f-44ed-9392-2bf1345e89b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="84" width="138" height="20" uuid="8d9f4ec4-4d0d-4d2e-8722-e514c41ebe6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Divisi Operasional]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="450" y="34" width="100" height="20" uuid="8a356f8e-e15d-4453-97e9-c32bf08ab667"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="0" y="34" width="100" height="20" uuid="8a356f8e-e15d-4453-97e9-c32bf08ab667"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="38" width="100" height="15" uuid="f044694f-8e80-4ccf-bf7b-09ea8b462cb5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

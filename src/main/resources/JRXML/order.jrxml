@@ -10,14 +10,15 @@
        subquery.name,
        subquery.product_name,
        subquery.total,
+       subquery.trans_date,
        SUM(subquery.total) OVER () AS grand_total
-FROM (SELECT t_order.po_number, tod.quantity, mc.name, msp.product_name, mp.price * tod.quantity AS total
+FROM (SELECT t_order.po_number, t_order.trans_date, tod.quantity, mc.name, msp.product_name, mp.price * tod.quantity AS total
       FROM t_order
                JOIN t_order_detail tod ON t_order.id = tod.order_id
                JOIN m_product mp ON mp.id = tod.product_id
                JOIN m_customer mc ON mc.id = t_order.customer_id
                JOIN m_supplier_product msp ON msp.id = mp.supplier_product_id
-      GROUP BY t_order.po_number, mc.name, msp.product_name, mp.price, tod.quantity) subquery
+      GROUP BY t_order.po_number, t_order.trans_date, mc.name, msp.product_name, mp.price, tod.quantity) subquery
 ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.total]]>
 	</queryString>
 	<field name="po_number" class="java.lang.String">
@@ -25,15 +26,15 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<property name="com.jaspersoft.studio.field.label" value="po_number"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
 	</field>
-	<field name="name" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="name"/>
-		<property name="com.jaspersoft.studio.field.label" value="name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="m_customer"/>
-	</field>
 	<field name="quantity" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="quantity"/>
 		<property name="com.jaspersoft.studio.field.label" value="quantity"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="t_order_detail"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_customer"/>
 	</field>
 	<field name="product_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="product_name"/>
@@ -44,10 +45,85 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<property name="com.jaspersoft.studio.field.name" value="total"/>
 		<property name="com.jaspersoft.studio.field.label" value="total"/>
 	</field>
+	<field name="trans_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="trans_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="trans_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
+	</field>
 	<field name="grand_total" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="grand_total"/>
 		<property name="com.jaspersoft.studio.field.label" value="grand_total"/>
 	</field>
+	<group name="PO_Number" keepTogether="true">
+		<groupExpression><![CDATA[$F{po_number}]]></groupExpression>
+		<groupHeader>
+			<band height="75">
+				<staticText>
+					<reportElement x="1" y="5" width="65" height="20" uuid="995a79ae-ed22-43f5-99cf-b42d6a28ed0c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No Invoice]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="5" width="105" height="20" uuid="187ea22a-1239-4e3e-b42b-75877ab90790"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="66" y="5" width="3" height="20" forecolor="#999999" uuid="51f79985-af61-4460-8efe-65f9e7d7603f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="30" width="100" height="13" forecolor="#999999" uuid="70e2a995-ea11-486a-a4dd-fe1bf05e8c23"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Nama Pelanggan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="30" width="5" height="13" forecolor="#999999" uuid="124eaca1-b14e-4c83-b072-bdc38c8efaee"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="105" y="30" width="100" height="13" uuid="f240b96e-c90b-4b99-87aa-ded0138a60a9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="51" width="95" height="17" forecolor="#999999" uuid="de4aed0b-bb89-42b9-b0c2-50f00a37c238"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Deskripsi Produk]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="220" y="34" width="100" height="13" forecolor="#999999" uuid="2a176e3e-08a3-431d-93b9-12000a389cf1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Tanggal Pemesanan]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="220" y="53" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{trans_date}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -126,129 +202,118 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="95" splitType="Stretch">
-			<staticText>
-				<reportElement x="2" y="20" width="95" height="17" forecolor="#999999" uuid="de4aed0b-bb89-42b9-b0c2-50f00a37c238"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Deskripsi Produk]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="2" y="5" width="100" height="13" forecolor="#999999" uuid="70e2a995-ea11-486a-a4dd-fe1bf05e8c23"/>
-				<textElement verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Nama Pelanggan]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="102" y="5" width="5" height="13" forecolor="#999999" uuid="124eaca1-b14e-4c83-b072-bdc38c8efaee"/>
-				<textElement verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
+		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="107" y="5" width="100" height="13" uuid="f240b96e-c90b-4b99-87aa-ded0138a60a9"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="2" y="40" width="100" height="13" forecolor="#6FC078" uuid="85b0d3c3-fe8f-4f91-a0a3-fb6670867bc9"/>
+				<reportElement x="0" y="0" width="100" height="13" forecolor="#6FC078" uuid="85b0d3c3-fe8f-4f91-a0a3-fb6670867bc9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="109" y="41" width="5" height="12" forecolor="#999999" uuid="08c1a5d6-ad17-40a9-9b29-cae0a235b891"/>
+				<reportElement x="109" y="2" width="5" height="12" forecolor="#999999" uuid="08c1a5d6-ad17-40a9-9b29-cae0a235b891"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[X]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="120" y="40" width="100" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
+				<reportElement x="120" y="1" width="100" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="399" y="18" width="21" height="20" uuid="d39f5937-146e-41f0-8c04-e0667c20b40e"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="399" y="0" width="21" height="20" uuid="d39f5937-146e-41f0-8c04-e0667c20b40e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Rp]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="420" y="18" width="73" height="20" uuid="fb4b90b2-63ca-45ce-a1fd-ea1dcfcb1a2c"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="420" y="0" width="73" height="20" uuid="fb4b90b2-63ca-45ce-a1fd-ea1dcfcb1a2c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="2" y="61" width="65" height="20" uuid="995a79ae-ed22-43f5-99cf-b42d6a28ed0c"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[No Invoice]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="67" y="61" width="3" height="20" forecolor="#999999" uuid="51f79985-af61-4460-8efe-65f9e7d7603f"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="71" y="61" width="105" height="20" uuid="187ea22a-1239-4e3e-b42b-75877ab90790"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="1" y="88" width="553" height="1" forecolor="#CCCCCC" uuid="1ccb7bb0-22fd-4dc4-8a4e-3522884267b6"/>
-			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="394" y="84" width="138" height="20" uuid="9a521fba-653c-4c1f-b586-ebde80b99793"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Divisi Operasional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="30" width="138" height="20" uuid="b8b6f1b4-dc79-4e71-a959-f57a68585541"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="428" y="10" width="104" height="20" uuid="0a377a43-56a8-4332-9d86-d6173106bc28"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="10" width="34" height="20" uuid="5e1646d2-3763-4fa2-b9a4-39988dc2336b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jakarta,]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="53" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="450" y="34" width="100" height="20" uuid="dd163ed4-e4ed-4ee3-8ace-2b812d091df8"/>
+				<reportElement x="0" y="33" width="100" height="20" uuid="dd163ed4-e4ed-4ee3-8ace-2b812d091df8"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="38" width="100" height="15" uuid="0d873ce9-ba84-417f-88be-71d9a3e3e036"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="380" y="10" width="40" height="20" uuid="125fa90c-33aa-4e39-aec2-924b6a1ace1a"/>
+				<reportElement x="351" y="10" width="40" height="20" uuid="125fa90c-33aa-4e39-aec2-924b6a1ace1a"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="429" y="10" width="21" height="20" uuid="3c070ced-8d78-49cc-bfd1-b0cbff6c1a53"/>
+				<reportElement x="400" y="10" width="21" height="20" uuid="3c070ced-8d78-49cc-bfd1-b0cbff6c1a53"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Rp]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="453" y="10" width="73" height="20" uuid="5988f4cb-36a4-44e5-a4ca-6d4eeb3a88d5"/>
+				<reportElement x="421" y="10" width="73" height="20" uuid="5988f4cb-36a4-44e5-a4ca-6d4eeb3a88d5"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="1" width="553" height="1" forecolor="#CCCCCC" uuid="1ccb7bb0-22fd-4dc4-8a4e-3522884267b6"/>
+			</line>
 		</band>
 	</summary>
 </jasperReport>
