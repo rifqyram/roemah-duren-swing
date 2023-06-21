@@ -1,9 +1,16 @@
 package com.xyz.roemahduren.domain.model.request;
 
+import com.xyz.roemahduren.domain.annotation.validation.NotBlank;
+import com.xyz.roemahduren.domain.annotation.validation.Size;
+
 public class ChangePasswordRequest {
 
+    @NotBlank
     private String email;
+    @NotBlank
+    @Size(min = 8, max = 16, message = "Kata sandi harus terdiri dari minimal 8 karakter dan maksimal 16 karakter")
     private String password;
+    @NotBlank
     private String confirmPassword;
 
     public ChangePasswordRequest(String email, String password, String confirmPassword) {

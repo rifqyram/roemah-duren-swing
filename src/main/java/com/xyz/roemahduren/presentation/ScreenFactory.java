@@ -2,6 +2,7 @@ package com.xyz.roemahduren.presentation;
 
 import com.xyz.roemahduren.presentation.component.dialog.CustomConfirmDialog;
 import com.xyz.roemahduren.presentation.component.dialog.CustomDialogMessage;
+import com.xyz.roemahduren.presentation.component.dialog.ForgotPasswordDialog;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ScreenFactory {
@@ -24,6 +25,8 @@ public class ScreenFactory {
     public CustomDialogMessage customDialogMessage() {
         return new CustomDialogMessage();
     }
+
+    public ForgotPasswordDialog forgotPasswordDialog() {return new ForgotPasswordDialog();}
 
     public CategoryScreen categoryScreen() {
         return new CategoryScreen();

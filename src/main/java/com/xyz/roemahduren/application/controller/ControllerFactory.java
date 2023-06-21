@@ -3,6 +3,7 @@ package com.xyz.roemahduren.application.controller;
 import com.xyz.roemahduren.constant.CustomDialog;
 import com.xyz.roemahduren.domain.service.*;
 import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
+import com.xyz.roemahduren.presentation.component.dialog.ForgotPasswordDialog;
 import com.xyz.roemahduren.presentation.screen.*;
 
 public class ControllerFactory {
@@ -34,8 +35,9 @@ public class ControllerFactory {
     // Utils
     private final CustomDialog customDialog;
     private final DetailTransactionHistoryDialog detailTransactionHistoryDialog;
+    private final ForgotPasswordDialog forgotPasswordDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, ReportService reportService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, DashboardScreen dashboardScreen, CustomDialog customDialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, ReportService reportService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, DashboardScreen dashboardScreen, CustomDialog customDialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog, ForgotPasswordDialog forgotPasswordDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -58,10 +60,11 @@ public class ControllerFactory {
         this.transactionHistoryScreen = transactionHistoryScreen;
         this.customDialog = customDialog;
         this.detailTransactionHistoryDialog = detailTransactionHistoryDialog;
+        this.forgotPasswordDialog = forgotPasswordDialog;
     }
 
     public LoginController loginController() {
-        return new LoginController(loginScreen, authService, customDialog);
+        return new LoginController(loginScreen, authService, customDialog, forgotPasswordDialog);
     }
 
     public RegisterController registerController() {
@@ -111,7 +114,7 @@ public class ControllerFactory {
                 settingController(),
                 customerController(),
                 transactionHistoryController(),
-                customDialog, orderService);
+                customDialog, detailTransactionHistoryDialog, orderService);
     }
 
 }

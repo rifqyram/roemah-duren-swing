@@ -7,10 +7,14 @@ import com.xyz.roemahduren.domain.model.response.OrderResponse;
 import com.xyz.roemahduren.domain.service.OrderService;
 import com.xyz.roemahduren.presentation.component.card.Card;
 import com.xyz.roemahduren.presentation.component.card.ModelCard;
+import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
 import com.xyz.roemahduren.presentation.component.menu.MenuItem;
-import com.xyz.roemahduren.presentation.screen.DashboardScreen;
+import com.xyz.roemahduren.presentation.component.table.TableActionSelectCellRender;
+import com.xyz.roemahduren.presentation.component.table.TableActionSelectedCellEditor;
+import com.xyz.roemahduren.presentation.event.TableActionSelectedEvent;
 import com.xyz.roemahduren.presentation.screen.MainScreen;
 import com.xyz.roemahduren.presentation.theme.SystemColor;
+import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.Utility;
 
 import javax.swing.*;
@@ -35,12 +39,13 @@ public class MainController {
     private final CustomerController customerController;
     private final TransactionHistoryController transactionHistoryController;
     private final CustomDialog dialog;
+    private final DetailTransactionHistoryDialog detailTransactionHistoryDialog;
     private LoginController loginController;
 
     private final OrderService orderService;
     private List<OrderResponse> orderResponses;
 
-    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, SettingController settingController, CustomerController customerController, TransactionHistoryController transactionHistoryController, CustomDialog dialog, OrderService orderService) {
+    public MainController(MainScreen mainScreen, BranchController branchController, CategoryController categoryController, ProductController productController, OrderController orderController, SupplierController supplierController, SettingController settingController, CustomerController customerController, TransactionHistoryController transactionHistoryController, CustomDialog dialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog, OrderService orderService) {
         this.mainScreen = mainScreen;
         this.branchController = branchController;
         this.categoryController = categoryController;
@@ -51,6 +56,7 @@ public class MainController {
         this.customerController = customerController;
         this.transactionHistoryController = transactionHistoryController;
         this.dialog = dialog;
+        this.detailTransactionHistoryDialog = detailTransactionHistoryDialog;
         this.orderService = orderService;
         initController();
         initTable();
@@ -163,23 +169,43 @@ public class MainController {
     }
 
     private void initTable() {
-        String[] HEADERS = {"#", "Nama Pelanggan", "Nama Produk", "Kuantitas", "Total Harga"};
+        String[] HEADERS = {"#", "No. Invoice", "Nama Pelanggan", "Tanggal Pembelian", "Total Belanja", "Aksi"};
         DefaultTableModel model = new DefaultTableModel(null, HEADERS);
         mainScreen.getDashboardScreen().getTable1().setModel(model);
 
         orderResponses = orderService.getAll();
-        int counter = 1;
-        for (OrderResponse orderResponse : orderResponses) {
-            for (OrderDetailResponse orderDetailResponse : orderResponse.getOrderDetailResponses()) {
-                model.addRow(new Object[]{
-                        counter++,
-                        orderResponse.getCustomerName(),
-                        orderDetailResponse.getProductName(),
-                        orderDetailResponse.getQuantity(),
-                        orderDetailResponse.getTotalPrice()
-                });
-            }
+
+        if (orderResponses.isEmpty()) {
+            SwingUtil.setEmptyState(mainScreen.getDashboardScreen().getjScrollPane1());
+        } else {
+            mainScreen.getDashboardScreen().getjScrollPane1().setViewportView(mainScreen.getDashboardScreen().getTable1());
         }
+
+        int counter = 0;
+        for (OrderResponse orderResponse : orderResponses) {
+            LongSummaryStatistics collect = orderResponse.getOrderDetailResponses().stream().collect(Collectors.summarizingLong(OrderDetailResponse::getTotalPrice));
+            String stringPrice = "Rp " + collect.getSum();
+
+            model.addRow(new Object[] {
+                    ++counter,
+                    orderResponse.getPurchaseNumber(),
+                    orderResponse.getCustomerName(),
+                    orderResponse.getTransactionDate(),
+                    stringPrice
+            });
+        }
+
+        TableActionSelectedEvent selectedEvent = row ->
+                detailTransactionHistoryDialog.showDialog(orderResponses.get(row).getOrderDetailResponses());
+
+        mainScreen.getDashboardScreen().getTable1()
+                .getColumnModel()
+                .getColumn(HEADERS.length - 1)
+                .setCellRenderer(new TableActionSelectCellRender("Detail"));
+        mainScreen.getDashboardScreen().getTable1()
+                .getColumnModel()
+                .getColumn(HEADERS.length - 1)
+                .setCellEditor(new TableActionSelectedCellEditor(selectedEvent, "Detail"));
     }
 
     private void initCard() {

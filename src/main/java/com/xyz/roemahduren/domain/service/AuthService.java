@@ -10,6 +10,8 @@ public interface AuthService {
 
     AuthResponse login(AuthRequest request);
 
+    AuthResponse findByEmail(String email);
+
     boolean changePassword(ChangePasswordRequest request);
 
 }

@@ -115,6 +115,7 @@ public class RoemahDurenApp {
                 screenFactory.transactionHistoryScreen(),
                 screenFactory.mainScreen().getDashboardScreen(),
                 dialog,
-                detailTransactionHistoryDialog);
+                detailTransactionHistoryDialog,
+                screenFactory.forgotPasswordDialog());
     }
 }

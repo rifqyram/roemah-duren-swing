@@ -6,15 +6,18 @@ import com.xyz.roemahduren.domain.model.response.AuthResponse;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
+import com.xyz.roemahduren.presentation.component.dialog.ForgotPasswordDialog;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.Utility;
 import com.xyz.roemahduren.util.ValidationUtil;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URI;
 import java.util.Set;
 
 import static com.xyz.roemahduren.constant.ConstantMessage.*;
@@ -24,13 +27,18 @@ public class LoginController {
     private final LoginScreen loginScreen;
     private final AuthService authService;
     private final CustomDialog dialog;
+    private final ForgotPasswordDialog forgotPasswordDialog;
     private RegisterController registerController;
     private MainController mainController;
 
-    public LoginController(LoginScreen loginScreen, AuthService authService, CustomDialog dialog) {
+
+    public LoginController(LoginScreen loginScreen, AuthService authService, CustomDialog dialog, ForgotPasswordDialog forgotPasswordDialog) {
         this.loginScreen = loginScreen;
         this.authService = authService;
         this.dialog = dialog;
+        this.forgotPasswordDialog = forgotPasswordDialog;
+        forgotPasswordDialog.setAuthService(authService);
+        forgotPasswordDialog.setDialogMessage(dialog);
         initController();
         loginScreen.setVisible(true);
     }
@@ -41,6 +49,12 @@ public class LoginController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 toRegisterScreen();
+            }
+        });
+        loginScreen.getForgotPasswordLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                forgotPasswordDialog.showModal();
             }
         });
     }

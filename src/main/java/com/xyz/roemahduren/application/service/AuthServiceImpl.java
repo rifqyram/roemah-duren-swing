@@ -61,6 +61,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public AuthResponse findByEmail(String email) {
+        Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(email);
+        if (!credentialOptional.isPresent()) throw new RuntimeException("Email tidak ditemukan");
+        UserCredential userCredential = credentialOptional.get();
+        return new AuthResponse(userCredential.getEmail());
+    }
+
+    @Override
     public boolean changePassword(ChangePasswordRequest request) {
         Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
 
