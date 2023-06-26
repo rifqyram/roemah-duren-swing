@@ -12,13 +12,18 @@
        subquery.total,
        subquery.trans_date,
        SUM(subquery.total) OVER () AS grand_total
-FROM (SELECT t_order.po_number, t_order.trans_date, tod.quantity, mc.name, msp.product_name, mp.price * tod.quantity AS total
+FROM (SELECT t_order.po_number,
+             t_order.trans_date,
+             tod.quantity,
+             mc.name,
+             msp.product_name,
+             tod.product_price * tod.quantity AS total
       FROM t_order
                JOIN t_order_detail tod ON t_order.id = tod.order_id
                JOIN m_product mp ON mp.id = tod.product_id
                JOIN m_customer mc ON mc.id = t_order.customer_id
                JOIN m_supplier_product msp ON msp.id = mp.supplier_product_id
-      GROUP BY t_order.po_number, t_order.trans_date, mc.name, msp.product_name, mp.price, tod.quantity) subquery
+      GROUP BY t_order.po_number, t_order.trans_date, tod.quantity, mc.name, msp.product_name, tod.product_price) subquery
 ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.total]]>
 	</queryString>
 	<field name="po_number" class="java.lang.String">

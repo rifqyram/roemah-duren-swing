@@ -52,4 +52,6 @@ public class RepositoryFactory {
 
     public SupplierProductRepository supplierProductRepository() {return new SupplierProductRepositoryImpl(connection);}
 
+    public InvoiceNumberRepository invoiceNumberRepository() {return new InvoiceNumberRepositoryImpl(connection);}
+
 }

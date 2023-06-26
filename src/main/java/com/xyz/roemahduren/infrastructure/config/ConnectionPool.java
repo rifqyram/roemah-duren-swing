@@ -29,7 +29,7 @@ public class ConnectionPool {
     private Connection createConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = String.format("jdbc:mysql://%s:%s/%s?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", dbHost, dbPort, dbName);
+            String url = String.format("jdbc:mysql://%s:%s/%s?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Jakarta", dbHost, dbPort, dbName);
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);

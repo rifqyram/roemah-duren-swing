@@ -16,10 +16,10 @@
                 <exec.mainClass>${packageClassName}</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <Env.DB_USERNAME>root</Env.DB_USERNAME>
-                <Env.DB_PASSWORD>password</Env.DB_PASSWORD>
+                <Env.DB_PASSWORD>P@ssw0rd</Env.DB_PASSWORD>
                 <Env.DB_NAME>roemah_duren_db</Env.DB_NAME>
-                <Env.DB_HOST>localhost</Env.DB_HOST>
-                <Env.DB_PORT>3306</Env.DB_PORT>
+                <Env.DB_HOST>143.198.85.69</Env.DB_HOST>
+                <Env.DB_PORT>3307</Env.DB_PORT>
             </properties>
         </action>
         <action>

@@ -24,9 +24,10 @@ public class OrderDetailRepositoryImpl extends CrudRepositoryImpl<OrderDetail, S
         String sql = "SELECT tod.id                       as id,\n" +
                 "       tod.order_id                 as order_id,\n" +
                 "       mp.id                        as product_id,\n" +
+                "       tod.product_price            as product_price,\n" +
                 "       msp.product_name             as product_name,\n" +
                 "       tod.quantity                 as quantity,\n" +
-                "       SUM(mp.price * tod.quantity) as total_price\n" +
+                "       SUM(tod.product_price * tod.quantity) as total_price\n" +
                 "FROM t_order_detail as tod\n" +
                 "         JOIN m_product mp on mp.id = tod.product_id\n" +
                 "         JOIN m_supplier_product msp on msp.id = mp.supplier_product_id\n" +
@@ -43,6 +44,7 @@ public class OrderDetailRepositoryImpl extends CrudRepositoryImpl<OrderDetail, S
                         resultSet.getString("order_id"),
                         resultSet.getString("product_id"),
                         resultSet.getString("product_name"),
+                        resultSet.getLong("product_price"),
                         resultSet.getInt("quantity"),
                         resultSet.getLong("total_price")
                 ));

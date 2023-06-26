@@ -17,11 +17,12 @@ public class ServiceFactory {
     private final SupplierRepository supplierRepository;
     private final SupplierProductRepository supplierProductRepository;
     private final Persistence persistence;
+    private final InvoiceNumberRepository invoiceNumberRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final Connection connection;
 
-    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, CustomerRepository customerRepository, OrderDetailRepository orderDetailRepository, OrderRepository orderRepository, SupplierRepository supplierRepository, SupplierProductRepository supplierProductRepository, Persistence persistence, PasswordEncoder passwordEncoder, Connection connection) {
+    public ServiceFactory(UserCredentialRepository userCredentialRepository, BranchRepository branchRepository, CategoryRepository categoryRepository, ProductRepository productRepository, CustomerRepository customerRepository, OrderDetailRepository orderDetailRepository, OrderRepository orderRepository, SupplierRepository supplierRepository, SupplierProductRepository supplierProductRepository, Persistence persistence, InvoiceNumberRepository invoiceNumberRepository, PasswordEncoder passwordEncoder, Connection connection) {
         this.userCredentialRepository = userCredentialRepository;
         this.branchRepository = branchRepository;
         this.categoryRepository = categoryRepository;
@@ -32,6 +33,7 @@ public class ServiceFactory {
         this.supplierRepository = supplierRepository;
         this.supplierProductRepository = supplierProductRepository;
         this.persistence = persistence;
+        this.invoiceNumberRepository = invoiceNumberRepository;
         this.passwordEncoder = passwordEncoder;
         this.connection = connection;
     }
@@ -72,7 +74,9 @@ public class ServiceFactory {
         return new SupplierProductServiceImpl(supplierProductRepository, connection, persistence);
     }
 
-    public ReportService getReportService() {
+    public ReportService reportService() {
         return new ReportServiceImpl(connection);
     }
+
+    public InvoiceNumberService invoiceService() {return new InvoiceNumberServiceImpl(invoiceNumberRepository);}
 }

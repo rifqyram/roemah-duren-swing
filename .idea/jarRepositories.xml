@@ -8,6 +8,11 @@
     </remote-repository>
     <remote-repository>
       <option name="id" value="unknown-jars-temp-repo" />
+      <option name="name" value="A temporary repository created by NetBeans for libraries and jars it could not identify. Please&#10;                replace the dependencies in this repository with correct ones and delete this repository." />
+      <option name="url" value="file:$PROJECT_DIR$/lib" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="unknown-jars-temp-repo" />
       <option name="name" value="A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository." />
       <option name="url" value="file:$PROJECT_DIR$/lib" />
     </remote-repository>

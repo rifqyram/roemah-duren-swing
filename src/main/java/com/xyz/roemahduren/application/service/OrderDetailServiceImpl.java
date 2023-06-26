@@ -26,7 +26,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public OrderDetailResponse create(OrderDetailRequest request) {
-        OrderDetail orderDetail = new OrderDetail(request.getId(), request.getOrderId(), request.getProductId(), request.getQuantity());
+        OrderDetail orderDetail = new OrderDetail(request.getId(), request.getOrderId(), request.getProductId(), request.getQuantity(), request.getProductPrice());
         orderDetailRepository.save(orderDetail);
         return getOrderDetailResponse(orderDetail);
     }
@@ -47,7 +47,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
                     product.getActive()
             ));
 
-            OrderDetail orderDetail = new OrderDetail(orderDetailRequest.getId(), orderDetailRequest.getOrderId(), orderDetailRequest.getProductId(), orderDetailRequest.getQuantity());
+            OrderDetail orderDetail = new OrderDetail(orderDetailRequest.getId(), orderDetailRequest.getOrderId(), orderDetailRequest.getProductId(), orderDetailRequest.getQuantity(), orderDetailRequest.getProductPrice());
             orderDetails.add(orderDetail);
         }
         orderDetails = orderDetailRepository.saveAll(orderDetails);
@@ -66,6 +66,6 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     private OrderDetailResponse getOrderDetailResponse(OrderDetail orderDetail) {
         ProductResponse productResponse = productService.getById(orderDetail.getProductId());
-        return new OrderDetailResponse(orderDetail.getId(), orderDetail.getOrderId(), productResponse.getName(), orderDetail.getProductId(), orderDetail.getQuantity(), productResponse.getPrice() * orderDetail.getQuantity());
+        return new OrderDetailResponse(orderDetail.getId(), orderDetail.getOrderId(), productResponse.getName(), orderDetail.getProductId(), orderDetail.getProductPrice(), orderDetail.getQuantity(), productResponse.getPrice() * orderDetail.getQuantity());
     }
 }

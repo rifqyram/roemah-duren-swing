@@ -19,7 +19,6 @@ public class OrderRequest {
 
     public OrderRequest(CustomerRequest customer, List<OrderDetailRequest> orderDetailRequest) {
         this.id = RandomGenerator.generateUUID();
-        this.purchaseNumber = RandomGenerator.generateInvoiceNumber();
         this.customer = customer;
         this.transactionDate = LocalDateTime.now();
         this.orderDetailRequest = orderDetailRequest;
@@ -27,7 +26,6 @@ public class OrderRequest {
 
     public OrderRequest(String id, CustomerRequest customer, List<OrderDetailRequest> orderDetailRequest) {
         this.id = id;
-        this.purchaseNumber = RandomGenerator.generateInvoiceNumber();
         this.customer = customer;
         this.transactionDate = LocalDateTime.now();
         this.orderDetailRequest = orderDetailRequest;
@@ -43,7 +41,6 @@ public class OrderRequest {
 
     public OrderRequest() {
         this.id = RandomGenerator.generateUUID();
-        this.purchaseNumber = RandomGenerator.generateInvoiceNumber();
     }
 
     public String getId() {

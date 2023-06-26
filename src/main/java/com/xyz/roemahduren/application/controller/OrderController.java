@@ -2,12 +2,14 @@ package com.xyz.roemahduren.application.controller;
 
 import com.xyz.roemahduren.constant.ConstantMessage;
 import com.xyz.roemahduren.constant.CustomDialog;
+import com.xyz.roemahduren.domain.entity.InvoiceNumber;
 import com.xyz.roemahduren.domain.model.request.CustomerRequest;
 import com.xyz.roemahduren.domain.model.request.OrderDetailRequest;
 import com.xyz.roemahduren.domain.model.request.OrderRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.model.response.OrderDetailResponse;
 import com.xyz.roemahduren.domain.model.response.ProductResponse;
+import com.xyz.roemahduren.domain.service.InvoiceNumberService;
 import com.xyz.roemahduren.domain.service.OrderService;
 import com.xyz.roemahduren.domain.service.ProductService;
 import com.xyz.roemahduren.exception.ValidationException;
@@ -18,8 +20,8 @@ import com.xyz.roemahduren.presentation.component.table.TableActionSelectCellRen
 import com.xyz.roemahduren.presentation.component.table.TableActionSelectedCellEditor;
 import com.xyz.roemahduren.presentation.event.TableActionSelectedEvent;
 import com.xyz.roemahduren.presentation.screen.OrderScreen;
-import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.RandomGenerator;
+import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
@@ -28,6 +30,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,6 +41,7 @@ public class OrderController {
     private final OrderService orderService;
     private final ProductService productService;
     private final CustomDialog dialog;
+    private final InvoiceNumberService invoiceNumberService;
 
     private DefaultTableModel productTableModel;
     private DefaultTableModel detailOrderTableModel;
@@ -45,11 +50,12 @@ public class OrderController {
     private List<ProductResponse> productResponses;
     private List<OrderDetailResponse> orderDetailResponses;
 
-    public OrderController(OrderScreen orderScreen, OrderService orderService, ProductService productService, CustomDialog dialog) {
+    public OrderController(OrderScreen orderScreen, OrderService orderService, ProductService productService, CustomDialog dialog, InvoiceNumberService invoiceNumberService) {
         this.orderScreen = orderScreen;
         this.orderService = orderService;
         this.productService = productService;
         this.dialog = dialog;
+        this.invoiceNumberService = invoiceNumberService;
         this.orderDetailResponses = new ArrayList<>();
 
         orderScreen.getProductNameTf().getTextField().setEnabled(false);
@@ -90,8 +96,12 @@ public class OrderController {
                     }
 
                     OrderRequest request = new OrderRequest();
+                    Date date = new Date(LocalDate.now().toEpochDay());
+                    InvoiceNumber currentInvoice = invoiceNumberService.getByDate(date);
+                    String invoiceNumber = invoiceNumberService.generateInvoiceNumber(currentInvoice);
+                    request.setPurchaseNumber(invoiceNumber);
                     List<OrderDetailRequest> orderDetailRequests = orderDetailResponses.stream()
-                            .map(odr -> new OrderDetailRequest(request.getId(), odr.getProductId(), odr.getQuantity()))
+                            .map(odr -> new OrderDetailRequest(request.getId(), odr.getProductId(), odr.getProductPrice(), odr.getQuantity()))
                             .collect(Collectors.toList());
                     request.setCustomer(customerRequest);
                     request.setOrderDetailRequest(orderDetailRequests);
@@ -218,6 +228,7 @@ public class OrderController {
                         null,
                         productResponse.getId(),
                         productResponse.getName(),
+                        productResponse.getPrice(),
                         orderScreen.getQuantitySpinner().getValue(),
                         orderScreen.getQuantitySpinner().getValue() * productResponse.getPrice()
                 );

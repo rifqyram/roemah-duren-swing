@@ -12,21 +12,24 @@ public class OrderDetailRequest {
     private String orderId;
     @NotBlank
     private String productId;
+    private Long productPrice;
     @NotNull
     @Min(value = 0, message = "Kuantitas tidak boleh kurang dari 0")
     private Integer quantity;
 
-    public OrderDetailRequest(String orderId, String productId, Integer quantity) {
+    public OrderDetailRequest(String orderId, String productId, Long productPrice, Integer quantity) {
         this.id = RandomGenerator.generateUUID();
         this.orderId = orderId;
         this.productId = productId;
+        this.productPrice = productPrice;
         this.quantity = quantity;
     }
 
-    public OrderDetailRequest(String id, String orderId, String productId, Integer quantity) {
+    public OrderDetailRequest(String id, String orderId, String productId, Long productPrice, Integer quantity) {
         this.id = id;
         this.orderId = orderId;
         this.productId = productId;
+        this.productPrice = productPrice;
         this.quantity = quantity;
     }
 
@@ -52,6 +55,14 @@ public class OrderDetailRequest {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public Long getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Long productPrice) {
+        this.productPrice = productPrice;
     }
 
     public Integer getQuantity() {

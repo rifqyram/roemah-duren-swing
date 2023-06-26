@@ -20,14 +20,18 @@ public class OrderDetail {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "product_price")
+    private Long productPrice;
+
     public OrderDetail() {
     }
 
-    public OrderDetail(String id, String orderId, String productId, Integer quantity) {
+    public OrderDetail(String id, String orderId, String productId, Integer quantity, Long productPrice) {
         this.id = id;
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
+        this.productPrice = productPrice;
     }
 
     public String getId() {
@@ -44,6 +48,14 @@ public class OrderDetail {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public Long getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Long productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getProductId() {

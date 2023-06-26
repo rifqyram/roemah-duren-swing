@@ -84,13 +84,14 @@ public class RoemahDurenApp {
                 repositoryFactory.supplierRepository(),
                 repositoryFactory.supplierProductRepository(),
                 repositoryFactory.persistence(),
+                repositoryFactory.invoiceNumberRepository(),
                 securityFactory.passwordEncoder(),
                 connection);
 
         ScreenFactory screenFactory = new ScreenFactory();
 
         CustomDialog dialog = new CustomDialog(screenFactory.customDialogMessage(), screenFactory.customConfirmDialog());
-        DetailTransactionHistoryDialog detailTransactionHistoryDialog = new DetailTransactionHistoryDialog(serviceFactory.getReportService(), dialog);
+        DetailTransactionHistoryDialog detailTransactionHistoryDialog = new DetailTransactionHistoryDialog(serviceFactory.reportService(), dialog);
 
         return new ControllerFactory(
                 serviceFactory.authService(),
@@ -101,7 +102,8 @@ public class RoemahDurenApp {
                 serviceFactory.supplierService(),
                 serviceFactory.supplierProductService(),
                 serviceFactory.customerService(),
-                serviceFactory.getReportService(),
+                serviceFactory.reportService(),
+                serviceFactory.invoiceService(),
                 screenFactory.loginScreen(),
                 screenFactory.registerScreen(),
                 screenFactory.branchScreen(),
