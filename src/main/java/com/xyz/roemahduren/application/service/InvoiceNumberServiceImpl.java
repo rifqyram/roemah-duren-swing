@@ -24,8 +24,12 @@ public class InvoiceNumberServiceImpl implements InvoiceNumberService {
             invoiceNumber.setId(RandomGenerator.generateUUID());
             invoiceNumber.setInvoiceDate(Date.valueOf(LocalDate.now()));
             invoiceNumber.setInvoiceSequence(1L);
+            invoiceNumberRepository.save(invoiceNumber);
             return "INV-" + getCurrentDate() + "-" + "000" + invoiceNumber.getInvoiceSequence();
         }
+
+        request.setInvoiceSequence(request.getInvoiceSequence() + 1L);
+        invoiceNumberRepository.update(request);
 
         if (request.getInvoiceSequence() < 10 && request.getInvoiceSequence() > 0) {
             return "INV-" + getCurrentDate() + "-" + "000" + request.getInvoiceSequence();

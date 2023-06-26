@@ -31,7 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -96,8 +96,11 @@ public class OrderController {
                     }
 
                     OrderRequest request = new OrderRequest();
-                    Date date = new Date(LocalDate.now().toEpochDay());
-                    InvoiceNumber currentInvoice = invoiceNumberService.getByDate(date);
+                    Date date = new Date(System.currentTimeMillis());
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String format = simpleDateFormat.format(date);
+
+                    InvoiceNumber currentInvoice = invoiceNumberService.getByDate(Date.valueOf(format));
                     String invoiceNumber = invoiceNumberService.generateInvoiceNumber(currentInvoice);
                     request.setPurchaseNumber(invoiceNumber);
                     List<OrderDetailRequest> orderDetailRequests = orderDetailResponses.stream()
