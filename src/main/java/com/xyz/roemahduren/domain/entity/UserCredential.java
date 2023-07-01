@@ -17,17 +17,13 @@ public class UserCredential {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "last_active")
-    private Long lastActive;
-
     public UserCredential() {
     }
 
-    public UserCredential(String id, String email, String password, Long lastActive) {
+    public UserCredential(String id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.lastActive = lastActive;
     }
 
     public String getId() {
@@ -54,11 +50,4 @@ public class UserCredential {
         this.password = password;
     }
 
-    public Long getLastActive() {
-        return lastActive;
-    }
-
-    public void setLastActive(Long lastActive) {
-        this.lastActive = lastActive;
-    }
 }

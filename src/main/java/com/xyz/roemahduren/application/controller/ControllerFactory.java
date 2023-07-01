@@ -90,7 +90,7 @@ public class ControllerFactory {
     }
 
     public SupplierController supplierController() {
-        return new SupplierController(supplierScreen, supplierService, supplierProductService, customDialog);
+        return new SupplierController(supplierScreen, supplierService, supplierProductService, customDialog, reportService);
     }
 
     public SettingController settingController() {

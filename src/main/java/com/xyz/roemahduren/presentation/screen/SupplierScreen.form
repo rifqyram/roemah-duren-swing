@@ -59,24 +59,26 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="titleTableProduct1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="titleScreen" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="printReportBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="formPanel" alignment="0" max="32767" attributes="0"/>
                           <Component id="supplierFormPanel" max="32767" attributes="0"/>
                           <Component id="supplierScrollPane" alignment="1" max="32767" attributes="0"/>
                           <Component id="productSupplierScrollPane" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="titleTableProduct" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="459" max="-2" attributes="0"/>
+                              <EmptySpace min="459" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="titleScreen" min="-2" max="-2" attributes="0"/>
-                          <Component id="titleTableProduct1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -86,8 +88,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-              <Component id="titleScreen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="titleScreen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="printReportBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="supplierFormPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="titleTableProduct1" min="-2" max="-2" attributes="0"/>
@@ -160,7 +165,7 @@
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
             </Property>
             <Property name="labelErrorText" type="java.lang.String" value=""/>
-            <Property name="labelText" type="java.lang.String" value="Nama Supplier"/>
+            <Property name="labelText" type="java.lang.String" value="Nama Pemasok"/>
           </Properties>
         </Component>
         <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel" name="addressTextArea">
@@ -169,7 +174,7 @@
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
             </Property>
             <Property name="labelErrorText" type="java.lang.String" value=""/>
-            <Property name="labelText" type="java.lang.String" value="Alamat Supplier"/>
+            <Property name="labelText" type="java.lang.String" value="Alamat Pemasok"/>
           </Properties>
         </Component>
         <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="saveBtnSupplier">
@@ -338,7 +343,7 @@
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
             </Property>
             <Property name="labelErrorText" type="java.lang.String" value=""/>
-            <Property name="labelText" type="java.lang.String" value="Supplier"/>
+            <Property name="labelText" type="java.lang.String" value="Pemasok"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="productLabelForm">
@@ -426,6 +431,32 @@
           <Color blue="26" green="8" red="2" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Daftar Pemasok"/>
+      </Properties>
+    </Component>
+    <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="printReportBtn">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/Print.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Print Laporan"/>
+        <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
+        <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="53" green="53" red="dd" type="rgb"/>
+        </Property>
+        <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4d" green="4d" red="cc" type="rgb"/>
+        </Property>
+        <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4d" green="4d" red="cc" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="13" style="1"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

@@ -11,12 +11,14 @@
        subquery.product_name,
        subquery.total,
        subquery.trans_date,
+       subquery.product_price,
        SUM(subquery.total) OVER () AS grand_total
 FROM (SELECT t_order.po_number,
              t_order.trans_date,
              tod.quantity,
              mc.name,
              msp.product_name,
+             tod.product_price,
              tod.product_price * tod.quantity AS total
       FROM t_order
                JOIN t_order_detail tod ON t_order.id = tod.order_id
@@ -54,6 +56,11 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<property name="com.jaspersoft.studio.field.name" value="trans_date"/>
 		<property name="com.jaspersoft.studio.field.label" value="trans_date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
+	</field>
+	<field name="product_price" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="product_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="t_order_detail"/>
 	</field>
 	<field name="grand_total" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="grand_total"/>
@@ -113,18 +120,19 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 					<text><![CDATA[Deskripsi Produk]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="220" y="34" width="100" height="13" forecolor="#999999" uuid="2a176e3e-08a3-431d-93b9-12000a389cf1"/>
+					<reportElement x="220" y="30" width="100" height="13" forecolor="#999999" uuid="2a176e3e-08a3-431d-93b9-12000a389cf1"/>
 					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
 					<text><![CDATA[Tanggal Pemesanan]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="220" y="53" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
+					<reportElement x="220" y="49" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
 					<textElement verticalAlignment="Middle">
 						<font size="9"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{trans_date}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", new Locale("id", "ID")).
+     withZone(java.time.ZoneId.of("Asia/Jakarta")).format($F{trans_date}.toInstant())]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -204,6 +212,13 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 			<line>
 				<reportElement x="0" y="3" width="555" height="1" uuid="fa7e2f85-272e-422d-8dd7-66197ad225c8"/>
 			</line>
+			<staticText>
+				<reportElement x="220" y="10" width="140" height="20" uuid="135a21e8-4e58-4002-b897-60668ed5fe4c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Transaksi/Harga]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -216,18 +231,18 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="109" y="2" width="5" height="12" forecolor="#999999" uuid="08c1a5d6-ad17-40a9-9b29-cae0a235b891"/>
+				<reportElement x="265" y="0" width="5" height="12" forecolor="#999999" uuid="08c1a5d6-ad17-40a9-9b29-cae0a235b891"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[X]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="120" y="1" width="100" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="234" y="0" width="25" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{product_price}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="399" y="0" width="21" height="20" uuid="d39f5937-146e-41f0-8c04-e0667c20b40e"/>
@@ -243,33 +258,48 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="274" y="0" width="80" height="13" uuid="146390bb-27dc-4507-8b62-748c5014e4b3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="219" y="0" width="15" height="12" forecolor="#030303" uuid="c1cb4106-fc28-496e-96e9-64ea3c1908ee"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rp]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="104" splitType="Stretch">
 			<staticText>
-				<reportElement x="394" y="84" width="138" height="20" uuid="9a521fba-653c-4c1f-b586-ebde80b99793"/>
+				<reportElement x="416" y="84" width="138" height="20" uuid="9a521fba-653c-4c1f-b586-ebde80b99793"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Divisi Operasional]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="394" y="30" width="138" height="20" uuid="b8b6f1b4-dc79-4e71-a959-f57a68585541"/>
+				<reportElement x="416" y="30" width="138" height="20" uuid="b8b6f1b4-dc79-4e71-a959-f57a68585541"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Mengetahui]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="428" y="10" width="104" height="20" uuid="0a377a43-56a8-4332-9d86-d6173106bc28"/>
+				<reportElement x="450" y="10" width="104" height="20" uuid="0a377a43-56a8-4332-9d86-d6173106bc28"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", new Locale("id", "ID")).
+     withZone(java.time.ZoneId.of("Asia/Jakarta")).format(new java.util.Date(System.currentTimeMillis()).toInstant())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="394" y="10" width="34" height="20" uuid="5e1646d2-3763-4fa2-b9a4-39988dc2336b"/>
+				<reportElement x="414" y="10" width="34" height="20" uuid="5e1646d2-3763-4fa2-b9a4-39988dc2336b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -281,10 +311,11 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<band height="53" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="0" y="33" width="100" height="20" uuid="dd163ed4-e4ed-4ee3-8ace-2b812d091df8"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("id", "ID")).
+     withZone(java.time.ZoneId.of("Asia/Jakarta")).format(new java.util.Date(System.currentTimeMillis()).toInstant())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="454" y="38" width="100" height="15" uuid="0d873ce9-ba84-417f-88be-71d9a3e3e036"/>

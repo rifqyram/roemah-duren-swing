@@ -63,6 +63,7 @@ public class SupplierScreen extends javax.swing.JPanel {
         supplierScrollPane = new JScrollPane();
         supplierTable = new Table();
         titleTableProduct1 = new JLabel();
+        printReportBtn = new RoundedButton();
 
         jLabel1.setFont(new Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Hello Admin!");
@@ -86,11 +87,11 @@ public class SupplierScreen extends javax.swing.JPanel {
 
         nameTextField.setBackground(new Color(245, 245, 245));
         nameTextField.setLabelErrorText("");
-        nameTextField.setLabelText("Nama Supplier");
+        nameTextField.setLabelText("Nama Pemasok");
 
         addressTextArea.setBackground(new Color(245, 245, 245));
         addressTextArea.setLabelErrorText("");
-        addressTextArea.setLabelText("Alamat Supplier");
+        addressTextArea.setLabelText("Alamat Pemasok");
 
         saveBtnSupplier.setText("Simpan");
         saveBtnSupplier.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -162,7 +163,7 @@ public class SupplierScreen extends javax.swing.JPanel {
 
         supplierComboBox.setBackground(new Color(245, 245, 245));
         supplierComboBox.setLabelErrorText("");
-        supplierComboBox.setLabelText("Supplier");
+        supplierComboBox.setLabelText("Pemasok");
 
         productLabelForm.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         productLabelForm.setForeground(new Color(2, 8, 38));
@@ -250,6 +251,15 @@ public class SupplierScreen extends javax.swing.JPanel {
         titleTableProduct1.setForeground(new Color(2, 8, 38));
         titleTableProduct1.setText("Daftar Pemasok");
 
+        printReportBtn.setBackground(new Color(221, 83, 83));
+        printReportBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
+        printReportBtn.setText("Print Laporan");
+        printReportBtn.setBorderColor(new Color(221, 83, 83));
+        printReportBtn.setColor(new Color(221, 83, 83));
+        printReportBtn.setColorClick(new Color(204, 77, 77));
+        printReportBtn.setColorOver(new Color(204, 77, 77));
+        printReportBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -257,26 +267,30 @@ public class SupplierScreen extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleTableProduct1)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(titleScreen)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(printReportBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addComponent(formPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(supplierFormPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(supplierScrollPane)
                             .addComponent(productSupplierScrollPane, GroupLayout.Alignment.LEADING)
                             .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(titleTableProduct)
-                                .addGap(459, 459, 459)))
-                        .addGap(75, 75, 75))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(titleScreen)
-                            .addComponent(titleTableProduct1))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(titleScreen)
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleScreen)
+                    .addComponent(printReportBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(supplierFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(titleTableProduct1)
@@ -291,6 +305,10 @@ public class SupplierScreen extends javax.swing.JPanel {
                 .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public RoundedButton getPrintReportBtn() {
+        return printReportBtn;
+    }
 
     public RoundedTextAreaPanel getAddressTextArea() {
         return addressTextArea;
@@ -389,6 +407,7 @@ public class SupplierScreen extends javax.swing.JPanel {
     private JPanel jPanel1;
     private RoundedTextFieldPanel nameTextField;
     private RoundedNumberFormattedFieldPanel priceNumberFormattedField;
+    private RoundedButton printReportBtn;
     private JLabel productLabelForm;
     private RoundedTextFieldPanel productNameTextField;
     private JScrollPane productSupplierScrollPane;

@@ -8,4 +8,6 @@ public interface ReportService {
 
     void generateTransactionReport(String user);
 
+    void generateSupplierReport(String user);
+
 }

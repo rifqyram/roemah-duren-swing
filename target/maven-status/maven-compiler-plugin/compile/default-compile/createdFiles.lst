@@ -48,7 +48,6 @@ com/xyz/roemahduren/presentation/screen/SettingScreen.class
 com/xyz/roemahduren/presentation/component/input/ComboBoxUI$Border.class
 com/xyz/roemahduren/domain/entity/InvoiceNumber.class
 com/xyz/roemahduren/presentation/event/TableActionEvent.class
-com/xyz/roemahduren/domain/entity/Admin.class
 com/xyz/roemahduren/presentation/component/card/Card.class
 com/xyz/roemahduren/domain/entity/OrderDetail.class
 com/xyz/roemahduren/util/RandomGenerator.class
@@ -118,7 +117,6 @@ com/xyz/roemahduren/presentation/screen/OrderScreen.class
 com/xyz/roemahduren/util/MyFunction.class
 com/xyz/roemahduren/application/controller/CustomerController.class
 com/xyz/roemahduren/domain/model/request/CategoryRequest.class
-com/xyz/roemahduren/domain/repository/AdminRepository.class
 com/xyz/roemahduren/domain/service/OrderService.class
 com/xyz/roemahduren/presentation/component/input/RoundedTextAreaPanel.class
 com/xyz/roemahduren/domain/service/CategoryService.class
@@ -133,7 +131,6 @@ com/xyz/roemahduren/presentation/component/table/PanelActionDelete.class
 com/xyz/roemahduren/domain/repository/SupplierProductRepository.class
 com/xyz/roemahduren/presentation/component/RoundedButton$1.class
 com/xyz/roemahduren/presentation/screen/DashboardScreen$1.class
-com/xyz/roemahduren/infrastructure/repository/AdminRepositoryImpl.class
 com/xyz/roemahduren/application/service/SupplierProductServiceImpl.class
 com/xyz/roemahduren/domain/model/request/OrderDetailRequest.class
 com/xyz/roemahduren/infrastructure/repository/CustomerRepositoryImpl.class

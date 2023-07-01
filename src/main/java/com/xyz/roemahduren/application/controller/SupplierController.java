@@ -7,6 +7,7 @@ import com.xyz.roemahduren.domain.model.request.SupplierProductRequest;
 import com.xyz.roemahduren.domain.model.request.SupplierRequest;
 import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.model.response.SupplierProductResponse;
+import com.xyz.roemahduren.domain.service.ReportService;
 import com.xyz.roemahduren.domain.service.SupplierProductService;
 import com.xyz.roemahduren.domain.service.SupplierService;
 import com.xyz.roemahduren.exception.ValidationException;
@@ -33,6 +34,7 @@ public class SupplierController {
     private final SupplierService supplierService;
     private final SupplierProductService supplierProductService;
     private final CustomDialog dialog;
+    private final ReportService reportService;
 
     private DefaultTableModel supplierModel;
     private DefaultTableModel supplierProductModel;
@@ -41,11 +43,12 @@ public class SupplierController {
     private Supplier supplier;
     private SupplierProductResponse supplierProductResponse;
 
-    public SupplierController(SupplierScreen supplierScreen, SupplierService supplierService, SupplierProductService supplierProductService, CustomDialog dialog) {
+    public SupplierController(SupplierScreen supplierScreen, SupplierService supplierService, SupplierProductService supplierProductService, CustomDialog dialog, ReportService reportService) {
         this.supplierScreen = supplierScreen;
         this.supplierService = supplierService;
         this.supplierProductService = supplierProductService;
         this.dialog = dialog;
+        this.reportService = reportService;
 
         initController();
         initSupplierTable();
@@ -58,6 +61,19 @@ public class SupplierController {
         supplierScreen.getSaveBtnProductSupplier().addActionListener(this::saveSupplierProduct);
         supplierScreen.getClearBtnSupplier().addActionListener(this::clearSupplierForm);
         supplierScreen.getClearBtnProductSupplier().addActionListener(this::clearSupplierProductForm);
+        supplierScreen.getPrintReportBtn().addActionListener(this::printReport);
+    }
+
+    private void printReport(ActionEvent actionEvent) {
+        new ServiceWorker<>(
+                () -> {
+                    SwingUtil.setLoading(supplierScreen.getPrintReportBtn());
+                    reportService.generateSupplierReport(MainController.user.getEmail());
+                    return true;
+                }, aBoolean -> {},
+                throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
+                () -> SwingUtil.clearPrimaryLoading(supplierScreen.getPrintReportBtn(), "Print Report")
+        ).execute();
     }
 
     private void initSupplierTable() {

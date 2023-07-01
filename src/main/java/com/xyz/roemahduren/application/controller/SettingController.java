@@ -7,6 +7,7 @@ import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.SettingScreen;
 import com.xyz.roemahduren.util.ServiceWorker;
+import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import java.awt.event.ActionEvent;
@@ -39,7 +40,8 @@ public class SettingController {
     private void saveAuthUser(ActionEvent actionEvent) {
         new ServiceWorker<>(
                 () -> {
-                    if (settingScreen.getPasswordField().getValue().equals(settingScreen.getConfirmPasswordField().getValue())) {
+                    SwingUtil.setLoading(settingScreen.getSaveBtn());
+                    if (!settingScreen.getPasswordField().getValue().equals(settingScreen.getConfirmPasswordField().getValue())) {
                         throw new ValidationException(new HashSet<>(Collections.singletonList(new ErrorValidationModel("confirmPassword", new HashSet<>(Collections.singletonList("Password tidak match"))))));
                     }
 
@@ -57,12 +59,12 @@ public class SettingController {
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
-                        setErrorMessages((ValidationException) throwable);
                         return;
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
+                    SwingUtil.clearSecondaryLoading(settingScreen.getSaveBtn(), "Simpan Password");
                 }
         ).execute();
     }

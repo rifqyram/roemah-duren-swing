@@ -25,7 +25,7 @@ public class UserCredentialRepositoryImpl extends CrudRepositoryImpl<UserCredent
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                return Optional.of(new UserCredential(resultSet.getString("id"), resultSet.getString("email"), resultSet.getString("password"), null));
+                return Optional.of(new UserCredential(resultSet.getString("id"), resultSet.getString("email"), resultSet.getString("password")));
             }
 
             return Optional.empty();

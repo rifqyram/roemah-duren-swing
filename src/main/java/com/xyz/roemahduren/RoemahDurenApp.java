@@ -14,8 +14,8 @@ import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistor
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.Instant;
 
 public class RoemahDurenApp {
 
@@ -92,6 +92,8 @@ public class RoemahDurenApp {
 
         CustomDialog dialog = new CustomDialog(screenFactory.customDialogMessage(), screenFactory.customConfirmDialog());
         DetailTransactionHistoryDialog detailTransactionHistoryDialog = new DetailTransactionHistoryDialog(serviceFactory.reportService(), dialog);
+
+
 
         return new ControllerFactory(
                 serviceFactory.authService(),

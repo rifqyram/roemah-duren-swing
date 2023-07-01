@@ -39,7 +39,7 @@ public class ServiceFactory {
     }
 
     public AuthService authService() {
-        return new AuthServiceImpl(userCredentialRepository, passwordEncoder, connection);
+        return new AuthServiceImpl(userCredentialRepository, passwordEncoder, connection, persistence);
     }
 
     public BranchService branchService() {

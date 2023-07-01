@@ -10,7 +10,6 @@
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/component/menu/SideMenu.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/model/response/OrderDetailResponse.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/exception/ValidationException.java
-/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/repository/AdminRepository.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/model/request/SupplierProductRequest.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/component/dialog/DetailTransactionHistoryDialog.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/entity/Order.java
@@ -50,7 +49,6 @@
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/model/response/ErrorValidationModel.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/service/OrderDetailService.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/event/TableActionEvent.java
-/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/entity/Admin.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/entity/SupplierProduct.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/application/service/SupplierProductServiceImpl.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/application/controller/TransactionHistoryController.java
@@ -158,7 +156,6 @@
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/component/panel/RoundedPanel.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/repository/CategoryRepository.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/screen/MainScreen.java
-/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/infrastructure/repository/AdminRepositoryImpl.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/entity/InvoiceNumber.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/domain/service/AuthService.java
 /Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/java/com/xyz/roemahduren/presentation/component/input/CheckboxPanel.java

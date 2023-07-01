@@ -137,9 +137,9 @@ public class DashboardScreen extends JPanel {
                         .addGap(24, 24, 24)
                         .addComponent(titleTable)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addComponent(card2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 65, Short.MAX_VALUE))
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 

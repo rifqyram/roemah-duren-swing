@@ -16,10 +16,6 @@ public class RepositoryFactory {
         return DbPersistence.getInstance();
     }
 
-    public AdminRepository adminRepository() {
-        return new AdminRepositoryImpl(connection);
-    }
-
     public BranchRepository branchRepository() {
         return new BranchRepositoryImpl(connection);
     }

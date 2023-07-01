@@ -4,6 +4,7 @@ import com.xyz.roemahduren.domain.entity.UserCredential;
 import com.xyz.roemahduren.domain.model.request.AuthRequest;
 import com.xyz.roemahduren.domain.model.request.ChangePasswordRequest;
 import com.xyz.roemahduren.domain.model.response.AuthResponse;
+import com.xyz.roemahduren.domain.repository.Persistence;
 import com.xyz.roemahduren.domain.repository.UserCredentialRepository;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.infrastructure.security.PasswordEncoder;
@@ -18,16 +19,18 @@ public class AuthServiceImpl implements AuthService {
     private final Connection connection;
     private final UserCredentialRepository userCredentialRepository;
     private final PasswordEncoder passwordEncoder;
+    private final Persistence persistence;
 
-    public AuthServiceImpl(UserCredentialRepository userCredentialRepository, PasswordEncoder passwordEncoder, Connection connection) {
+    public AuthServiceImpl(UserCredentialRepository userCredentialRepository, PasswordEncoder passwordEncoder, Connection connection, Persistence persistence) {
         this.userCredentialRepository = userCredentialRepository;
         this.passwordEncoder = passwordEncoder;
         this.connection = connection;
+        this.persistence = persistence;
     }
 
     @Override
     public AuthResponse register(AuthRequest request) {
-        try {
+        return persistence.executeTransaction(connection, () -> {
             Optional<UserCredential> currentUser = userCredentialRepository.findByEmail(request.getEmail());
 
             if (currentUser.isPresent()) throw new RuntimeException("Email sudah terdaftar");
@@ -35,16 +38,12 @@ public class AuthServiceImpl implements AuthService {
             UserCredential userCredential = new UserCredential(
                     RandomGenerator.generateUUID(),
                     request.getEmail(),
-                    passwordEncoder.hashPassword(request.getPassword()), null
+                    passwordEncoder.hashPassword(request.getPassword())
             );
 
             userCredentialRepository.save(userCredential);
-
-            connection.commit();
             return new AuthResponse(userCredential.getEmail());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        });
     }
 
     @Override
@@ -70,15 +69,18 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean changePassword(ChangePasswordRequest request) {
-        Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
+        return persistence.executeTransaction(connection, () -> {
+            Optional<UserCredential> credentialOptional = userCredentialRepository.findByEmail(request.getEmail());
 
-        if (!credentialOptional.isPresent()) throw new RuntimeException("Email atau Kata Sandi salah!");
-        UserCredential userCredential = credentialOptional.get();
+            if (!credentialOptional.isPresent()) throw new RuntimeException("Email atau Kata Sandi salah!");
+            UserCredential userCredential = credentialOptional.get();
 
-        if (!request.getPassword().equals(request.getConfirmPassword())) throw new RuntimeException("Kata Sandi dan konfirmasi tidak sesuai");
-        userCredential.setPassword(passwordEncoder.hashPassword(request.getPassword()));
-        userCredentialRepository.update(userCredential);
+            if (!request.getPassword().equals(request.getConfirmPassword()))
+                throw new RuntimeException("Kata Sandi dan konfirmasi tidak sesuai");
+            userCredential.setPassword(passwordEncoder.hashPassword(request.getPassword()));
+            userCredentialRepository.update(userCredential);
 
-        return true;
+            return true;
+        });
     }
 }

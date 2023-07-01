@@ -1,6 +1,5 @@
 package com.xyz.roemahduren.application.service;
 
-import com.xyz.roemahduren.application.controller.MainController;
 import com.xyz.roemahduren.domain.service.ReportService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -39,13 +38,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void generateCustomerReport(String user) {
         try (InputStream inputStream = getClass().getResourceAsStream("/JRXML/customer.jrxml")) {
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            HashMap<String, Object> params = new HashMap<>();
-            params.put("USER_ID", user);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
-            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
-            jasperViewer.setVisible(true);
+            loadJRXML(user, inputStream);
         } catch (IOException | JRException e) {
             throw new RuntimeException(e);
         }
@@ -55,15 +48,28 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void generateTransactionReport(String user) {
         try (InputStream inputStream = getClass().getResourceAsStream("/JRXML/order.jrxml")) {
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            HashMap<String, Object> params = new HashMap<>();
-            params.put("USER_ID", user);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
-            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
-            jasperViewer.setVisible(true);
+            loadJRXML(user, inputStream);
         } catch (IOException | JRException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void generateSupplierReport(String user) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/JRXML/supplier.jrxml")) {
+            loadJRXML(user, inputStream);
+        } catch (IOException | JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadJRXML(String user, InputStream inputStream) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("USER_ID", user);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+        jasperViewer.setVisible(true);
     }
 }

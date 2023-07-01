@@ -128,12 +128,12 @@
 			<textField>
 				<reportElement x="230" y="8" width="150" height="20" uuid="e2df5a68-e4f9-40bc-8e30-87f36b034cac"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{address} != null ? $F{address} : "-"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="400" y="7" width="154" height="20" uuid="3336654e-6577-4a49-adcc-cb432c22f1ed"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{mobile_phone}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mobile_phone} != null || !$F{mobile_phone}.equals("null")  ? $F{mobile_phone} : "-"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="1" y="30" width="553" height="1" forecolor="#CCCCCC" uuid="ea744860-a7a3-4f81-8720-bc8ef96be856"/>
@@ -143,28 +143,29 @@
 	<columnFooter>
 		<band height="104" splitType="Stretch">
 			<staticText>
-				<reportElement x="384" y="10" width="34" height="20" uuid="ea1e3b5f-2cf5-4aa3-8f4f-a279f4a1f86e"/>
+				<reportElement x="414" y="10" width="34" height="20" uuid="ea1e3b5f-2cf5-4aa3-8f4f-a279f4a1f86e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Jakarta,]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="418" y="10" width="104" height="20" uuid="ffbea638-3562-4bc8-bbbb-dd4743a2e567"/>
+				<reportElement x="450" y="10" width="104" height="20" uuid="ffbea638-3562-4bc8-bbbb-dd4743a2e567"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", new Locale("id", "ID")).
+     withZone(java.time.ZoneId.of("Asia/Jakarta")).format(new java.util.Date(System.currentTimeMillis()).toInstant())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="384" y="30" width="138" height="20" uuid="ec129b5d-d01f-44ed-9392-2bf1345e89b7"/>
+				<reportElement x="417" y="30" width="138" height="20" uuid="ec129b5d-d01f-44ed-9392-2bf1345e89b7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Mengetahui]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="384" y="84" width="138" height="20" uuid="8d9f4ec4-4d0d-4d2e-8722-e514c41ebe6a"/>
+				<reportElement x="417" y="84" width="138" height="20" uuid="8d9f4ec4-4d0d-4d2e-8722-e514c41ebe6a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -179,7 +180,8 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("id", "ID")).
+     withZone(java.time.ZoneId.of("Asia/Jakarta")).format(new java.util.Date(System.currentTimeMillis()).toInstant())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="454" y="38" width="100" height="15" uuid="f044694f-8e80-4ccf-bf7b-09ea8b462cb5"/>
