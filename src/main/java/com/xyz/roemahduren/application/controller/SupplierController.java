@@ -99,7 +99,8 @@ public class SupplierController {
                     SwingUtil.setLoading(supplierScreen.getPrintReportBtn());
                     reportService.generateSupplierReport(MainController.user.getEmail());
                     return true;
-                }, aBoolean -> {},
+                }, aBoolean -> {
+        },
                 throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
                 () -> SwingUtil.clearPrimaryLoading(supplierScreen.getPrintReportBtn(), "Print Report")
         ).execute();
@@ -277,7 +278,7 @@ public class SupplierController {
     }
 
     private void initSupplierProductTable() {
-        String[] HEADERS = {"#", "Nama Pemasok", "Nama Produk", "Harga", "Stok", "Aksi"};
+        String[] HEADERS = {"#", "Nama Pemasok", "Nama Produk", "Harga", "Sisa Stok", "Stok Masuk", "Aksi"};
         supplierProductModel = new DefaultTableModel(null, HEADERS);
         supplierScreen.getProductSupplierTable().setModel(supplierProductModel);
 
@@ -296,7 +297,8 @@ public class SupplierController {
                     sp.getSupplierName(),
                     sp.getProductName(),
                     sp.getPrice(),
-                    sp.getStock()
+                    sp.getStock(),
+                    sp.getInitStock()
             });
         }
 
@@ -415,12 +417,14 @@ public class SupplierController {
                     int selectedIndex = supplierScreen.getSupplierComboBox().getComboBox().getSelectedIndex();
                     supplierComboBoxValidation(selectedIndex);
                     Supplier supplier = suppliers.get(selectedIndex - 1);
+
                     SupplierProductRequest supplierProductRequest = new SupplierProductRequest(
                             supplierProductResponse.getId(),
                             supplier.getId(),
                             supplierScreen.getProductNameTextField().getValue(),
                             Long.valueOf(supplierScreen.getPriceNumberFormattedField().getValue()),
-                            Integer.valueOf(supplierScreen.getStockNumberFormattedField().getValue())
+                            Integer.valueOf(supplierScreen.getStockNumberFormattedField().getValue()),
+                            Integer.parseInt(supplierScreen.getStockNumberFormattedField().getValue())
                     );
                     ValidationUtil.validate(supplierProductRequest);
                     return supplierProductService.update(supplierProductRequest);
@@ -466,6 +470,7 @@ public class SupplierController {
     public SupplierScreen getSupplierScreen() {
         initSupplierProductForm();
         initSupplierProductTable();
+        initSupplierTable();
         return supplierScreen;
     }
 }

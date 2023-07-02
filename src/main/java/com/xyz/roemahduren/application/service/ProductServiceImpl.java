@@ -41,7 +41,8 @@ public class ProductServiceImpl implements ProductService {
                     supplierProduct.getSupplierId(),
                     supplierProduct.getProductName(),
                     supplierProduct.getPrice(),
-                    supplierProduct.getStock() - product.getStock()
+                    supplierProduct.getStock() - product.getStock(),
+                    supplierProduct.getInitStock()
             ));
             productRepository.save(product);
             return new ProductResponse(product.getId(), product.getSupplierProductId(), product.getPrice(), null, product.getStock(), null, product.getActive());

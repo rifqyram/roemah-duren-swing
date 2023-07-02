@@ -22,7 +22,7 @@ public class SupplierProductRepositoryImpl extends CrudRepositoryImpl<SupplierPr
 
     @Override
     public Optional<SupplierProductResponse> getById(String id) {
-        String sql = "SELECT msp.id, ms.name, msp.product_name, msp.price, msp.stock FROM m_supplier_product msp\n" +
+        String sql = "SELECT msp.id, ms.name, msp.product_name, msp.price, msp.stock, msp.init_stock FROM m_supplier_product msp\n" +
                 "JOIN m_supplier ms on ms.id = msp.supplier_id WHERE msp.id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -41,7 +41,7 @@ public class SupplierProductRepositoryImpl extends CrudRepositoryImpl<SupplierPr
 
     @Override
     public List<SupplierProductResponse> getAll() {
-        String sql = "SELECT msp.id, ms.name, msp.product_name, msp.price, msp.stock FROM m_supplier_product msp\n" +
+        String sql = "SELECT msp.id, ms.name, msp.product_name, msp.price, msp.stock, msp.init_stock FROM m_supplier_product msp\n" +
                 "JOIN m_supplier ms on ms.id = msp.supplier_id";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -61,7 +61,8 @@ public class SupplierProductRepositoryImpl extends CrudRepositoryImpl<SupplierPr
                     resultSet.getString("name"),
                     resultSet.getString("product_name"),
                     resultSet.getLong("price"),
-                    resultSet.getInt("stock")
+                    resultSet.getInt("stock"),
+                    resultSet.getInt("init_stock")
             ));
         }
     }

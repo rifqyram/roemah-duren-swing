@@ -5,16 +5,15 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="USER_ID" class="java.lang.String"/>
 	<parameter name="LOGO" class="java.awt.Image"/>
-
 	<queryString>
 		<![CDATA[SELECT subquery.po_number,
        subquery.quantity,
        subquery.name,
        subquery.product_name,
-       subquery.total,
+       REPLACE(FORMAT(subquery.total, 0), ',', '.') as total,
        subquery.trans_date,
-       subquery.product_price,
-       SUM(subquery.total) OVER () AS grand_total
+       REPLACE(FORMAT(subquery.product_price, 0), ',', '.') as product_price,
+       REPLACE(FORMAT(SUM(subquery.total) OVER (), 0), ',', '.') AS grand_total
 FROM (SELECT t_order.po_number,
              t_order.trans_date,
              tod.quantity,
@@ -50,7 +49,7 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<property name="com.jaspersoft.studio.field.label" value="product_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="total" class="java.lang.Long">
+	<field name="total" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="total"/>
 		<property name="com.jaspersoft.studio.field.label" value="total"/>
 	</field>
@@ -59,12 +58,11 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<property name="com.jaspersoft.studio.field.label" value="trans_date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
 	</field>
-	<field name="product_price" class="java.lang.Long">
+	<field name="product_price" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="product_price"/>
 		<property name="com.jaspersoft.studio.field.label" value="product_price"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="t_order_detail"/>
 	</field>
-	<field name="grand_total" class="java.math.BigDecimal">
+	<field name="grand_total" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="grand_total"/>
 		<property name="com.jaspersoft.studio.field.label" value="grand_total"/>
 	</field>
@@ -146,7 +144,7 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="5" y="4" width="151" height="55" uuid="d0b06987-b8ee-456a-a7ed-eaaca6fa481e"/>
-				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="410" y="40" width="145" height="35" forecolor="#6FC078" uuid="53ad8399-8daa-4ba1-98d9-07022cf31ccd"/>

@@ -7,6 +7,7 @@ public class SupplierProductResponse {
     private String productName;
     private Long price;
     private Integer stock;
+    private Integer initStock;
 
     public SupplierProductResponse(String id, String supplierName, String productName, Long price, Integer stock) {
         this.id = id;
@@ -14,6 +15,15 @@ public class SupplierProductResponse {
         this.productName = productName;
         this.price = price;
         this.stock = stock;
+    }
+
+    public SupplierProductResponse(String id, String supplierName, String productName, Long price, Integer stock, Integer initStock) {
+        this.id = id;
+        this.supplierName = supplierName;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+        this.initStock = initStock;
     }
 
     public SupplierProductResponse() {
@@ -57,5 +67,13 @@ public class SupplierProductResponse {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Integer getInitStock() {
+        return initStock;
+    }
+
+    public void setInitStock(Integer initStock) {
+        this.initStock = initStock;
     }
 }

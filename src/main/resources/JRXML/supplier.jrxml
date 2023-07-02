@@ -10,11 +10,11 @@
     ms.id,
     ms.name,
     msp.product_name,
-    msp.price,
-    msp.stock,
+    REPLACE(FORMAT(msp.price, 0), ',', '.') as price,
+    msp.init_stock,
     msp.trans_date,
-    (msp.price * msp.stock) AS sub_total,
-    SUM(msp.price * msp.stock) OVER () AS grand_total
+    REPLACE(FORMAT(msp.price * msp.init_stock, 0), ',', '.') AS sub_total,
+    REPLACE(FORMAT(SUM(msp.price * msp.init_stock) OVER (), 0), ',', '.') AS grand_total
 FROM
     m_supplier ms
         JOIN m_supplier_product msp ON ms.id = msp.supplier_id]]>
@@ -34,14 +34,13 @@ FROM
 		<property name="com.jaspersoft.studio.field.label" value="product_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="price" class="java.lang.Long">
+	<field name="price" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="price"/>
 		<property name="com.jaspersoft.studio.field.label" value="price"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="stock" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="stock"/>
-		<property name="com.jaspersoft.studio.field.label" value="stock"/>
+	<field name="init_stock" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="init_stock"/>
+		<property name="com.jaspersoft.studio.field.label" value="init_stock"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
 	<field name="trans_date" class="java.sql.Timestamp">
@@ -49,11 +48,11 @@ FROM
 		<property name="com.jaspersoft.studio.field.label" value="trans_date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="sub_total" class="java.lang.Long">
+	<field name="sub_total" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="sub_total"/>
 		<property name="com.jaspersoft.studio.field.label" value="sub_total"/>
 	</field>
-	<field name="grand_total" class="java.math.BigDecimal">
+	<field name="grand_total" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="grand_total"/>
 		<property name="com.jaspersoft.studio.field.label" value="grand_total"/>
 	</field>
@@ -94,7 +93,7 @@ FROM
 					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
-					<text><![CDATA[Tanggal Transaksi]]></text>
+					<text><![CDATA[Tanggal Masuk]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="220" y="27" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
@@ -114,7 +113,7 @@ FROM
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="5" y="4" width="151" height="55" uuid="d0b06987-b8ee-456a-a7ed-eaaca6fa481e"/>
-				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="440" y="40" width="114" height="35" forecolor="#6FC078" uuid="53ad8399-8daa-4ba1-98d9-07022cf31ccd"/>
@@ -187,7 +186,7 @@ FROM
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tanggal Transaksi/Harga]]></text>
+				<text><![CDATA[Tanggal Masuk/Harga]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -222,21 +221,21 @@ FROM
 				<text><![CDATA[Rp]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="0" width="80" height="13" uuid="ae579754-ebd5-4f9a-a9cd-cccea37964b6"/>
+				<reportElement x="300" y="0" width="80" height="13" uuid="ae579754-ebd5-4f9a-a9cd-cccea37964b6"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{init_stock}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="235" y="0" width="25" height="13" uuid="e534beba-a4a1-4e28-8cde-7337ea391e86"/>
+				<reportElement x="235" y="0" width="45" height="13" uuid="e534beba-a4a1-4e28-8cde-7337ea391e86"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="266" y="0" width="5" height="12" forecolor="#999999" uuid="4947f5b5-dd47-4741-aa57-503ba34d9e07"/>
+				<reportElement x="287" y="0" width="5" height="12" forecolor="#999999" uuid="4947f5b5-dd47-4741-aa57-503ba34d9e07"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>

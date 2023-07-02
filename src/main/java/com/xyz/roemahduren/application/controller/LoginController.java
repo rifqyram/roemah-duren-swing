@@ -14,9 +14,7 @@ import com.xyz.roemahduren.util.Utility;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.net.URI;
 import java.util.Set;
 
@@ -55,6 +53,22 @@ public class LoginController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 forgotPasswordDialog.showModal();
+            }
+        });
+        loginScreen.getEmailTf().getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    signInUser(null);
+                }
+            }
+        });
+        loginScreen.getPasswordTf().getPasswordField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    signInUser(null);
+                }
             }
         });
     }

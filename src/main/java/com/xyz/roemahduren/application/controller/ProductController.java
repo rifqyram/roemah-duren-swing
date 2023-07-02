@@ -354,7 +354,7 @@ public class ProductController {
     }
 
     public void initTable() {
-        final String[] HEADERS = {"#", "Nama Produk", "Kategori", "Harga", "Stok", "Cabang", "Status", "Aksi"};
+        final String[] HEADERS = {"#", "Nama Produk", "Harga", "Stok", "Kategori", "Cabang", "Status", "Aksi"};
         model = new DefaultTableModel(null, HEADERS);
 
         products = productService.getAll();
@@ -370,9 +370,9 @@ public class ProductController {
             model.addRow(new Object[]{
                     ++counter,
                     product.getName(),
-                    product.getCategory(),
                     product.getPrice(),
                     product.getStock(),
+                    product.getCategory(),
                     product.getBranch(),
                     product.getValidString()
             });

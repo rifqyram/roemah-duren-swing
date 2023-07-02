@@ -19,6 +19,19 @@ public class SupplierProduct {
     @Column(name = "stock")
     private Integer stock;
 
+    @Column(name = "init_stock")
+    private Integer initStock;
+
+
+    public SupplierProduct(String id, String supplierId, String productName, Long price, Integer stock, Integer initStock) {
+        this.id = id;
+        this.supplierId = supplierId;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+        this.initStock = initStock;
+    }
+
     public SupplierProduct(String id, String supplierId, String productName, Long price, Integer stock) {
         this.id = id;
         this.supplierId = supplierId;
@@ -68,5 +81,13 @@ public class SupplierProduct {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Integer getInitStock() {
+        return initStock;
+    }
+
+    public void setInitStock(Integer initStock) {
+        this.initStock = initStock;
     }
 }

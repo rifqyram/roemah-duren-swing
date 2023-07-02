@@ -30,7 +30,7 @@
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="5" y="4" width="151" height="55" uuid="d0b06987-b8ee-456a-a7ed-eaaca6fa481e"/>
-				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="440" y="5" width="115" height="35" forecolor="#6FC078" uuid="a0fe4900-4124-4a21-8839-e74078e43dbe"/>

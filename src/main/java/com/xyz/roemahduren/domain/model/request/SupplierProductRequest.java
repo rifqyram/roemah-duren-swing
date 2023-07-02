@@ -18,6 +18,17 @@ public class SupplierProductRequest {
     @Min(message = "Stock tidak boleh kurang dari 1", value = 1)
     private Integer stock;
 
+    private Integer initStock;
+
+    public SupplierProductRequest(String supplierId, String productName, Long price, Integer stock, Integer initStock) {
+        this.id = RandomGenerator.generateUUID();
+        this.supplierId = supplierId;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+        this.initStock = initStock;
+    }
+
     public SupplierProductRequest(String supplierId, String productName, Long price, Integer stock) {
         this.id = RandomGenerator.generateUUID();
         this.supplierId = supplierId;
@@ -32,6 +43,15 @@ public class SupplierProductRequest {
         this.productName = productName;
         this.price = price;
         this.stock = stock;
+    }
+
+    public SupplierProductRequest(String id, String supplierId, String productName, Long price, Integer stock, Integer initStock) {
+        this.id = id;
+        this.supplierId = supplierId;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+        this.initStock = initStock;
     }
 
     public SupplierProductRequest() {
@@ -75,5 +95,13 @@ public class SupplierProductRequest {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Integer getInitStock() {
+        return initStock;
+    }
+
+    public void setInitStock(Integer initStock) {
+        this.initStock = initStock;
     }
 }

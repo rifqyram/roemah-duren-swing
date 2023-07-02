@@ -30,6 +30,7 @@ public class SupplierProductServiceImpl implements SupplierProductService {
                     request.getSupplierId(),
                     request.getProductName(),
                     request.getPrice(),
+                    request.getStock(),
                     request.getStock()
             ));
             return new SupplierProductResponse(
@@ -37,7 +38,8 @@ public class SupplierProductServiceImpl implements SupplierProductService {
                     null,
                     save.getProductName(),
                     save.getPrice(),
-                    save.getStock());
+                    save.getStock(),
+                    save.getInitStock());
         });
     }
 
@@ -59,20 +61,25 @@ public class SupplierProductServiceImpl implements SupplierProductService {
     @Override
     public SupplierProductResponse update(SupplierProductRequest request) {
         return persistence.executeTransaction(connection, () -> {
-            findByIdOrThrowNotFound(request.getId());
+            SupplierProduct currentProduct = findByIdOrThrowNotFound(request.getId());
+
+            int diffStock = request.getStock() - currentProduct.getStock();
+
             SupplierProduct update = supplierProductRepository.update(new SupplierProduct(
                     request.getId(),
                     request.getSupplierId(),
                     request.getProductName(),
                     request.getPrice(),
-                    request.getStock()
+                    request.getStock(),
+                    currentProduct.getInitStock() + diffStock
             ));
             return new SupplierProductResponse(
                     update.getId(),
                     null,
                     update.getProductName(),
                     update.getPrice(),
-                    update.getStock());
+                    update.getStock(),
+                    update.getInitStock());
         });
     }
 

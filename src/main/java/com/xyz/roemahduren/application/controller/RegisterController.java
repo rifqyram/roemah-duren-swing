@@ -11,9 +11,7 @@ import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Set;
 
 import static com.xyz.roemahduren.constant.ConstantMessage.REGISTER;
@@ -42,6 +40,22 @@ public class RegisterController {
             }
         });
         registerScreen.getRegisterBtn().addActionListener(this::registerUser);
+        registerScreen.getEmailTf().getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    registerUser(null);
+                }
+            }
+        });
+        registerScreen.getPasswordTf().getPasswordField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    registerUser(null);
+                }
+            }
+        });
     }
 
     private void clearErrors() {
