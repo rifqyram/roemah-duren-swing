@@ -46,8 +46,6 @@ public class CustomerScreen extends javax.swing.JPanel {
         scrollTable = new JScrollPane();
         customerTable = new Table();
         titleScreen = new JLabel();
-        searchCustomerTextField = new RoundedTextFieldPanel();
-        searchBtn = new RoundedButton();
         printBtn = new RoundedButton();
 
         setBackground(new Color(255, 255, 254));
@@ -84,13 +82,6 @@ public class CustomerScreen extends javax.swing.JPanel {
         titleScreen.setForeground(new Color(2, 8, 38));
         titleScreen.setText("Manajemen Pelanggan");
 
-        searchCustomerTextField.setBackground(new Color(255, 255, 254));
-        searchCustomerTextField.setLabelErrorText("");
-        searchCustomerTextField.setLabelText("Cari");
-
-        searchBtn.setText("Cari");
-        searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-
         printBtn.setBackground(new Color(221, 83, 83));
         printBtn.setIcon(new ImageIcon(getClass().getResource("/images/Print.png"))); // NOI18N
         printBtn.setText("Print Laporan");
@@ -109,10 +100,7 @@ public class CustomerScreen extends javax.swing.JPanel {
                     .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleTable)
-                        .addGap(168, 168, 168)
-                        .addComponent(searchCustomerTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleScreen)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,13 +113,8 @@ public class CustomerScreen extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(titleScreen)
                     .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(titleTable)
-                    .addComponent(searchCustomerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                .addGap(107, 107, 107)
+                .addComponent(titleTable)
                 .addGap(18, 18, 18)
                 .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addGap(31, 31, 31))
@@ -150,14 +133,6 @@ public class CustomerScreen extends javax.swing.JPanel {
         return scrollTable;
     }
 
-    public RoundedButton getSearchBtn() {
-        return searchBtn;
-    }
-
-    public RoundedTextFieldPanel getSearchCustomerTextField() {
-        return searchCustomerTextField;
-    }
-
     public JLabel getTitleScreen() {
         return titleScreen;
     }
@@ -170,8 +145,6 @@ public class CustomerScreen extends javax.swing.JPanel {
     private Table customerTable;
     private RoundedButton printBtn;
     private JScrollPane scrollTable;
-    private RoundedButton searchBtn;
-    private RoundedTextFieldPanel searchCustomerTextField;
     private JLabel titleScreen;
     private JLabel titleTable;
     // End of variables declaration//GEN-END:variables
