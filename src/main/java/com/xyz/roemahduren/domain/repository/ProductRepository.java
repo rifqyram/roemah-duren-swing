@@ -11,4 +11,5 @@ public interface ProductRepository extends CrudRepository<Product, String> {
     Optional<ProductResponse> getById(String id);
     List<ProductResponse> getAll();
     List<ProductResponse> getAll(boolean isValid);
+    List<ProductResponse> getAllAvailableStock(boolean isValid);
 }

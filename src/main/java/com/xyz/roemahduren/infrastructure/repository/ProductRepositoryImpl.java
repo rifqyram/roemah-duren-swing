@@ -142,6 +142,37 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
         }
     }
 
+    @Override
+    public List<ProductResponse> getAllAvailableStock(boolean isActive) {
+        String sql = "SELECT mp.id        as product_id,\n" +
+                "       msp.product_name      as product_name,\n" +
+                "       mp.price     as price,\n" +
+                "       mc.name      as category_name,\n" +
+                "       mp.stock     as stock,\n" +
+                "       mp.is_active as is_active,\n" +
+                "       mp.stock     as stock,\n" +
+                "       mp.is_active as is_active,\n" +
+                "       mb.name      as branch_name\n" +
+                "FROM m_product mp\n" +
+                "         JOIN m_category mc on mc.id = mp.category_id\n" +
+                "         JOIN m_branch mb on mb.id = mp.branch_id\n" +
+                "         JOIN m_supplier_product msp on mp.supplier_product_id = msp.id " +
+                "WHERE mp.is_active = ? AND mp.stock > 0";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setBoolean(1, isActive);
+            ResultSet resultSet = statement.executeQuery();
+
+            List<ProductResponse> productResponses = new ArrayList<>();
+
+            addProductResponse(resultSet, productResponses);
+
+            return productResponses;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static void addProductResponse(ResultSet resultSet, List<ProductResponse> productResponses) throws SQLException {
         while (resultSet.next()) {
             productResponses.add(new ProductResponse(

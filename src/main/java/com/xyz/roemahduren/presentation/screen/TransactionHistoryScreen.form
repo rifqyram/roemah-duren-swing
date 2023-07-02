@@ -36,10 +36,7 @@
                   <Component id="scrollTable" alignment="0" pref="673" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="titleTable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                      <Component id="searchCustomerTextField" pref="250" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="titleScreen" min="-2" max="-2" attributes="0"/>
@@ -59,15 +56,8 @@
                   <Component id="titleScreen" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="printBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="titleTable" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="searchCustomerTextField" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="searchBtn" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+              <Component id="titleTable" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="scrollTable" pref="464" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -122,23 +112,6 @@
           <Color blue="26" green="8" red="2" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Daftar Riwayat Transaksi"/>
-      </Properties>
-    </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel" name="searchCustomerTextField">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fe" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="labelErrorText" type="java.lang.String" value=""/>
-        <Property name="labelText" type="java.lang.String" value="Cari"/>
-      </Properties>
-    </Component>
-    <Component class="com.xyz.roemahduren.presentation.component.RoundedButton" name="searchBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cari"/>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Helvetica Neue" size="13" style="1"/>
-        </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="scrollTable">

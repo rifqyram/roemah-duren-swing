@@ -24,8 +24,9 @@ import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.util.*;
 
 import static com.xyz.roemahduren.constant.ConstantMessage.PRODUCT;
@@ -92,6 +93,40 @@ public class ProductController {
         productScreen.getSaveBtn().addActionListener(this::saveProduct);
         productScreen.getClearBtn().addActionListener(this::clearForm);
         productScreen.getSearchBtn().addActionListener(this::searchProduct);
+        productScreen.getPriceNumberFormattedField().getFormattedField().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (productScreen.getPriceNumberFormattedField().getValue().equals("0") || productScreen.getPriceNumberFormattedField().getValue().equals(""))
+                    productScreen.getPriceNumberFormattedField().setValue("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (productScreen.getPriceNumberFormattedField().getValue().equals("0") || productScreen.getPriceNumberFormattedField().getValue().equals(""))
+                    productScreen.getPriceNumberFormattedField().setValue("0");
+            }
+        });
+        productScreen.getStockNumberFormattedField().getFormattedField().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (productScreen.getStockNumberFormattedField().getValue().equals("0") || productScreen.getStockNumberFormattedField().getValue().equals(""))
+                    productScreen.getStockNumberFormattedField().setValue("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (productScreen.getStockNumberFormattedField().getValue().equals("0") || productScreen.getStockNumberFormattedField().getValue().equals(""))
+                    productScreen.getStockNumberFormattedField().setValue("0");
+            }
+        });
+        productScreen.getSearchTextField().getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (productScreen.getSearchTextField().getValue().length() == 0) {
+                    initTable();
+                }
+            }
+        });
     }
 
     private void searchProduct(ActionEvent actionEvent) {

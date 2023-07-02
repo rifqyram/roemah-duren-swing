@@ -10,6 +10,7 @@
 	<style name="Heading 2" fontSize="14" isBold="true" isItalic="true"/>
 	<parameter name="ORDER_ID" class="java.lang.String"/>
 	<parameter name="USER_ID" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.awt.Image"/>
 	<queryString>
 		<![CDATA[SELECT tod.id AS id,
        tod.order_id AS order_id,
@@ -79,8 +80,8 @@ FROM (
 				<text><![CDATA[INVOICE]]></text>
 			</staticText>
 			<image>
-				<reportElement x="5" y="4" width="151" height="55" uuid="77cd8ec2-d7fe-4d9a-aff0-df3bc6611b40"/>
-				<imageExpression><![CDATA["/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/resources/images/Logo.png"]]></imageExpression>
+				<reportElement x="5" y="4" width="151" height="55" uuid="d0b06987-b8ee-456a-a7ed-eaaca6fa481e"/>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 		</band>
 	</title>

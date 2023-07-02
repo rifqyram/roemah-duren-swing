@@ -22,6 +22,8 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashSet;
 import java.util.List;
@@ -62,6 +64,33 @@ public class SupplierController {
         supplierScreen.getClearBtnSupplier().addActionListener(this::clearSupplierForm);
         supplierScreen.getClearBtnProductSupplier().addActionListener(this::clearSupplierProductForm);
         supplierScreen.getPrintReportBtn().addActionListener(this::printReport);
+        supplierScreen.getPriceNumberFormattedField().getFormattedField().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (supplierScreen.getPriceNumberFormattedField().getValue().equals("0") || supplierScreen.getPriceNumberFormattedField().getValue().equals(""))
+                    supplierScreen.getPriceNumberFormattedField().setValue("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (supplierScreen.getPriceNumberFormattedField().getValue().equals("0") || supplierScreen.getPriceNumberFormattedField().getValue().equals(""))
+                    supplierScreen.getPriceNumberFormattedField().setValue("0");
+            }
+
+        });
+        supplierScreen.getStockNumberFormattedField().getFormattedField().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (supplierScreen.getStockNumberFormattedField().getValue().equals("0") || supplierScreen.getStockNumberFormattedField().getValue().equals(""))
+                    supplierScreen.getStockNumberFormattedField().setValue("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (supplierScreen.getStockNumberFormattedField().getValue().equals("0") || supplierScreen.getStockNumberFormattedField().getValue().equals(""))
+                    supplierScreen.getStockNumberFormattedField().setValue("0");
+            }
+        });
     }
 
     private void printReport(ActionEvent actionEvent) {

@@ -45,8 +45,6 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
         titleScreen = new JLabel();
         printBtn = new RoundedButton();
         titleTable = new JLabel();
-        searchCustomerTextField = new RoundedTextFieldPanel();
-        searchBtn = new RoundedButton();
         scrollTable = new JScrollPane();
         transactionHistoryTable = new Table();
 
@@ -71,13 +69,6 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
         titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTable.setForeground(new Color(2, 8, 38));
         titleTable.setText("Daftar Riwayat Transaksi");
-
-        searchCustomerTextField.setBackground(new Color(255, 255, 254));
-        searchCustomerTextField.setLabelErrorText("");
-        searchCustomerTextField.setLabelText("Cari");
-
-        searchBtn.setText("Cari");
-        searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         transactionHistoryTable.setModel(new DefaultTableModel(
             new Object [][] {
@@ -109,10 +100,7 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
                     .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleTable)
-                        .addGap(94, 94, 94)
-                        .addComponent(searchCustomerTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleScreen)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,13 +113,8 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(titleScreen)
                     .addComponent(printBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(titleTable)
-                    .addComponent(searchCustomerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                .addGap(107, 107, 107)
+                .addComponent(titleTable)
                 .addGap(18, 18, 18)
                 .addComponent(scrollTable, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addGap(74, 74, 74))
@@ -144,14 +127,6 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
 
     public JScrollPane getScrollTable() {
         return scrollTable;
-    }
-
-    public RoundedButton getSearchBtn() {
-        return searchBtn;
-    }
-
-    public RoundedTextFieldPanel getSearchCustomerTextField() {
-        return searchCustomerTextField;
     }
 
     public JLabel getTitleScreen() {
@@ -169,8 +144,6 @@ public class TransactionHistoryScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RoundedButton printBtn;
     private JScrollPane scrollTable;
-    private RoundedButton searchBtn;
-    private RoundedTextFieldPanel searchCustomerTextField;
     private JLabel titleScreen;
     private JLabel titleTable;
     private Table transactionHistoryTable;

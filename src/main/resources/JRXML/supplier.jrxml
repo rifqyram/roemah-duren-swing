@@ -5,131 +5,99 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="USER_ID" class="java.lang.String"/>
 	<parameter name="LOGO" class="java.awt.Image"/>
-
 	<queryString>
-		<![CDATA[SELECT subquery.po_number,
-       subquery.quantity,
-       subquery.name,
-       subquery.product_name,
-       subquery.total,
-       subquery.trans_date,
-       subquery.product_price,
-       SUM(subquery.total) OVER () AS grand_total
-FROM (SELECT t_order.po_number,
-             t_order.trans_date,
-             tod.quantity,
-             mc.name,
-             msp.product_name,
-             tod.product_price,
-             tod.product_price * tod.quantity AS total
-      FROM t_order
-               JOIN t_order_detail tod ON t_order.id = tod.order_id
-               JOIN m_product mp ON mp.id = tod.product_id
-               JOIN m_customer mc ON mc.id = t_order.customer_id
-               JOIN m_supplier_product msp ON msp.id = mp.supplier_product_id
-      GROUP BY t_order.po_number, t_order.trans_date, tod.quantity, mc.name, msp.product_name, tod.product_price) subquery
-ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.total]]>
+		<![CDATA[SELECT
+    ms.id,
+    ms.name,
+    msp.product_name,
+    msp.price,
+    msp.stock,
+    msp.trans_date,
+    (msp.price * msp.stock) AS sub_total,
+    SUM(msp.price * msp.stock) OVER () AS grand_total
+FROM
+    m_supplier ms
+        JOIN m_supplier_product msp ON ms.id = msp.supplier_id]]>
 	</queryString>
-	<field name="po_number" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="po_number"/>
-		<property name="com.jaspersoft.studio.field.label" value="po_number"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
-	</field>
-	<field name="quantity" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="quantity"/>
-		<property name="com.jaspersoft.studio.field.label" value="quantity"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="t_order_detail"/>
+	<field name="id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier"/>
 	</field>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="m_customer"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier"/>
 	</field>
 	<field name="product_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="product_name"/>
 		<property name="com.jaspersoft.studio.field.label" value="product_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="total" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.name" value="total"/>
-		<property name="com.jaspersoft.studio.field.label" value="total"/>
+	<field name="price" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="price"/>
+		<property name="com.jaspersoft.studio.field.label" value="price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
+	</field>
+	<field name="stock" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="stock"/>
+		<property name="com.jaspersoft.studio.field.label" value="stock"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
 	<field name="trans_date" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.name" value="trans_date"/>
 		<property name="com.jaspersoft.studio.field.label" value="trans_date"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="t_order"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="m_supplier_product"/>
 	</field>
-	<field name="product_price" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.name" value="product_price"/>
-		<property name="com.jaspersoft.studio.field.label" value="product_price"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="t_order_detail"/>
+	<field name="sub_total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="sub_total"/>
+		<property name="com.jaspersoft.studio.field.label" value="sub_total"/>
 	</field>
 	<field name="grand_total" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="grand_total"/>
 		<property name="com.jaspersoft.studio.field.label" value="grand_total"/>
 	</field>
-	<group name="PO_Number" keepTogether="true">
-		<groupExpression><![CDATA[$F{po_number}]]></groupExpression>
+	<group name="Supplier_ID" keepTogether="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
 		<groupHeader>
-			<band height="75">
+			<band height="56">
 				<staticText>
-					<reportElement x="1" y="5" width="65" height="20" uuid="995a79ae-ed22-43f5-99cf-b42d6a28ed0c"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[No Invoice]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="70" y="5" width="105" height="20" uuid="187ea22a-1239-4e3e-b42b-75877ab90790"/>
-					<textElement verticalAlignment="Middle">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="66" y="5" width="3" height="20" forecolor="#999999" uuid="51f79985-af61-4460-8efe-65f9e7d7603f"/>
-					<textElement verticalAlignment="Middle">
-						<font size="9"/>
-					</textElement>
-					<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="30" width="100" height="13" forecolor="#999999" uuid="70e2a995-ea11-486a-a4dd-fe1bf05e8c23"/>
+					<reportElement x="0" y="6" width="100" height="13" forecolor="#999999" uuid="70e2a995-ea11-486a-a4dd-fe1bf05e8c23"/>
 					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
-					<text><![CDATA[Nama Pelanggan]]></text>
+					<text><![CDATA[Nama Pemasok]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="100" y="30" width="5" height="13" forecolor="#999999" uuid="124eaca1-b14e-4c83-b072-bdc38c8efaee"/>
+					<reportElement x="100" y="6" width="5" height="13" forecolor="#999999" uuid="124eaca1-b14e-4c83-b072-bdc38c8efaee"/>
 					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
 					<text><![CDATA[:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="105" y="30" width="100" height="13" uuid="f240b96e-c90b-4b99-87aa-ded0138a60a9"/>
+					<reportElement x="105" y="6" width="100" height="13" uuid="f240b96e-c90b-4b99-87aa-ded0138a60a9"/>
 					<textElement verticalAlignment="Middle">
 						<font size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="51" width="95" height="17" forecolor="#999999" uuid="de4aed0b-bb89-42b9-b0c2-50f00a37c238"/>
+					<reportElement x="0" y="27" width="95" height="17" forecolor="#999999" uuid="de4aed0b-bb89-42b9-b0c2-50f00a37c238"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font size="8" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Deskripsi Produk]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="220" y="30" width="100" height="13" forecolor="#999999" uuid="2a176e3e-08a3-431d-93b9-12000a389cf1"/>
+					<reportElement x="220" y="6" width="100" height="13" forecolor="#999999" uuid="2a176e3e-08a3-431d-93b9-12000a389cf1"/>
 					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
-					<text><![CDATA[Tanggal Pemesanan]]></text>
+					<text><![CDATA[Tanggal Transaksi]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="220" y="49" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
+					<reportElement x="220" y="27" width="100" height="13" uuid="833cfec4-0b27-4bbf-a304-1b779133c4bd"/>
 					<textElement verticalAlignment="Middle">
 						<font size="9"/>
 					</textElement>
@@ -149,11 +117,11 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="410" y="40" width="145" height="35" forecolor="#6FC078" uuid="53ad8399-8daa-4ba1-98d9-07022cf31ccd"/>
+				<reportElement x="440" y="40" width="114" height="35" forecolor="#6FC078" uuid="53ad8399-8daa-4ba1-98d9-07022cf31ccd"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TRANSAKSI]]></text>
+				<text><![CDATA[PEMASOK]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="440" y="5" width="115" height="35" forecolor="#6FC078" uuid="510caa85-422c-4612-8db9-1063b100340d"/>
@@ -215,7 +183,7 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<reportElement x="0" y="3" width="555" height="1" uuid="fa7e2f85-272e-422d-8dd7-66197ad225c8"/>
 			</line>
 			<staticText>
-				<reportElement x="220" y="10" width="140" height="20" uuid="135a21e8-4e58-4002-b897-60668ed5fe4c"/>
+				<reportElement x="220" y="10" width="135" height="20" uuid="91195d33-80bc-4631-a6c3-335b461e06ff"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -233,20 +201,6 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="265" y="0" width="5" height="12" forecolor="#999999" uuid="08c1a5d6-ad17-40a9-9b29-cae0a235b891"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[X]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="234" y="0" width="25" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{product_price}]]></textFieldExpression>
-			</textField>
-			<staticText>
 				<reportElement x="399" y="0" width="21" height="20" uuid="d39f5937-146e-41f0-8c04-e0667c20b40e"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
@@ -258,21 +212,35 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="274" y="0" width="80" height="13" uuid="146390bb-27dc-4507-8b62-748c5014e4b3"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="219" y="0" width="15" height="12" forecolor="#030303" uuid="c1cb4106-fc28-496e-96e9-64ea3c1908ee"/>
+				<reportElement x="220" y="0" width="15" height="12" forecolor="#030303" uuid="4d1af6da-4a59-47db-8dfa-d9c85c92284d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Rp]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="275" y="0" width="80" height="13" uuid="ae579754-ebd5-4f9a-a9cd-cccea37964b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="0" width="25" height="13" uuid="e534beba-a4a1-4e28-8cde-7337ea391e86"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="266" y="0" width="5" height="12" forecolor="#999999" uuid="4947f5b5-dd47-4741-aa57-503ba34d9e07"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
 			</staticText>
 		</band>
 	</detail>

@@ -99,6 +99,7 @@ public class MainController {
         try {
             switch (index) {
                 case 0:
+                    initTable();
                     if (!Objects.isNull(user)) {
                         String[] email = user.getEmail().split("@");
                         String username = Utility.toTitleCase(email[0]);

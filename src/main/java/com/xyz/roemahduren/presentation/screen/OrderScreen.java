@@ -101,7 +101,7 @@ public class OrderScreen extends javax.swing.JPanel {
 
         searchProductTextField.setBackground(new Color(255, 255, 254));
         searchProductTextField.setLabelErrorText("");
-        searchProductTextField.setLabelText("Cari");
+        searchProductTextField.setLabelText("Cari Nama");
 
         searchBtn.setText("Cari");
         searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N

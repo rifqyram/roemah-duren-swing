@@ -17,6 +17,8 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Set;
 
@@ -46,6 +48,14 @@ public class CategoryController {
         categoryScreen.getSaveBtn().addActionListener(this::saveCategory);
         categoryScreen.getClearBtn().addActionListener(this::clearForm);
         categoryScreen.getSearchBtn().addActionListener(this::searchCategory);
+        categoryScreen.getSearchTextField().getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (categoryScreen.getSearchTextField().getValue().length() == 0) {
+                    initTable();
+                }
+            }
+        });
     }
 
     private void searchCategory(ActionEvent actionEvent) {

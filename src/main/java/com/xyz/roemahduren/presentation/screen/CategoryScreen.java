@@ -131,7 +131,7 @@ public class CategoryScreen extends javax.swing.JPanel {
 
         searchTextField.setBackground(new Color(255, 255, 254));
         searchTextField.setLabelErrorText("");
-        searchTextField.setLabelText("Cari");
+        searchTextField.setLabelText("Cari Nama");
 
         searchBtn.setText("Cari");
         searchBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N

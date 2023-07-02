@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Roemah Duren DB"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="USER_ID" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.awt.Image"/>
 	<queryString>
 		<![CDATA[SELECT name, mobile_phone, address FROM m_customer]]>
 	</queryString>
@@ -29,7 +30,7 @@
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="5" y="4" width="151" height="55" uuid="d0b06987-b8ee-456a-a7ed-eaaca6fa481e"/>
-				<imageExpression><![CDATA["/Users/user/Rifqi/MyProject/roemah-duren-swing/src/main/resources/images/Logo.png"]]></imageExpression>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="440" y="5" width="115" height="35" forecolor="#6FC078" uuid="a0fe4900-4124-4a21-8839-e74078e43dbe"/>

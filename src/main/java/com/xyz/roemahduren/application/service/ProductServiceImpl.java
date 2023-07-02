@@ -64,6 +64,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductResponse> getAllWithAvailableStock(boolean isValid) {
+        return productRepository.getAllAvailableStock(isValid);
+    }
+
+    @Override
     public ProductResponse update(ProductRequest request) {
         return persistence.executeTransaction(connection, () -> {
             Product currentProduct = get(request.getId());

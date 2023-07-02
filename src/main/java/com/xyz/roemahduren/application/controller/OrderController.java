@@ -27,9 +27,7 @@ import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -81,6 +79,15 @@ public class OrderController {
         orderScreen.getSearchBtn().addActionListener(this::searchProduct);
         orderScreen.getQuantitySpinner().getRoundedSpinner().addChangeListener(handleChangeQuantity());
         orderScreen.getCheckoutBtn().addActionListener(this::checkout);
+        orderScreen.getSearchProductTextField().getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (orderScreen.getSearchProductTextField().getValue().length() == 0) {
+                    initTableProduct();
+                }
+            }
+
+        });
     }
 
     private void checkout(ActionEvent actionEvent) {
@@ -205,7 +212,7 @@ public class OrderController {
 
             Optional<OrderDetailResponse> detailResponseOptional = orderDetailResponses
                     .stream()
-                    .filter(orderDetailResponse -> orderDetailResponse.getProductName().equals(productResponse.getName()))
+                    .filter(orderDetailResponse -> orderDetailResponse.getProductId().equals(productResponse.getId()))
                     .collect(Collectors.toList()).stream().findFirst();
 
             if (detailResponseOptional.isPresent()) {
@@ -261,7 +268,7 @@ public class OrderController {
     private void initTableProduct() {
         final String[] HEADERS = {"#", "Nama Produk", "Harga", "Stok", "Aksi"};
         productTableModel = new DefaultTableModel(null, HEADERS);
-        productResponses = productService.getAll(true);
+        productResponses = productService.getAllWithAvailableStock(true);
 
         if (productResponses.isEmpty()) {
             SwingUtil.setEmptyState(orderScreen.getScrollProductTable());

@@ -6,6 +6,8 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -25,8 +27,10 @@ public class ReportServiceImpl implements ReportService {
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             HashMap<String, Object> params = new HashMap<>();
+            Image image = new ImageIcon(getClass().getResource("/images/Logo.png")).getImage();
             params.put("ORDER_ID", orderId);
             params.put("USER_ID", user);
+            params.put("LOGO", image);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
             jasperViewer.setVisible(true);
@@ -67,7 +71,9 @@ public class ReportServiceImpl implements ReportService {
         JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
         HashMap<String, Object> params = new HashMap<>();
+        Image image = new ImageIcon(getClass().getResource("/images/Logo.png")).getImage();
         params.put("USER_ID", user);
+        params.put("LOGO", image);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
         JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
         jasperViewer.setVisible(true);

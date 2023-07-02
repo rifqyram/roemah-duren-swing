@@ -12,6 +12,7 @@ public interface ProductService {
     Product get(String id);
     List<ProductResponse> getAll();
     List<ProductResponse> getAll(boolean isValid);
+    List<ProductResponse> getAllWithAvailableStock(boolean isValid);
     ProductResponse update(ProductRequest request);
     ProductResponse updateWithoutTransaction(ProductRequest request);
     void deleteById(String id);
