@@ -282,7 +282,7 @@ public class OrderController {
     }
 
     private void initTableProduct() {
-        final String[] HEADERS = {"#", "Nama Produk", "Harga", "Stok", "Aksi"};
+        final String[] HEADERS = {"#", "Nama Produk", "Harga", "Cabang", "Stok", "Aksi"};
         productTableModel = new DefaultTableModel(null, HEADERS);
         productResponses = productService.getAllWithAvailableStock(true);
 
@@ -294,7 +294,7 @@ public class OrderController {
 
         int counter = 0;
         for (ProductResponse productResponse : productResponses) {
-            productTableModel.addRow(new Object[]{++counter, productResponse.getName(), productResponse.getPrice(), productResponse.getStock()});
+            productTableModel.addRow(new Object[]{++counter, productResponse.getName(), productResponse.getPrice(), productResponse.getBranch(), productResponse.getStock()});
         }
 
         orderScreen.getProductTable().setModel(productTableModel);
