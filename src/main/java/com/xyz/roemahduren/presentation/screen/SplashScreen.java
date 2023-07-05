@@ -18,26 +18,12 @@ import javax.swing.*;
  */
 public class SplashScreen extends javax.swing.JFrame {
 
-    private int duration;
 
-    public SplashScreen(int duration) {
-        this.duration = duration;
+    public SplashScreen() {
         initComponents();
         SwingUtil.centerWindow(this);
         getContentPane().setBackground(Color.WHITE);
     }
-    
-    public void showSplash() {
-        setVisible(true);
-
-        Timer timer = new Timer(duration, e -> {
-            setVisible(false);
-            dispose();
-        });
-        timer.setRepeats(false);
-        timer.start();
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,53 +34,52 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imagePanel2 = new ImagePanel();
         jLabel1 = new JLabel();
+        imagePanel1 = new ImagePanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(null);
-        setMaximumSize(new Dimension(640, 300));
-        setMinimumSize(new Dimension(640, 300));
+        setMaximumSize(new Dimension(400, 300));
+        setMinimumSize(new Dimension(400, 300));
         setUndecorated(true);
-        setSize(new Dimension(640, 300));
-
-        imagePanel2.setBackground(new Color(255, 255, 255));
-        imagePanel2.setImage(new ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        imagePanel2.setPreferredSize(new Dimension(300, 300));
-
-        GroupLayout imagePanel2Layout = new GroupLayout(imagePanel2);
-        imagePanel2.setLayout(imagePanel2Layout);
-        imagePanel2Layout.setHorizontalGroup(imagePanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
-        );
-        imagePanel2Layout.setVerticalGroup(imagePanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 263, Short.MAX_VALUE)
-        );
+        setPreferredSize(new Dimension(400, 300));
+        setSize(new Dimension(400, 300));
 
         jLabel1.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setForeground(new Color(109, 117, 136));
         jLabel1.setText("Loading...");
 
+        imagePanel1.setBackground(new Color(255, 255, 254));
+        imagePanel1.setImage(new ImageIcon(getClass().getResource("/images/Logo.png"))); // NOI18N
+
+        GroupLayout imagePanel1Layout = new GroupLayout(imagePanel1);
+        imagePanel1.setLayout(imagePanel1Layout);
+        imagePanel1Layout.setHorizontalGroup(imagePanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 281, Short.MAX_VALUE)
+        );
+        imagePanel1Layout.setVerticalGroup(imagePanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 135, Short.MAX_VALUE)
+        );
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(288, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(imagePanel2, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
-                        .addGap(275, 275, 275))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(360, 360, 360))))
+                    .addComponent(imagePanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel1)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(imagePanel2, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(imagePanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,7 +87,7 @@ public class SplashScreen extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ImagePanel imagePanel2;
+    private ImagePanel imagePanel1;
     private JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,7 +47,8 @@ public class TransactionHistoryController {
                     reportService.generateTransactionReport(MainController.user.getEmail());
                     return true;
                 },
-                aBoolean -> {},
+                aBoolean -> {
+                },
                 throwable -> dialog.getFailedMessageDialog(throwable.getMessage()),
                 () -> SwingUtil.clearPrimaryLoading(transactionHistoryScreen.getPrintBtn(), "Print Laporan")
         ).execute();
@@ -68,7 +69,7 @@ public class TransactionHistoryController {
 
         int counter = 0;
         for (OrderResponse orderResponse : orderResponses) {
-            model.addRow(new Object[] {
+            model.addRow(new Object[]{
                     ++counter,
                     orderResponse.getPurchaseNumber(),
                     orderResponse.getCustomerName(),

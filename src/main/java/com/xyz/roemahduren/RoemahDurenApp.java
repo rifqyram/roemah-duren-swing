@@ -10,12 +10,18 @@ import com.xyz.roemahduren.infrastructure.config.ConnectionPool;
 import com.xyz.roemahduren.infrastructure.repository.RepositoryFactory;
 import com.xyz.roemahduren.infrastructure.security.SecurityFactory;
 import com.xyz.roemahduren.presentation.ScreenFactory;
+import com.xyz.roemahduren.presentation.component.dialog.CustomConfirmDialog;
+import com.xyz.roemahduren.presentation.component.dialog.CustomDialogMessage;
 import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
+import com.xyz.roemahduren.presentation.screen.SplashScreen;
+import com.xyz.roemahduren.util.ServiceWorker;
+import com.xyz.roemahduren.util.SwingUtil;
 
 import javax.swing.*;
 import java.sql.*;
 import java.time.Instant;
+import java.util.concurrent.ExecutionException;
 
 public class RoemahDurenApp {
 
@@ -28,9 +34,9 @@ public class RoemahDurenApp {
     public static void main(String[] args) {
         setLookAndFeel();
         ConnectionPool connectionPool = new ConnectionPool(10, username, password, dbName, dbHost, dbPort);
+
         try {
             Connection connection = connectionPool.acquireConnection();
-
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
                     connectionPool.closeAllConnections();
@@ -40,18 +46,40 @@ public class RoemahDurenApp {
             }));
 
             ControllerFactory controllerFactory = factoryManager(connection);
-            SwingUtilities.invokeLater(() -> {
+            SwingUtilities.invokeLater(() -> run(controllerFactory));
+        } catch (RuntimeException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void run(ControllerFactory controllerFactory) {
+        SplashScreen splashScreen = new SplashScreen();
+        splashScreen.setVisible(true);
+        LoginController loginController = controllerFactory.loginController();
+        SwingWorker<Void, Void> swingWorker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
                 MainController mainController = controllerFactory.mainController();
-                LoginController loginController = controllerFactory.loginController();
                 RegisterController registerController = controllerFactory.registerController();
                 loginController.setRegisterController(registerController);
                 loginController.setMainController(mainController);
                 registerController.setLoginController(loginController);
                 mainController.setLoginController(loginController);
-            });
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    get();
+                    splashScreen.setVisible(false);
+                    loginController.getLoginScreen().setVisible(true);
+                } catch (InterruptedException | ExecutionException e) {
+                    controllerFactory.getCustomDialog().getFailedMessageDialog(e.getMessage());
+                }
+            }
+        };
+        swingWorker.execute();
     }
 
     public static void setLookAndFeel() {
@@ -92,7 +120,6 @@ public class RoemahDurenApp {
 
         CustomDialog dialog = new CustomDialog(screenFactory.customDialogMessage(), screenFactory.customConfirmDialog());
         DetailTransactionHistoryDialog detailTransactionHistoryDialog = new DetailTransactionHistoryDialog(serviceFactory.reportService(), dialog);
-
 
 
         return new ControllerFactory(

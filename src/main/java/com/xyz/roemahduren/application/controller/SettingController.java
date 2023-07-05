@@ -59,13 +59,12 @@ public class SettingController {
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
+                        setErrorMessages((ValidationException) throwable);
                         return;
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> {
-                    SwingUtil.clearSecondaryLoading(settingScreen.getSaveBtn(), "Simpan Password");
-                }
+                () -> SwingUtil.clearSecondaryLoading(settingScreen.getSaveBtn(), "Simpan Password")
         ).execute();
     }
 

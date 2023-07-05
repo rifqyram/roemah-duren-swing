@@ -119,4 +119,7 @@ public class ControllerFactory {
                 customDialog, detailTransactionHistoryDialog, orderService);
     }
 
+    public CustomDialog getCustomDialog() {
+        return customDialog;
+    }
 }

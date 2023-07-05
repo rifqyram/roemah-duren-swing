@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.awt.Point;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
 /**
@@ -40,6 +41,7 @@ public class SettingScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new JTextField();
         titleScreen = new JLabel();
         userFormPanel = new RoundedPanel();
         saveBtn = new RoundedButton();
@@ -47,6 +49,8 @@ public class SettingScreen extends javax.swing.JPanel {
         emailTextField = new RoundedTextFieldPanel();
         confirmPasswordField = new RoundedPasswordFieldPanel();
         titleScreen1 = new JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setBackground(new Color(255, 255, 254));
         setLocation(new Point(800, 600));
@@ -112,12 +116,12 @@ public class SettingScreen extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(userFormPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titleScreen)
                     .addComponent(titleScreen1))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -127,7 +131,7 @@ public class SettingScreen extends javax.swing.JPanel {
                 .addComponent(titleScreen1)
                 .addGap(18, 18, 18)
                 .addComponent(userFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(88, 88, 88))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,6 +162,7 @@ public class SettingScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RoundedPasswordFieldPanel confirmPasswordField;
     private RoundedTextFieldPanel emailTextField;
+    private JTextField jTextField1;
     private RoundedPasswordFieldPanel passwordField;
     private RoundedButton saveBtn;
     private JLabel titleScreen;

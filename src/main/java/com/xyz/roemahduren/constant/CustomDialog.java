@@ -36,6 +36,9 @@ public class CustomDialog {
     public void getSuccessMessageDialog(String text) {
         dialogMessage.showMessageDialog(SUCCESS, text, SUCCESS_IMAGE);
     }
+    public void getInfoMessageDialog(String text) {
+        dialogMessage.showMessageDialog(INFO, text, INFO_IMAGE);
+    }
 
     public void getSuccessCreatedMessageDialog(String title) {
         dialogMessage.showMessageDialog(SUCCESS, ConstantMessage.getSuccessCreatedMessage(title), SUCCESS_IMAGE);

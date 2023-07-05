@@ -44,10 +44,6 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void releaseConnection(Connection connection) {
-        freeConnections.offer(connection);
-    }
-
     public void closeAllConnections() throws SQLException {
         Connection connection;
         while ((connection = freeConnections.poll()) != null) {

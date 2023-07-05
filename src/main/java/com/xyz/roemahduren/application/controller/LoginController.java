@@ -38,7 +38,6 @@ public class LoginController {
         forgotPasswordDialog.setAuthService(authService);
         forgotPasswordDialog.setDialogMessage(dialog);
         initController();
-        loginScreen.setVisible(true);
     }
 
     private void initController() {

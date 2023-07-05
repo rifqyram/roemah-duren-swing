@@ -91,14 +91,15 @@ public class SupplierProductServiceImpl implements SupplierProductService {
                 request.getSupplierId(),
                 request.getProductName(),
                 request.getPrice(),
-                request.getStock()
+                request.getStock(),
+                request.getInitStock()
         ));
         return new SupplierProductResponse(
                 update.getId(),
                 null,
                 update.getProductName(),
                 update.getPrice(),
-                update.getStock());
+                update.getStock(), update.getInitStock());
     }
 
 

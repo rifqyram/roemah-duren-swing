@@ -88,6 +88,7 @@ public class OrderController {
             }
 
         });
+        orderScreen.getCancelProductBtn().addActionListener(this::clearProductForm);
     }
 
     private void checkout(ActionEvent actionEvent) {
@@ -200,11 +201,24 @@ public class OrderController {
         orderScreen.getQuantitySpinner().clearErrorMessage();
     }
 
+    private void clearProductForm(ActionEvent actionEvent) {
+        productResponse = null;
+        orderScreen.getProductNameTf().clearErrorMessage();
+        orderScreen.getProductNameTf().setValue("");
+        orderScreen.getProductCategoryTf().setValue("");
+    }
+
     private void addToCart(ActionEvent actionEvent) {
         try {
             clearError();
 
             HashSet<ErrorValidationModel> errors = new HashSet<>();
+
+            if (productResponse == null) {
+                errors.add(new ErrorValidationModel("productName", new HashSet<>(Collections.singletonList("Pilih Produk sebelum tambah keranjang"))));
+                throw new ValidationException(errors);
+            }
+
             if (orderScreen.getQuantitySpinner().getValue() > productResponse.getStock()) {
                 errors.add(new ErrorValidationModel("quantity", new HashSet<>(Collections.singletonList("Kuantitas tidak bisa melebihi stok produk"))));
                 throw new ValidationException(errors);
@@ -261,6 +275,8 @@ public class OrderController {
         for (ErrorValidationModel validationModel : validationModels) {
             if (validationModel.getPath().equals("quantity")) {
                 orderScreen.getQuantitySpinner().setErrorMessage(ValidationUtil.getMessage(validationModel.getMessages()));
+            } else if (validationModel.getPath().equals("productName")) {
+                orderScreen.getProductNameTf().setErrorMessage(ValidationUtil.getMessage(validationModel.getMessages()));
             }
         }
     }
