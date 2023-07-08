@@ -83,7 +83,7 @@ public class BranchScreen extends javax.swing.JPanel {
         saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         clearBtn.setBackground(new Color(221, 83, 83));
-        clearBtn.setText("Cear");
+        clearBtn.setText("Clear");
         clearBtn.setBorderColor(new Color(221, 83, 83));
         clearBtn.setColor(new Color(221, 83, 83));
         clearBtn.setColorClick(new Color(204, 77, 77));

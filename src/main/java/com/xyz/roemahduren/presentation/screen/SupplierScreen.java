@@ -97,7 +97,7 @@ public class SupplierScreen extends javax.swing.JPanel {
         saveBtnSupplier.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         clearBtnSupplier.setBackground(new Color(221, 83, 83));
-        clearBtnSupplier.setText("Cear");
+        clearBtnSupplier.setText("Clear");
         clearBtnSupplier.setBorderColor(new Color(221, 83, 83));
         clearBtnSupplier.setColor(new Color(221, 83, 83));
         clearBtnSupplier.setColorClick(new Color(204, 77, 77));
@@ -279,9 +279,7 @@ public class SupplierScreen extends javax.swing.JPanel {
                             .addComponent(supplierFormPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(supplierScrollPane)
                             .addComponent(productSupplierScrollPane, GroupLayout.Alignment.LEADING)
-                            .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(titleTableProduct)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(titleTableProduct, GroupLayout.Alignment.LEADING))
                         .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
