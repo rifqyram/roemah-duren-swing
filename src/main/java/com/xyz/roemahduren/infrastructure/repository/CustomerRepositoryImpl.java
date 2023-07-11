@@ -32,8 +32,7 @@ public class CustomerRepositoryImpl extends CrudRepositoryImpl<Customer, String>
                 customers.add(new Customer(
                     resultSet.getString("id"),
                     resultSet.getString("name"),
-                    resultSet.getString("mobile_phone"),
-                    resultSet.getString("address")
+                    resultSet.getString("mobile_phone")
                 ));
             }
 

@@ -5,6 +5,7 @@
 package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.RoundedButton;
+import com.xyz.roemahduren.presentation.component.input.RoundedNumberFormattedFieldPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
 import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
@@ -46,6 +47,7 @@ public class BranchScreen extends javax.swing.JPanel {
         addressTextArea = new RoundedTextAreaPanel();
         saveBtn = new RoundedButton();
         clearBtn = new RoundedButton();
+        mobilePhoneTextField = new RoundedNumberFormattedFieldPanel();
         titleScreen = new JLabel();
         scrollTable = new JScrollPane();
         branchTable = new Table();
@@ -90,6 +92,10 @@ public class BranchScreen extends javax.swing.JPanel {
         clearBtn.setColorOver(new Color(204, 77, 77));
         clearBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
+        mobilePhoneTextField.setBackground(new Color(245, 245, 245));
+        mobilePhoneTextField.setLabelErrorText("");
+        mobilePhoneTextField.setLabelText("Nomor Telepon");
+
         GroupLayout formPanelLayout = new GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
         formPanelLayout.setHorizontalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -102,22 +108,28 @@ public class BranchScreen extends javax.swing.JPanel {
                         .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(formPanelLayout.createSequentialGroup()
-                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(addressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(24, 24, 24))))
+                        .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))
+                    .addGroup(formPanelLayout.createSequentialGroup()
+                        .addComponent(addressTextArea, GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(formPanelLayout.createSequentialGroup()
+                        .addComponent(mobilePhoneTextField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         formPanelLayout.setVerticalGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(formPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(mobilePhoneTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(addressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -155,15 +167,16 @@ public class BranchScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleTable)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(scrollTable, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                             .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(titleTable)
-                            .addComponent(titleScreen))
+                        .addComponent(titleScreen)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -172,13 +185,17 @@ public class BranchScreen extends javax.swing.JPanel {
                 .addComponent(titleScreen)
                 .addGap(32, 32, 32)
                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(81, 81, 81)
                 .addComponent(titleTable)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollTable, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public RoundedNumberFormattedFieldPanel getMobilePhoneTextField() {
+        return mobilePhoneTextField;
+    }
 
     public Table getBranchTable() {
         return branchTable;
@@ -227,6 +244,7 @@ public class BranchScreen extends javax.swing.JPanel {
     private RoundedPanel formPanel;
     private JLabel jLabel1;
     private JPanel jPanel1;
+    private RoundedNumberFormattedFieldPanel mobilePhoneTextField;
     private RoundedTextFieldPanel nameTextField;
     private RoundedButton saveBtn;
     private JScrollPane scrollTable;

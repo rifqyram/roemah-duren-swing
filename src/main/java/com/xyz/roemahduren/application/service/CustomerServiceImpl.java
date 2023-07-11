@@ -19,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getOrSave(CustomerRequest request) {
         return customerRepository.findByCustomerName(request.getName()).orElseGet(() -> {
-            Customer customer = new Customer(request.getId(), request.getName(), request.getMobilePhone(), request.getAddress());
+            Customer customer = new Customer(request.getId(), request.getName(), request.getMobilePhone());
             return customerRepository.save(customer);
         });
     }

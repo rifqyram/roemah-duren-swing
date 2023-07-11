@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BranchRepositoryImpl extends CrudRepositoryImpl<Branch, String> implements BranchRepository {
     private final Connection connection;
@@ -29,9 +30,30 @@ public class BranchRepositoryImpl extends CrudRepositoryImpl<Branch, String> imp
                 String id = resultSet.getString("id");
                 String nameRs = resultSet.getString("name");
                 String address = resultSet.getString("address");
-                branches.add(new Branch(id, nameRs, address));
+                String mobilePhone = resultSet.getString("mobile_phone");
+                branches.add(new Branch(id, nameRs, address, mobilePhone));
             }
             return branches;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Optional<Branch> findByMobilePhone(String mobilePhone) {
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM m_branch WHERE mobile_phone = ?")) {
+            statement.setString(1, mobilePhone);
+            ResultSet resultSet = statement.executeQuery();
+
+            List<Branch> branches = new ArrayList<>();
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String nameRs = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("mobile_phone");
+                branches.add(new Branch(id, nameRs, address, phone));
+            }
+            return branches.stream().findFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

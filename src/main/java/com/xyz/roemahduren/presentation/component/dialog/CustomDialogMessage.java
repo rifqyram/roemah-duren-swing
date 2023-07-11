@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.function.Consumer;
 import javax.swing.*;
 
 /**
@@ -132,7 +133,25 @@ public class CustomDialogMessage extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
+    public RoundedButton getOkBtn() {
+        return okBtn;
+    }
+
     public void showMessageDialog(String title, String text, URL imageSource) {
+        this.title.setText(title);
+        String html = "<html><body>%1s</body></html>";
+        String htmlFormat = String.format(html, text);
+        this.text.setText(htmlFormat);
+
+        if (imageSource != null) {
+            this.image.setImage(new ImageIcon(imageSource));
+        }
+
+        setVisible(true);
+        setModal(true);
+    }
+
+    public void showMessageDialog(String title, String text, URL imageSource, Runnable runnable) {
         this.title.setText(title);
         String html = "<html><body>%1s</body></html>";
         String htmlFormat = String.format(html, text);

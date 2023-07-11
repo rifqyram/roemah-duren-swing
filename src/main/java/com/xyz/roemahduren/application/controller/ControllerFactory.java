@@ -30,6 +30,7 @@ public class ControllerFactory {
     private final OrderScreen orderScreen;
     private final SupplierScreen supplierScreen;
     private final SettingScreen settingScreen;
+    private final SettingScreen2 settingScreen2;
     private final CustomerScreen customerScreen;
     private final TransactionHistoryScreen transactionHistoryScreen;
 
@@ -38,7 +39,7 @@ public class ControllerFactory {
     private final DetailTransactionHistoryDialog detailTransactionHistoryDialog;
     private final ForgotPasswordDialog forgotPasswordDialog;
 
-    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, ReportService reportService, InvoiceNumberService invoiceNumberService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, DashboardScreen dashboardScreen, CustomDialog customDialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog, ForgotPasswordDialog forgotPasswordDialog) {
+    public ControllerFactory(AuthService authService, BranchService branchService, CategoryService categoryService, ProductService productService, OrderService orderService, SupplierService supplierService, SupplierProductService supplierProductService, CustomerService customerService, ReportService reportService, InvoiceNumberService invoiceNumberService, LoginScreen loginScreen, RegisterScreen registerScreen, BranchScreen branchScreen, MainScreen mainScreen, CategoryScreen categoryScreen, ProductScreen productScreen, OrderScreen orderScreen, SupplierScreen supplierScreen, SettingScreen settingScreen, SettingScreen2 settingScreen2, CustomerScreen customerScreen, TransactionHistoryScreen transactionHistoryScreen, DashboardScreen dashboardScreen, CustomDialog customDialog, DetailTransactionHistoryDialog detailTransactionHistoryDialog, ForgotPasswordDialog forgotPasswordDialog) {
         this.authService = authService;
         this.branchService = branchService;
         this.categoryService = categoryService;
@@ -58,6 +59,7 @@ public class ControllerFactory {
         this.orderScreen = orderScreen;
         this.supplierScreen = supplierScreen;
         this.settingScreen = settingScreen;
+        this.settingScreen2 = settingScreen2;
         this.customerScreen = customerScreen;
         this.transactionHistoryScreen = transactionHistoryScreen;
         this.customDialog = customDialog;
@@ -94,7 +96,7 @@ public class ControllerFactory {
     }
 
     public SettingController settingController() {
-        return new SettingController(settingScreen, authService, customDialog);
+        return new SettingController(settingScreen2, authService, customDialog);
     }
 
     public CustomerController customerController() {

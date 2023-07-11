@@ -43,7 +43,7 @@ public class ServiceFactory {
     }
 
     public BranchService branchService() {
-        return new BranchServiceImpl(branchRepository, connection);
+        return new BranchServiceImpl(branchRepository, connection, persistence);
     }
 
     public CategoryService categoryService() {

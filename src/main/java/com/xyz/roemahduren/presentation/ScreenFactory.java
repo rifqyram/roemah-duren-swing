@@ -56,6 +56,10 @@ public class ScreenFactory {
         return new TransactionHistoryScreen();
     }
 
+    public SettingScreen2 settingScreen2() {
+        return new SettingScreen2();
+    }
+
     public MainScreen mainScreen() {
         return new MainScreen();
     }

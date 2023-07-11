@@ -107,7 +107,7 @@ public class SupplierController {
     }
 
     private void initSupplierTable() {
-        String[] HEADERS = {"#", "Nama Pemasok", "Alamat", "Aksi"};
+        String[] HEADERS = {"#", "Nama Pemasok", "Nomor Telepon", "Alamat", "Aksi"};
         supplierModel = new DefaultTableModel(null, HEADERS);
         suppliers = supplierService.getAll();
         supplierScreen.getSupplierTable().setModel(supplierModel);
@@ -123,6 +123,7 @@ public class SupplierController {
             supplierModel.addRow(new Object[]{
                     ++count,
                     s.getName(),
+                    s.getMobilePhone(),
                     s.getAddress()
             });
         }
@@ -157,7 +158,7 @@ public class SupplierController {
         new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(supplierScreen.getSaveBtnSupplier());
-                    SupplierRequest supplierRequest = new SupplierRequest(supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue());
+                    SupplierRequest supplierRequest = new SupplierRequest(supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue(), supplierScreen.getMobilePhoneTextField().getValue());
                     ValidationUtil.validate(supplierRequest);
                     return supplierService.create(supplierRequest);
                 },
@@ -165,6 +166,7 @@ public class SupplierController {
                     dialog.getSuccessMessageDialog(ConstantMessage.SUPPLIER);
                     initSupplierTable();
                     initSupplierProductForm();
+                    clearSupplierForm();
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
@@ -182,13 +184,14 @@ public class SupplierController {
         new ServiceWorker<>(
                 () -> {
                     SwingUtil.setLoading(supplierScreen.getSaveBtnSupplier());
-                    SupplierRequest supplierRequest = new SupplierRequest(supplier.getId(), supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue());
+                    SupplierRequest supplierRequest = new SupplierRequest(supplier.getId(), supplierScreen.getNameTextField().getValue(), supplierScreen.getAddressTextArea().getValue(), supplierScreen.getMobilePhoneTextField().getValue());
                     ValidationUtil.validate(supplierRequest);
                     return supplierService.update(supplierRequest);
                 },
                 result -> {
                     dialog.getSuccessUpdateMessageDialog(ConstantMessage.SUPPLIER);
                     initSupplierTable();
+                    clearSupplierForm();
                     initSupplierProductForm();
                 },
                 throwable -> {
@@ -262,6 +265,7 @@ public class SupplierController {
     private void setFormSupplier(int row) {
         supplier = suppliers.get(row);
         supplierScreen.getNameTextField().setValue(supplier.getName());
+        supplierScreen.getMobilePhoneTextField().setValue(supplier.getMobilePhone());
         supplierScreen.getAddressTextArea().setValue(supplier.getAddress());
         supplierScreen.getSaveBtnSupplier().setText("Ubah");
     }
@@ -273,6 +277,7 @@ public class SupplierController {
     private void clearSupplierForm() {
         supplierScreen.getSaveBtnSupplier().setText("Simpan");
         supplierScreen.getNameTextField().setValue("");
+        supplierScreen.getMobilePhoneTextField().setValue("");
         supplierScreen.getAddressTextArea().setValue("");
         clearErrorMessage();
     }

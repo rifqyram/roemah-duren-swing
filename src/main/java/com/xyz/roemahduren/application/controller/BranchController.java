@@ -70,13 +70,15 @@ public class BranchController {
                     BranchRequest branchRequest = new BranchRequest(
                             branch.getId(),
                             branchScreen.getNameTextField().getValue(),
-                            branchScreen.getAddressTextArea().getValue()
+                            branchScreen.getAddressTextArea().getValue(),
+                            branchScreen.getMobilePhoneTextField().getValue()
                     );
                     ValidationUtil.validate(branchRequest);
                     return branchService.update(branchRequest);
                 },
                 branch -> {
                     dialog.getSuccessUpdateMessageDialog(BRANCH);
+                    clearForm();
                     initTable();
                 },
                 throwable -> {
@@ -87,7 +89,6 @@ public class BranchController {
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
                 () -> {
-                    clearForm();
                     SwingUtil.clearSecondaryLoading(branchScreen.getSaveBtn(), saveBtn.getText());
                     branch = null;
                 }
@@ -101,7 +102,8 @@ public class BranchController {
                     SwingUtil.setLoading(saveBtn);
                     BranchRequest branchRequest = new BranchRequest(
                             branchScreen.getNameTextField().getValue(),
-                            branchScreen.getAddressTextArea().getValue()
+                            branchScreen.getAddressTextArea().getValue(),
+                            branchScreen.getMobilePhoneTextField().getValue()
                     );
                     ValidationUtil.validate(branchRequest);
                     return branchService.create(branchRequest);
@@ -109,6 +111,7 @@ public class BranchController {
                 branch -> {
                     dialog.getSuccessCreatedMessageDialog(BRANCH);
                     initTable();
+                    clearForm();
                 },
                 throwable -> {
                     if (throwable instanceof ValidationException) {
@@ -120,7 +123,6 @@ public class BranchController {
                 },
                 () -> {
                     SwingUtil.clearSecondaryLoading(saveBtn, saveBtn.getText());
-                    clearForm();
                     branch = null;
                 }
         ).execute();
@@ -141,7 +143,7 @@ public class BranchController {
     }
 
     public void initTable() {
-        final String[] HEADERS = {"#", "Nama Cabang", "Alamat Cabang", "Aksi"};
+        final String[] HEADERS = {"#", "Nama Cabang", "Alamat Cabang", "Nomor Telepon", "Aksi"};
         DefaultTableModel model = new DefaultTableModel(null, HEADERS);
 
         branches = branchService.getAll();
@@ -155,7 +157,7 @@ public class BranchController {
 
         int counter = 0;
         for (Branch branch : branches) {
-            model.addRow(new Object[]{++counter, branch.getName(), branch.getAddress()});
+            model.addRow(new Object[]{++counter, branch.getName(), branch.getAddress(), branch.getMobilePhone()});
         }
 
         branchScreen.getBranchTable().setModel(model);

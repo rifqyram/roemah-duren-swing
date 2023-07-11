@@ -238,7 +238,7 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<text><![CDATA[X]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="234" y="0" width="25" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
+				<reportElement x="205" y="0" width="54" height="13" uuid="e1153571-562e-4ac2-9f62-82b57c02f768"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -266,7 +266,7 @@ ORDER BY subquery.po_number, subquery.name, subquery.product_name, subquery.tota
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="219" y="0" width="15" height="12" forecolor="#030303" uuid="c1cb4106-fc28-496e-96e9-64ea3c1908ee"/>
+				<reportElement x="190" y="0" width="15" height="12" forecolor="#030303" uuid="c1cb4106-fc28-496e-96e9-64ea3c1908ee"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>

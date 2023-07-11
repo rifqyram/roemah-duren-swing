@@ -56,6 +56,16 @@ public class CustomDialog {
         dialogMessage.showMessageDialog(FAIL, ConstantMessage.getInternalErrorMessage(message), FAIL_IMAGE);
     }
 
+    public void getNoInternetMessageDialog() {
+        dialogMessage.showMessageDialog(FAIL, ConstantMessage.getInternalErrorMessage("Gagal menjalankan aplikasi: Kendala jaringan internet"), FAIL_IMAGE, () -> System.exit(0));
+        dialogMessage.getOkBtn().addActionListener(actionEvent -> {
+            dialogMessage.setVisible(false);
+            dialogMessage.setModal(false);
+            dialogMessage.dispose();
+            System.exit(0);
+        });
+    }
+
     private int getCustomConfirmDialog(String title, String text, URL url) {
         return confirmDialog.showConfirmDialog(title, text, url);
     }

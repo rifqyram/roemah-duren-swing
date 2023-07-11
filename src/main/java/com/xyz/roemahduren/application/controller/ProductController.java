@@ -22,6 +22,7 @@ import com.xyz.roemahduren.presentation.event.TableActionEvent;
 import com.xyz.roemahduren.presentation.screen.ProductScreen;
 import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
+import com.xyz.roemahduren.util.Utility;
 import com.xyz.roemahduren.util.ValidationUtil;
 
 import javax.swing.*;
@@ -85,7 +86,7 @@ public class ProductController {
 
         supplierProductResponses = supplierProductService.getAll();
         for (SupplierProductResponse spr : supplierProductResponses) {
-            productComboBox.addItem(spr.getProductName());
+            productComboBox.addItem(spr.getProductName() + " | " + spr.getSupplierName() + " | Rp" + spr.getPrice());
         }
     }
 
@@ -434,7 +435,16 @@ public class ProductController {
         ProductResponse productResponse = products.get(row);
         productScreen.getIsActiveCheckbox().setVisible(true);
         productScreen.getSaveBtn().setText("Ubah");
-        productScreen.getProductNameComboBox().getComboBox().setSelectedItem(productResponse.getName());
+//        productComboBox.addItem(spr.getProductName() + " | " + spr.getSupplierName() + " | Rp" + spr.getPrice());
+//        productScreen.getProductNameComboBox().getComboBox().setSelectedItem(productResponse.getName() + " | " + "");
+
+        for (int i = 0; i < supplierProductResponses.size(); i++) {
+            if (supplierProductResponses.get(i).getProductName().equalsIgnoreCase(productResponse.getName())) {
+                productScreen.getProductNameComboBox().getComboBox().setSelectedIndex(i + 1);
+                break;
+            }
+        }
+
         productScreen.getPriceNumberFormattedField().setValue(String.valueOf(productResponse.getPrice().intValue()));
         productScreen.getCategoryComboBox().getComboBox().setSelectedItem(productResponse.getCategory());
         productScreen.getStockNumberFormattedField().setValue(productResponse.getStock().toString());

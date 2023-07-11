@@ -6,9 +6,7 @@ package com.xyz.roemahduren.presentation.screen;
 
 import com.xyz.roemahduren.presentation.component.RoundedButton;
 import com.xyz.roemahduren.presentation.component.input.RoundedPasswordFieldPanel;
-import com.xyz.roemahduren.presentation.component.input.RoundedTextAreaPanel;
 import com.xyz.roemahduren.presentation.component.input.RoundedTextFieldPanel;
-import com.xyz.roemahduren.presentation.component.panel.RoundedPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -43,12 +41,11 @@ public class SettingScreen extends javax.swing.JPanel {
 
         jTextField1 = new JTextField();
         titleScreen = new JLabel();
-        userFormPanel = new RoundedPanel();
-        saveBtn = new RoundedButton();
-        passwordField = new RoundedPasswordFieldPanel();
-        emailTextField = new RoundedTextFieldPanel();
-        confirmPasswordField = new RoundedPasswordFieldPanel();
         titleScreen1 = new JLabel();
+        emailTextField = new RoundedTextFieldPanel();
+        passwordField = new RoundedPasswordFieldPanel();
+        confirmPasswordField = new RoundedPasswordFieldPanel();
+        saveBtn = new RoundedButton();
 
         jTextField1.setText("jTextField1");
 
@@ -62,66 +59,45 @@ public class SettingScreen extends javax.swing.JPanel {
         titleScreen.setForeground(new Color(2, 8, 38));
         titleScreen.setText("Pengaturan");
 
-        userFormPanel.setBackground(new Color(245, 245, 245));
-        userFormPanel.setCornerRadius(8);
+        titleScreen1.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
+        titleScreen1.setForeground(new Color(2, 8, 38));
+        titleScreen1.setText("Ubah Kata Sandi");
 
-        saveBtn.setText("Simpan Password");
-        saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-
-        passwordField.setBackground(new Color(245, 245, 245));
-        passwordField.setLabelErrorText("");
-        passwordField.setLabelText("Kata Sandi Baru");
-        passwordField.setValue("");
-
-        emailTextField.setBackground(new Color(245, 245, 245));
+        emailTextField.setBackground(new Color(255, 255, 254));
         emailTextField.setEnabled(false);
         emailTextField.setErrorMessage("");
         emailTextField.setLabelText("Email");
 
-        confirmPasswordField.setBackground(new Color(245, 245, 245));
+        passwordField.setBackground(new Color(255, 255, 254));
+        passwordField.setLabelErrorText("");
+        passwordField.setLabelText("Kata Sandi Baru");
+        passwordField.setValue("");
+
+        confirmPasswordField.setBackground(new Color(255, 255, 254));
         confirmPasswordField.setLabelErrorText("");
         confirmPasswordField.setLabelText("Konfirmasi Kata Sandi Baru");
         confirmPasswordField.setValue("");
 
-        GroupLayout userFormPanelLayout = new GroupLayout(userFormPanel);
-        userFormPanel.setLayout(userFormPanelLayout);
-        userFormPanelLayout.setHorizontalGroup(userFormPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(userFormPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(userFormPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                    .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmPasswordField, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(166, Short.MAX_VALUE))
-        );
-        userFormPanelLayout.setVerticalGroup(userFormPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(userFormPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(confirmPasswordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-        );
-
-        titleScreen1.setFont(new Font("Helvetica Neue", 0, 20)); // NOI18N
-        titleScreen1.setForeground(new Color(2, 8, 38));
-        titleScreen1.setText("Ubah Kata Sandi");
+        saveBtn.setText("Simpan Password");
+        saveBtn.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(userFormPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleScreen)
-                    .addComponent(titleScreen1))
-                .addGap(90, 90, 90))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(confirmPasswordField, GroupLayout.PREFERRED_SIZE, 630, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleScreen)
+                            .addComponent(titleScreen1)
+                            .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                            .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -130,8 +106,14 @@ public class SettingScreen extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(titleScreen1)
                 .addGap(18, 18, 18)
-                .addComponent(userFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(confirmPasswordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,9 +137,6 @@ public class SettingScreen extends javax.swing.JPanel {
         return titleScreen;
     }
 
-    public RoundedPanel getUserFormPanel() {
-        return userFormPanel;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RoundedPasswordFieldPanel confirmPasswordField;
@@ -167,6 +146,5 @@ public class SettingScreen extends javax.swing.JPanel {
     private RoundedButton saveBtn;
     private JLabel titleScreen;
     private JLabel titleScreen1;
-    private RoundedPanel userFormPanel;
     // End of variables declaration//GEN-END:variables
 }

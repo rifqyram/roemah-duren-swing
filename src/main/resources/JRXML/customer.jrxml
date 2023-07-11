@@ -6,7 +6,7 @@
 	<parameter name="USER_ID" class="java.lang.String"/>
 	<parameter name="LOGO" class="java.awt.Image"/>
 	<queryString>
-		<![CDATA[SELECT name, mobile_phone, address FROM m_customer]]>
+		<![CDATA[SELECT name, mobile_phone FROM m_customer]]>
 	</queryString>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
@@ -16,11 +16,6 @@
 	<field name="mobile_phone" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="mobile_phone"/>
 		<property name="com.jaspersoft.studio.field.label" value="mobile_phone"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="m_customer"/>
-	</field>
-	<field name="address" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="address"/>
-		<property name="com.jaspersoft.studio.field.label" value="address"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="m_customer"/>
 	</field>
 	<background>
@@ -93,14 +88,7 @@
 				<text><![CDATA[Nama Pelanggan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="10" width="100" height="20" uuid="a575ef4e-d2e3-4199-aa7e-b02a1e478914"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Alamat]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="400" y="10" width="154" height="20" uuid="a36686d4-ae17-45be-9b06-3cbf2e954f3d"/>
+				<reportElement x="220" y="10" width="154" height="20" uuid="a36686d4-ae17-45be-9b06-3cbf2e954f3d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -127,12 +115,7 @@
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="230" y="8" width="150" height="20" uuid="e2df5a68-e4f9-40bc-8e30-87f36b034cac"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{address} != null ? $F{address} : "-"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="400" y="7" width="154" height="20" uuid="3336654e-6577-4a49-adcc-cb432c22f1ed"/>
+				<reportElement x="220" y="7" width="154" height="20" uuid="3336654e-6577-4a49-adcc-cb432c22f1ed"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{mobile_phone} != null || !$F{mobile_phone}.equals("null")  ? $F{mobile_phone} : "-"]]></textFieldExpression>
 			</textField>

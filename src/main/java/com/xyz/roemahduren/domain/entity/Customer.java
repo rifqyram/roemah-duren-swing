@@ -16,17 +16,13 @@ public class Customer {
     @Column(name = "mobile_phone")
     private String mobilePhone;
 
-    @Column(name = "address")
-    private String address;
-
     public Customer() {
     }
 
-    public Customer(String id, String name, String mobilePhone, String address) {
+    public Customer(String id, String name, String mobilePhone) {
         this.id = id;
         this.name = name;
         this.mobilePhone = mobilePhone;
-        this.address = address;
     }
 
     public String getId() {
@@ -53,11 +49,4 @@ public class Customer {
         this.mobilePhone = mobilePhone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

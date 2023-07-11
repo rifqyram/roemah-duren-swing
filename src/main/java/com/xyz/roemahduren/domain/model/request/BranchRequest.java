@@ -11,19 +11,24 @@ public class BranchRequest {
     @NotBlank
     private String address;
 
+    @NotBlank
+    private String mobilePhone;
+
     public BranchRequest() {
     }
 
-    public BranchRequest(String name, String address) {
+    public BranchRequest(String name, String address, String mobilePhone) {
         this.id = RandomGenerator.generateUUID();
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
-    public BranchRequest(String id, String name, String address) {
+    public BranchRequest(String id, String name, String address, String mobilePhone) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
     public String getId() {
@@ -48,5 +53,13 @@ public class BranchRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

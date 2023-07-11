@@ -103,7 +103,7 @@ public class DashboardScreen extends JPanel {
 
         titleTable.setFont(new Font("Helvetica Neue", 0, 22)); // NOI18N
         titleTable.setForeground(new Color(2, 8, 38));
-        titleTable.setText("Daftar Transaksi");
+        titleTable.setText("Daftar Riwayat Transaksi");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);

@@ -11,16 +11,21 @@ public class SupplierRequest {
     @NotBlank
     private String address;
 
-    public SupplierRequest(String name, String address) {
+    @NotBlank
+    private String mobilePhone;
+
+    public SupplierRequest(String name, String address, String mobilePhone) {
         this.id = RandomGenerator.generateUUID();
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
-    public SupplierRequest(String id, String name, String address) {
+    public SupplierRequest(String id, String name, String address, String mobilePhone) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
     public SupplierRequest() {
@@ -48,5 +53,13 @@ public class SupplierRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

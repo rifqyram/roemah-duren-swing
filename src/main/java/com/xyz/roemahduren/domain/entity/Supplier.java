@@ -17,10 +17,14 @@ public class Supplier {
     @Column(name = "address")
     private String address;
 
-    public Supplier(String id, String name, String address) {
+    @Column(name = "mobile_phone")
+    private String mobilePhone;
+
+    public Supplier(String id, String name, String address, String mobilePhone) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
     public Supplier() {
@@ -48,5 +52,13 @@ public class Supplier {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

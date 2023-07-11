@@ -5,7 +5,6 @@ import com.xyz.roemahduren.domain.entity.SupplierProduct;
 import com.xyz.roemahduren.domain.model.request.ProductRequest;
 import com.xyz.roemahduren.domain.model.request.SupplierProductRequest;
 import com.xyz.roemahduren.domain.model.response.ProductResponse;
-import com.xyz.roemahduren.domain.model.response.SupplierProductResponse;
 import com.xyz.roemahduren.domain.repository.Persistence;
 import com.xyz.roemahduren.domain.repository.ProductRepository;
 import com.xyz.roemahduren.domain.service.ProductService;
@@ -33,6 +32,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse create(ProductRequest request) {
+
+        Optional<Product> currentProduct = productRepository.findBySupplierProductIdAndBranchIdAndCategoryIdAndPrice(request.getSupplierProductId(), request.getBranchId(), request.getCategoryId(), request.getPrice());
+
+        if (currentProduct.isPresent()
+                && currentProduct.get().getBranchId().equals(request.getBranchId())
+                && currentProduct.get().getCategoryId().equals(request.getCategoryId())
+        && currentProduct.get().getPrice().equals(request.getPrice())) {
+            request.setId(currentProduct.get().getId());
+            int diffStock = currentProduct.get().getStock() + request.getStock();
+            request.setStock(diffStock);
+            return update(request);
+        }
+
         return persistence.executeTransaction(connection, () -> {
             Product product = new Product(request.getId(), request.getSupplierProductId(), request.getPrice(), request.getStock(), request.getBranchId(), request.getCategoryId(), true);
             SupplierProduct supplierProduct = supplierProductService.get(product.getSupplierProductId());

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends CrudRepository<Product, String> {
+    Optional<Product> findBySupplierProductIdAndBranchIdAndCategoryIdAndPrice(String supplierProductId, String branchId, String categoryId, Long price);
     List<ProductResponse> findAllByName(String name);
     Optional<ProductResponse> getById(String id);
     List<ProductResponse> getAll();

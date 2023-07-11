@@ -48,6 +48,7 @@ public class SupplierScreen extends javax.swing.JPanel {
         addressTextArea = new RoundedTextAreaPanel();
         saveBtnSupplier = new RoundedButton();
         clearBtnSupplier = new RoundedButton();
+        mobilePhoneTextField = new RoundedNumberFormattedFieldPanel();
         titleScreen = new JLabel();
         formPanel = new RoundedPanel();
         productNameTextField = new RoundedTextFieldPanel();
@@ -104,6 +105,10 @@ public class SupplierScreen extends javax.swing.JPanel {
         clearBtnSupplier.setColorOver(new Color(204, 77, 77));
         clearBtnSupplier.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
 
+        mobilePhoneTextField.setBackground(new Color(245, 245, 245));
+        mobilePhoneTextField.setLabelErrorText("");
+        mobilePhoneTextField.setLabelText("Nomor Telepon");
+
         GroupLayout supplierFormPanelLayout = new GroupLayout(supplierFormPanel);
         supplierFormPanel.setLayout(supplierFormPanelLayout);
         supplierFormPanelLayout.setHorizontalGroup(supplierFormPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -116,22 +121,27 @@ public class SupplierScreen extends javax.swing.JPanel {
                         .addComponent(clearBtnSupplier, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(supplierFormPanelLayout.createSequentialGroup()
+                        .addComponent(addressTextArea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(GroupLayout.Alignment.TRAILING, supplierFormPanelLayout.createSequentialGroup()
                         .addGroup(supplierFormPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(addressTextArea, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(mobilePhoneTextField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameTextField, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
                         .addGap(24, 24, 24))))
         );
         supplierFormPanelLayout.setVerticalGroup(supplierFormPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(supplierFormPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(mobilePhoneTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(addressTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(supplierFormPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtnSupplier, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearBtnSupplier, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         titleScreen.setFont(new Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -290,19 +300,23 @@ public class SupplierScreen extends javax.swing.JPanel {
                     .addComponent(printReportBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(supplierFormPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(titleTableProduct1)
                 .addGap(18, 18, 18)
                 .addComponent(supplierScrollPane, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(titleTableProduct)
                 .addGap(18, 18, 18)
                 .addComponent(productSupplierScrollPane, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public RoundedNumberFormattedFieldPanel getMobilePhoneTextField() {
+        return mobilePhoneTextField;
+    }
 
     public RoundedButton getPrintReportBtn() {
         return printReportBtn;
@@ -403,6 +417,7 @@ public class SupplierScreen extends javax.swing.JPanel {
     private RoundedPanel formPanel;
     private JLabel jLabel1;
     private JPanel jPanel1;
+    private RoundedNumberFormattedFieldPanel mobilePhoneTextField;
     private RoundedTextFieldPanel nameTextField;
     private RoundedNumberFormattedFieldPanel priceNumberFormattedField;
     private RoundedButton printReportBtn;

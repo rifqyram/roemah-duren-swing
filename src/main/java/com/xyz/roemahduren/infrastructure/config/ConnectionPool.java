@@ -14,7 +14,7 @@ public class ConnectionPool {
     private final String dbHost;
     private final String dbPort;
 
-    public ConnectionPool(int poolSize, String username, String password, String dbName, String dbHost, String dbPort) {
+    public ConnectionPool(int poolSize, String username, String password, String dbName, String dbHost, String dbPort) throws SQLException, ClassNotFoundException {
         freeConnections = new ArrayBlockingQueue<>(poolSize);
         this.username = username;
         this.password = password;
@@ -26,17 +26,17 @@ public class ConnectionPool {
         }
     }
 
-    private Connection createConnection() {
+    private Connection createConnection() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = String.format("jdbc:mysql://%s:%s/%s?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Jakarta", dbHost, dbPort, dbName);
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
     }
 
-    public Connection acquireConnection() throws InterruptedException {
+    public Connection acquireConnection() throws InterruptedException, SQLException, ClassNotFoundException {
         Connection connection = freeConnections.poll();
         if (connection == null) {
             connection = createConnection();

@@ -49,7 +49,7 @@ public class CustomerController {
     }
 
     private void initTable() {
-        String[] HEADERS = {"#", "Nama Pelanggan", "Nomor Handphone", "Alamat"};
+        String[] HEADERS = {"#", "Nama Pelanggan", "Nomor Handphone"};
         model = new DefaultTableModel(null, HEADERS);
         customerScreen.getCustomerTable().setModel(model);
 
@@ -67,7 +67,6 @@ public class CustomerController {
                     ++counter,
                     customer.getName(),
                     customer.getMobilePhone(),
-                    customer.getAddress()
             });
         }
     }

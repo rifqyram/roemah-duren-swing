@@ -1,5 +1,6 @@
 package com.xyz.roemahduren;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import com.xyz.roemahduren.application.controller.ControllerFactory;
 import com.xyz.roemahduren.application.controller.LoginController;
 import com.xyz.roemahduren.application.controller.MainController;
@@ -15,12 +16,9 @@ import com.xyz.roemahduren.presentation.component.dialog.CustomDialogMessage;
 import com.xyz.roemahduren.presentation.component.dialog.DetailTransactionHistoryDialog;
 import com.xyz.roemahduren.presentation.screen.LoginScreen;
 import com.xyz.roemahduren.presentation.screen.SplashScreen;
-import com.xyz.roemahduren.util.ServiceWorker;
-import com.xyz.roemahduren.util.SwingUtil;
 
 import javax.swing.*;
 import java.sql.*;
-import java.time.Instant;
 import java.util.concurrent.ExecutionException;
 
 public class RoemahDurenApp {
@@ -33,21 +31,30 @@ public class RoemahDurenApp {
 
     public static void main(String[] args) {
         setLookAndFeel();
-        ConnectionPool connectionPool = new ConnectionPool(10, username, password, dbName, dbHost, dbPort);
-
         try {
-            Connection connection = connectionPool.acquireConnection();
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                try {
-                    connectionPool.closeAllConnections();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }));
+            ConnectionPool connectionPool = new ConnectionPool(10, username, password, dbName, dbHost, dbPort);
+            try {
+                Connection connection = connectionPool.acquireConnection();
+                Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                    try {
+                        connectionPool.closeAllConnections();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }));
 
-            ControllerFactory controllerFactory = factoryManager(connection);
-            SwingUtilities.invokeLater(() -> run(controllerFactory));
-        } catch (RuntimeException | InterruptedException e) {
+                ControllerFactory controllerFactory = factoryManager(connection);
+                SwingUtilities.invokeLater(() -> run(controllerFactory));
+            } catch (RuntimeException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException | RuntimeException | ClassNotFoundException e) {
+            CustomDialog dialog = new CustomDialog(new CustomDialogMessage(), new CustomConfirmDialog());
+
+            if (e instanceof CommunicationsException) {
+                dialog.getNoInternetMessageDialog();
+            }
+
             e.printStackTrace();
         }
     }
@@ -142,7 +149,7 @@ public class RoemahDurenApp {
                 screenFactory.orderScreen(),
                 screenFactory.supplierScreen(),
                 screenFactory.settingScreen(),
-                screenFactory.customerScreen(),
+                screenFactory.settingScreen2(), screenFactory.customerScreen(),
                 screenFactory.transactionHistoryScreen(),
                 screenFactory.mainScreen().getDashboardScreen(),
                 dialog,

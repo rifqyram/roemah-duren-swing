@@ -6,6 +6,7 @@ import com.xyz.roemahduren.domain.model.response.ErrorValidationModel;
 import com.xyz.roemahduren.domain.service.AuthService;
 import com.xyz.roemahduren.exception.ValidationException;
 import com.xyz.roemahduren.presentation.screen.SettingScreen;
+import com.xyz.roemahduren.presentation.screen.SettingScreen2;
 import com.xyz.roemahduren.util.ServiceWorker;
 import com.xyz.roemahduren.util.SwingUtil;
 import com.xyz.roemahduren.util.ValidationUtil;
@@ -15,40 +16,40 @@ import java.util.*;
 
 public class SettingController {
 
-    private final SettingScreen settingScreen;
+    private final SettingScreen2 settingScreen2;
     private final AuthService authService;
     private final CustomDialog dialog;
 
-
-    public SettingController(SettingScreen settingScreen, AuthService authService, CustomDialog dialog) {
-        this.settingScreen = settingScreen;
+    public SettingController(SettingScreen2 settingScreen22, AuthService authService, CustomDialog dialog) {
+        this.settingScreen2 = settingScreen22;
         this.authService = authService;
         this.dialog = dialog;
+        settingScreen2.getEmailTextField().getTextField().setEnabled(false);
         initController();
         initForm();
     }
 
     private void initController() {
-        settingScreen.getSaveBtn().addActionListener(this::saveAuthUser);
+        settingScreen2.getSaveBtn().addActionListener(this::saveAuthUser);
     }
 
     private void initForm() {
         if (!Objects.isNull(MainController.user))
-            settingScreen.getEmailTextField().setValue(MainController.user.getEmail());
+            settingScreen2.getEmailTextField().setValue(MainController.user.getEmail());
     }
 
     private void saveAuthUser(ActionEvent actionEvent) {
         new ServiceWorker<>(
                 () -> {
-                    SwingUtil.setLoading(settingScreen.getSaveBtn());
-                    if (!settingScreen.getPasswordField().getValue().equals(settingScreen.getConfirmPasswordField().getValue())) {
+                    SwingUtil.setLoading(settingScreen2.getSaveBtn());
+                    if (!settingScreen2.getPasswordField().getValue().equals(settingScreen2.getConfirmPasswordField().getValue())) {
                         throw new ValidationException(new HashSet<>(Collections.singletonList(new ErrorValidationModel("confirmPassword", new HashSet<>(Collections.singletonList("Password tidak match"))))));
                     }
 
                     ChangePasswordRequest request = new ChangePasswordRequest(
-                            settingScreen.getEmailTextField().getValue(),
-                            settingScreen.getPasswordField().getValue(),
-                            settingScreen.getConfirmPasswordField().getValue()
+                            settingScreen2.getEmailTextField().getValue(),
+                            settingScreen2.getPasswordField().getValue(),
+                            settingScreen2.getConfirmPasswordField().getValue()
                     );
                     ValidationUtil.validate(request);
                     return authService.changePassword(request);
@@ -64,7 +65,7 @@ public class SettingController {
                     }
                     dialog.getFailedMessageDialog(throwable.getMessage());
                 },
-                () -> SwingUtil.clearSecondaryLoading(settingScreen.getSaveBtn(), "Simpan Password")
+                () -> SwingUtil.clearSecondaryLoading(settingScreen2.getSaveBtn(), "Simpan Password")
         ).execute();
     }
 
@@ -74,26 +75,29 @@ public class SettingController {
             String message = ValidationUtil.getMessage(validationModel.getMessages());
 
             if (validationModel.getPath().equals("email")) {
-                settingScreen.getEmailTextField().setErrorMessage(message);
+                settingScreen2.getEmailTextField().setErrorMessage(message);
             }
             if (validationModel.getPath().equals("password")) {
-                settingScreen.getPasswordField().setErrorMessage(message);
+                settingScreen2.getPasswordField().setErrorMessage(message);
             }
             if (validationModel.getPath().equals("confirmPassword")) {
-                settingScreen.getConfirmPasswordField().setErrorMessage(message);
+                settingScreen2.getConfirmPasswordField().setErrorMessage(message);
             }
         }
         return;
     }
 
     private void clearForm() {
-        settingScreen.getPasswordField().setValue("");
-        settingScreen.getConfirmPasswordField().setValue("");
+        settingScreen2.getPasswordField().setValue("");
+        settingScreen2.getConfirmPasswordField().setValue("");
+        settingScreen2.getPasswordField().clearErrorMessage();
+        settingScreen2.getConfirmPasswordField().clearErrorMessage();
     }
 
 
-    public SettingScreen getSettingScreen() {
+    public SettingScreen2 getSettingScreen() {
         initForm();
-        return settingScreen;
+        clearForm();
+        return settingScreen2;
     }
 }

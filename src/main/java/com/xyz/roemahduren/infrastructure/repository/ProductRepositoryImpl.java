@@ -21,6 +21,37 @@ public class ProductRepositoryImpl extends CrudRepositoryImpl<Product, String> i
     }
 
     @Override
+    public Optional<Product> findBySupplierProductIdAndBranchIdAndCategoryIdAndPrice(String supplierProductId, String branchId, String cateoryId, Long price) {
+        String sql = "SELECT * FROM m_product WHERE supplier_product_id = ? AND branch_id = ? AND category_id = ? AND price = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, supplierProductId);
+            statement.setString(2, branchId);
+            statement.setString(3, cateoryId);
+            statement.setLong(4, price);
+            ResultSet resultSet = statement.executeQuery();
+
+            List<Product> products = new ArrayList<>();
+
+            if (resultSet.next()) {
+                products.add(new Product(
+                        resultSet.getString("id"),
+                        resultSet.getString("supplier_product_id"),
+                        resultSet.getLong("price"),
+                        resultSet.getInt("stock"),
+                        resultSet.getString("branch_id"),
+                        resultSet.getString("category_id"),
+                        resultSet.getBoolean("is_active")
+                ));
+            }
+
+            return products.stream().findFirst();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<ProductResponse> findAllByName(String name) {
         String sql = "SELECT mp.id        as product_id,\n" +
                 "       msp.product_name      as product_name,\n" +

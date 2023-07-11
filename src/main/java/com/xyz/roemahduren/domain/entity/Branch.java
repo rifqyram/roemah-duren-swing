@@ -18,13 +18,17 @@ public class Branch {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "mobile_phone")
+    private String mobilePhone;
+
     public Branch() {
     }
 
-    public Branch(String id, String name, String address) {
+    public Branch(String id, String name, String address, String mobilePhone) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.mobilePhone = mobilePhone;
     }
 
     public String getId() {
@@ -49,5 +53,13 @@ public class Branch {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

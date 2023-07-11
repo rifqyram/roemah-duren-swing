@@ -9,6 +9,7 @@ import com.xyz.roemahduren.exception.NotFoundException;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Optional;
 
 public class SupplierServiceImpl implements SupplierService {
 
@@ -24,7 +25,13 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier create(SupplierRequest request) {
-        return persistence.executeTransaction(connection, () -> supplierRepository.save(new Supplier(request.getId(), request.getName(), request.getAddress())));
+        Optional<Supplier> supplier = supplierRepository.findByMobilePhone(request.getMobilePhone());
+
+        if (supplier.isPresent()) {
+            throw new RuntimeException("Nomor telepon pemasok sudah terdaftar");
+        }
+
+        return persistence.executeTransaction(connection, () -> supplierRepository.save(new Supplier(request.getId(), request.getName(), request.getAddress(), request.getMobilePhone())));
     }
 
     @Override
@@ -41,7 +48,7 @@ public class SupplierServiceImpl implements SupplierService {
     public Supplier update(SupplierRequest request) {
         return persistence.executeTransaction(connection, () -> {
             Supplier supplier = getById(request.getId());
-            return supplierRepository.update(new Supplier(supplier.getId(), request.getName(), request.getAddress()));
+            return supplierRepository.update(new Supplier(supplier.getId(), request.getName(), request.getAddress(), request.getMobilePhone()));
         });
     }
 
